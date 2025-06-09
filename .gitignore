@@ -1,0 +1,60 @@
+# Frontend Angular
+/Frontend/dist
+/Frontend/tmp
+/Frontend/out-tsc
+/Frontend/bazel-out
+
+# Node
+/Frontend/node_modules/
+/Frontend/npm-debug.log
+/Frontend/yarn-error.log
+
+# IDEs/editors
+/Frontend/.idea/
+/Frontend/.project
+/Frontend/.classpath
+/Frontend/.c9/
+/Frontend/*.launch
+/Frontend/.settings/
+/Frontend/*.sublime-workspace
+
+# Visual Studio Code
+/Frontend/.vscode/*
+/Frontend/.history/
+
+# Miscellaneous
+/Frontend/.angular/cache
+/Frontend/.sass-cache/
+/Frontend/connect.lock
+/Frontend/coverage
+/Frontend/libpeerconnection.log
+/Frontend/testem.log
+/Frontend/typings
+
+# System
+.DS_Store
+Thumbs.db
+
+# Backend Flask
+__pycache__/
+/Backend/*.py[cod]
+/Backend/*.pyo
+/Backend/*.pyd
+/Backend/myenv/
+/Backend/.env
+/Backend/.env.*
+/Backend/*.sqlite3
+/Backend/.vscode/
+/Backend/*.log
+/Backend/.ipynb_checkpoints/
+/Backend/.DS_Store
+/Backend/Thumbs.db
+/Backend/static/uploads/
+Backend/instance/db.sqlite3
+
+# 通用
+*.log
+*.swp
+*.tmp
+*.bak
+.env
