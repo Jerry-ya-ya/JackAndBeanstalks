@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 //Component
-import { HomeComponent } from './home.component';
+import { CrawlerComponent } from './crawler.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: CrawlerComponent,
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomeRoutingModule { }
+export class CrawlerRoutingModule { }
