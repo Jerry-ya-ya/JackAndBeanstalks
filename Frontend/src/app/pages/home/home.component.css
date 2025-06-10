@@ -1,0 +1,63 @@
+h2 {
+    color: #f0f0f0;
+    font-size: 5vw;
+    -webkit-box-reflect: below 0.1vw linear-gradient(transparent, #040404);
+    outline: none;
+    line-height: 4vw;
+    animation: animate 5s linear infinite;
+}
+@keyframes animate {
+    0%,18%,22%,25%,30% {
+        color: #0e3742;
+        text-shadow: none;
+    }
+    18%,22%,25%,30%,50%,70%,72%,75%,80% {
+        color: #fff;
+        text-shadow: 0 0 1vw #03bcf4,
+        0 0 20px #03bcf4,
+        0 0 40px #03bcf4,
+        0 0 80px #03bcf4,
+        0 0 160px #03bcf4;
+    }
+}
+
+p {
+    color: #f0f0f0;
+    font-size: 3vw;
+}
+
+ol {
+    color:#f0f0f0;
+    font-size: 3vw;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f0f0f0;
+    font-size: 7vw;
+}
+
+.great-again {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gold;
+    font-size: 4vw;
+    margin-top: -6vw;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

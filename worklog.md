@@ -2,4 +2,12 @@
 
 ## 2025/06/09 ##
 
-- 建立網站結構
+- Set up the website architecture
+
+## 2025/06/11 ##
+
+- Set up routing to implement SPA navigation and add a crawler page.
+
+- 💥 Didn't change branches before developing. Now there’s a huge conflict mess.
+
+- Text and artwork for the homepage.
