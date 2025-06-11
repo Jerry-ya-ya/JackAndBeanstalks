@@ -2,4 +2,6 @@
     background-color: #000000;
     margin-left: 0;
     margin-top: 0;
+    z-index: -1;
+    position: relative;
   }

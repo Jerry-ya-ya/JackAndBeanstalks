@@ -11,3 +11,5 @@
 - 💥 Didn't change branches before developing. Now there’s a huge conflict mess.
 
 - Text and artwork for the homepage.
+
+- Text and artwork for the loginpage and minor homepage adjustments.

@@ -61,3 +61,7 @@ ol {
     justify-content: center;
     align-items: center;
 }
+
+.view {
+    margin-top:-40px;
+}
