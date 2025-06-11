@@ -20,4 +20,4 @@
 
 - 👁️ Can't select the input blocks and button of loginpage.
 
-- Text and artwork for the register page. Complete the register component. Add some decorate.
+- Text and artwork for the register page. Complete the register component. Add some decorate.(1bug)
