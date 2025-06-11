@@ -1,1 +1,19 @@
-<p>register works!</p>
+<div class="box">
+    <h2>
+        Register
+    </h2>
+    <div>
+        <div>
+            <input [(ngModel)]="username" placeholder="Username">
+        </div>
+        <div>
+            <input [(ngModel)]="password" type="password" placeholder="Password">
+        </div>
+    </div>
+    <button (click)="register()">
+        Register
+    </button>
+    <p *ngIf="error">
+        {{ error }}
+    </p>
+</div>

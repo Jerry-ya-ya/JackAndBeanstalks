@@ -2,7 +2,7 @@
 
 ## 2025/06/09 ##
 
-- Set up the website architecture
+- Set up the website architecture.
 
 ## 2025/06/11 ##
 
@@ -14,4 +14,10 @@
 
 - Text and artwork for the loginpage and minor homepage adjustments.
 
+- 💥 Due to unknown reasons, some files reverted to their original version. I need to restore the previous commit from GitHub.
+
 - Text and artwork for the memberpage and added nav for memberpage.
+
+- 👁️ Can't select the input blocks and button of loginpage.
+
+- Text and artwork for the register page. Complete the register component. Add some decorate.
