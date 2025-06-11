@@ -1,0 +1,95 @@
+.title-box {
+    background-color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    position: relative;
+    border-radius: 20px;
+}
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.title-box::after, title-box::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle), transparent 70%, #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+    z-index: -1;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border-radius: 20px;
+    animation: 3s spin linear infinite;
+}
+.title-box::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+@keyframes spin {
+    from{
+        --angle: 0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
+}
+
+
+.title {
+    font-size: 7vw;
+    color: #000000;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.rowframe {
+    display: flex;
+    flex-direction: block;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.profileframe {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 0;
+}
+
+.role {
+    font-size: 4vw;
+    color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile {
+    width: 25vw;
+    height: 25vw;
+    margin: auto;
+    background-color:grey;
+}
+
+.name {
+    font-size: 4vw;
+    color: #f0f0f0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.view {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}

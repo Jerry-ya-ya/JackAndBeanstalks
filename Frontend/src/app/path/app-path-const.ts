@@ -5,6 +5,8 @@ export const appPath = {
     crawler: 'crawler',
     //login
     login: 'login',
+    //member
+    member: 'member',
     //profile
     profile: 'profile',
     //register

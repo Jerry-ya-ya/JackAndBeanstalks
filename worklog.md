@@ -13,3 +13,5 @@
 - Text and artwork for the homepage.
 
 - Text and artwork for the loginpage and minor homepage adjustments.
+
+- Text and artwork for the memberpage and added nav for memberpage.

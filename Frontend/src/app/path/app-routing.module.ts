@@ -25,6 +25,11 @@ const routes: Routes = [
       import('../pages/login/login.module').then(m => m.LoginModule)
   },
   {
+    path: appPath.member,
+    loadChildren: () =>
+      import('../pages/member/member.module').then(m => m.MemberModule)
+  },
+  {
     path: appPath.profile,
     loadChildren: () =>
       import('../pages/profile/profile.module').then(m => m.ProfileModule)
