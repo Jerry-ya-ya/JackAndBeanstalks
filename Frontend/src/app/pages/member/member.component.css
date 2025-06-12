@@ -1,13 +1,22 @@
+.animation-container {
+    position: relative;
+    margin-top: 5vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    border-radius: 20px;
+    padding: 10px;
+}
+
 .title-box {
     background-color: #f0f0f0;
     text-align: center;
     display: flex;
     flex-direction: column;
-    margin-top: 5vh;
-    margin-left: 5vw;
-    margin-right: 5vw;
     position: relative;
     border-radius: 20px;
+    padding: 20px;
+    background: #f0f0f0;
+    z-index: 2;
 }
 
 @property --angle{
@@ -15,24 +24,22 @@
     initial-value: 0deg;
     inherits: false;
 }
-.title-box::after, title-box::before {
+
+.animation-container::after, .animation-container::before {
     content: '';
     position: absolute;
-    height: 100%;
-    width: 100%;
+    inset: 0;
     background-image: conic-gradient(from var(--angle), transparent 70%, #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
-    z-index: -1;
-    padding: 10px;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
+    z-index: 1;
     border-radius: 20px;
     animation: 3s spin linear infinite;
 }
-.title-box::before {
+
+.animation-container::before {
     filter: blur(1.5rem);
     opacity: 0.5;
 }
+
 @keyframes spin {
     from{
         --angle: 0deg;
@@ -41,7 +48,6 @@
         --angle: 360deg;
     }
 }
-
 
 .title {
     font-size: 7vw;

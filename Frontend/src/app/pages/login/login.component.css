@@ -47,7 +47,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: -100px;
     margin-left: auto;
     margin-right: auto;
     width: 390px;
@@ -79,10 +79,11 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: -1;
     position: relative;
+    margin-top: 36vh;
 }
 
 .view {
-    height: 78vh;
+    height: 75vh;
+    overflow: hidden;
 }

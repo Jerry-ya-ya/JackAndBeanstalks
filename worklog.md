@@ -18,6 +18,12 @@
 
 - Text and artwork for the memberpage and added nav for memberpage.
 
-- 👁️ Can't select the input blocks and button of loginpage.
+- 👁️ Can't select the input blocks and button of loginpage.(ID:1)
 
 - Text and artwork for the register page. Complete the register component. Add some decorate.(1bug)
+
+## 2025/06/11 ##
+
+- Rebase all the branch to branch Jerry.
+
+- 🔧 Fix the bug ID:1 and the animations of title box in memberpage.
