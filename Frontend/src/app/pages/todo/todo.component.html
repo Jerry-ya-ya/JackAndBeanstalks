@@ -1,1 +1,25 @@
-<p>todo works!</p>
+<div class="todo-container">
+    <h2>
+        Todo List
+    </h2>
+
+    <input [(ngModel)]="newTodoText" placeholder="Add new todo" />
+
+    <button (click)="addTodo()">
+        Add
+    </button>
+  
+    <ul>
+        <li *ngFor="let todo of todos">
+            <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
+            
+            <span [ngStyle]="{ 'text-decoration': todo.done ? 'line-through' : 'none' }">
+                {{ todo.text }}
+            </span>
+
+            <button (click)="deleteTodo(todo.id)">
+                Delete
+            </button>
+        </li>
+    </ul>
+</div>

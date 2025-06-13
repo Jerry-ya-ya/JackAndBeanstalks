@@ -27,6 +27,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 # 匯入 blueprint
 from routes.auth import auth_bp
+from routes.todo import todo_bp
 
 # 載入 .env 環境變數
 from dotenv import load_dotenv
@@ -66,6 +67,7 @@ def create_app():
     
     # 註冊藍圖
     app.register_blueprint(auth_bp, url_prefix='/api')
+    app.register_blueprint(todo_bp, url_prefix='/api')
     
     return app
 

@@ -17,6 +17,13 @@ class User(db.Model):
     
     created_at = db.Column(db.DateTime, server_default=db.func.now()) # 註冊時間
 
-    # todos = db.relationship('Todo', backref='user', lazy=True) # 一對多關聯
+    todos = db.relationship('Todo', backref='user', lazy=True) # 一對多關聯
 
     avatar_url = db.Column(db.String(255))
+
+# 定義 Todo 模型
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(200), nullable=False)
+    done = db.Column(db.Boolean, default=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # 將來可用來綁定使用者
