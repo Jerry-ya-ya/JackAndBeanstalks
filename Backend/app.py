@@ -28,6 +28,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 # 匯入 blueprint
 from routes.auth import auth_bp
 from routes.todo import todo_bp
+from routes.me import me_bp
+from routes.avatar import avatar_bp
 
 # 載入 .env 環境變數
 from dotenv import load_dotenv
@@ -50,6 +52,13 @@ def create_app():
     )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+    # 設定上傳檔案的路徑
+    UPLOAD_FOLDER = 'static/uploads/avatar'
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+    
+    # 設定上傳檔案的大小限制 (5MB)
+    app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB
+
     # JWT 設定
     app.config['JWT_SECRET_KEY'] = 'super-secret-key'
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=2)
@@ -68,7 +77,9 @@ def create_app():
     # 註冊藍圖
     app.register_blueprint(auth_bp, url_prefix='/api')
     app.register_blueprint(todo_bp, url_prefix='/api')
-    
+    app.register_blueprint(me_bp, url_prefix='/api')
+    app.register_blueprint(avatar_bp, url_prefix='/api')
+
     return app
 
 if __name__ == '__main__':

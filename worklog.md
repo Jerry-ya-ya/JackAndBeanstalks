@@ -36,3 +36,5 @@
 - Complete the login and logout feature, turn some navbar to private and connect SQL.
 
 - Complete the todo feature, create an interceptor, and inject it.
+
+- Complete the profile feature with editable email, nickname, and avatar.
