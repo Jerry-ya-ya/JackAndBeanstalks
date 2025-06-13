@@ -15,6 +15,11 @@ const routes: Routes = [
       import('../pages/home/home.module').then(m => m.HomeModule),
   },
   {
+    path: appPath.forgotpassword,
+    loadChildren: () =>
+      import('../pages/forgotpassword/forgotpassword.module').then(m => m.ForgotpasswordModule),
+  },
+  {
     path: appPath.crawler,
     loadChildren: () =>
       import('../pages/crawler/crawler.module').then(m => m.CrawlerModule),

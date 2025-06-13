@@ -1,6 +1,8 @@
 export const appPath = {
     //home
     home: 'home',
+    //forgotpassword
+    forgotpassword: 'forgotpassword',
     //crawler
     crawler: 'crawler',
     //login

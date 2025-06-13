@@ -22,8 +22,13 @@
 
 - Text and artwork for the register page. Complete the register component. Add some decorate.(1bug)
 
-## 2025/06/11 ##
+## 2025/06/12 ##
 
 - Rebase all the branch to branch Jerry.
 
 - 🔧 Fix the bug ID:1 and the animations of title box in memberpage.
+
+## 2025/06/13 ##
+
+- Complete the Login page and create the forgotpasswordpage for it.
+    (routerLink should add '/' for root-level redirection)

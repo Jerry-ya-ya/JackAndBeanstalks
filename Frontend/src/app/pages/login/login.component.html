@@ -94,8 +94,8 @@
             登入
         </h1>
         <div class="login-box">
-            <input placeholder="帳號">
-            <input placeholder="密碼">
+            <input [(ngModel)]="username" placeholder="帳號">
+            <input [(ngModel)]="password" type="password" placeholder="密碼">
             <div class="rowframe">
                 <div class="remember">
                     <input class="checkbox" type="checkbox">
@@ -106,7 +106,7 @@
                 <p>
                     忘記密碼?
                 </p>
-                <a [routerLink]="[null]">找回密碼</a>
+                <a [routerLink]="['/' + path.forgotpassword]">找回密碼</a>
             </div>
             <button>
                 登入
@@ -116,7 +116,7 @@
             <p>
                 沒有帳號?
             </p>
-            <a [routerLink]="[null]">註冊帳號</a>
+            <a [routerLink]="['/' + path.register]">註冊帳號</a>
         </div>
     </div>
 </div>
