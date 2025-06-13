@@ -32,3 +32,5 @@
 
 - Complete the Login page and create the forgotpasswordpage for it.
     (routerLink should add '/' for root-level redirection)
+
+- Complete the login and logout feature, turn some navbar to private and connect SQL.

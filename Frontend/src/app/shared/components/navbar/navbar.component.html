@@ -58,8 +58,7 @@
 <!-- Public -->
 
 <!-- Private -->
-<div>
-    <!-- *ngIf="isLoggedIn()" -->
+<div *ngIf="isLoggedIn()">
     <div class="navbar">
         <div class="nav-private">
             <a [routerLink]="[path.square]">
