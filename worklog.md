@@ -42,3 +42,5 @@
 ## 2025/06/14 ##
 
 - Complete the Usersquarepage.
+
+- Complete the change password feature in setting page.

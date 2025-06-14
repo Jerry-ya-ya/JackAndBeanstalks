@@ -31,6 +31,7 @@ from routes.todo import todo_bp
 from routes.me import me_bp
 from routes.avatar import avatar_bp
 from routes.square import square_bp
+from routes.changepassword import changepassword_bp
 
 # 載入 .env 環境變數
 from dotenv import load_dotenv
@@ -81,6 +82,7 @@ def create_app():
     app.register_blueprint(me_bp, url_prefix='/api')
     app.register_blueprint(avatar_bp, url_prefix='/api')
     app.register_blueprint(square_bp, url_prefix='/api')
+    app.register_blueprint(changepassword_bp, url_prefix='/api')
     
     return app
 

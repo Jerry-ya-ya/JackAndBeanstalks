@@ -1,1 +1,22 @@
-<p>setting works!</p>
+<h3>
+    修改密碼
+</h3>
+
+<div>
+    <label>
+        舊密碼：
+    </label>
+    <input type="password" [(ngModel)]="oldPassword">
+</div>
+<div>
+    <label>
+        新密碼：
+    </label>
+    <input type="password" [(ngModel)]="newPassword">
+</div>
+<button (click)="changePassword()">
+    變更密碼
+</button>
+<p *ngIf="passwordMessage">
+    {{ passwordMessage }}
+</p>
