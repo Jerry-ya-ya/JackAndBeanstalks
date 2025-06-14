@@ -1,1 +1,26 @@
-<p>crawler works!</p>
+<div class="crawler-container">
+    <h2>即時科技新聞</h2>
+    <div class="crawler-info">
+        <button (click)="fetchNews()" class="fetch-button">📥 抓取最新新聞</button>
+        <span>&nbsp;</span>
+        <button (click)="loadNews()" class="fetch-button">重新整理</button>
+        <div *ngIf="scheduleInfo" class="schedule-info">
+            <div class="info-item">
+                <span class="label">📌 上次爬蟲時間：</span>
+                <span class="value">{{ scheduleInfo.last_run | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</span>
+            </div>
+            <div class="info-item">
+                <span class="label">📅 下次預定爬蟲：</span>
+                <span class="value">{{ scheduleInfo.next_run | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="news-list">
+        <ol>
+            <li *ngFor="let item of news" class="news-item">
+                <div class="news-time">📅 {{ item.created_at | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</div>
+                <a [href]="item.url" target="_blank" class="news-title">{{ item.title }}</a>
+            </li>
+        </ol>
+    </div>
+</div>

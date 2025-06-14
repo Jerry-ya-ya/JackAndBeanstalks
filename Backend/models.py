@@ -27,3 +27,16 @@ class Todo(db.Model):
     text = db.Column(db.String(200), nullable=False)
     done = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # 將來可用來綁定使用者
+
+# 定義新聞模型
+class News(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255), nullable=False)
+    url = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class ScheduleState(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    job_name = db.Column(db.String(50), unique=True, nullable=False)
+    last_run = db.Column(db.DateTime)
+    next_run = db.Column(db.DateTime)

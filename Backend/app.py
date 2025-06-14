@@ -22,8 +22,7 @@ import os
 from models import db
 
 # JWT 相關套件
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import JWTManager
 
 # 匯入 blueprint
 from routes.auth import auth_bp
@@ -32,6 +31,10 @@ from routes.me import me_bp
 from routes.avatar import avatar_bp
 from routes.square import square_bp
 from routes.changepassword import changepassword_bp
+from routes.crawler import crawler_bp
+
+from routes.crawler.schedule import start_scheduler
+from routes.crawler.logic import init_schedule_state
 
 # 載入 .env 環境變數
 from dotenv import load_dotenv
@@ -69,6 +72,7 @@ def create_app():
     db.init_app(app)
     with app.app_context():
         db.create_all()
+        init_schedule_state() # 初始化排程器狀態
 
     # 初始化 JWT
     JWTManager(app)
@@ -83,7 +87,10 @@ def create_app():
     app.register_blueprint(avatar_bp, url_prefix='/api')
     app.register_blueprint(square_bp, url_prefix='/api')
     app.register_blueprint(changepassword_bp, url_prefix='/api')
-    
+    app.register_blueprint(crawler_bp, url_prefix='/api')
+
+    start_scheduler(app) # 啟動排程器
+
     return app
 
 if __name__ == '__main__':

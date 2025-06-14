@@ -1,0 +1,88 @@
+a {
+    text-decoration-line: none;
+    color: tomato;
+}
+
+br {
+    color: white;
+}
+
+.crawler-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.crawler-info {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.fetch-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.fetch-button:hover {
+    background-color: #45a049;
+}
+
+.schedule-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.label {
+    font-weight: bold;
+    color: #333;
+}
+
+.value {
+    color: #666;
+}
+
+.news-list {
+    margin-top: 20px;
+}
+
+.news-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.news-time {
+    color: #666;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.news-title {
+    color: #2196F3;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: block;
+    margin-top: 5px;
+}
+
+.news-title:hover {
+    color: #1976D2;
+    text-decoration: underline;
+}
