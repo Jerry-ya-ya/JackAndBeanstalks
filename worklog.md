@@ -38,3 +38,7 @@
 - Complete the todo feature, create an interceptor, and inject it.
 
 - Complete the profile feature with editable email, nickname, and avatar.
+
+## 2025/06/14 ##
+
+- Complete the Usersquarepage.
