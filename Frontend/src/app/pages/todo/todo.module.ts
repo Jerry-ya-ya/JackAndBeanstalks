@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { TodoRoutingModule } from './todo-routing.module';
 import { TodoComponent } from './todo.component';
 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { TodoComponent } from './todo.component';
   ],
   imports: [
     CommonModule,
-    TodoRoutingModule
+    TodoRoutingModule,
+    FormsModule,
   ]
 })
 export class TodoModule { }

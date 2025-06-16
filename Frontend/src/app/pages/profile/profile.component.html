@@ -1,1 +1,45 @@
-<p>profile works!</p>
+<div>
+    <div *ngIf="user">
+      <p>歡迎回來,{{ user.username }},{{ user.nickname }}！</p>
+    </div>
+  
+    <div *ngIf="user">
+        <h2>我的個人資料</h2>
+        <p><strong>帳號：</strong>{{ user.username }}</p>
+        <p><strong>註冊時間：</strong>{{ user.created_at | date:'medium' }}</p>
+        <p><strong>電子郵件：</strong>{{ user.email }}</p>
+        
+        <div>
+            <label><strong>Email：</strong></label>
+            <input [(ngModel)]="user.email" [disabled]="!editing">
+        </div>
+        
+        <div>
+            <label><strong>暱稱：</strong></label>
+            <input [(ngModel)]="user.nickname" [disabled]="!editing">
+        </div>
+        
+        <div *ngIf="!editing">
+            <button (click)="editing = true">編輯</button>
+        </div>
+        <div *ngIf="editing">
+            <button (click)="saveProfile()">儲存</button>
+            <button (click)="editing = false">取消</button>
+        </div>
+        <p *ngIf="success" style="color: green">{{ success }}</p>
+    </div>
+</div>
+<div>
+    <h3>頭像</h3>
+    <div *ngIf="user?.avatar_url">
+        <p>目前頭像：</p>
+        <img [src]="'http://localhost:5000/'+ user.avatar_url" width="120" height="120" />
+    </div>
+    <p>更換新頭像：</p>
+    <input type="file" (change)="onFileSelected($event)">
+    <div *ngIf="avatarPreview">
+        <p>預覽：</p>
+        <img [src]="avatarPreview" width="120" height="120">
+    </div>
+    <button (click)="uploadAvatar()" [disabled]="!selectedFile">上傳頭像</button>
+</div>

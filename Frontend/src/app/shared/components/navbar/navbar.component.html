@@ -1,1 +1,118 @@
-<p>navbar works!</p>
+<!-- Public -->
+<div>
+    <div class="navbar">
+        <div class="nav">
+            <a [routerLink]="[path.home]">
+                Home
+            </a>
+        </div>
+        <div class="nav" >
+            <a [routerLink]="[path.member]">
+                Member
+            </a>
+        </div>
+        <div class="nav" >
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav" >
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="nav" >
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav" >
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav" >
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav">
+            <a [routerLink]="[path.register]">
+                Register
+            </a>
+        </div>
+        <div class="nav">
+            <a [routerLink]="[path.login]">
+                Login
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Public -->
+
+<!-- Private -->
+<div *ngIf="isLoggedIn()">
+    <div class="navbar">
+        <div class="nav-private">
+            <a [routerLink]="[path.square]">
+                Square
+            </a>
+        </div>
+        <div class="nav-private">
+            <a [routerLink]="[path.todo]">
+                Todo
+            </a>
+        </div>
+        <div class="nav-private">
+            <a [routerLink]="[path.setting]">
+                Setting
+            </a>
+        </div>
+        <div class="nav-private">
+            <a [routerLink]="[path.profile]">
+                Profile
+            </a>
+        </div>
+        <div class="nav-private">
+            <a [routerLink]="[path.crawler]">
+                Crawler
+            </a>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="nav-private">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-private">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-private">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-private">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-private">
+            <a (click)="logout()">
+                Logout
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Private -->
