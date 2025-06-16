@@ -60,6 +60,11 @@ const routes: Routes = [
       import('../pages/todo/todo.module').then(m => m.TodoModule)
   },
   {
+    path: appPath.verified,
+    loadChildren: () =>
+      import('../pages/verified/verified.module').then(m => m.VerifiedModule)
+  },
+  {
     path: '**',
     redirectTo: '',
   }

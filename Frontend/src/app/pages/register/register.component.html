@@ -1,19 +1,19 @@
-<div class="box">
-    <h2>
-        Register
-    </h2>
-    <div>
-        <div>
-            <input [(ngModel)]="username" placeholder="Username">
-        </div>
-        <div>
-            <input [(ngModel)]="password" type="password" placeholder="Password">
-        </div>
-    </div>
-    <button (click)="register()">
-        Register
-    </button>
-    <p *ngIf="error">
-        {{ error }}
-    </p>
+<h2>註冊帳號</h2>
+
+<div>
+  <label>帳號：</label>
+  <input [(ngModel)]="username">
 </div>
+<div>
+  <label>密碼：</label>
+  <input type="password" [(ngModel)]="password">
+</div>
+<div>
+  <label>Email：</label>
+  <input [(ngModel)]="email">
+</div>
+
+<button (click)="register()">註冊</button>
+
+<p *ngIf="successMessage" style="color: green">{{ successMessage }}</p>
+<p *ngIf="error" style="color: red">{{ error }}</p>

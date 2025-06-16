@@ -25,7 +25,8 @@ from models import db
 from flask_jwt_extended import JWTManager
 
 # 匯入 blueprint
-from routes.auth import auth_bp
+from routes.auth.auth import auth_bp
+from routes.auth.email import email_bp, init_mail
 from routes.todo import todo_bp
 from routes.me import me_bp
 from routes.avatar import avatar_bp
@@ -77,11 +78,15 @@ def create_app():
     # 初始化 JWT
     JWTManager(app)
 
+    # 初始化郵件
+    init_mail(app)
+
     # 設定 CORS
     CORS(app) # 不建議上線使用，會開放所有來源
     
     # 註冊藍圖
     app.register_blueprint(auth_bp, url_prefix='/api')
+    app.register_blueprint(email_bp, url_prefix='/api')
     app.register_blueprint(todo_bp, url_prefix='/api')
     app.register_blueprint(me_bp, url_prefix='/api')
     app.register_blueprint(avatar_bp, url_prefix='/api')

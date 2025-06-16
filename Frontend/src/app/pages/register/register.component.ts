@@ -13,6 +13,7 @@ export class RegisterComponent {
   email = '';
   nickname = '';
   error = '';
+  successMessage = '';
 
   constructor(private http: HttpClient) {}
 
@@ -21,11 +22,13 @@ export class RegisterComponent {
       username: this.username,
       password: this.password,
       email: this.email,
-      nickname: this.nickname,
     }).subscribe({
       next: res => {
-        localStorage.setItem('token', res.access_token);
-        location.reload();
+        this.successMessage = '註冊成功！請至信箱點擊驗證連結';
+        this.username = '';
+        this.password = '';
+        this.email = '';
+        this.error = '';
       },
       error: err => {
         this.error = err.error.error || '註冊失敗';

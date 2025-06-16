@@ -19,4 +19,6 @@ export const appPath = {
     square: 'square',
     //todo
     todo: 'todo',
+    //verified
+    verified: 'verified',
 };

@@ -3,6 +3,7 @@ from models import News, ScheduleState
 
 from routes.crawler.schedule import last_run, next_run
 from routes.crawler.logic import fetch_and_store_news
+from flask_jwt_extended import jwt_required
 
 routes_bp = Blueprint('routes_bp', __name__)
 
@@ -12,6 +13,7 @@ def fetch_news_api():
     return jsonify({'message': f'{added} new items added.'})
 
 @routes_bp.route('/crawler/news', methods=['GET'])
+@jwt_required()
 def get_saved_news():
     news = News.query.order_by(News.created_at.desc()).limit(30).all()
     return jsonify([
