@@ -50,3 +50,11 @@
 ## 2025/06/16 ##
 
 - Complete the email verification when registering an account.
+
+## 2025/06/16 ##
+
+- Dockerlize the whole project and switch Microsoft SQL to PostgreSQL.
+
+- 💥 Nginx often returns a 404 error, and users need to re-enter the URL to get redirected to the homepage.
+
+- Create and adjust the Nginx configuration.

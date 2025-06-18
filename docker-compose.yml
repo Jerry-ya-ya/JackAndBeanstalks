@@ -6,6 +6,7 @@ services:
       - "4200:80"
     depends_on:
       - backend
+    container_name: angular-frontend
 
   backend:
     build: ./backend
