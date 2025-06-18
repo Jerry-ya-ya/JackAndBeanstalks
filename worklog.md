@@ -46,3 +46,7 @@
 - Complete the change password feature in setting page.
 
 - Complete the crawler for Hacker News and schedule it to run every 15 minutes.
+
+## 2025/06/16 ##
+
+- Complete the email verification when registering an account.
