@@ -16,13 +16,13 @@ services:
       - db
     env_file:
       - backend/.env
-    restart: always 
+    restart: always  
 
   db:
     image: postgres:16
     restart: always
-    # volumes:
-    #   - ./database/postgres_data:/var/lib/postgresql/data
+    volumes:
+      - ./database/postgres_data:/var/lib/postgresql/data
     env_file:
       - backend/.env
     ports:

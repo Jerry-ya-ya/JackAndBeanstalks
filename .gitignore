@@ -79,3 +79,4 @@ Backend/instance/db.sqlite3
 *.tmp
 *.bak
 .env
+!env.example

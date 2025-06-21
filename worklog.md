@@ -58,3 +58,7 @@
 - 💥 Nginx often returns a 404 error, and users need to re-enter the URL to get redirected to the homepage.
 
 - Create and adjust the Nginx configuration.
+
+## 2025/06/21 ##
+
+- Architecture design supporting multi-mode Docker configuration, successfully building a dual-container system for both development and deployment environments.
