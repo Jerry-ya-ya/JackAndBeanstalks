@@ -20,6 +20,8 @@ import os
 
 # 資料庫相關套件
 from models import db
+from sqlalchemy.exc import OperationalError
+import time
 
 # JWT 相關套件
 from flask_jwt_extended import JWTManager
@@ -41,21 +43,40 @@ from routes.crawler.logic import init_schedule_state
 from dotenv import load_dotenv
 load_dotenv()
 
+def setup_database(app, retries=5, wait=2):
+    db.init_app(app)
+
+    for i in range(retries):
+        try:
+            with app.app_context():
+                # 嘗試資料庫操作
+                db.create_all()
+                init_schedule_state()
+                print("✅ 資料庫初始化成功")
+                return
+        except OperationalError as e:
+            print(f"🔁 第 {i+1} 次重試：資料庫未就緒，等待 {wait} 秒...")
+            time.sleep(wait)
+    raise Exception("❌ 多次重試後仍無法初始化資料庫")
+
 def create_app():
     app = Flask(__name__)
     
     # 設定資料庫連線（使用 SQL Server）
     server = os.getenv("DB_SERVER")
-    port = os.getenv("DB_PORT", "1433")  # 預設 SQL Server 埠號
+    port = os.getenv("DB_PORT")
     database = os.getenv("DB_NAME")
     username = os.getenv("DB_USER")
     password = os.getenv("DB_PASSWORD")
 
     # 設定資料庫連線
+    # app.config['SQLALCHEMY_DATABASE_URI'] = (
+    #     f"mssql+pyodbc://{username}:{password}@{server},{port}/{database}"
+    #     "?driver=ODBC+Driver+17+for+SQL+Server"
+    # )
     app.config['SQLALCHEMY_DATABASE_URI'] = (
-        f"mssql+pyodbc://{username}:{password}@{server},{port}/{database}"
-        "?driver=ODBC+Driver+17+for+SQL+Server"
-    )
+        f"postgresql+psycopg2://{username}:{password}@{server}:{port}/{database}"
+        )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # 設定上傳檔案的路徑
@@ -70,10 +91,7 @@ def create_app():
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=2)
 
     # 初始化資料庫
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
-        init_schedule_state() # 初始化排程器狀態
+    setup_database(app)
 
     # 初始化 JWT
     JWTManager(app)

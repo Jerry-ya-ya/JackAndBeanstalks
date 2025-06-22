@@ -5,10 +5,14 @@ import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse}
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthInterceptor implements HttpInterceptor {
+  constructor(private router: Router) {}
+  
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
 
@@ -27,7 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error.status === 401) {
           localStorage.removeItem('token');
           window.alert('登入逾時，請重新登入');
-          location.reload(); // ✅ 或 this.router.navigate(['/login'])（如有 Router）
+          this.router.navigate(['/login'])
         }
         return throwError(() => error);
       })

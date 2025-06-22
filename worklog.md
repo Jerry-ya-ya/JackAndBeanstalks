@@ -46,3 +46,19 @@
 - Complete the change password feature in setting page.
 
 - Complete the crawler for Hacker News and schedule it to run every 15 minutes.
+
+## 2025/06/16 ##
+
+- Complete the email verification when registering an account.
+
+## 2025/06/16 ##
+
+- Dockerlize the whole project and switch Microsoft SQL to PostgreSQL.
+
+- 💥 Nginx often returns a 404 error, and users need to re-enter the URL to get redirected to the homepage.
+
+- Create and adjust the Nginx configuration.
+
+## 2025/06/21 ##
+
+- Architecture design supporting multi-mode Docker configuration, successfully building a dual-container system for both development and deployment environments.

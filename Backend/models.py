@@ -30,8 +30,8 @@ class Todo(db.Model):
 # 定義新聞模型
 class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), nullable=False)
-    url = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.Text, nullable=False)
+    url = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 class ScheduleState(db.Model):

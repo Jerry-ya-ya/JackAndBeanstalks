@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    container_name: angular-frontend
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    env_file:
+      - backend/.env
+    restart: always  
+
+  db:
+    image: postgres:16
+    restart: always
+    volumes:
+      - ./database/postgres_data:/var/lib/postgresql/data
+    env_file:
+      - backend/.env
+    ports:
+      - "5432:5432"

@@ -1,3 +1,21 @@
+# Docker build cache & artifacts
+*.log
+*.pid
+
+# docker-compose override file（開發者個人用）
+docker-compose.override.yml
+
+# docker 環境用暫存資料（例如 volume bind 資料夾）
+/data/
+/dbdata/
+/pgdata/
+
+# 忽略本地建構時的中間檔或 image 檔
+*.tar
+
+# 忽略 Docker Desktop for Windows 的設定（可選）
+.docker/
+
 # Frontend Angular
 /Frontend/dist
 /Frontend/tmp
@@ -52,9 +70,13 @@ __pycache__/
 /Backend/static/uploads/
 Backend/instance/db.sqlite3
 
+# Database
+/database/
+
 # 通用
 *.log
 *.swp
 *.tmp
 *.bak
 .env
+!env.example
