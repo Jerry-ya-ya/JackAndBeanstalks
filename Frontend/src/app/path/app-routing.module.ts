@@ -45,6 +45,11 @@ const routes: Routes = [
       import('../pages/register/register.module').then(m => m.RegisterModule)
   },
   {
+    path: appPath.resendverification,
+    loadChildren: () =>
+      import('../pages/resendverification/resendverification.module').then(m => m.ResendverificationModule)
+  },
+  {
     path: appPath.setting,
     loadChildren: () =>
       import('../pages/setting/setting.module').then(m => m.SettingModule)
@@ -54,7 +59,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('../pages/square/square.module').then(m => m.SquareModule)
   },
-  {
+  { 
     path: appPath.todo,
     loadChildren: () =>
       import('../pages/todo/todo.module').then(m => m.TodoModule)

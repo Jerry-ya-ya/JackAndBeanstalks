@@ -1,0 +1,17 @@
+<div>
+    <h2>重新寄送驗證信</h2>
+    <div>
+      <input [(ngModel)]="email" placeholder="請輸入註冊時的 Email">
+    </div>
+    <div>
+      <button (click)="resend()">
+        重新寄送
+      </button>
+    </div>
+    <p *ngIf="message" style="color: green">
+      {{ message }}
+    </p>
+    <p *ngIf="error" style="color: red">
+      {{ error }}
+    </p>
+  </div>

@@ -13,6 +13,8 @@ export const appPath = {
     profile: 'profile',
     //register
     register: 'register',
+    //resendverification
+    resendverification: 'resendverification',
     //setting
     setting: 'setting',
     //square
