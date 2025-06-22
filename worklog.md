@@ -62,3 +62,9 @@
 ## 2025/06/21 ##
 
 - Architecture design supporting multi-mode Docker configuration, successfully building a dual-container system for both development and deployment environments.
+
+## 2025/06/22 ##
+
+- Implement README and Todo documents.
+
+- Implement a feature to resend the verification email using Gmail.

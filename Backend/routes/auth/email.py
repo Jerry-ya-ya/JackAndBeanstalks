@@ -1,5 +1,5 @@
-from flask import Blueprint, current_app, jsonify
-from flask_mail import Mail
+from flask import Blueprint, current_app, jsonify, request
+from flask_mail import Mail, Message
 import os
 from flask_jwt_extended import create_access_token
 from models import db, User
@@ -59,3 +59,23 @@ def verify_email(token):
         'access_token': access_token,
         'username': user.username
     })
+
+@email_bp.route('/resendverification', methods=['POST'])
+def resend_verification():
+    data = request.get_json()
+    email = data.get('email')
+
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return jsonify({'error': 'Email 不存在'}), 404
+    if user.email_verified:
+        return jsonify({'message': '此帳號已驗證，無需重寄'}), 200
+
+    token = generate_confirmation_token(email)
+    link = f"http://localhost:5000/api/verify-email/{token}"
+
+    msg = Message('重新寄送帳號驗證信', sender='jerry0907zheng@gmail.com', recipients=[email])
+    msg.body = f'請點擊以下連結完成帳號驗證：{link}'
+    mail.send(msg)
+
+    return jsonify({'message': '驗證信已重新寄送'})

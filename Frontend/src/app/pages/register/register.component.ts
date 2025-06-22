@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { appPath } from '../../path/app-path-const';
 
 @Component({
   selector: 'app-register',
@@ -8,13 +9,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  path = appPath;
   username = '';
   password = '';
   email = '';
   nickname = '';
   error = '';
   successMessage = '';
-
+  
   constructor(private http: HttpClient) {}
 
   register() {
