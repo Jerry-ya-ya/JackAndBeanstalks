@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { appPath } from '../../path/app-path-const';
+import { appPath } from '../../../path/app-path-const';
 
 @Component({
   selector: 'app-register',

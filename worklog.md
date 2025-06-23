@@ -68,3 +68,7 @@
 - Implement README and Todo documents.
 
 - Implement a feature to resend the verification email using Gmail.
+
+## 2025/06/23 ##
+
+- Restructure the project by linking subpages to the main page, and organizing subpage components under the main page’s folder. Separate the crawler logs from Python application logs.

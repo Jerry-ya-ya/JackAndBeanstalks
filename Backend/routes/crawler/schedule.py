@@ -6,6 +6,8 @@ import pytz
 from flask import Flask
 from models import ScheduleState, db
 
+from routes.crawler.crawlerlogger import crawler_logger
+
 last_run = None
 next_run = None
 scheduler = None
@@ -28,13 +30,13 @@ def start_scheduler(flask_app: Flask):
             scheduler.start()# 啟動排程器
 
             scheduled_task() # 立即執行一次，啟動後不用等 15 分鐘
-            print("Scheduler started successfully")
+            crawler_logger.info("Scheduler started successfully")
         except Exception as e:
-            print(f"Error starting scheduler: {e}")
+            crawler_logger.info(f"Error starting scheduler: {e}")
 
 def scheduled_task():
     global last_run, next_run
-    print("🟡 scheduled_task 被呼叫")
+    crawler_logger.info("🟡 scheduled_task 被呼叫")
     try: # Flask 的資料庫操作需要有「應用上下文」，這句是必要的包裝！
         with app.app_context():
             added = fetch_and_store_news() # 執行你自定義的爬蟲邏輯，並回傳新增了幾筆資料
@@ -48,6 +50,6 @@ def scheduled_task():
             state.next_run = future
             db.session.commit()
 
-            print(f"🟢 爬蟲成功新增 {added} 筆資料")
+            crawler_logger.info(f"🟢 爬蟲成功新增 {added} 筆資料")
     except Exception as e:
-        print(f"🔴 爬蟲排程錯誤: {e}")
+        crawler_logger.info(f"🔴 爬蟲排程錯誤: {e}")

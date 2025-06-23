@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: RegisterComponent,
-  }
+  },
+  {
+    path:'resendverification',
+    loadChildren: () =>
+      import('../resendverification/resendverification.module').then(m => m.ResendverificationModule)
+  },
 ];
 
 @NgModule({

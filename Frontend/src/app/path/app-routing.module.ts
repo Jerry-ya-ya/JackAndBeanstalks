@@ -15,11 +15,6 @@ const routes: Routes = [
       import('../pages/home/home.module').then(m => m.HomeModule),
   },
   {
-    path: appPath.forgotpassword,
-    loadChildren: () =>
-      import('../pages/forgotpassword/forgotpassword.module').then(m => m.ForgotpasswordModule),
-  },
-  {
     path: appPath.crawler,
     loadChildren: () =>
       import('../pages/crawler/crawler.module').then(m => m.CrawlerModule),
@@ -27,7 +22,7 @@ const routes: Routes = [
   {
     path: appPath.login,
     loadChildren: () =>
-      import('../pages/login/login.module').then(m => m.LoginModule)
+      import('../pages/login/login/login.module').then(m => m.LoginModule)
   },
   {
     path: appPath.member,
@@ -42,12 +37,7 @@ const routes: Routes = [
   {
     path: appPath.register,
     loadChildren: () =>
-      import('../pages/register/register.module').then(m => m.RegisterModule)
-  },
-  {
-    path: appPath.resendverification,
-    loadChildren: () =>
-      import('../pages/resendverification/resendverification.module').then(m => m.ResendverificationModule)
+      import('../pages/register/register/register.module').then(m => m.RegisterModule)
   },
   {
     path: appPath.setting,
@@ -63,11 +53,6 @@ const routes: Routes = [
     path: appPath.todo,
     loadChildren: () =>
       import('../pages/todo/todo.module').then(m => m.TodoModule)
-  },
-  {
-    path: appPath.verified,
-    loadChildren: () =>
-      import('../pages/verified/verified.module').then(m => m.VerifiedModule)
   },
   {
     path: '**',

@@ -9,14 +9,16 @@
     <input type="password" [(ngModel)]="password">
   </div>
   <div>
-    <label>Email：</label>
+    <label>郵箱：</label>
     <input [(ngModel)]="email">
   </div>
   <button (click)="register()">註冊</button>
 </div>
 
-<h3>沒收到驗證信？</h3>
-<a [routerLink]="['/' + path.resendverification]">重新寄送</a>
+<div>
+  <p>沒收到驗證信？</p>
+  <a [routerLink]="['resendverification']">重新寄送</a>
+</div>
 
 <p *ngIf="successMessage" style="color: green">{{ successMessage }}</p>
 <p *ngIf="error" style="color: red">{{ error }}</p>
