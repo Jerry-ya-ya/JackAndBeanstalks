@@ -16,4 +16,4 @@ if not crawler_logger.hasHandlers(): # To check if the logger has handlers
     file_handler.setFormatter(formatter) # To set the log format
     force=True # To force the log to be written to the file
 
-    crawler_logger.addHandler(file_handler) # To add the file handler to the logger
+crawler_logger.addHandler(file_handler) # To add the file handler to the logger

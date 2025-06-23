@@ -22,7 +22,13 @@ def start_scheduler(flask_app: Flask):
         try:
             scheduler = BackgroundScheduler(timezone='Asia/Taipei') # 設定時區為台北時間
 
-            scheduler.add_job(scheduled_task, 'interval', minutes=15) # 設定排程器，每 15 分鐘執行一次
+            scheduler.add_job(
+                scheduled_task,
+                'interval',
+                minutes=15,
+                max_instances=15,  # 避免重疊
+                misfire_grace_time=30  # 允許最多延遲 30 秒
+            )
 
             tz = pytz.timezone('Asia/Taipei')
             next_run = datetime.now(tz) + timedelta(minutes=15) #  記錄「下一次執行時間」變數，供前端查詢用
@@ -32,24 +38,28 @@ def start_scheduler(flask_app: Flask):
             scheduled_task() # 立即執行一次，啟動後不用等 15 分鐘
             crawler_logger.info("Scheduler started successfully")
         except Exception as e:
-            crawler_logger.info(f"Error starting scheduler: {e}")
+            crawler_logger.error(f"Error starting scheduler: {e}")
 
 def scheduled_task():
     global last_run, next_run
-    crawler_logger.info("🟡 scheduled_task 被呼叫")
+    crawler_logger.info(f"🟡 scheduled_task 被呼叫 {datetime.now()}")
     try: # Flask 的資料庫操作需要有「應用上下文」，這句是必要的包裝！
         with app.app_context():
+            start_time = datetime.now()
             added = fetch_and_store_news() # 執行你自定義的爬蟲邏輯，並回傳新增了幾筆資料
+            end_time = datetime.now()
+            crawler_logger.info(f"🟢 爬蟲成功新增 {added} 筆資料，耗時 {(end_time - start_time).total_seconds()} 秒")
 
             tz = pytz.timezone('Asia/Taipei')
             now = datetime.now(tz)
-            future = now + timedelta(minutes=15) # 記錄上次與下次執行時間（給前端 info 顯示）
+            future = now + timedelta(minutes=1) # 記錄上次與下次執行時間（給前端 info 顯示）
 
             state = ScheduleState.query.filter_by(job_name="news_crawler").first()
-            state.last_run = now
-            state.next_run = future
-            db.session.commit()
-
-            crawler_logger.info(f"🟢 爬蟲成功新增 {added} 筆資料")
+            if state is not None:
+                state.last_run = now
+                state.next_run = future
+                db.session.commit()
+            else:
+                crawler_logger.error("找不到 news_crawler 的 ScheduleState")
     except Exception as e:
-        crawler_logger.info(f"🔴 爬蟲排程錯誤: {e}")
+        crawler_logger.error(f"🔴 爬蟲排程錯誤: {e}")

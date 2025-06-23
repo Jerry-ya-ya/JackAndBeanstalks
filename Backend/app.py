@@ -118,4 +118,4 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app() # 建立 Flask 應用程式
-    app.run(debug=True) # 啟動 Flask 應用程式
+    app.run(threaded=True, debug=True) # 啟動 Flask 應用程式

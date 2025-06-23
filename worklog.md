@@ -18,9 +18,9 @@
 
 - Text and artwork for the memberpage and added nav for memberpage.
 
-- 👁️ Can't select the input blocks and button of loginpage.(ID:1)
+- 💥 Can't select the input blocks and button of loginpage.
 
-- Text and artwork for the register page. Complete the register component. Add some decorate.(1bug)
+- Text and artwork for the register page. Complete the register component. Add some decorate.
 
 ## 2025/06/12 ##
 
@@ -72,3 +72,7 @@
 ## 2025/06/23 ##
 
 - Restructure the project by linking subpages to the main page, and organizing subpage components under the main page’s folder. Separate the crawler logs from Python application logs.
+
+- 💥The root cause appears to be blocking or concurrent execution of scheduled threads, leading to missed jobs.
+
+- 🔧 Fix thread blocking issues and implemented proper exception handling to improve stability.
