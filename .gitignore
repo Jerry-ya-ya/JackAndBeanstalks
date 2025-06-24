@@ -73,6 +73,19 @@ Backend/instance/db.sqlite3
 # Database
 /database/
 
+# Playwright 測試暫存與報告
+test-results/
+playwright-report/
+
+# npm
+node_modules/
+
+# VSCode 或其他開發工具設定
+.vscode/
+
+# Playwright cache（有時存在）
+.cache/
+
 # 通用
 *.log
 *.swp

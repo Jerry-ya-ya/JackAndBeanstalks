@@ -52,7 +52,7 @@ def scheduled_task():
 
             tz = pytz.timezone('Asia/Taipei')
             now = datetime.now(tz)
-            future = now + timedelta(minutes=1) # 記錄上次與下次執行時間（給前端 info 顯示）
+            future = now + timedelta(minutes=15) # 記錄上次與下次執行時間（給前端 info 顯示）
 
             state = ScheduleState.query.filter_by(job_name="news_crawler").first()
             if state is not None:

@@ -7,6 +7,14 @@ services:
     depends_on:
       - backend
     container_name: angular-frontend
+  test:
+    build:
+      context: ./frontend
+      dockerfile: test/Dockerfile.dev  # 或 Dockerfile.prod，如果裡面有測試流程
+    depends_on:
+      - frontend
+    network_mode: service:frontend
+    container_name: test-prod
 
   backend:
     build: ./backend

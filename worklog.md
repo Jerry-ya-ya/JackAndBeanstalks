@@ -73,6 +73,14 @@
 
 - Restructure the project by linking subpages to the main page, and organizing subpage components under the main page’s folder. Separate the crawler logs from Python application logs.
 
-- 💥The root cause appears to be blocking or concurrent execution of scheduled threads, leading to missed jobs.
+- 💥 The root cause appears to be blocking or concurrent execution of scheduled threads, leading to missed jobs.
 
 - 🔧 Fix thread blocking issues and implemented proper exception handling to improve stability.
+
+- 💥 The current crawler process freezes after approximately five runs. To resolve this, we plan to migrate the task scheduling to Celery for more reliable asynchronous execution.
+
+## 2025/06/24 ##
+
+- 💥 Platform incompatibility with native binaries was caused by lock files and node_modules created on Windows. To resolve this, remove the lock files and node_modules, allowing Docker to perform a clean installation during the build process.
+
+- Implement Playwright support along with a dedicated container to perform end-to-end testing of Angular content and interactive UI components.

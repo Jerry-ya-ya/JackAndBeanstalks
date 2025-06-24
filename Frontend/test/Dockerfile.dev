@@ -1,0 +1,29 @@
+# 使用官方 Playwright 基底映像（含 Chrome/Firefox/WebKit）
+FROM node:20.19.0 AS build
+
+WORKDIR /app
+
+# 複製根目錄的 package.json & package-lock.json（建構上下文需為 Frontend/）
+COPY package.json ./
+
+RUN npm install
+
+# 複製 Angular 專案原始碼
+COPY . .
+
+# 安裝 Angular CLI（全域）
+RUN npm install -g @angular/cli
+
+# 打包 Angular 前端
+RUN ng build
+
+# 安裝 wait-on 來等待 Angular 伺服器啟動
+RUN npm install -D wait-on
+
+# 安裝 Playwright 瀏覽器
+RUN npx playwright install --with-deps
+
+# 預設指令：啟動 Angular、等待 4200、執行測試
+CMD ng serve --host 0.0.0.0 & \
+    npx wait-on http://localhost:4200 && \
+    npx playwright test
