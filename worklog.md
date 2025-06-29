@@ -84,3 +84,15 @@
 - 💥 Platform incompatibility with native binaries was caused by lock files and node_modules created on Windows. To resolve this, remove the lock files and node_modules, allowing Docker to perform a clean installation during the build process.
 
 - Implement Playwright support along with a dedicated container to perform end-to-end testing of Angular content and interactive UI components.
+
+## 2025/06/28 ##
+
+- 💥 Docker consumes too much memory, so the user configured .wslconfig settings.
+
+- 💥 The memory limit set for Docker was too low and no swap was configured, causing the disk usage to spike to 100%.
+
+## 2025/06/29 ##
+
+- Organize the project, environments, and related .yml configurations to support three stages: development, testing, and deployment.
+
+- Completed Playwright automation for verifying the registration feature and facilitating future tests of post-login functionalities. Additionally, exposed a test API on the backend for the test environment.

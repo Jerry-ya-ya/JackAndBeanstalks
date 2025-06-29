@@ -9,6 +9,7 @@
 # .\myenv\Scripts\python.exe
 
 from flask import Flask
+from config import Config
 
 from flask_cors import CORS
 
@@ -39,6 +40,8 @@ from routes.crawler import crawler_bp
 from routes.crawler.schedule import start_scheduler
 from routes.crawler.logic import init_schedule_state
 
+from routes.test import test_utils
+
 # 載入 .env 環境變數
 from dotenv import load_dotenv
 load_dotenv()
@@ -61,6 +64,10 @@ def setup_database(app, retries=5, wait=2):
 
 def create_app():
     app = Flask(__name__)
+    app.config.from_object(Config)
+
+    # 獲取環境變數
+    env = os.getenv('FLASK_ENV', 'development')
     
     # 設定資料庫連線（使用 SQL Server）
     server = os.getenv("DB_SERVER")
@@ -69,14 +76,16 @@ def create_app():
     username = os.getenv("DB_USER")
     password = os.getenv("DB_PASSWORD")
 
-    # 設定資料庫連線
-    # app.config['SQLALCHEMY_DATABASE_URI'] = (
-    #     f"mssql+pyodbc://{username}:{password}@{server},{port}/{database}"
-    #     "?driver=ODBC+Driver+17+for+SQL+Server"
-    # )
-    app.config['SQLALCHEMY_DATABASE_URI'] = (
-        f"postgresql+psycopg2://{username}:{password}@{server}:{port}/{database}"
+    # 根據環境設定不同的資料庫連線
+    if env == 'test':
+        # 測試環境使用 SQLite（不覆蓋 TestingConfig 的設定）
+        print("🧪 測試環境：使用 SQLite 資料庫")
+    else:
+        # 開發和生產環境使用 PostgreSQL
+        app.config['SQLALCHEMY_DATABASE_URI'] = (
+            f"postgresql+psycopg2://{username}:{password}@{server}:{port}/{database}"
         )
+    
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # 設定上傳檔案的路徑
@@ -112,8 +121,11 @@ def create_app():
     app.register_blueprint(changepassword_bp, url_prefix='/api')
     app.register_blueprint(crawler_bp, url_prefix='/api')
 
-    start_scheduler(app) # 啟動排程器
+    # 在開發和測試環境掛載測試工具
+    if env in ['development', 'test']:
+        app.register_blueprint(test_utils, url_prefix='/api')
 
+    start_scheduler(app) # 啟動排程器
     return app
 
 if __name__ == '__main__':

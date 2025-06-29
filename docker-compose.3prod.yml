@@ -7,15 +7,6 @@ services:
     depends_on:
       - backend
     container_name: angular-frontend
-  test:
-    build:
-      context: ./frontend
-      dockerfile: test/Dockerfile.dev  # 或 Dockerfile.prod，如果裡面有測試流程
-    depends_on:
-      - frontend
-    network_mode: service:frontend
-    container_name: test-prod
-
   backend:
     build: ./backend
     ports:
@@ -23,15 +14,18 @@ services:
     depends_on:
       - db
     env_file:
-      - backend/.env
-    restart: always  
-
+      - .env
+      - .env.3prod
+    restart: always
   db:
     image: postgres:16
     restart: always
     volumes:
       - ./database/postgres_data:/var/lib/postgresql/data
     env_file:
-      - backend/.env
+      - .env
     ports:
       - "5432:5432"
+    container_name: pg-prod
+volumes:
+  pgdata_prod:

@@ -48,6 +48,7 @@ docker-compose.override.yml
 /Frontend/libpeerconnection.log
 /Frontend/testem.log
 /Frontend/typings
+/Frontend/test/storageState.json
 
 # System
 .DS_Store
@@ -68,7 +69,7 @@ __pycache__/
 /Backend/.DS_Store
 /Backend/Thumbs.db
 /Backend/static/uploads/
-Backend/instance/db.sqlite3
+Backend/instance/
 
 # Database
 /database/

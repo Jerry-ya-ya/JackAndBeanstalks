@@ -38,7 +38,7 @@ A web-based platform developed by Jerry Zheng, designed to show the work of our 
 This project uses Docker to manage both development and production environments for a fullstack web application built with Angular (frontend), Flask (backend), and PostgreSQL (database).
 
 ## 🔐 Environment Variables
-Create a .env file in the backend/ folder.
+Create a .env file in the root folder.
 Then copy .env.example to .env and update the values as needed.
 
 ## 🔁 Development Mode (with hot reload)
