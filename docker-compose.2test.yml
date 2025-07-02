@@ -6,29 +6,14 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - ./frontend:/app
-      - /app/node_modules
       - /app/.angular/cache
     ports:
       - "4200:4200"
     environment:
       - CHOKIDAR_USEPOLLING=true
     container_name: angular-test
-  test:
-    build:
-      context: ./frontend
-      dockerfile: test/Dockerfile.dev
-    depends_on:
-      - frontend
-      - backend
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    env_file:
-      - .env
-      - .env.2test
-    ports:
-      - "4100:4100"
-    container_name: e2e-test
+    networks:
+      - mynet
   backend:
     build:
       context: ./backend
@@ -41,3 +26,26 @@ services:
       - .env
       - .env.2test
     container_name: flask-test
+    networks:
+      - mynet
+  test:
+    build:
+      context: ./e2e
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - frontend
+      - backend
+    volumes:
+      - ./e2e:/app
+      - /app/node_modules
+    env_file:
+      - .env
+      - .env.2test
+    ports:
+      - "4100:4100"
+    container_name: e2e-test
+    networks:
+      - mynet
+networks:
+  mynet:
+    driver: bridge

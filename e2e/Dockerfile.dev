@@ -1,0 +1,19 @@
+# 使用官方 Playwright 基底映像（含 Chrome/Firefox/WebKit）
+FROM node:20.19.0
+
+WORKDIR /app
+
+# 複製 package.json & package-lock.json
+COPY package.json package-lock.json ./
+
+# 安裝依賴
+RUN npm install
+
+# 複製測試檔案
+COPY . .
+
+# 安裝 Playwright 瀏覽器
+RUN npx playwright install --with-deps
+
+# 預設指令：等待前端和後端服務啟動，然後執行測試
+CMD npx playwright test

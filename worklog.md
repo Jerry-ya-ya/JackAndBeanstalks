@@ -96,3 +96,13 @@
 - Organize the project, environments, and related .yml configurations to support three stages: development, testing, and deployment.
 
 - Completed Playwright automation for verifying the registration feature and facilitating future tests of post-login functionalities. Additionally, exposed a test API on the backend for the test environment.
+
+## 2025/06/30 ##
+
+- 💥 Playwright is unable to properly load components and data that require login access
+
+## 2025/07/02 ##
+
+- 💥 Playwright is currently unable to connect to the Angular container, so automated tests are temporarily executed on the local machine instead.
+
+- Refactored the structure to separate Playwright from the Angular frontend.

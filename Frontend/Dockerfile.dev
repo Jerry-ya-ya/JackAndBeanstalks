@@ -1,6 +1,18 @@
 FROM node:20
+
 WORKDIR /app
-COPY . .
+
+# 先複製 package.json 及 lock 檔，安裝依賴（可用快取）
+COPY package.json package-lock.json ./
 RUN npm install
+
+# 全域安裝 Angular CLI
+RUN npm install -g @angular/cli
+
+# 再複製其他專案檔案
+COPY . .
+
 EXPOSE 4200
-CMD ["npm", "start"]
+
+# 用 ng serve 啟動，允許外部連線
+CMD ["ng", "serve", "--host", "0.0.0.0"]

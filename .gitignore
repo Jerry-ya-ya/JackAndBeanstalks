@@ -48,7 +48,6 @@ docker-compose.override.yml
 /Frontend/libpeerconnection.log
 /Frontend/testem.log
 /Frontend/typings
-/Frontend/test/storageState.json
 
 # System
 .DS_Store
@@ -73,6 +72,9 @@ Backend/instance/
 
 # Database
 /database/
+
+# E2E
+/e2e/test/storageState.json
 
 # Playwright 測試暫存與報告
 test-results/
