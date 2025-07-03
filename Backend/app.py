@@ -13,9 +13,6 @@ from config import Config
 
 from flask_cors import CORS
 
-# 時間相關套件
-from datetime import timedelta
-
 # 環境變數相關套件
 import os
 
@@ -36,6 +33,7 @@ from routes.avatar import avatar_bp
 from routes.square import square_bp
 from routes.changepassword import changepassword_bp
 from routes.crawler import crawler_bp
+from routes.auth.admin import admin_bp
 
 from routes.crawler.schedule import start_scheduler
 from routes.crawler.logic import init_schedule_state
@@ -87,17 +85,6 @@ def create_app():
         )
     
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-    # 設定上傳檔案的路徑
-    UPLOAD_FOLDER = 'static/uploads/avatar'
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    
-    # 設定上傳檔案的大小限制 (5MB)
-    app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB
-
-    # JWT 設定
-    app.config['JWT_SECRET_KEY'] = 'super-secret-key'
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=2)
 
     # 初始化資料庫
     setup_database(app)

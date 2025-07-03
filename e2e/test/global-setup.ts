@@ -8,12 +8,12 @@ async function globalSetup(config: FullConfig) {
 
   await apiContext.post('http://localhost:5000/api/test/clear-db');
 
-  const username = process.env['ADMIN_USERNAME'];
-  const password = process.env['ADMIN_PASSWORD'];
-  const email = process.env['ADMIN_EMAIL'];
+  const username = process.env['TEST_USERNAME'];
+  const password = process.env['TEST_PASSWORD'];
+  const email = process.env['TEST_EMAIL'];
 
   if (!username || !email || !password) {
-    throw new Error('❌ ADMIN_USERNAME、ADMIN_EMAIL 或 ADMIN_PASSWORD 未設定於 .env');
+    throw new Error('❌ TEST_USERNAME、TEST_EMAIL 或 TEST_PASSWORD 未設定於 .env');
   }
 
   console.log('🚀 註冊...');

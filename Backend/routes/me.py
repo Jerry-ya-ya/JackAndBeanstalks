@@ -21,6 +21,7 @@ def get_current_user():
         'nickname': user.nickname,
         'created_at': user.created_at.isoformat(),
         'avatar_url': user.avatar_url,
+        'role': user.role,
     })
 
 # PUT：更新使用者資訊

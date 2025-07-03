@@ -5,6 +5,7 @@ from models import db, User
 from routes.auth.email import generate_confirmation_token, mail, confirm_token
 from flask_mail import Message
 import os
+from flask import current_app
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -12,6 +13,7 @@ auth_bp = Blueprint('auth', __name__)
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
+
     username = data.get('username')
     password = data.get('password')
     email = data.get('email')
@@ -27,12 +29,20 @@ def register():
         return jsonify({'error': 'Email already exists'}), 400
 
     hashed_pw = generate_password_hash(password)
+
+    # 判斷是否是唯一超管 email
+    if email == current_app.config['SUPERADMIN_EMAIL']:
+        role = 'superadmin'
+    else:
+        role = 'user'
+    
     new_user = User(
         username=username,
         password=hashed_pw,
         email=email,
         nickname=nickname,
-        email_verified=False  # 確保新用戶的 email_verified 為 False
+        email_verified=False,  # 確保新用戶的 email_verified 為 False
+        role=role
     )
 
     db.session.add(new_user)
@@ -56,7 +66,8 @@ def register():
         'message': '註冊成功，請檢查您的郵箱完成驗證',
         'email': email,
         'is_verified': False,  # 明確標示用戶尚未驗證
-        'require_verification': True  # 告訴前端需要驗證
+        'require_verification': True,  # 告訴前端需要驗證
+        'role': role,
     })
 
 # 登入功能

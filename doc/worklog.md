@@ -110,3 +110,5 @@
 ## 2025/07/03 ##
 
 - Adjusted the photos on the team members page and cleaned up the images in the public directory.
+
+- Implemented super admin and admin functionalities, updated the .env file, and revised Playwright test functions.
