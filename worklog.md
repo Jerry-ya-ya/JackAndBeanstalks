@@ -106,3 +106,7 @@
 - 💥 Playwright is currently unable to connect to the Angular container, so automated tests are temporarily executed on the local machine instead.
 
 - Refactored the structure to separate Playwright from the Angular frontend.
+
+## 2025/07/03 ##
+
+- Adjusted the photos on the team members page and cleaned up the images in the public directory.
