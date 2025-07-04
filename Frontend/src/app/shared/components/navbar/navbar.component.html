@@ -114,5 +114,68 @@
         </div>
     </div>
 </div>
-
 <!-- Private -->
+
+<!-- Admin -->
+<div *ngIf="isAdmin()">
+    <div class="navbar">
+        <div class="nav-admin">
+            <a [routerLink]="['/']">
+                Manage
+            </a>
+        </div>
+        <div class="nav-admin">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-admin">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-admin">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-admin">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Admin -->
+
+<!-- Superadmin -->
+<div *ngIf="isSuperadmin()">
+    <div class="navbar">
+        <div class="nav-superadmin">
+            <a [routerLink]="['/']">
+                Promote
+            </a>
+        </div>
+        <div class="nav-superadmin">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-superadmin">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-superadmin">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+        <div class="nav-superadmin">
+            <a [routerLink]="['/']" style="color:red">
+                Null
+            </a>
+        </div>
+    </div>
+</div>
+<!-- Superadmin -->

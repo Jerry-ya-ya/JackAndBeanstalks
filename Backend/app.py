@@ -107,6 +107,7 @@ def create_app():
     app.register_blueprint(square_bp, url_prefix='/api')
     app.register_blueprint(changepassword_bp, url_prefix='/api')
     app.register_blueprint(crawler_bp, url_prefix='/api')
+    app.register_blueprint(admin_bp, url_prefix='/api')
 
     # 在開發和測試環境掛載測試工具
     if env in ['development', 'test']:

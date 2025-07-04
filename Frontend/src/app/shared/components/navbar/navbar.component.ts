@@ -12,10 +12,19 @@ export class NavbarComponent {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     location.reload(); // 或導向登入頁
   }
 
   isLoggedIn() {
     return !!localStorage.getItem('token');
+  }
+
+  isAdmin() {
+    return localStorage.getItem('role') === 'admin' || localStorage.getItem('role') === 'superadmin';
+  }
+
+  isSuperadmin() {
+    return localStorage.getItem('role') === 'superadmin';
   }
 }

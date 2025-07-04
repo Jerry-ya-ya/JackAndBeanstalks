@@ -14,7 +14,21 @@
 }
 
 .nav-private {
-    border-color: orange;
+    border-color: aqua;
+    border-style: solid;
+    width: 20vw;
+    text-align: center;
+}
+
+.nav-admin {
+    border-color: violet;
+    border-style: solid;
+    width: 20vw;
+    text-align: center;
+}
+
+.nav-superadmin {
+    border-color: gold;
     border-style: solid;
     width: 20vw;
     text-align: center;

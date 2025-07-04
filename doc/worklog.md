@@ -112,3 +112,7 @@
 - Adjusted the photos on the team members page and cleaned up the images in the public directory.
 
 - Implemented super admin and admin functionalities, updated the .env file, and revised Playwright test functions.
+
+## 2025/07/04 ##
+
+- Implemented role checks for admin and super admin, and added a dedicated navbar for them.

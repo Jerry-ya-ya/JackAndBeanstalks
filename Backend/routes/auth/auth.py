@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token
 from models import db, User
-from routes.auth.email import generate_confirmation_token, mail, confirm_token
+from routes.auth.email import generate_confirmation_token, mail
 from flask_mail import Message
 import os
 from flask import current_app
@@ -74,8 +74,10 @@ def register():
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
+
     username = data.get('username')
     password = data.get('password')
+    role = data.get('role')
     
     user = User.query.filter_by(username=username).first()
         
@@ -85,9 +87,10 @@ def login():
     if not user.email_verified:
         return jsonify({'error': '請先驗證你的 Email'}), 403  # 👈 阻止登入
 
-    token = create_access_token(identity=username)
+    token = create_access_token(identity=username, additional_claims={'role': role})
     return jsonify({
         'access_token': token,
         'is_verified': True,  # 明確標示用戶已驗證
-        'require_verification': False  # 告訴前端不需要驗證
+        'require_verification': False,  # 告訴前端不需要驗證
+        'role': user.role,
     })

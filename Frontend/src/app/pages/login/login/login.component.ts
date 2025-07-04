@@ -14,6 +14,8 @@ export class LoginComponent {
   
   username = '';
   password = '';
+  role = '';
+
   error = '';
   
   constructor(private http: HttpClient) {}
@@ -21,11 +23,12 @@ export class LoginComponent {
   login() {
     this.http.post<any>('http://localhost:5000/api/login', {
       username: this.username,
-      password: this.password
+      password: this.password,
     }).subscribe({
       next: res => {
         localStorage.setItem('token', res.access_token);
         localStorage.setItem('username', res.username);
+        localStorage.setItem('role', res.role);
         location.reload(); // 登入後刷新頁面
       },
       error: () => this.error = '登入失敗，請檢查帳號密碼'
