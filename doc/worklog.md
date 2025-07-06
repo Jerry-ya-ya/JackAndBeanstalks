@@ -116,3 +116,7 @@
 ## 2025/07/04 ##
 
 - Implemented role checks for admin and super admin, and added a dedicated navbar for them.
+
+## 2025/07/06 ##
+
+- Refactored the frontend structure and added an admin promotion feature for the super admin.

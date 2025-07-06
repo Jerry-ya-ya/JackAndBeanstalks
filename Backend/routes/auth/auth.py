@@ -87,7 +87,7 @@ def login():
     if not user.email_verified:
         return jsonify({'error': '請先驗證你的 Email'}), 403  # 👈 阻止登入
 
-    token = create_access_token(identity=username, additional_claims={'role': role})
+    token = create_access_token(identity=username, additional_claims={'role': user.role})
     return jsonify({
         'access_token': token,
         'is_verified': True,  # 明確標示用戶已驗證

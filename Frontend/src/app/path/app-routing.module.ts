@@ -12,47 +12,52 @@ const routes: Routes = [
   {
     path: appPath.home,
     loadChildren: () =>
-      import('../pages/home/home.module').then(m => m.HomeModule),
+      import('../pages/public/home/home.module').then(m => m.HomeModule),
   },
   {
     path: appPath.crawler,
     loadChildren: () =>
-      import('../pages/crawler/crawler.module').then(m => m.CrawlerModule),
+      import('../pages/private/crawler/crawler.module').then(m => m.CrawlerModule),
   },
   {
     path: appPath.login,
     loadChildren: () =>
-      import('../pages/login/login/login.module').then(m => m.LoginModule)
+      import('../pages/public/login/login/login.module').then(m => m.LoginModule)
   },
   {
     path: appPath.member,
     loadChildren: () =>
-      import('../pages/member/member.module').then(m => m.MemberModule)
+      import('../pages/public/member/member.module').then(m => m.MemberModule)
   },
   {
     path: appPath.profile,
     loadChildren: () =>
-      import('../pages/profile/profile.module').then(m => m.ProfileModule)
+      import('../pages/public/profile/profile.module').then(m => m.ProfileModule)
   },
   {
     path: appPath.register,
     loadChildren: () =>
-      import('../pages/register/register/register.module').then(m => m.RegisterModule)
+      import('../pages/public/register/register/register.module').then(m => m.RegisterModule)
   },
   {
     path: appPath.setting,
     loadChildren: () =>
-      import('../pages/setting/setting.module').then(m => m.SettingModule)
+      import('../pages/private/setting/setting.module').then(m => m.SettingModule)
   },
   {
     path: appPath.square,
     loadChildren: () =>
-      import('../pages/square/square.module').then(m => m.SquareModule)
+      import('../pages/private/square/square.module').then(m => m.SquareModule)
   },
   { 
     path: appPath.todo,
     loadChildren: () =>
-      import('../pages/todo/todo.module').then(m => m.TodoModule)
+      import('../pages/private/todo/todo.module').then(m => m.TodoModule)
+  },
+  {
+    path: appPath.promote,
+    loadChildren: () =>
+      import('../pages/superadmin/promote/promote.module').then(m => m.PromoteModule)
   },
   {
     path: '**',

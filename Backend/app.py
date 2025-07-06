@@ -33,7 +33,8 @@ from routes.avatar import avatar_bp
 from routes.square import square_bp
 from routes.changepassword import changepassword_bp
 from routes.crawler import crawler_bp
-from routes.auth.admin import admin_bp
+from routes.admin.admin import admin_bp
+from routes.admin.promote import promote_bp
 
 from routes.crawler.schedule import start_scheduler
 from routes.crawler.logic import init_schedule_state
@@ -108,7 +109,7 @@ def create_app():
     app.register_blueprint(changepassword_bp, url_prefix='/api')
     app.register_blueprint(crawler_bp, url_prefix='/api')
     app.register_blueprint(admin_bp, url_prefix='/api')
-
+    app.register_blueprint(promote_bp, url_prefix='/api')
     # 在開發和測試環境掛載測試工具
     if env in ['development', 'test']:
         app.register_blueprint(test_utils, url_prefix='/api')

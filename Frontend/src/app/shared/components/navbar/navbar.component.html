@@ -121,12 +121,39 @@
     <div class="navbar">
         <div class="nav-admin">
             <a [routerLink]="['/']">
-                Manage
+                User
             </a>
         </div>
         <div class="nav-admin">
-            <a [routerLink]="['/']" style="color:red">
-                Null
+            <a [routerLink]="['/']">
+                Content
+            </a>
+        </div>
+        <div class="nav-admin">
+            <a [routerLink]="['/']">
+                Logs
+            </a>
+        </div>
+        <div class="nav-admin">
+            <a [routerLink]="['/']">
+                Announce
+            </a>
+        </div>
+        <div class="nav-admin">
+            <a [routerLink]="['/']">
+                Events
+            </a>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="nav-admin">
+            <a [routerLink]="['/']">
+                Projects
+            </a>
+        </div>
+        <div class="nav-admin">
+            <a [routerLink]="['/']">
+                Member
             </a>
         </div>
         <div class="nav-admin">
@@ -152,13 +179,13 @@
 <div *ngIf="isSuperadmin()">
     <div class="navbar">
         <div class="nav-superadmin">
-            <a [routerLink]="['/']">
+            <a [routerLink]="[path.promote]">
                 Promote
             </a>
         </div>
         <div class="nav-superadmin">
-            <a [routerLink]="['/']" style="color:red">
-                Null
+            <a [routerLink]="['/']">
+                Feature
             </a>
         </div>
         <div class="nav-superadmin">

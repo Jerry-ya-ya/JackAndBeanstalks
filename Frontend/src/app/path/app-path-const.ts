@@ -17,4 +17,6 @@ export const appPath = {
     square: 'square',
     //todo
     todo: 'todo',
+    //promote
+    promote: 'promote',
 };
