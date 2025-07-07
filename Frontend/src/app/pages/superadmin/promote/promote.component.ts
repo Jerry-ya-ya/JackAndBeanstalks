@@ -24,7 +24,7 @@ export class PromoteComponent implements OnInit {
   message = '';
   searchTerm = '';
   promotingUserId: number | null = null;
-
+  demotingUserId: number | null = null;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -107,6 +107,26 @@ export class PromoteComponent implements OnInit {
           setTimeout(() => {
             this.message = '';
           }, 3000);
+        }
+      });
+  }
+
+  demote(userId: number) {
+    this.demotingUserId = userId;
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: `Bearer ${token}` };
+    this.http.put<any>(`http://localhost:5000/api/superadmin/demote/${userId}`, {}, { headers })
+      .subscribe({
+        next: res => {
+          this.message = res.message;
+          this.loadUsers();
+          this.demotingUserId = null;
+          setTimeout(() => this.message = '', 3000);
+        },
+        error: err => {
+          this.message = err.error.error || '降級失敗';
+          this.demotingUserId = null;
+          setTimeout(() => this.message = '', 3000);
         }
       });
   }

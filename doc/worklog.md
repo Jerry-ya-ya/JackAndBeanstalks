@@ -119,4 +119,8 @@
 
 ## 2025/07/06 ##
 
-- Refactored the frontend structure and added an admin promotion feature for the super admin.
+- Refactored the frontend structure and implemented an admin promotion feature for the super admin.
+
+## 2025/07/07 ##
+
+- Implemented a feature that allows the super admin to demote an admin.

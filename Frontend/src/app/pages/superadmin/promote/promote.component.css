@@ -324,3 +324,24 @@
     height: 24px;
   }
 }
+
+.demote-btn {
+    background: linear-gradient(135deg, #ffb347 0%, #ff6961 100%);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 8px;
+    transition: all 0.3s ease;
+  }
+  .demote-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 105, 97, 0.3);
+  }
+  .demote-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
