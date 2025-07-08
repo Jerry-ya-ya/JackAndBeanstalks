@@ -9,7 +9,26 @@ promote_bp = Blueprint('promote', __name__)
 @promote_bp.route('/superadmin/promote', methods=['GET'])
 @superadmin_required
 def get_users():
-    users = User.query.all()
+    # 讀 query string
+    sort_by = request.args.get('sort_by', 'id')
+    order = request.args.get('order', 'asc')
+
+    # 決定排序欄位
+    if sort_by == 'id':
+        sort_column = User.id
+    elif sort_by == 'created_at':
+        sort_column = User.created_at
+    elif sort_by == 'updated_at':
+        sort_column = User.updated_at
+    else:
+        sort_column = User.id  # fallback
+
+    # 排序方向
+    if order == 'desc':
+        users = User.query.order_by(sort_column.desc()).all()
+    else:
+        users = User.query.order_by(sort_column.asc()).all()
+
     return jsonify([user.to_dict() for user in users])
 
 @promote_bp.route('/superadmin/promote/<int:user_id>', methods=['PUT'])
