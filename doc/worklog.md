@@ -132,3 +132,5 @@
 ## 2025/07/08 ##
 
 - Implemented a Redis container, updated the YAML file, and moved the .env file back to the project root directory.
+
+- Implemented a Celery container.

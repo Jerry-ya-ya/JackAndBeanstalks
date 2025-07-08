@@ -41,5 +41,18 @@ services:
     ports:
       - "6379:6379"
     container_name: redis-dev
+  celery:
+    build:
+      context: ./celery
+      dockerfile: Dockerfile.dev
+    command: celery -A celery_worker worker --loglevel=info
+    volumes:
+      - ./celery:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - backend
+    container_name: celery-dev
 volumes:
   pgdata_dev:

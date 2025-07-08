@@ -1,0 +1,16 @@
+# 1️⃣ 使用 Python 官方映像
+FROM python:3.11
+
+# 2️⃣ 設定工作目錄
+WORKDIR /app
+
+# 3️⃣ 複製 requirements
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 4️⃣ 複製 Celery 代碼跟 backend 代碼（如果有相依）
+COPY . .
+
+# 5️⃣ 方便熱重載可用 volumes 掛載，不需要啟動時 COPY
+# 這邊只負責啟動指令
+CMD ["celery", "-A", "celery.tasks", "worker", "--loglevel=info"]

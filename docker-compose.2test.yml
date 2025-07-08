@@ -51,6 +51,18 @@ services:
     ports:
       - "6379:6379"
     container_name: redis-test
+  celery:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    command: celery -A app.celery worker --loglevel=info
+    env_file:
+      - .env
+      - .env.2test
+    depends_on:
+      - redis
+      - backend
+    container_name: celery-test
 networks:
   mynet:
     driver: bridge
