@@ -124,3 +124,11 @@
 ## 2025/07/07 ##
 
 - Implemented a feature that allows the super admin to demote an admin.
+
+- 💥 The .yml failed to load the .env from the env folder during container build, so the .env was moved to the project root.
+
+- 💥 Changed the exposed port of the Docker container’s database to avoid conflicts with the local database.
+
+## 2025/07/08 ##
+
+- Implemented a Redis container, updated the YAML file, and moved the .env file back to the project root directory.

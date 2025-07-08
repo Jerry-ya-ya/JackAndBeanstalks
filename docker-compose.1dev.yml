@@ -30,11 +30,16 @@ services:
   db:
     image: postgres:16
     ports:
-      - "5432:5432"
+      - "5433:5432"
     env_file:
       - .env
     volumes:
       - ./database/postgres_data:/var/lib/postgresql/data
     container_name: pg-dev
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    container_name: redis-dev
 volumes:
   pgdata_dev:

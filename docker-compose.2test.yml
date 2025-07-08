@@ -46,6 +46,11 @@ services:
     container_name: e2e-test
     networks:
       - mynet
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    container_name: redis-test
 networks:
   mynet:
     driver: bridge

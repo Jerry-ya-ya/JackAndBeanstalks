@@ -27,5 +27,10 @@ services:
     ports:
       - "5432:5432"
     container_name: pg-prod
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    container_name: redis-prod
 volumes:
   pgdata_prod:
