@@ -12,5 +12,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # 5️⃣ 方便熱重載可用 volumes 掛載，不需要啟動時 COPY
-# 這邊只負責啟動指令
 CMD ["celery", "-A", "celery.tasks", "worker", "--loglevel=info"]

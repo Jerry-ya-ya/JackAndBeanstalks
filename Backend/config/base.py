@@ -17,6 +17,3 @@ class BaseConfig:
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=2)
 
     SUPERADMIN_EMAIL = os.environ.get('SUPERADMIN_EMAIL')
-
-    # CELERY_TASK_TRACK_STARTED = True
-    # CELERY_TASK_TIME_LIMIT = 300  # 5分鐘

@@ -31,18 +31,36 @@ services:
     image: redis:latest
     ports:
       - "6379:6379"
-    container_name: redis-prod
-  celery:
+    container_name: redis
+  celery_worker:
     build:
-      context: ./celery
-      dockerfile: Dockerfile.prod
+      context: Backend/celery_worker
+      dockerfile: Dockerfile
     command: celery -A celery_worker worker --loglevel=info
+    volumes:
+      - ./Backend:/app/Backend
+    environment:
+      - PYTHONPATH=/app/Backend
     env_file:
       - .env
       - .env.3prod
     depends_on:
       - redis
-      - backend
-    container_name: celery-prod
+    container_name: celery-worker-prod
+  celery_beat:
+    build:
+      context: Backend/celery_worker
+      dockerfile: Dockerfile
+    command: celery -A celery_worker beat --loglevel=info
+    volumes:
+      - ./Backend:/app/Backend
+    environment:
+      - PYTHONPATH=/app/Backend
+    env_file:
+      - .env.3prod
+    depends_on:
+      - redis
+      - celery_worker
+    container_name: celery-beat-prod
 volumes:
   pgdata_prod:

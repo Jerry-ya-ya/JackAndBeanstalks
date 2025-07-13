@@ -32,14 +32,11 @@ from routes.me import me_bp
 from routes.avatar import avatar_bp
 from routes.square import square_bp
 from routes.changepassword import changepassword_bp
-from routes.crawler import crawler_bp
 from routes.admin.admin import admin_bp
 from routes.admin.promote import promote_bp
-
-from routes.crawler.schedule import start_scheduler
-from routes.crawler.logic import init_schedule_state
-
 from routes.test import test_utils
+
+from routes.crawler import crawler_bp
 
 # 載入 .env 環境變數
 from dotenv import load_dotenv
@@ -53,6 +50,8 @@ def setup_database(app, retries=5, wait=2):
             with app.app_context():
                 # 嘗試資料庫操作
                 db.create_all()
+                # 延遲導入避免循環導入
+                from celery_worker.crawler.logic import init_schedule_state
                 init_schedule_state()
                 print("✅ 資料庫初始化成功")
                 return
@@ -110,11 +109,10 @@ def create_app():
     app.register_blueprint(crawler_bp, url_prefix='/api')
     app.register_blueprint(admin_bp, url_prefix='/api')
     app.register_blueprint(promote_bp, url_prefix='/api')
+    
     # 在開發和測試環境掛載測試工具
     if env in ['development', 'test']:
         app.register_blueprint(test_utils, url_prefix='/api')
-
-    start_scheduler(app) # 啟動排程器
     return app
 
 if __name__ == '__main__':

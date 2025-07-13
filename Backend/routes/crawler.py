@@ -1,18 +1,21 @@
 from flask import Blueprint, jsonify
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from models import News, ScheduleState
 
-from routes.crawler.schedule import last_run, next_run
-from routes.crawler.logic import fetch_and_store_news
+from celery_worker.crawler.logic import fetch_and_store_news
+from celery_worker.task import hello
 from flask_jwt_extended import jwt_required
 
-routes_bp = Blueprint('routes_bp', __name__)
+crawler_bp = Blueprint('crawler_bp', __name__)
 
-@routes_bp.route('/crawler/fetch', methods=['POST'])
+@crawler_bp.route('/crawler/fetch', methods=['POST'])
 def fetch_news_api():
     added = fetch_and_store_news()
     return jsonify({'message': f'{added} new items added.'})
 
-@routes_bp.route('/crawler/news', methods=['GET'])
+@crawler_bp.route('/crawler/news', methods=['GET'])
 @jwt_required()
 def get_saved_news():
     news = News.query.order_by(News.created_at.desc()).limit(30).all()
@@ -25,10 +28,15 @@ def get_saved_news():
         for n in news
     ])
 
-@routes_bp.route('/crawler/info', methods=['GET'])
+@crawler_bp.route('/crawler/info', methods=['GET'])
 def get_schedule_info():
     state = ScheduleState.query.filter_by(job_name="news_crawler").first()
     return jsonify({
         'last_run': state.last_run.isoformat() if state.last_run else None,
         'next_run': state.next_run.isoformat() if state.next_run else None
     })
+
+@crawler_bp.route('/crawler/test', methods=['GET'])
+def test_crawler():
+    hello.delay()
+    return jsonify({'message': 'Crawler is working!'})

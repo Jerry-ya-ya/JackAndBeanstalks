@@ -1,12 +1,12 @@
 from flask import Blueprint, current_app
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, timedelta
-from routes.crawler.logic import fetch_and_store_news
+from .logic import fetch_and_store_news
 import pytz
 from flask import Flask
 from models import ScheduleState, db
 
-from routes.crawler.crawlerlogger import crawler_logger
+from .crawlerlogger import crawler_logger
 
 last_run = None
 next_run = None

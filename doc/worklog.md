@@ -134,3 +134,9 @@
 - Implemented a Redis container, updated the YAML file, and moved the .env file back to the project root directory.
 
 - Implemented a Celery container.
+
+- 💥 Changing user roles caused the query results to become unordered, so a sorting rule was implemented on the backend to maintain consistent order.
+
+## 2025/07/13 ##
+
+- Connected Celery with Redis to enable Celery Beat to schedule and execute tasks.

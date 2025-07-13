@@ -40,19 +40,36 @@ services:
     image: redis:latest
     ports:
       - "6379:6379"
-    container_name: redis-dev
-  celery:
+    container_name: redis
+  celery_worker:
     build:
-      context: ./celery
-      dockerfile: Dockerfile.dev
+      context: Backend/celery_worker
+      dockerfile: Dockerfile
     command: celery -A celery_worker worker --loglevel=info
     volumes:
-      - ./celery:/app
+      - ./Backend:/app/Backend
+    environment:
+      - PYTHONPATH=/app/Backend
     env_file:
       - .env
+      - .env.1dev
     depends_on:
       - redis
-      - backend
-    container_name: celery-dev
+    container_name: celery-worker-dev
+  celery_beat:
+    build:
+      context: Backend/celery_worker
+      dockerfile: Dockerfile
+    command: celery -A celery_worker beat --loglevel=info
+    volumes:
+      - ./Backend:/app/Backend
+    environment:
+      - PYTHONPATH=/app/Backend
+    env_file:
+      - .env.1dev
+    depends_on:
+      - redis
+      - celery_worker
+    container_name: celery-beat-dev
 volumes:
   pgdata_dev:

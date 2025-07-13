@@ -1,6 +1,9 @@
 from flask import Blueprint
 import requests
 from bs4 import BeautifulSoup
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from models import News, db
 from models import ScheduleState
 
