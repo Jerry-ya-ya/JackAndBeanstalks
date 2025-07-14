@@ -1,208 +1,34 @@
 <!-- Public -->
-<div>
-    <div class="navbar">
-        <div class="nav">
-            <a [routerLink]="[path.home]">
-                Home
-            </a>
-        </div>
-        <div class="nav" >
-            <a [routerLink]="[path.member]">
-                Member
-            </a>
-        </div>
-        <div class="nav" >
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav" >
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-    </div>
-    <div class="navbar">
-        <div class="nav" >
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav" >
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav" >
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav">
-            <a [routerLink]="[path.register]">
-                Register
-            </a>
-        </div>
-        <div class="nav">
-            <a [routerLink]="[path.login]">
-                Login
-            </a>
-        </div>
-    </div>
+<div class="navbar navbar-public" *ngIf="!isLoggedIn() || isSuperadmin()">
+    <a class="nav" [routerLink]="[path.home]">Home</a>
+    <a class="nav" [routerLink]="[path.member]">Member</a>
+    <a class="nav" [routerLink]="[path.register]">Register</a>
+    <a class="nav" [routerLink]="[path.login]">Login</a>
 </div>
-<!-- Public -->
 
 <!-- Private -->
-<div *ngIf="isLoggedIn()">
-    <div class="navbar">
-        <div class="nav-private">
-            <a [routerLink]="[path.square]">
-                Square
-            </a>
-        </div>
-        <div class="nav-private">
-            <a [routerLink]="[path.todo]">
-                Todo
-            </a>
-        </div>
-        <div class="nav-private">
-            <a [routerLink]="[path.setting]">
-                Setting
-            </a>
-        </div>
-        <div class="nav-private">
-            <a [routerLink]="[path.profile]">
-                Profile
-            </a>
-        </div>
-        <div class="nav-private">
-            <a [routerLink]="[path.crawler]">
-                Crawler
-            </a>
-        </div>
-    </div>
-    <div class="navbar">
-        <div class="nav-private">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav-private">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav-private">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav-private">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav-private">
-            <a (click)="logout()">
-                Logout
-            </a>
-        </div>
-    </div>
+<div class="navbar navbar-private" *ngIf="isLoggedIn()">
+    <a class="nav-private" [routerLink]="[path.square]">Square</a>
+    <a class="nav-private" [routerLink]="[path.todo]">Todo</a>
+    <a class="nav-private" [routerLink]="[path.setting]">Setting</a>
+    <a class="nav-private" [routerLink]="[path.profile]">Profile</a>
+    <a class="nav-private" [routerLink]="[path.crawler]">Crawler</a>
+    <a class="nav-private logout" (click)="logout()">Logout</a>
 </div>
-<!-- Private -->
 
 <!-- Admin -->
-<div *ngIf="isAdmin()">
-    <div class="navbar">
-        <div class="nav-admin">
-            <a [routerLink]="['/']">
-                User
-            </a>
-        </div>
-        <div class="nav-admin">
-            <a [routerLink]="['/']">
-                Content
-            </a>
-        </div>
-        <div class="nav-admin">
-            <a [routerLink]="['/']">
-                Logs
-            </a>
-        </div>
-        <div class="nav-admin">
-            <a [routerLink]="['/']">
-                Announce
-            </a>
-        </div>
-        <div class="nav-admin">
-            <a [routerLink]="['/']">
-                Events
-            </a>
-        </div>
-    </div>
-    <div class="navbar">
-        <div class="nav-admin">
-            <a [routerLink]="['/']">
-                Projects
-            </a>
-        </div>
-        <div class="nav-admin">
-            <a [routerLink]="['/']">
-                Member
-            </a>
-        </div>
-        <div class="nav-admin">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav-admin">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav-admin">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-    </div>
+<div class="navbar navbar-admin" *ngIf="isAdmin()">
+    <a class="nav-admin" [routerLink]="['/']">User</a>
+    <a class="nav-admin" [routerLink]="['/']">Content</a>
+    <a class="nav-admin" [routerLink]="['/']">Logs</a>
+    <a class="nav-admin" [routerLink]="['/']">Announce</a>
+    <a class="nav-admin" [routerLink]="['/']">Events</a>
+    <a class="nav-admin" [routerLink]="['/']">Projects</a>
+    <a class="nav-admin" [routerLink]="['/']">Member</a>
 </div>
-<!-- Admin -->
 
 <!-- Superadmin -->
-<div *ngIf="isSuperadmin()">
-    <div class="navbar">
-        <div class="nav-superadmin">
-            <a [routerLink]="[path.promote]">
-                Promote
-            </a>
-        </div>
-        <div class="nav-superadmin">
-            <a [routerLink]="['/']">
-                Feature
-            </a>
-        </div>
-        <div class="nav-superadmin">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav-superadmin">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-        <div class="nav-superadmin">
-            <a [routerLink]="['/']" style="color:red">
-                Null
-            </a>
-        </div>
-    </div>
+<div class="navbar navbar-superadmin" *ngIf="isSuperadmin()">
+    <a class="nav-superadmin" [routerLink]="[path.promote]">Promote</a>
+    <a class="nav-superadmin" [routerLink]="['/']">Feature</a>
 </div>
-<!-- Superadmin -->

@@ -140,3 +140,7 @@
 ## 2025/07/13 ##
 
 - Connected Celery with Redis to enable Celery Beat to schedule and execute tasks.
+
+## 2025/07/14 ##
+
+- Improved the visual design of the navbar, implemented responsive layout for various screen sizes, enhanced color contrast, and updated the logout button with a red color for better visibility.
