@@ -62,13 +62,21 @@ a, .nav, .nav-private, .nav-admin, .nav-superadmin {
     font-weight: bold;
 }
 .logout:hover { background: #fff; color: #ff4d4f; border: 2px solid #ff4d4f; }
-
+@media (max-width: 1920px) {
+    .navbar { grid-template-columns: repeat(7, 1fr); }
+}
+@media (max-width: 1700px) {
+    .navbar { grid-template-columns: repeat(7, 1fr); }
+}
+@media (max-width: 1400px) {
+    .navbar { grid-template-columns: repeat(7, 1fr); }
+}
 @media (max-width: 1100px) {
-    .navbar { grid-template-columns: repeat(6, 1fr); }
+    .navbar { grid-template-columns: repeat(7, 1fr); }
 }
 @media (max-width: 800px) {
-    .navbar { grid-template-columns: repeat(2, 1fr); }
+    .navbar { grid-template-columns: repeat(3, 1fr); }
 }
 @media (max-width: 500px) {
-    .navbar { grid-template-columns: 1fr; }
+    .navbar { grid-template-columns: repeat(3, 1fr); }
 }

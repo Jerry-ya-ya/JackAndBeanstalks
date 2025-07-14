@@ -1,0 +1,118 @@
+.register-container {
+  max-width: 380px;
+  margin: 40px auto;
+  padding: 32px 28px 24px 28px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-container h2 {
+  margin-bottom: 24px;
+  color: #232526;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 80px;
+}
+
+.form-group {
+  width: 100%;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  color: #414345;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 10px 12px;
+  border: 1.5px solid #cfd8dc;
+  border-radius: 8px;
+  font-size: 20px;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+  background: #fff;
+}
+
+.form-group input:focus {
+  border: 1.5px solid #4f8cff;
+  box-shadow: 0 0 0 2px #e3f0ff;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 12px 0;
+  background: linear-gradient(90deg, #4f8cff 0%, #1cb5e0 100%);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px rgba(76, 175, 255, 0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.register-btn:hover {
+  background: linear-gradient(90deg, #1cb5e0 0%, #4f8cff 100%);
+  box-shadow: 0 4px 16px rgba(76, 175, 255, 0.15);
+}
+
+.resend-section {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.resend-section p {
+  font-size: 20px;
+  color: #000;
+}
+
+.resend-section a {
+  color: #4f8cff;
+  text-decoration: none;
+  margin-left: 4px;
+  transition: color 0.2s;
+  font-size: 15px;
+}
+
+.resend-section a:hover {
+  color: #1cb5e0;
+}
+
+.success-message {
+  color: #2ecc40;
+  margin-top: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.error-message {
+  color: #ff4d4f;
+  margin-top: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .register-container {
+    padding: 18px 6px 14px 6px;
+    max-width: 98vw;
+  }
+  .form-group input {
+    font-size: 14px;
+  }
+  .register-btn {
+    font-size: 15px;
+  }
+}

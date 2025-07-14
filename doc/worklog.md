@@ -144,3 +144,5 @@
 ## 2025/07/14 ##
 
 - Improved the visual design of the navbar, implemented responsive layout for various screen sizes, enhanced color contrast, and updated the logout button with a red color for better visibility.
+
+- Improved the design of the registration page.
