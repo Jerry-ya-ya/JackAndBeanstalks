@@ -5,6 +5,7 @@ h2 {
     outline: none;
     line-height: 4vw;
     animation: animate 5s linear infinite;
+    z-index: -1;
 }
 @keyframes animate {
     0%,18%,22%,25%,30% {

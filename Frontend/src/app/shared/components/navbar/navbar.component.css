@@ -62,21 +62,88 @@ a, .nav, .nav-private, .nav-admin, .nav-superadmin {
     font-weight: bold;
 }
 .logout:hover { background: #fff; color: #ff4d4f; border: 2px solid #ff4d4f; }
-@media (max-width: 1920px) {
+
+@media (min-width: 1536px) {
     .navbar { grid-template-columns: repeat(7, 1fr); }
+    .sidebar {
+        transform: translateX(0%);
+        width: 55vw;
+        min-width: 0;
+      }
 }
-@media (max-width: 1700px) {
+@media (min-width: 1200px) and (max-width: 1535px) {
     .navbar { grid-template-columns: repeat(7, 1fr); }
+    .sidebar {
+        transform: translateX(0%);
+        width: 55vw;
+        min-width: 0;
+      }
 }
-@media (max-width: 1400px) {
+@media (min-width: 900px) and (max-width: 1199px) {
     .navbar { grid-template-columns: repeat(7, 1fr); }
+    .sidebar {
+        transform: translateX(0%);
+        width: 55vw;
+        min-width: 0;
+      }
 }
-@media (max-width: 1100px) {
+@media (min-width: 600px) and (max-width: 899px) {
     .navbar { grid-template-columns: repeat(7, 1fr); }
+    .sidebar {
+        transform: translateX(0%);
+        width: 55vw;
+        min-width: 0;
+      }
 }
-@media (max-width: 800px) {
+@media (max-width: 599px) {
     .navbar { grid-template-columns: repeat(3, 1fr); }
+    .sidebar {
+        transform: translateX(0%);
+        width: 55vw;
+        min-width: 0;
+      }
 }
-@media (max-width: 500px) {
-    .navbar { grid-template-columns: repeat(3, 1fr); }
+
+.sidebar {
+  top: 0;
+  left: 0;
+  background: #6bb7dd;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+  transition: width 0.3s, transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  padding-right: 10px;
+  backdrop-filter: blur(100px);
+}
+
+.sidebar.collapsed {
+  width: 50px;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  margin: 0 0 18px 10px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: color 0.2s;
+}
+
+.hide-navbar {
+  display: block;
+}
+.sidebar.collapsed .hide-navbar {
+  display: none;
+}
+
+body, .body, .view {
+  margin-left: 320px;
+  transition: margin-left 0.3s;
+}
+.sidebar.collapsed ~ .body,
+.sidebar.collapsed ~ .view {
+  margin-left: 60px;
 }

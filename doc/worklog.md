@@ -146,3 +146,7 @@
 - Improved the visual design of the navbar, implemented responsive layout for various screen sizes, enhanced color contrast, and updated the logout button with a red color for better visibility.
 
 - Improved the design of the registration page.
+
+## 2025/07/15 ##
+
+- Redesigned the navbar into a hamburger menu for better responsiveness, adjusted the layout of the Single Page Application and navbar, and applied CSS refinements to various pages.
