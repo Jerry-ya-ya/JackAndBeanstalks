@@ -63,47 +63,6 @@ a, .nav, .nav-private, .nav-admin, .nav-superadmin {
 }
 .logout:hover { background: #fff; color: #ff4d4f; border: 2px solid #ff4d4f; }
 
-@media (min-width: 1536px) {
-    .navbar { grid-template-columns: repeat(7, 1fr); }
-    .sidebar {
-        transform: translateX(0%);
-        width: 55vw;
-        min-width: 0;
-      }
-}
-@media (min-width: 1200px) and (max-width: 1535px) {
-    .navbar { grid-template-columns: repeat(7, 1fr); }
-    .sidebar {
-        transform: translateX(0%);
-        width: 55vw;
-        min-width: 0;
-      }
-}
-@media (min-width: 900px) and (max-width: 1199px) {
-    .navbar { grid-template-columns: repeat(7, 1fr); }
-    .sidebar {
-        transform: translateX(0%);
-        width: 55vw;
-        min-width: 0;
-      }
-}
-@media (min-width: 600px) and (max-width: 899px) {
-    .navbar { grid-template-columns: repeat(7, 1fr); }
-    .sidebar {
-        transform: translateX(0%);
-        width: 55vw;
-        min-width: 0;
-      }
-}
-@media (max-width: 599px) {
-    .navbar { grid-template-columns: repeat(3, 1fr); }
-    .sidebar {
-        transform: translateX(0%);
-        width: 55vw;
-        min-width: 0;
-      }
-}
-
 .sidebar {
   top: 0;
   left: 0;
@@ -146,4 +105,45 @@ body, .body, .view {
 .sidebar.collapsed ~ .body,
 .sidebar.collapsed ~ .view {
   margin-left: 60px;
+}
+
+@media (min-width: 1536px) {
+  .navbar { grid-template-columns: repeat(7, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      width: 75vw;
+      min-width: 0;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1535px) {
+  .navbar { grid-template-columns: repeat(7, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      width: 75vw;
+      min-width: 0;
+    }
+}
+@media (min-width: 900px) and (max-width: 1199px) {
+  .navbar { grid-template-columns: repeat(7, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      width: 75vw;
+      min-width: 0;
+    }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .navbar { grid-template-columns: repeat(7, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      width: 75vw;
+      min-width: 0;
+    }
+}
+@media (max-width: 599px) {
+  .navbar { grid-template-columns: repeat(3, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      width: 75vw;
+      min-width: 0;
+    }
 }

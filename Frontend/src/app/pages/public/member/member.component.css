@@ -73,7 +73,7 @@
 }
 
 .role {
-    font-size: 30px;
+    font-size: 5vw;
     color: #f0f0f0;
     text-align: center;
     display: flex;
@@ -81,14 +81,21 @@
 }
 
 .profile {
-    width: 200px;
-    height: 200px;
+    width: 20vw;
+    height: 20vw;
+    margin: auto;
+    background-color:grey;
+}
+
+.short-profile {
+    width: 17vw;
+    height: 20vw;
     margin: auto;
     background-color:grey;
 }
 
 .name {
-    font-size: 30px;
+    font-size: 5vw;
     color: #f0f0f0;
     text-align: center;
     display: flex;
