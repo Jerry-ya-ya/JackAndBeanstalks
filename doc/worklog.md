@@ -151,4 +151,10 @@
 
 - Redesigned the navbar into a hamburger menu for better responsiveness, adjusted the layout of the Single Page Application and navbar, and applied CSS refinements to various pages.
 
+## 2025/07/16 ##
+
 - Improved the visual design of the user square, refined the member page’s CSS, resolved image rendering issues on the promote page, and made layout adjustments to the navbar for better consistency.
+
+## 2025/07/17 ##
+
+- Improved the design of the user profile and fixed CSS issues on several pages.

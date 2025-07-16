@@ -32,7 +32,7 @@ const routes: Routes = [
   {
     path: appPath.profile,
     loadChildren: () =>
-      import('../pages/public/profile/profile.module').then(m => m.ProfileModule)
+      import('../pages/private/profile/profile.module').then(m => m.ProfileModule)
   },
   {
     path: appPath.register,
