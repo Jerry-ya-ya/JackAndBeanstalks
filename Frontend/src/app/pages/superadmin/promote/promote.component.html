@@ -1,0 +1,108 @@
+<div class="admin-dashboard">
+    <div class="dashboard-header">
+        <h2>管理員後台</h2>
+        <p class="subtitle">用戶管理與權限控制</p>
+    </div>
+    <!-- 訊息提示 -->
+     <div *ngIf="message" class="message-container">
+        <div class="message success">
+            <span class="message-icon">✓</span>
+            <span>{{ message }}</span>
+        </div>
+    </div>
+    
+    <!-- 統計卡片 -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">{{ users.length }}</div>
+            <div class="stat-label">總用戶數</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ getUsersByRole('admin').length }}</div>
+            <div class="stat-label">管理員</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ getUsersByRole('user').length }}</div>
+            <div class="stat-label">一般用戶</div>
+        </div>
+    </div>
+    <!-- 用戶表格 -->
+    <div class="table-container">
+        <div class="table-header">
+            <h3>用戶列表</h3>
+            <div class="table-actions">
+                <input 
+                type="text" 
+                placeholder="搜尋用戶..." 
+                [(ngModel)]="searchTerm"
+                (ngModelChange)="filterUsers()"
+                class="search-input"
+                >
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>帳號</th>
+                        <th>暱稱</th>
+                        <th>Email</th>
+                        <th>角色</th>
+                        <th>註冊時間</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of filteredUsers" class="user-row">
+                        <td class="user-id">{{ user.id }}</td>
+                        <td class="username">
+                            <div class="user-info">
+                                <img class="user-avatar" [src]="'http://localhost:5000/'+ user.avatar_url"/>
+                                <span>{{ user.username }}</span>
+                            </div>
+                        </td>
+                        <td>{{ user.nickname || '-' }}</td>
+                        <td class="email">{{ user.email }}</td>
+                        <td>
+                            <span class="role-badge" [class]="'role-' + user.role">
+                                {{ getRoleDisplayName(user.role) }}
+                            </span>
+                        </td>
+                        <td class="created-at">{{ formatDate(user.created_at) }}</td>
+                        <td class="actions">
+                            <!-- 晉升 -->
+                            <button 
+                              *ngIf="user.role === 'user'" 
+                              (click)="promote(user.id)"
+                              class="promote-btn"
+                              [disabled]="promotingUserId === user.id"
+                            >
+                                <span *ngIf="promotingUserId !== user.id">晉升為管理員</span>
+                                <span *ngIf="promotingUserId === user.id" class="loading">處理中...</span>
+                            </button>
+                            <!-- 降級 -->
+                            <button 
+                              *ngIf="user.role === 'admin'" 
+                              (click)="demote(user.id)"
+                              class="demote-btn"
+                              [disabled]="demotingUserId === user.id"
+                            >
+                                <span *ngIf="demotingUserId !== user.id">降級為一般用戶</span>
+                                <span *ngIf="demotingUserId === user.id" class="loading">處理中...</span>
+                            </button>
+                            <!-- 最高管理員 -->
+                            <span *ngIf="user.role === 'superadmin'" class="no-action">最高管理員</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 空狀態 -->
+        <div *ngIf="filteredUsers.length === 0" class="empty-state">
+            <div class="empty-icon">👥</div>
+            <p>沒有找到符合條件的用戶</p>
+        </div>
+    </div>
+</div>

@@ -1,8 +1,6 @@
 export const appPath = {
     //home
     home: 'home',
-    //forgotpassword
-    forgotpassword: 'forgotpassword',
     //crawler
     crawler: 'crawler',
     //login
@@ -13,14 +11,12 @@ export const appPath = {
     profile: 'profile',
     //register
     register: 'register',
-    //resendverification
-    resendverification: 'resendverification',
     //setting
     setting: 'setting',
     //square
     square: 'square',
     //todo
     todo: 'todo',
-    //verified
-    verified: 'verified',
+    //promote
+    promote: 'promote',
 };

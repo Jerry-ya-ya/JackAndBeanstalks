@@ -1,0 +1,85 @@
+.square {
+  margin-top: 83px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding-bottom: 200px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #2d3a4b;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  background: #f7f9fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 20px 28px;
+  margin-bottom: 24px;
+  transition: box-shadow 0.2s;
+}
+
+.user-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+}
+
+.user-card img {
+  border-radius: 50%;
+  border: 3px solid #e0e7ef;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 32px;
+  background: #fff;
+}
+
+.user-card > div:first-child {
+  flex-shrink: 0;
+}
+
+.user-card > div:last-child {
+  flex: 1;
+}
+
+.user-card p {
+  margin: 6px 0;
+  font-size: 1.08rem;
+  color: #34495e;
+}
+
+.user-card strong {
+  color: #1a73e8;
+  font-weight: 600;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e7ef;
+  margin: 18px 0 0 0;
+}
+
+@media (max-width: 600px) {
+  .user-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 10px;
+  }
+  .user-card img {
+    margin-right: 0;
+    margin-bottom: 12px;
+    width: 80px;
+    height: 80px;
+  }
+  .square {
+    padding: 8px;
+  }
+}

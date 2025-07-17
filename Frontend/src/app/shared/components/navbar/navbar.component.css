@@ -1,31 +1,146 @@
 .navbar {
-    background-color: #000;
-    padding: 1vw;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-radius: 12px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.nav, .nav-private, .nav-admin, .nav-superadmin {
+    min-width: 0;
+    min-height: 40px;
     display: flex;
-    flex-direction: row;
-    height: 28px;
-}
-
-.nav {
-    border-color: #fff;
-    border-style: solid;
-    width: 20vw;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    font-weight: 600;
+    font-size: 2vw;
+    letter-spacing: 0.5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    background: #fff;
+    color: #232526;
+    border: none;
     text-align: center;
 }
 
-.nav-private {
-    border-color: orange;
-    border-style: solid;
-    width: 20vw;
-    text-align: center;
-}
+.nav { border: 2px solid #232526; }
+.nav-private { border: 2px solid #00e6e6; background: #00e6e6; color: #232526; }
+.nav-admin { border: 2px solid #b266ff; background: #b266ff; color: #fff; }
+.nav-superadmin { border: 2px solid #ffd200; background: #ffd200; color: #232526; }
 
-a {
-    color: #fff;
+.navbar-public { background: linear-gradient(90deg, #232526 0%, #414345 100%); }
+.navbar-private { background: linear-gradient(90deg, #0f2027 0%, #2c5364 100%); }
+.navbar-admin { background: linear-gradient(90deg, #42275a 0%, #734b6d 100%); }
+.navbar-superadmin { background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%); }
+
+a, .nav, .nav-private, .nav-admin, .nav-superadmin {
     text-decoration: none;
-    font-size: 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    display: block;
     width: 100%;
     height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav:hover { background: #232526; color: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+.nav-private:hover { background: #009999; color: #fff; }
+.nav-admin:hover { background: #7c2ae8; color: #fff; }
+.nav-superadmin:hover { background: #ffb300; color: #fff; }
+
+.logout {
+    background: #ff4d4f;
+    color: #fff;
+    border: 2px solid #ff4d4f;
+    font-weight: bold;
+}
+.logout:hover { background: #fff; color: #ff4d4f; border: 2px solid #ff4d4f; }
+
+.sidebar {
+  top: 0;
+  left: 0;
+  background: #6bb7dd;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+  transition: width 0.3s, transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  padding-right: 10px;
+  backdrop-filter: blur(100px);
+  width: 70vw;
+}
+
+.sidebar.collapsed {
+  width: 50px;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  margin: 0 0 18px 10px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: color 0.2s;
+}
+
+.hide-navbar {
+  display: block;
+}
+.sidebar.collapsed .hide-navbar {
+  display: none;
+}
+
+body, .body, .view {
+  margin-left: 320px;
+  transition: margin-left 0.3s;
+}
+.sidebar.collapsed ~ .body,
+.sidebar.collapsed ~ .view {
+  margin-left: 60px;
+}
+
+@media (min-width: 1536px) {
+  .navbar { grid-template-columns: repeat(7, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      min-width: 0;
+    }
+}
+@media (min-width: 1200px) and (max-width: 1535px) {
+  .navbar { grid-template-columns: repeat(7, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      min-width: 0;
+    }
+}
+@media (min-width: 900px) and (max-width: 1199px) {
+  .navbar { grid-template-columns: repeat(7, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      min-width: 0;
+    }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .navbar { grid-template-columns: repeat(7, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      min-width: 0;
+    }
+}
+@media (max-width: 599px) {
+  .navbar { grid-template-columns: repeat(3, 1fr); }
+  .sidebar {
+      transform: translateX(0%);
+      min-width: 0;
+    }
 }

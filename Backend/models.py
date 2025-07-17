@@ -14,11 +14,24 @@ class User(db.Model):
     password = db.Column(db.String(200), nullable=False)
     avatar_url = db.Column(db.String(255))
     nickname = db.Column(db.String(80))
+    role = db.Column(db.String(20), default='user')  # 'user', 'admin', 'superadmin'
 
     email = db.Column(db.String(120), unique=True)
     email_verified = db.Column(db.Boolean, default=False)
     
     todos = db.relationship('Todo', backref='user', lazy=True) # 一對多關聯
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'nickname': self.nickname,
+            'role': self.role,
+            'email_verified': self.email_verified,
+            'avatar_url': self.avatar_url,
+            'created_at': self.created_at.isoformat() if self.created_at else None
+        }
 
 # 定義 Todo 模型
 class Todo(db.Model):

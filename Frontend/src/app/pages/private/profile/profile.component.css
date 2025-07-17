@@ -1,0 +1,89 @@
+.profile {
+  max-width: 600px;
+  margin-top: 83px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  padding: 36px 32px 48px 32px;
+}
+
+h2, h3 {
+  text-align: center;
+  color: #2d3a4b;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+p, label {
+  font-size: 1.08rem;
+  color: #34495e;
+  margin: 8px 0;
+}
+
+input[type="file"] {
+  margin-top: 8px;
+}
+
+input[type="text"], input[type="email"] {
+  padding: 7px 12px;
+  border: 1px solid #e0e7ef;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  width: 100%;
+  font-size: 1rem;
+  background: #f7f9fa;
+}
+
+button {
+  background: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 22px;
+  margin: 8px 8px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+button:disabled {
+  background: #b0c4de;
+  cursor: not-allowed;
+}
+button:hover:not(:disabled) {
+  background: #1761c6;
+}
+
+.avatar-section {
+  text-align: center;
+  margin-top: 32px;
+}
+.avatar-section img {
+  border-radius: 50%;
+  border: 3px solid #e0e7ef;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  background: #fff;
+  margin-bottom: 8px;
+}
+
+.success-message {
+  color: #27ae60;
+  font-weight: 600;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .profile {
+    padding: 16px 4px 32px 4px;
+  }
+  .avatar-section img {
+    width: 80px;
+    height: 80px;
+  }
+}

@@ -1,9 +1,19 @@
-.body {
+.view {
+  display: flex;
+  flex-direction: row;
+}
+
+.navbar {
+  width: 10px;
+  height: 10px;
+  z-index: 1;
+  position: fixed;
+}
+
+.spa {
   background-color: #000;
   color: #fff;
-  font-family: 'Press Start 2P', cursive;
-  font-size: 5vw;
-  padding: 20px;
   text-align: center;
-  margin-top: 0.5vh;
+  width: 100vw;
+  z-index: 0;
 }

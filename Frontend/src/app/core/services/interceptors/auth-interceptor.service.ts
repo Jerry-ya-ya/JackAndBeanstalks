@@ -30,6 +30,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
           localStorage.removeItem('token');
+          localStorage.removeItem('role');
           window.alert('登入逾時，請重新登入');
           this.router.navigate(['/login'])
         }

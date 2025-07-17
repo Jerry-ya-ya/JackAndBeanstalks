@@ -10,12 +10,26 @@ import { appPath } from '../../../path/app-path-const';
 export class NavbarComponent {
   path = appPath; // 將 appPath 物件賦值給 path 屬性
 
+  collapsed = true;
+  toggleSidebar() {
+    this.collapsed = !this.collapsed;
+  }
+
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     location.reload(); // 或導向登入頁
   }
 
   isLoggedIn() {
     return !!localStorage.getItem('token');
+  }
+
+  isAdmin() {
+    return localStorage.getItem('role') === 'admin' || localStorage.getItem('role') === 'superadmin';
+  }
+
+  isSuperadmin() {
+    return localStorage.getItem('role') === 'superadmin';
   }
 }

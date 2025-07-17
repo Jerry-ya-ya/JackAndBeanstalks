@@ -2,9 +2,10 @@ from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token
 from models import db, User
-from routes.auth.email import generate_confirmation_token, mail, confirm_token
+from routes.auth.email import generate_confirmation_token, mail
 from flask_mail import Message
 import os
+from flask import current_app
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -12,6 +13,7 @@ auth_bp = Blueprint('auth', __name__)
 @auth_bp.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
+
     username = data.get('username')
     password = data.get('password')
     email = data.get('email')
@@ -27,12 +29,20 @@ def register():
         return jsonify({'error': 'Email already exists'}), 400
 
     hashed_pw = generate_password_hash(password)
+
+    # 判斷是否是唯一超管 email
+    if email == current_app.config['SUPERADMIN_EMAIL']:
+        role = 'superadmin'
+    else:
+        role = 'user'
+    
     new_user = User(
         username=username,
         password=hashed_pw,
         email=email,
         nickname=nickname,
-        email_verified=False  # 確保新用戶的 email_verified 為 False
+        email_verified=False,  # 確保新用戶的 email_verified 為 False
+        role=role
     )
 
     db.session.add(new_user)
@@ -56,15 +66,18 @@ def register():
         'message': '註冊成功，請檢查您的郵箱完成驗證',
         'email': email,
         'is_verified': False,  # 明確標示用戶尚未驗證
-        'require_verification': True  # 告訴前端需要驗證
+        'require_verification': True,  # 告訴前端需要驗證
+        'role': role,
     })
 
 # 登入功能
 @auth_bp.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
+
     username = data.get('username')
     password = data.get('password')
+    role = data.get('role')
     
     user = User.query.filter_by(username=username).first()
         
@@ -74,9 +87,10 @@ def login():
     if not user.email_verified:
         return jsonify({'error': '請先驗證你的 Email'}), 403  # 👈 阻止登入
 
-    token = create_access_token(identity=username)
+    token = create_access_token(identity=username, additional_claims={'role': user.role})
     return jsonify({
         'access_token': token,
         'is_verified': True,  # 明確標示用戶已驗證
-        'require_verification': False  # 告訴前端不需要驗證
+        'require_verification': False,  # 告訴前端不需要驗證
+        'role': user.role,
     })

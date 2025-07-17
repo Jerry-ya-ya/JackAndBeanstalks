@@ -68,10 +68,28 @@ __pycache__/
 /Backend/.DS_Store
 /Backend/Thumbs.db
 /Backend/static/uploads/
-Backend/instance/db.sqlite3
+/Backend/instance/
+/Backend/celerybeat-schedule
+/Backend/celery_worker/celerybeat-schedule
 
 # Database
 /database/
+
+# E2E
+/e2e/test/storageState.json
+
+# Playwright 測試暫存與報告
+test-results/
+playwright-report/
+
+# npm
+node_modules/
+
+# VSCode 或其他開發工具設定
+.vscode/
+
+# Playwright cache（有時存在）
+.cache/
 
 # 通用
 *.log

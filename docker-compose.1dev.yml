@@ -1,0 +1,75 @@
+version: '3.9'
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.angular/cache
+    ports:
+      - "4200:4200"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    container_name: angular-dev
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+      - .env.1dev
+    depends_on:
+      - db
+    container_name: flask-dev
+  db:
+    image: postgres:16
+    ports:
+      - "5433:5432"
+    env_file:
+      - .env
+    volumes:
+      - ./database/postgres_data:/var/lib/postgresql/data
+    container_name: pg-dev
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    container_name: redis
+  celery_worker:
+    build:
+      context: Backend/celery_worker
+      dockerfile: Dockerfile
+    command: celery -A celery_worker worker --loglevel=info
+    volumes:
+      - ./Backend:/app/Backend
+    environment:
+      - PYTHONPATH=/app/Backend
+    env_file:
+      - .env
+      - .env.1dev
+    depends_on:
+      - redis
+    container_name: celery-worker-dev
+  celery_beat:
+    build:
+      context: Backend/celery_worker
+      dockerfile: Dockerfile
+    command: celery -A celery_worker beat --loglevel=info
+    volumes:
+      - ./Backend:/app/Backend
+    environment:
+      - PYTHONPATH=/app/Backend
+    env_file:
+      - .env.1dev
+    depends_on:
+      - redis
+      - celery_worker
+    container_name: celery-beat-dev
+volumes:
+  pgdata_dev:
