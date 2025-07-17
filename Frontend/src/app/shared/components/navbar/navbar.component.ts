@@ -10,7 +10,7 @@ import { appPath } from '../../../path/app-path-const';
 export class NavbarComponent {
   path = appPath; // 將 appPath 物件賦值給 path 屬性
 
-  collapsed = false;
+  collapsed = true;
   toggleSidebar() {
     this.collapsed = !this.collapsed;
   }

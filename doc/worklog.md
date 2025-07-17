@@ -158,3 +158,5 @@
 ## 2025/07/17 ##
 
 - Improved the design of the user profile and fixed CSS issues on several pages.
+
+- Improved the design of the user's Todo List page.
