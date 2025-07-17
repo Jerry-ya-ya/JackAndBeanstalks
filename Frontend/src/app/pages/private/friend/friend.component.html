@@ -1,0 +1,18 @@
+<h2>我的好友</h2>
+
+<!-- 訊息提示 -->
+<p *ngIf="message" style="color: green">{{ message }}</p>
+
+<!-- 加好友區 -->
+<label for="friend">搜尋用戶名：</label>
+<input id="friend" [(ngModel)]="friendUsername" placeholder="輸入帳號">
+<button (click)="addFriend()">加為好友</button>
+
+<!-- 好友列表 -->
+<ul *ngIf="friends.length > 0">
+  <li *ngFor="let f of friends">
+    {{ f.username }}（{{ f.email }}）
+  </li>
+</ul>
+
+<p *ngIf="friends.length === 0">你尚未有好友</p>

@@ -35,7 +35,7 @@ from routes.changepassword import changepassword_bp
 from routes.admin.admin import admin_bp
 from routes.admin.promote import promote_bp
 from routes.test import test_utils
-
+from routes.friend import friend_bp
 from routes.crawler import crawler_bp
 
 # 載入 .env 環境變數
@@ -109,6 +109,7 @@ def create_app():
     app.register_blueprint(crawler_bp, url_prefix='/api')
     app.register_blueprint(admin_bp, url_prefix='/api')
     app.register_blueprint(promote_bp, url_prefix='/api')
+    app.register_blueprint(friend_bp, url_prefix='/api')
     
     # 在開發和測試環境掛載測試工具
     if env in ['development', 'test']:

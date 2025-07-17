@@ -3,7 +3,7 @@
     <span *ngIf="collapsed">&#9776;</span>
     <span *ngIf="!collapsed">&times;</span>
   </button>
-  <div [ngClass]="{'hide-navbar':collapsed}">
+  <div [ngClass]="{'hide-navbar': collapsed}">
     <!-- Public -->
     <div class="navbar navbar-public" *ngIf="!isLoggedIn() || isSuperadmin()">
         <a class="nav" [routerLink]="[path.home]">Home</a>
@@ -14,6 +14,7 @@
     <!-- Private -->
     <div class="navbar navbar-private" *ngIf="isLoggedIn()">
         <a class="nav-private" [routerLink]="[path.square]">Square</a>
+        <a class="nav-private" [routerLink]="[path.friend]">Friend</a>
         <a class="nav-private" [routerLink]="[path.todo]">Todo</a>
         <a class="nav-private" [routerLink]="[path.setting]">Setting</a>
         <a class="nav-private" [routerLink]="[path.profile]">Profile</a>

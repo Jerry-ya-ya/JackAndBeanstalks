@@ -19,4 +19,6 @@ export const appPath = {
     todo: 'todo',
     //promote
     promote: 'promote',
+    //friend
+    friend: 'friend',
 };

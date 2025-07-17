@@ -60,6 +60,11 @@ const routes: Routes = [
       import('../pages/superadmin/promote/promote.module').then(m => m.PromoteModule)
   },
   {
+    path: appPath.friend,
+    loadChildren: () =>
+      import('../pages/private/friend/friend.module').then(m => m.FriendModule)
+  },
+  {
     path: '**',
     redirectTo: '',
   }

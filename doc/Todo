@@ -6,3 +6,6 @@ Login page security
 Models.py fix
 Hide my super-secret-key
 RabbitMQ -> celery broker
+成功/失敗通知
+任務結果 API
+使用 Celery Flower

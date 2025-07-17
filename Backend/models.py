@@ -1,9 +1,19 @@
 # models.py
 # 定義資料庫模型
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Table, Column, Integer, ForeignKey
+from sqlalchemy.orm import relationship
 from datetime import datetime
 
 db = SQLAlchemy()
+
+# 關聯表：表示誰加了誰
+friend_association = Table(
+    'friend_association',
+    db.Model.metadata,
+    Column('user_id', Integer, ForeignKey('user.id')),
+    Column('friend_id', Integer, ForeignKey('user.id'))
+)
 
 # 定義使用者模型
 class User(db.Model):
@@ -20,6 +30,14 @@ class User(db.Model):
     email_verified = db.Column(db.Boolean, default=False)
     
     todos = db.relationship('Todo', backref='user', lazy=True) # 一對多關聯
+
+    friends = relationship(
+        'User',
+        secondary=friend_association,
+        primaryjoin=id == friend_association.c.user_id,
+        secondaryjoin=id == friend_association.c.friend_id,
+        backref='added_by'  # 可以反查「被誰加為好友」
+    )
     
     def to_dict(self):
         return {

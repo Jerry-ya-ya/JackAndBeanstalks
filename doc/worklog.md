@@ -160,3 +160,5 @@
 - Improved the design of the user profile and fixed CSS issues on several pages.
 
 - Improved the design of the user's Todo List page.
+
+- Implemented a feature that allows users to add friends.
