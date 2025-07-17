@@ -25,6 +25,23 @@ def add_friend():
     db.session.commit()
     return jsonify({'message': f'已加 {friend.username} 為好友'})
 
+@friend_bp.route('/friends/remove/<int:friend_id>', methods=['DELETE'])
+@jwt_required()
+def remove_friend(friend_id):
+    identity = get_jwt_identity()
+    current_user = User.query.filter_by(username=identity).first()
+    friend = User.query.get(friend_id)
+
+    if not friend:
+        return jsonify({'error': '找不到用戶'}), 404
+    if friend not in current_user.friends:
+        return jsonify({'error': '此用戶不是你的好友'}), 400
+
+    current_user.friends.remove(friend)
+    db.session.commit()
+
+    return jsonify({'message': f'已刪除 {friend.username} 為好友'})
+
 @friend_bp.route('/friends/list', methods=['GET'])
 @jwt_required()
 def get_friends():

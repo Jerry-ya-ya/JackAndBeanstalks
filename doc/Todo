@@ -9,3 +9,7 @@ RabbitMQ -> celery broker
 成功/失敗通知
 任務結果 API
 使用 Celery Flower
+好友邀請 / 接受系統
+雙向確認關係
+刪除好友
+查 mutual friends

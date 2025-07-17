@@ -12,6 +12,7 @@
 <ul *ngIf="friends.length > 0">
   <li *ngFor="let f of friends">
     {{ f.username }}（{{ f.email }}）
+    <button (click)="removeFriend(f.id)">刪除</button>
   </li>
 </ul>
 

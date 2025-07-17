@@ -42,6 +42,23 @@ export class FriendComponent implements OnInit {
     });
   }
 
+  removeFriend(friendId: number) {
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: `Bearer ${token}` };
+    this.http.delete<any>(
+      `http://localhost:5000/api/friends/remove/${friendId}`,
+      { headers }
+    ).subscribe({
+      next: res => {
+        this.message = res.message;
+        this.loadFriends(); // 重新載入清單
+      },
+      error: err => {
+        this.message = err.error?.error || '刪除失敗';
+      }
+    });
+  }
+
   loadFriends() {
     this.http.get<any[]>(
       'http://localhost:5000/api/friends/list',

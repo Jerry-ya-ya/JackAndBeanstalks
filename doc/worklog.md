@@ -1,5 +1,7 @@
 # jackandbeanstalk #
 
+<h1 style="color:gold;"> V1 </h1>
+
 ## 2025/06/09 ##
 
 - Set up the website architecture.
@@ -50,6 +52,8 @@
 ## 2025/06/16 ##
 
 - Complete the email verification when registering an account.
+
+<h1 style="color:gold;"> V2 </h1>
 
 ## 2025/06/16 ##
 
@@ -161,4 +165,8 @@
 
 - Improved the design of the user's Todo List page.
 
+<h1 style="color:gold;"> V3 </h1>
+
 - Implemented a feature that allows users to add friends.
+
+- Implemented a feature that allows users to delete friends.
