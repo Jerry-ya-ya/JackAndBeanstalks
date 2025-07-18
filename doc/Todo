@@ -1,3 +1,27 @@
+✅✅✅✅✅✅✅✅✅✅✅✅
+簡單的 CRUD（新增、刪除、修改）清單系統
+加入使用者登入驗證系統
+登出與自動登出功能
+設定 token 存活時間(Flask JWT 有支援)
+建立帳號註冊系統
+修改登入，改為從資料庫取得
+讓每位使用者只看得到自己的 Todo
+工廠化Flask
+顯示登入中使用者的名稱
+用 /api/me 實作「從 token 解出使用者」
+顯示使用者註冊時間
+Complete the navbar
+Profile 元件，獨立顯示使用者資料
+查看與修改自己的 Email 與暱稱的功能
+使用者可以修改密碼
+上傳頭像（含預覽 + 上傳）
+使用者廣場
+後端爬蟲 + 前端顯示
+爬蟲資料儲存進資料庫
+爬蟲手動按鈕
+定時爬蟲任務
+✅✅✅✅✅✅✅✅✅✅✅✅
+
 Showcase
 Contact & Join
 Customizable 3D Exhibit View
@@ -6,10 +30,44 @@ Login page security
 Models.py fix
 Hide my super-secret-key
 RabbitMQ -> celery broker
-成功/失敗通知
-任務結果 API
-使用 Celery Flower
+
 好友邀請 / 接受系統
 雙向確認關係
 刪除好友
 查 mutual friends
+雙向解除好友
+刪除前彈窗
+點好友名字可進入公開頁
+
+Refresh Token
+手動 Blacklist
+JWT 回傳時間戳記
+
+註冊時不允許null
+加上使用者個人設定（如主題色、暱稱）
+設定每個 todo 的建立時間、排序、搜尋等
+
+從 get_jwt_identity() 取得完整使用者物件 ID，之後做「顯示個人資料」功能
+
+顯示所有使用者的公開資料（像論壇一樣）
+多語系顯示（i18n）
+
+新密碼確認（前端驗證）
+
+自動壓縮圖片(pillow 套件處裡壓縮與格式化)
+上傳前檢查格式(前後端同時檢查)
+上傳後重新命名(加UUID 或 hash 做去識別處裡)
+整合圖片壓縮或預覽裁剪
+
+使用者公開頁改為卡片風格（美化 UI）
+點擊使用者進入個人公開頁（例如 /user/Elric）
+
+爬取多網站
+搜尋功能
+加上「爬蟲紀錄」查詢
+把爬蟲任務與網站來源分開設定
+多個不同爬蟲
+發送通知或 Log 檔
+成功/失敗通知
+任務結果 API
+使用 Celery Flower

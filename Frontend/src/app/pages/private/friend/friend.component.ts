@@ -12,10 +12,14 @@ export class FriendComponent implements OnInit {
   message: string = '';
   friends: any[] = [];
 
+  toUsername: string = '';
+  requests: any[] = [];
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.loadFriends();
+    this.loadRequests();
   }
 
   get headers() {
@@ -23,24 +27,24 @@ export class FriendComponent implements OnInit {
     return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
   }
 
-  addFriend() {
-    if (!this.friendUsername.trim()) return;
+  // followFriend() {
+  //   if (!this.friendUsername.trim()) return;
 
-    this.http.post<any>(
-      'http://localhost:5000/api/friends/add',
-      { friend_username: this.friendUsername },
-      { headers: this.headers }
-    ).subscribe({
-      next: res => {
-        this.message = res.message;
-        this.friendUsername = '';
-        this.loadFriends();
-      },
-      error: err => {
-        this.message = err.error?.error || '發生錯誤';
-      }
-    });
-  }
+  //   this.http.post<any>(
+  //     'http://localhost:5000/api/friends/follow',
+  //     { friend_username: this.friendUsername },
+  //     { headers: this.headers }
+  //   ).subscribe({
+  //     next: res => {
+  //       this.message = res.message;
+  //       this.friendUsername = '';
+  //       this.loadFriends();
+  //     },
+  //     error: err => {
+  //       this.message = err.error?.error || '發生錯誤';
+  //     }
+  //   });
+  // }
 
   removeFriend(friendId: number) {
     const token = localStorage.getItem('token');
@@ -64,5 +68,60 @@ export class FriendComponent implements OnInit {
       'http://localhost:5000/api/friends/list',
       { headers: this.headers }
     ).subscribe(friends => this.friends = friends);
+  }
+
+  sendRequest() {
+    this.http.post<any>(
+      'http://localhost:5000/api/friends/request',
+      { to_username: this.toUsername },
+      { headers: this.headers }
+    ).subscribe({
+      next: res => {
+        this.message = res.message;
+        this.toUsername = '';
+      },
+      error: err => {
+        this.message = err.error?.error || '發送失敗';
+      }
+    });
+  }
+
+  loadRequests() {
+    this.http.get<any[]>(
+      'http://localhost:5000/api/friends/requests',
+      { headers: this.headers }
+    ).subscribe(res => this.requests = res);
+  }
+
+  acceptRequest(id: number) {
+    this.http.post(
+      `http://localhost:5000/api/friends/accept/${id}`,
+      {},
+      { headers: this.headers }
+    ).subscribe({
+      next: res => {
+        this.message = (res as any).message;
+        this.loadRequests();
+      },
+      error: err => {
+        this.message = err.error?.error || '接受失敗';
+      }
+    });
+  }
+
+  rejectRequest(id: number) {
+    this.http.post(
+      `http://localhost:5000/api/friends/reject/${id}`,
+      {},
+      { headers: this.headers }
+    ).subscribe({
+      next: res => {
+        this.message = (res as any).message;
+        this.loadRequests();
+      },
+      error: err => {
+        this.message = err.error?.error || '拒絕失敗';
+      }
+    });
   }
 }

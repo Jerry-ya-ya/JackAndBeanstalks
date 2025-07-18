@@ -5,7 +5,7 @@
   </button>
   <div [ngClass]="{'hide-navbar': collapsed}">
     <!-- Public -->
-    <div class="navbar navbar-public" *ngIf="!isLoggedIn() || isSuperadmin()">
+    <div class="navbar navbar-public">
         <a class="nav" [routerLink]="[path.home]">Home</a>
         <a class="nav" [routerLink]="[path.member]">Member</a>
         <a class="nav" [routerLink]="[path.register]">Register</a>

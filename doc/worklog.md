@@ -169,4 +169,10 @@
 
 - Implemented a feature that allows users to add friends.
 
+## 2025/07/18 ##
+
 - Implemented a feature that allows users to delete friends.
+
+- 💥 Fixed an issue where the public navbar would disappear when the user did not have super admin privileges.
+
+- Implemented the functionality to send, accept, and remove friend requests.

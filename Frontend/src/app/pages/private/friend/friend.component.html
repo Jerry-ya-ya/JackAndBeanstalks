@@ -1,19 +1,36 @@
-<h2>我的好友</h2>
+<div>
+  <h2>好友邀請系統</h2>
 
-<!-- 訊息提示 -->
-<p *ngIf="message" style="color: green">{{ message }}</p>
+  <!-- 發送邀請 -->
+  <label for="to">輸入用戶名：</label>
+  <input id="to" [(ngModel)]="toUsername" placeholder="username">
+  <button (click)="sendRequest()">發送邀請</button>
 
-<!-- 加好友區 -->
-<label for="friend">搜尋用戶名：</label>
-<input id="friend" [(ngModel)]="friendUsername" placeholder="輸入帳號">
-<button (click)="addFriend()">加為好友</button>
+  <!-- 訊息提示 -->
+  <p *ngIf="message" style="color: green">{{ message }}</p>
+  
+  <hr>
 
-<!-- 好友列表 -->
-<ul *ngIf="friends.length > 0">
-  <li *ngFor="let f of friends">
-    {{ f.username }}（{{ f.email }}）
-    <button (click)="removeFriend(f.id)">刪除</button>
-  </li>
-</ul>
+  <!-- 接收邀請清單 -->
+  <h3>收到的邀請</h3>
+  <ul *ngIf="requests.length > 0">
+    <li *ngFor="let req of requests">
+      {{ req.from_username }}
+      <button (click)="acceptRequest(req.id)">接受</button>
+      <button (click)="rejectRequest(req.id)">拒絕</button>
+    </li>
+  </ul>
 
-<p *ngIf="friends.length === 0">你尚未有好友</p>
+  <p *ngIf="requests.length === 0">目前沒有收到邀請。</p>
+
+  <hr>
+
+  <!-- 好友列表 -->
+  <ul *ngIf="friends.length > 0">
+    <li *ngFor="let f of friends">
+      {{ f.username }}（{{ f.email }}）
+      <button (click)="removeFriend(f.id)">刪除</button>
+    </li>
+  </ul>
+  <p *ngIf="friends.length === 0">你尚未有好友</p>
+</div>
