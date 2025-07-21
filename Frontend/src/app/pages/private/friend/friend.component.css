@@ -1,0 +1,147 @@
+.friend-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #f8fafc;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', 'Microsoft JhengHei', Arial, sans-serif;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #2d3748;
+  letter-spacing: 2px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  padding: 20px 24px 16px 24px;
+  margin-bottom: 24px;
+}
+
+.section-divider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 24px 0;
+}
+
+.input-user {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  margin-right: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.2s;
+}
+.input-user:focus {
+  border: 1.5px solid #3182ce;
+}
+
+.btn {
+  padding: 6px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.btn-primary {
+  background: #3182ce;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #2563eb;
+}
+.btn-success {
+  background: #38a169;
+  color: #fff;
+}
+.btn-success:hover {
+  background: #2f855a;
+}
+.btn-danger {
+  background: #e53e3e;
+  color: #fff;
+}
+.btn-danger:hover {
+  background: #c53030;
+}
+
+.message {
+  margin-top: 12px;
+  color: #38a169;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.requests-section ul,
+.friends-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.request-item,
+.friend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+.request-item:last-child,
+.friend-item:last-child {
+  border-bottom: none;
+}
+
+.request-from {
+  font-weight: 500;
+  color: #2b6cb0;
+  flex: 1;
+}
+
+.friend-link {
+  color: #2d3748;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.friend-link:hover {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+.empty-tip {
+  color: #a0aec0;
+  text-align: center;
+  margin: 12px 0 0 0;
+}
+
+@media (max-width: 700px) {
+  .friend-container {
+    padding: 8px;
+    max-width: 98vw;
+  }
+  .card {
+    padding: 12px 6px 10px 6px;
+  }
+  .input-user {
+    width: 70vw;
+    margin-bottom: 10px;
+  }
+  .btn {
+    width: 100%;
+    margin: 8px 0 0 0;
+  }
+  .request-item, .friend-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

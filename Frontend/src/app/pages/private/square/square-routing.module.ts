@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: SquareComponent,
+  },
+  {
+    path: ':id',
+    component: SquareComponent,
   }
 ];
 

@@ -176,3 +176,7 @@
 - 💥 Fixed an issue where the public navbar would disappear when the user did not have super admin privileges.
 
 - Implemented the functionality to send, accept, and remove friend requests.
+
+## 2025/07/21 ##
+
+- Implemented the functionality to enter a user's public page by clicking on their name, and improved the design of the friends page.

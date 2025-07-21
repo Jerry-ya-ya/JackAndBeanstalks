@@ -20,6 +20,15 @@ Profile 元件，獨立顯示使用者資料
 爬蟲資料儲存進資料庫
 爬蟲手動按鈕
 定時爬蟲任務
+將爬蟲 log 與 Python 程式 log 分開
+註冊帳號時的 email 驗證功能
+重新發送驗證信的功能
+實作 super admin 降級 admin 的功能
+加入 Redis 容器
+Celery 與 Redis 連接
+使 Celery Beat 能進行排程與執行任務
+使用者刪除好友功能
+好友邀請 / 接受系統
 ✅✅✅✅✅✅✅✅✅✅✅✅
 
 Showcase
@@ -31,13 +40,13 @@ Models.py fix
 Hide my super-secret-key
 RabbitMQ -> celery broker
 
-好友邀請 / 接受系統
-雙向確認關係
 刪除好友
 查 mutual friends
 雙向解除好友
 刪除前彈窗
 點好友名字可進入公開頁
+顯示邀請時間
+通知音效/紅點提示
 
 Refresh Token
 手動 Blacklist
