@@ -210,3 +210,9 @@
 - 💥 Fixed all hardcoded API URLs in the frontend and corrected the allowed HTTP methods.
 
 - Made most features functional after deployment to Azure, except for the scheduled crawler.
+
+## 2025/08/21 ##
+
+- 💥 Each query requires reconnecting to the database, resulting in the need to re-establish the connection before every session, which negatively impacts user experience.
+
+- Connection Pooling the PostgreSQL database and updated the .env.example file.

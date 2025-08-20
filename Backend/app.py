@@ -113,8 +113,6 @@ def create_app():
     else:
         print(f"🗄️ 資料庫連線：{app.config['SQLALCHEMY_DATABASE_URI']}")
     
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
     # 初始化資料庫
     setup_database(app)
 
