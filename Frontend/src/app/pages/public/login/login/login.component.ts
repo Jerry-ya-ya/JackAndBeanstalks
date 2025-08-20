@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../../../core/services/api.service';
 import { appPath } from '../../../../path/app-path-const';
 
 @Component({
@@ -18,10 +18,10 @@ export class LoginComponent {
 
   error = '';
   
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   login() {
-    this.http.post<any>('http://localhost:5000/api/login', {
+    this.apiService.post<any>('/login', {
       username: this.username,
       password: this.password,
     }).subscribe({

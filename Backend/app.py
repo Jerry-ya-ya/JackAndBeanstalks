@@ -2,11 +2,9 @@
 # python3 -m virtualenv myenv
 # .\myenv\Scripts\activate
 
-# To fix after creating virtual environment in Windows:
-# Ctrl + Shift + P
-# Python: Select Interpreter
-# Enter interpreter path
-# .\myenv\Scripts\python.exe
+# 先載入 .env，再載入 Config，確保環境變數在設定載入前就位
+from dotenv import load_dotenv
+load_dotenv()
 
 from flask import Flask
 from config import Config
@@ -38,10 +36,6 @@ from routes.test import test_utils
 from routes.friend import friend_bp
 from routes.crawler import crawler_bp
 
-# 載入 .env 環境變數
-from dotenv import load_dotenv
-load_dotenv()
-
 def setup_database(app, retries=5, wait=2):
     db.init_app(app)
 
@@ -58,31 +52,66 @@ def setup_database(app, retries=5, wait=2):
         except OperationalError as e:
             print(f"🔁 第 {i+1} 次重試：資料庫未就緒，等待 {wait} 秒...")
             time.sleep(wait)
-    raise Exception("❌ 多次重試後仍無法初始化資料庫")
+        except Exception as e:
+            print(f"⚠️ 初始化資料庫時發生錯誤：{e}")
+            time.sleep(wait)
+
+    # 不要讓應用退出，改為背景持續重試
+    print("⚠️ 多次重試後仍無法初始化資料庫，將在背景持續重試，不阻塞啟動")
+
+    import threading
+
+    def background_retry():
+        attempt = retries
+        while True:
+            attempt += 1
+            try:
+                with app.app_context():
+                    db.create_all()
+                    from celery_worker.crawler.logic import init_schedule_state
+                    init_schedule_state()
+                    print("✅ 背景資料庫初始化成功")
+                    return
+            except Exception as e:
+                print(f"🔁 背景第 {attempt} 次重試失敗：{e}，等待 {wait} 秒...")
+                time.sleep(wait)
+
+    threading.Thread(target=background_retry, daemon=True).start()
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    
+    # 初始化配置（設定資料庫連線等）
+    Config.init_app(app)
 
     # 獲取環境變數
     env = os.getenv('FLASK_ENV', 'development')
     
-    # 設定資料庫連線（使用 SQL Server）
-    server = os.getenv("DB_SERVER")
-    port = os.getenv("DB_PORT")
-    database = os.getenv("DB_NAME")
-    username = os.getenv("DB_USER")
-    password = os.getenv("DB_PASSWORD")
+    # 設定 URL 相關環境變數
+    frontend_url = os.getenv("FRONTEND_URL", "http://localhost:4200")
+    api_url = os.getenv("API_URL", "http://localhost:5000")
+    
+    # 將 URL 設定加入 app config
+    app.config['FRONTEND_URL'] = frontend_url
+    app.config['API_URL'] = api_url
+    
+    print(f"🌐 前端 URL: {frontend_url}")
+    print(f"🔗 API URL: {api_url}")
 
-    # 根據環境設定不同的資料庫連線
+    # 顯示 Redis/Celery 連線資訊
+    redis_url_env = os.getenv('REDIS_URL', '')
+    celery_broker_url = app.config.get('CELERY_BROKER_URL')
+    celery_result_backend = app.config.get('CELERY_RESULT_BACKEND')
+    print(f"🧰 REDIS_URL (env): {redis_url_env or '(not set)'}")
+    print(f"📬 Celery Broker URL: {celery_broker_url}")
+    print(f"📦 Celery Result Backend: {celery_result_backend}")
+    
+    # 資料庫連線由配置檔案自動處理
     if env == 'test':
-        # 測試環境使用 SQLite（不覆蓋 TestingConfig 的設定）
         print("🧪 測試環境：使用 SQLite 資料庫")
     else:
-        # 開發和生產環境使用 PostgreSQL
-        app.config['SQLALCHEMY_DATABASE_URI'] = (
-            f"postgresql+psycopg2://{username}:{password}@{server}:{port}/{database}"
-        )
+        print(f"🗄️ 資料庫連線：{app.config['SQLALCHEMY_DATABASE_URI']}")
     
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -95,8 +124,8 @@ def create_app():
     # 初始化郵件
     init_mail(app)
 
-    # 設定 CORS
-    CORS(app) # 不建議上線使用，會開放所有來源
+    # 設定 CORS - 使用環境變數中的前端 URL
+    CORS(app, origins=[frontend_url]) # 只允許前端 URL 的跨域請求
     
     # 註冊藍圖
     app.register_blueprint(auth_bp, url_prefix='/api')
@@ -114,6 +143,11 @@ def create_app():
     # 在開發和測試環境掛載測試工具
     if env in ['development', 'test']:
         app.register_blueprint(test_utils, url_prefix='/api')
+
+    @app.route("/healthz", methods=["GET"])
+    def healthz():
+        return "ok", 200
+
     return app
 
 if __name__ == '__main__':

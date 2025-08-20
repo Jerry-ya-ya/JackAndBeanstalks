@@ -3,7 +3,7 @@
     
     <div *ngFor="let user of users" class="user-card">
         <div>
-            <img [src]="'http://localhost:5000/'+ user.avatar_url" width="120" height="120" />
+            <img [src]="apiRoot + '/' + user.avatar_url" width="120" height="120" />
         </div>
         <div>
             <p><strong>ID:</strong>{{ user.id || '(未設定)' }}</p>

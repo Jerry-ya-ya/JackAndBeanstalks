@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-setting',
@@ -16,7 +17,7 @@ export class SettingComponent {
   constructor(private http: HttpClient) {}
 
   changePassword() {
-    this.http.put('http://localhost:5000/api/changepassword', {
+    this.http.put(`${environment.apiUrl}/changepassword`, {
       old_password: this.oldPassword,
       new_password: this.newPassword
     }).subscribe({

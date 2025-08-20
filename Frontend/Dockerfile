@@ -12,18 +12,18 @@ RUN npm install -g @angular/cli
 
 # 安裝依賴並打包專案
 RUN npm install
-RUN ng build --configuration production
+RUN ng build --configuration=production
 
 # 第二階段：Nginx 提供靜態頁面
 FROM nginx:stable-alpine
-COPY --from=build /app/dist/jackandbeanstalks /usr/share/nginx/html
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# 複製編譯後的檔案
+# 複製編譯後的檔案（Angular 19 的輸出結構）
 COPY --from=build /app/dist/jackandbeanstalks/browser /usr/share/nginx/html
 
-# 複製自訂 Nginx 設定（可選）
-# COPY nginx.conf /etc/nginx/nginx.conf
+# 複製 Nginx 配置
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY nginx/error.conf /etc/nginx/conf.d/error.conf
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
 # 開放 80 port（預設）
 EXPOSE 80

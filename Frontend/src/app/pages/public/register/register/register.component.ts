@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../../../core/services/api.service';
 import { appPath } from '../../../../path/app-path-const';
 
 @Component({
@@ -17,10 +17,10 @@ export class RegisterComponent {
   error = '';
   successMessage = '';
   
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   register() {
-    this.http.post<any>('http://localhost:5000/api/register', {
+    this.apiService.post<any>('/register', {
       username: this.username,
       password: this.password,
       email: this.email,

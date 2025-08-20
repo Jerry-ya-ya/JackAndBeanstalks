@@ -180,3 +180,33 @@
 ## 2025/07/21 ##
 
 - Implemented the functionality to enter a user's public page by clicking on their name, and improved the design of the friends page.
+
+## 2025/08/15 ##
+
+- Trying to pulled images from Docker Hub to Microsoft Azure containers.
+
+## 2025/08/16 ##
+
+- Go through setbacks and hardships.
+
+## 2025/08/17 ##
+
+- Go through setbacks and hardships.
+
+## 2025/08/18 ##
+
+- 💥 Removed dependency on prod.yml, added a health check for Angular, and modified the Nginx configuration.
+
+- Successfully pulled the Angular image from Docker Hub to a Microsoft Azure container and deployed it with HTTPS enabled.
+
+## 2025/08/19 ##
+
+- 💥 Added a health check route for Flask and modified the database connection logic to prevent the app from shutting down on failure.
+
+- Successfully pulled Flask from Docker Hub into a Microsoft Azure container and connected it to a PostgreSQL database.
+
+## 2025/08/20 ##
+
+- 💥 Fixed all hardcoded API URLs in the frontend and corrected the allowed HTTP methods.
+
+- Made most features functional after deployment to Azure, except for the scheduled crawler.

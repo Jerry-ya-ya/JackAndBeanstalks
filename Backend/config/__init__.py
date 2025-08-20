@@ -1,12 +1,12 @@
 # config/__init__.py
 import os
 
-ENV = os.getenv('FLASK_ENV', 'development')
+env_name = os.getenv('FLASK_ENV', os.getenv('ENV', 'development')).lower()
 
-# 使用標準的 import 語句，避免動態導入的複雜性
-if ENV == 'prod':   
+# 接受常見別名
+if env_name in ('prod', 'production'):
     from config.prod import ProductionConfig as Config
-elif ENV == 'test':
+elif env_name in ('test', 'testing'):
     from config.test import TestingConfig as Config
 else:
     from config.dev import DevelopmentConfig as Config

@@ -3,6 +3,7 @@ import { OnDestroy, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { interval, Subscription } from 'rxjs';
+import { ApiService } from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-crawler',
@@ -14,7 +15,8 @@ export class CrawlerComponent implements OnInit, OnDestroy {
   news: any[] = [];
   scheduleInfo: any = null;
   private updateSubscription: Subscription;
-  constructor(private http: HttpClient) {
+  
+  constructor(private apiService: ApiService) {
     // 每900秒更新一次時間資訊
     this.updateSubscription = interval(900000).subscribe(() => {
       this.updateScheduleInfo();
@@ -33,7 +35,7 @@ export class CrawlerComponent implements OnInit, OnDestroy {
   }
 
   loadNews() {
-    this.http.get<any>('http://localhost:5000/api/crawler/news').subscribe({
+    this.apiService.get<any>('/crawler/news').subscribe({
       next: (data) => {
         this.news = data;
       },
@@ -44,7 +46,7 @@ export class CrawlerComponent implements OnInit, OnDestroy {
   }
 
   updateScheduleInfo() {
-    this.http.get<any>('http://localhost:5000/api/crawler/info').subscribe({
+    this.apiService.get<any>('/crawler/info').subscribe({
       next: (info) => {
         this.scheduleInfo = info;
       },
@@ -55,7 +57,7 @@ export class CrawlerComponent implements OnInit, OnDestroy {
   }
 
   fetchNews() {
-    this.http.post('http://localhost:5000/api/crawler/fetch', {}).subscribe({
+    this.apiService.post('/crawler/fetch', {}).subscribe({
       next: () => {
         this.loadNews();
         this.updateScheduleInfo();

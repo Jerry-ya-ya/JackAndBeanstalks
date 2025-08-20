@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiService } from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-friend',
@@ -15,25 +15,20 @@ export class FriendComponent implements OnInit {
   toUsername: string = '';
   requests: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.loadFriends();
     this.loadRequests();
   }
 
-  get headers() {
-    const token = localStorage.getItem('token');
-    return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-  }
-
   // followFriend() {
   //   if (!this.friendUsername.trim()) return;
 
-  //   this.http.post<any>(
-  //     'http://localhost:5000/api/friends/follow',
+  //   this.apiService.post<any>(
+  //     '/friends/follow',
   //     { friend_username: this.friendUsername },
-  //     { headers: this.headers }
+  //     this.apiService.createAuthHeaders()
   //   ).subscribe({
   //     next: res => {
   //       this.message = res.message;
@@ -47,11 +42,9 @@ export class FriendComponent implements OnInit {
   // }
 
   removeFriend(friendId: number) {
-    const token = localStorage.getItem('token');
-    const headers = { Authorization: `Bearer ${token}` };
-    this.http.delete<any>(
-      `http://localhost:5000/api/friends/remove/${friendId}`,
-      { headers }
+    this.apiService.delete<any>(
+      `/friends/remove/${friendId}`,
+      this.apiService.createAuthHeaders()
     ).subscribe({
       next: res => {
         this.message = res.message;
@@ -64,17 +57,17 @@ export class FriendComponent implements OnInit {
   }
 
   loadFriends() {
-    this.http.get<any[]>(
-      'http://localhost:5000/api/friends/list',
-      { headers: this.headers }
+    this.apiService.get<any[]>(
+      '/friends/list',
+      this.apiService.createAuthHeaders()
     ).subscribe(friends => this.friends = friends);
   }
 
   sendRequest() {
-    this.http.post<any>(
-      'http://localhost:5000/api/friends/request',
+    this.apiService.post<any>(
+      '/friends/request',
       { to_username: this.toUsername },
-      { headers: this.headers }
+      this.apiService.createAuthHeaders()
     ).subscribe({
       next: res => {
         this.message = res.message;
@@ -87,17 +80,17 @@ export class FriendComponent implements OnInit {
   }
 
   loadRequests() {
-    this.http.get<any[]>(
-      'http://localhost:5000/api/friends/requests',
-      { headers: this.headers }
+    this.apiService.get<any[]>(
+      '/friends/requests',
+      this.apiService.createAuthHeaders()
     ).subscribe(res => this.requests = res);
   }
 
   acceptRequest(id: number) {
-    this.http.post(
-      `http://localhost:5000/api/friends/accept/${id}`,
+    this.apiService.post(
+      `/friends/accept/${id}`,
       {},
-      { headers: this.headers }
+      this.apiService.createAuthHeaders()
     ).subscribe({
       next: res => {
         this.message = (res as any).message;
@@ -110,10 +103,10 @@ export class FriendComponent implements OnInit {
   }
 
   rejectRequest(id: number) {
-    this.http.post(
-      `http://localhost:5000/api/friends/reject/${id}`,
+    this.apiService.post(
+      `/friends/reject/${id}`,
       {},
-      { headers: this.headers }
+      this.apiService.createAuthHeaders()
     ).subscribe({
       next: res => {
         this.message = (res as any).message;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -15,6 +16,8 @@ export class ProfileComponent implements OnInit {
   editing = false;
   success = '';
   mode = 'login'; // 預設為登入
+  public environment = environment;
+  public apiRoot: string = environment.apiUrl.replace('/api', '');
 
   constructor(private http: HttpClient) {}
   isLoggedIn() {
@@ -32,7 +35,7 @@ export class ProfileComponent implements OnInit {
       const token = localStorage.getItem('token');
       const headers = new HttpHeaders({Authorization: `Bearer ${token}`});
       // 取得使用者資料
-      this.http.get<any>('http://localhost:5000/api/me', { headers }).subscribe({
+      this.http.get<any>(`${environment.apiUrl}/me`, { headers }).subscribe({
         next: (data) => {
           this.user = data;
           console.log('載入 user 成功', this.user);
@@ -51,7 +54,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadProfile() {
-    this.http.get<any>('http://localhost:5000/api/me').subscribe({
+    this.http.get<any>(`${environment.apiUrl}/me`).subscribe({
       next: data => {
         this.user = data;
       },
@@ -60,7 +63,7 @@ export class ProfileComponent implements OnInit {
   }
 
   saveProfile() {
-    this.http.put('http://localhost:5000/api/me', {
+    this.http.put(`${environment.apiUrl}/me`, {
       email: this.user.email,
       nickname: this.user.nickname
     }).subscribe({
@@ -94,7 +97,7 @@ export class ProfileComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.selectedFile);
 
-    this.http.post<any>('http://localhost:5000/api/avatar', formData, { headers }).subscribe({
+    this.http.post<any>(`${environment.apiUrl}/avatar`, formData, { headers }).subscribe({
       next: res => {
         this.user.avatar_url = res.avatar_url;
         this.avatarPreview = null;

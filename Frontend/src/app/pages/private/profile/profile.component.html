@@ -31,7 +31,7 @@
         <h3>頭像</h3>
         <div *ngIf="user?.avatar_url">
             <p>目前頭像：</p>
-            <img [src]="'http://localhost:5000/'+ user.avatar_url" width="120" height="120" />
+            <img [src]="apiRoot + '/' + user.avatar_url" width="120" height="120" />
         </div>
         <p>更換新頭像：</p>
         <input type="file" (change)="onFileSelected($event)">

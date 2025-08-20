@@ -4,6 +4,7 @@ import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-square',
@@ -16,6 +17,8 @@ export class SquareComponent implements OnInit {
   userId!: number;
   user: any;
   created_at: string = '';
+  public environment = environment;
+  public apiRoot: string = environment.apiUrl.replace('/api', '');
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
   
@@ -25,7 +28,7 @@ export class SquareComponent implements OnInit {
   }
   
   loadUser() {
-    this.http.get<any>(`http://localhost:5000/api/me/public/${this.userId}`, { headers: this.headers })
+    this.http.get<any>(`${environment.apiUrl}/me/public/${this.userId}`, { headers: this.headers })
     .subscribe(user => {
       this.user = user;
       this.created_at = user.created_at;
@@ -39,7 +42,7 @@ export class SquareComponent implements OnInit {
     this.loadUser();
 
     // 取得使用者資料
-    this.http.get<any[]>('http://localhost:5000/api/square', {headers}).subscribe({
+    this.http.get<any[]>(`${environment.apiUrl}/square`, {headers}).subscribe({
       next: data => {
         this.users = data;
         console.log('載入 user 成功', this.users);

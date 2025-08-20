@@ -50,7 +50,8 @@ def register():
 
     # 生成確認令牌並發送驗證郵件
     token = generate_confirmation_token(email)
-    verify_link = f'http://127.0.0.1:5000/api/verify-email/{token}'
+    api_url = current_app.config.get('API_URL', 'http://localhost:5000').rstrip('/')
+    verify_link = f"{api_url}/api/verify-email/{token}"
     
     # 使用環境變數中的郵件地址
     sender_email = os.getenv('MAIL_USERNAME')

@@ -1,22 +1,18 @@
 version: "3.9"
 services:
   frontend:
+    image: jerryzheng0907/angular-frontend:latest
     build: ./frontend
     ports:
       - "4200:80"
-    depends_on:
-      - backend
     container_name: angular-frontend
   backend:
+    image: jerryzheng0907/backend:latest
     build: ./backend
     ports:
       - "5000:5000"
-    depends_on:
-      - db
     env_file:
       - .env
-      - .env.3prod
-    restart: always
   db:
     image: postgres:16
     restart: always
@@ -33,6 +29,7 @@ services:
       - "6379:6379"
     container_name: redis
   celery_worker:
+    image: jerryzheng0907/celery-worker:latest
     build:
       context: Backend/celery_worker
       dockerfile: Dockerfile
@@ -43,11 +40,11 @@ services:
       - PYTHONPATH=/app/Backend
     env_file:
       - .env
-      - .env.3prod
     depends_on:
       - redis
     container_name: celery-worker-prod
   celery_beat:
+    image: jerryzheng0907/celery-beat:latest
     build:
       context: Backend/celery_worker
       dockerfile: Dockerfile
