@@ -65,6 +65,11 @@ const routes: Routes = [
       import('../pages/private/friend/friend.module').then(m => m.FriendModule)
   },
   {
+    path: appPath.aboutwebsite,
+    loadChildren: () =>
+      import('../pages/public/aboutwebsite/aboutwebsite.module').then(m => m.AboutwebsiteModule)
+  },
+  {
     path: '**',
     redirectTo: '',
   }

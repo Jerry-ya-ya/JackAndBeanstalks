@@ -21,4 +21,6 @@ export const appPath = {
     promote: 'promote',
     //friend
     friend: 'friend',
+    //aboutwebsite
+    aboutwebsite: 'aboutwebsite',
 };
