@@ -7,12 +7,9 @@ FROM node:20 AS build
 WORKDIR /app
 COPY . .
 
-# 安裝 Angular CLI（如有需要）
-RUN npm install -g @angular/cli
-
-# 安裝依賴並打包專案
-RUN npm install
-RUN ng build --configuration=production
+# 安裝依賴並打包專案（使用 npm ci 保證鎖檔一致性）
+RUN npm ci
+RUN npx ng build --configuration=production
 
 # 第二階段：Nginx 提供靜態頁面
 FROM nginx:stable-alpine

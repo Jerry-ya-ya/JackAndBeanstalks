@@ -1,108 +1,125 @@
-.animation-container {
-    position: relative;
-    margin-top: 5vh;
-    margin-left: 5vw;
-    margin-right: 5vw;
-    border-radius: 20px;
-    padding: 10px;
-}
-
-.title-box {
-    background-color: #f0f0f0;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    border-radius: 20px;
-    padding: 20px;
-    background: #f0f0f0;
-    z-index: 2;
-}
-
-@property --angle{
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-.animation-container::after, .animation-container::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: conic-gradient(from var(--angle), transparent 70%, #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
-    z-index: 1;
-    border-radius: 20px;
-    animation: 3s spin linear infinite;
-}
-
-.animation-container::before {
-    filter: blur(1.5rem);
-    opacity: 0.5;
-}
-
-@keyframes spin {
-    from{
-        --angle: 0deg;
-    }
-    to{
-        --angle: 360deg;
-    }
-}
-
-.title {
-    font-size: 7vw;
-    color: #000000;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.rowframe {
-    display: flex;
-    flex-direction: block;
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.profileframe {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    margin-top: 0;
-}
-
-.role {
-    font-size: 5vw;
-    color: #f0f0f0;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.profile {
-    width: 20vw;
-    height: 20vw;
-    margin: auto;
-    background-color:grey;
-}
-
-.short-profile {
-    width: 17vw;
-    height: 20vw;
-    margin: auto;
-    background-color:grey;
-}
-
-.name {
-    font-size: 5vw;
-    color: #f0f0f0;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
+/* 整體視圖容器 */
 .view {
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+	padding-top: 2vh;
+	padding-bottom: 6vh;
+	background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+}
+
+/* 區段標題動畫外框 */
+.animation-container {
+	position: relative;
+	margin: 6vh 5vw 2vh 5vw;
+	border-radius: 20px;
+	padding: 2px;
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.03) 100%);
+	overflow: hidden;
+}
+
+/* 內層標題卡片 */
+.title-box {
+	background: rgba(17, 24, 39, 0.8);
+	backdrop-filter: blur(10px);
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	border-radius: 18px;
+	padding: 24px;
+	z-index: 2;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 彩色外框動畫 */
+@property --angle{ syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.animation-container::after, .animation-container::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image: conic-gradient(from var(--angle), transparent 70%, #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+	z-index: 1;
+	border-radius: 20px;
+	animation: 5s spin linear infinite;
+}
+.animation-container::before { filter: blur(1.5rem); opacity: 0.4; }
+@keyframes spin { from{ --angle: 0deg; } to{ --angle: 360deg; } }
+
+/* 標題字體 */
+.title {
+	font-size: clamp(28px, 6vw, 56px);
+	color: #f9fafb;
+	letter-spacing: 2px;
+	margin: 0;
+	text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* 卡片列（響應式網格） */
+.rowframe {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 20px;
+	align-items: stretch;
+	margin: 20px 5vw;
+}
+
+/* 個人卡片外框 */
+.profileframe {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	padding: 18px;
+	border-radius: 16px;
+	background: rgba(17, 24, 39, 0.65);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+	transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.profileframe:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 14px 36px rgba(0,0,0,0.45);
+	background: rgba(17, 24, 39, 0.8);
+}
+
+/* 角色標籤 */
+.role {
+	font-size: clamp(14px, 3.5vw, 18px);
+	color: #a5b4fc;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+/* 大頭貼樣式 */
+.profile {
+	width: clamp(140px, 20vw, 200px);
+	height: clamp(140px, 20vw, 200px);
+	margin: 0 auto;
+	background-color: #1f2937;
+	border-radius: 12px;
+	object-fit: cover;
+	box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* 直式照片（維持比例） */
+.short-profile {
+	width: clamp(120px, 17vw, 180px);
+	height: clamp(140px, 20vw, 200px);
+	margin: 0 auto;
+	background-color: #1f2937;
+	border-radius: 12px;
+	object-fit: cover;
+	box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* 名稱樣式 */
+.name {
+	font-size: clamp(16px, 4vw, 20px);
+	color: #e5e7eb;
+	text-align: center;
+}
+
+/* 小螢幕優化 */
+@media (max-width: 480px) {
+	.rowframe { gap: 16px; margin: 16px 4vw; }
+	.profileframe { padding: 14px; }
 }
