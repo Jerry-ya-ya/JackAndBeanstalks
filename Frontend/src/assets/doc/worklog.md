@@ -220,3 +220,5 @@
 - Improved and created the design of the website introduction page.
 
 - Improved the design of the Member page.
+
+- Improved the design of the Resendverification page.

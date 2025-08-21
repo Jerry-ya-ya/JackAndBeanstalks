@@ -1,0 +1,131 @@
+/* 背景與容器 */
+.resend-view {
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  background: radial-gradient(1000px 600px at 10% 10%, #0b1220 0%, transparent 60%),
+              radial-gradient(800px 500px at 90% 0%, #1b2a4b 0%, transparent 50%),
+              linear-gradient(180deg, #0f172a 0%, #111827 100%);
+}
+
+/* 卡片 */
+.resend-card {
+  width: min(520px, 100%);
+  background: rgba(17, 24, 39, 0.75);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
+  color: #e5e7eb;
+}
+
+/* 卡片頭 */
+.card-header {
+  padding: 24px 24px 8px 24px;
+  text-align: center;
+}
+.header-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+.header-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.header-subtitle {
+  margin: 8px 0 0 0;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* 內容區 */
+.card-body {
+  padding: 16px 24px 8px 24px;
+}
+.input-label {
+  display: block;
+  margin: 0 0 8px 2px;
+  color: #cbd5e1;
+  font-size: 13px;
+}
+.input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.input-group input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e5e7eb;
+  font-size: 15px;
+}
+
+/* 主要按鈕 */
+.primary-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #0b1220;
+  background: linear-gradient(135deg, #67e8f9 0%, #22d3ee 50%, #60a5fa 100%);
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(34, 211, 238, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(34, 211, 238, 0.45);
+}
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 回饋訊息 */
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 2px 0 2px;
+  font-size: 14px;
+}
+.feedback.success { color: #34d399; }
+.feedback.error { color: #f87171; }
+.feedback-icon { font-size: 16px; }
+
+/* 卡片尾 */
+.card-footer {
+  padding: 8px 24px 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  color: #9ca3af;
+  font-size: 13px;
+}
+.card-footer a {
+  color: #93c5fd;
+  text-decoration: none;
+}
+.card-footer a:hover {
+  text-decoration: underline;
+}
+
+/* 響應式 */
+@media (max-width: 480px) {
+  .resend-card { width: 100%; }
+  .card-footer { flex-direction: column; gap: 6px; align-items: center; }
+}
