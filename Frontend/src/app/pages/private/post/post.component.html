@@ -1,0 +1,161 @@
+<div class="post-wall-container">
+    <!-- 頁面標題區域 -->
+    <div class="page-header">
+        <div class="header-content">
+            <h1 class="main-title">
+                <span class="title-icon">📝</span>
+                我的貼文牆
+            </h1>
+            <p class="subtitle">分享你的想法，記錄生活的點滴</p>
+        </div>
+        <div class="header-decoration">
+            <div class="floating-elements">
+                <div class="floating-icon">✨</div>
+                <div class="floating-icon">💭</div>
+                <div class="floating-icon">🌟</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 發文區域 -->
+    <div class="post-creation-section">
+        <div class="creation-card">
+            <div class="card-header">
+                <div class="user-info">
+                    <div class="avatar-container">
+                        <img [src]="user?.avatar_url ? (apiRoot + '/' + user.avatar_url) : ''" alt="用戶頭像" class="user-avatar" />
+                        <div class="avatar-ring"></div>
+                    </div>
+                    <div class="user-details">
+                        <h3 class="username">{{ user?.username || '我的貼文' }}</h3>
+                        <span class="post-status">正在撰寫...</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-form">
+                <div class="textarea-container">
+                    <textarea 
+                        [(ngModel)]="content" 
+                        rows="4" 
+                        placeholder="分享你的想法、心情或生活點滴..."
+                        class="post-textarea"
+                        maxlength="500">
+                    </textarea>
+                    <div class="textarea-decoration">
+                        <div class="decoration-line"></div>
+                        <div class="decoration-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="character-count">
+                        <span class="count-text">{{ content?.length || 0 }}/500</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" [style.width.%]="(content?.length || 0) / 5"></div>
+                        </div>
+                    </div>
+                    <button 
+                        (click)="submitPost()" 
+                        class="submit-btn"
+                        [disabled]="!content?.trim()"
+                        [class.active]="content?.trim()">
+                        <span class="btn-icon">🚀</span>
+                        <span class="btn-text">發佈貼文</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 訊息提示 -->
+    <div *ngIf="message" class="message-container">
+        <div class="message success">
+            <span class="message-icon">✓</span>
+            <span class="message-text">{{ message }}</span>
+        </div>
+    </div>
+
+    <!-- 貼文列表 -->
+    <div class="posts-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="title-icon">📋</span>
+                我的貼文記錄
+            </h2>
+            <div class="post-count">
+                <span class="count-number">{{ posts.length }}</span>
+                <span class="count-label">篇貼文</span>
+            </div>
+        </div>
+
+        <div class="posts-grid">
+            <div *ngFor="let post of posts; let i = index" class="post-card" [style.animation-delay]="i * 0.1 + 's'">
+                <!-- 卡片背景裝飾 -->
+                <div class="card-decoration">
+                    <div class="decoration-pattern"></div>
+                    <div class="decoration-corner"></div>
+                </div>
+                
+                <!-- 貼文內容 -->
+                <div class="post-content">
+                    <div class="post-header">
+                        <div class="post-meta">
+                            <div class="post-author">
+                                <img [src]="user?.avatar_url ? (apiRoot + '/' + user.avatar_url) : 'assets/salamander/salamander1.webp'" alt="作者頭像" class="author-avatar" />
+                                <span class="author-name">{{ user?.username || '我' }}</span>
+                            </div>
+                            <div class="post-time">
+                                <span class="time-icon">🕒</span>
+                                <span class="time-text">{{ post.created_at }}</span>
+                            </div>
+                        </div>
+                        <div class="post-actions">
+                            <button class="action-btn like-btn">
+                                <span class="action-icon">❤️</span>
+                            </button>
+                            <button class="action-btn share-btn">
+                                <span class="action-icon">📤</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="post-body">
+                        <p class="post-text">{{ post.content }}</p>
+                    </div>
+                    
+                    <div class="post-footer">
+                        <div class="post-stats">
+                            <span class="stat-item">
+                                <span class="stat-icon">👁️</span>
+                                <span class="stat-number">0</span>
+                            </span>
+                            <span class="stat-item">
+                                <span class="stat-icon">💬</span>
+                                <span class="stat-number">0</span>
+                            </span>
+                            <span class="stat-item">
+                                <span class="stat-icon">❤️</span>
+                                <span class="stat-number">0</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 空狀態 -->
+        <div *ngIf="posts.length === 0" class="empty-state">
+            <div class="empty-icon">📝</div>
+            <h3 class="empty-title">還沒有貼文</h3>
+            <p class="empty-description">開始分享你的第一個想法吧！</p>
+            <div class="empty-decoration">
+                <div class="floating-element">✨</div>
+                <div class="floating-element">💭</div>
+            </div>
+        </div>
+    </div>
+</div>

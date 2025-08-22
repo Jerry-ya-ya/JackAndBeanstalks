@@ -65,6 +65,11 @@ const routes: Routes = [
       import('../pages/private/friend/friend.module').then(m => m.FriendModule)
   },
   {
+    path: appPath.post,
+    loadChildren: () =>
+      import('../pages/private/post/post.module').then(m => m.PostModule)
+  },
+  {
     path: appPath.aboutwebsite,
     loadChildren: () =>
       import('../pages/public/aboutwebsite/aboutwebsite.module').then(m => m.AboutwebsiteModule)

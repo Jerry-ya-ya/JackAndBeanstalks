@@ -35,6 +35,7 @@ from routes.admin.promote import promote_bp
 from routes.test import test_utils
 from routes.friend import friend_bp
 from routes.crawler import crawler_bp
+from routes.post import post_bp
 
 def setup_database(app, retries=5, wait=2):
     db.init_app(app)
@@ -137,6 +138,7 @@ def create_app():
     app.register_blueprint(admin_bp, url_prefix='/api')
     app.register_blueprint(promote_bp, url_prefix='/api')
     app.register_blueprint(friend_bp, url_prefix='/api')
+    app.register_blueprint(post_bp, url_prefix='/api')
     
     # 在開發和測試環境掛載測試工具
     if env in ['development', 'test']:

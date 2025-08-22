@@ -217,8 +217,11 @@
 
 - Connection Pooling the PostgreSQL database and updated the .env.example file.
 
-- Improved and created the design of the website introduction page.
+- Created and improved the design of the website introduction page.
 
 - Improved the design of the Member page.
 
+## 2025/08/22 ##
 - Improved the design of the Resendverification page.
+
+- Created and improved the design of the post-wall page.

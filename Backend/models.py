@@ -85,3 +85,11 @@ class ScheduleState(db.Model):
     job_name = db.Column(db.String(50), unique=True, nullable=False)
     last_run = db.Column(db.DateTime)
     next_run = db.Column(db.DateTime)
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user = db.relationship('User', backref='posts')

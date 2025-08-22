@@ -16,7 +16,9 @@ export class SquareComponent implements OnInit {
   users: any[] = [];
   userId!: number;
   user: any;
+  posts: any[] = [];
   created_at: string = '';
+  
   public environment = environment;
   public apiRoot: string = environment.apiUrl.replace('/api', '');
 
@@ -26,20 +28,18 @@ export class SquareComponent implements OnInit {
     const token = localStorage.getItem('token');
     return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
-  
-  loadUser() {
-    this.http.get<any>(`${environment.apiUrl}/me/public/${this.userId}`, { headers: this.headers })
-    .subscribe(user => {
-      this.user = user;
-      this.created_at = user.created_at;
-    });
+
+  loadPosts() {
+    this.http.get<any[]>(`${environment.apiUrl}/post/user/${this.userId}`, { headers: this.headers })
+      .subscribe(res => this.posts = res);
   }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({Authorization: `Bearer ${token}`});
+    
     this.userId = Number(this.route.snapshot.paramMap.get('id'));
-    this.loadUser();
+    this.loadPosts();
 
     // 取得使用者資料
     this.http.get<any[]>(`${environment.apiUrl}/square`, {headers}).subscribe({
