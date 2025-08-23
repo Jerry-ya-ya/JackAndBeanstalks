@@ -22,22 +22,34 @@ def create_post():
 
     return jsonify({'message': '貼文已新增'})
 
+@post_bp.route('/post', methods=['GET'])
+@jwt_required()
+def get_all_posts():
+    posts = Post.query.order_by(Post.created_at.desc()).all()
+
+    return jsonify([
+        {
+            'id': p.id, 
+            'content': p.content, 
+            'created_at': p.created_at.strftime('%Y-%m-%d %H:%M'),
+            'user_id': p.user_id,
+            'user': {
+                'id': p.user.id,
+                'username': p.user.username,
+                'nickname': p.user.nickname,
+                'avatar_url': p.user.avatar_url,
+                'role': p.user.role
+            }
+        }
+        for p in posts
+    ])
+
 @post_bp.route('/post/me', methods=['GET'])
 @jwt_required()
 def get_my_posts():
     username = get_jwt_identity()
     user = User.query.filter_by(username=username).first()
     posts = Post.query.filter_by(user_id=user.id).order_by(Post.created_at.desc()).all()
-
-    return jsonify([
-        {'id': p.id, 'content': p.content, 'created_at': p.created_at.strftime('%Y-%m-%d %H:%M')}
-        for p in posts
-    ])
-
-@post_bp.route('/post/user/<int:user_id>', methods=['GET'])
-@jwt_required()
-def get_user_posts(user_id):
-    posts = Post.query.filter_by(user_id=user_id).order_by(Post.created_at.desc()).all()
 
     return jsonify([
         {'id': p.id, 'content': p.content, 'created_at': p.created_at.strftime('%Y-%m-%d %H:%M')}

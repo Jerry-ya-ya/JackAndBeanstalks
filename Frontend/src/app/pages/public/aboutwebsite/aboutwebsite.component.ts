@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpBackend } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -15,8 +15,12 @@ export class AboutwebsiteComponent {
   loading = true;
   error = false;
   markdownText = '';
+  private httpWithoutInterceptor: HttpClient;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private httpBackend: HttpBackend) {
+    // 創建一個不帶攔截器的 HTTP 客戶端，專門用於外部 API 請求
+    this.httpWithoutInterceptor = new HttpClient(httpBackend);
+  }
 
   ngOnInit(): void {
     this.loadRepoData();
@@ -31,7 +35,8 @@ export class AboutwebsiteComponent {
       this.loading = true;
       this.error = false;
       
-      this.http.get(`https://api.github.com/repos/${this.username}/${this.repo}`)
+      // 使用不帶攔截器的 HTTP 客戶端來避免觸發登出邏輯
+      this.httpWithoutInterceptor.get(`https://api.github.com/repos/${this.username}/${this.repo}`)
         .subscribe({
           next: data => {
             this.repoData = data;

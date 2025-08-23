@@ -6,10 +6,11 @@
             <img [src]="apiRoot + '/' + user.avatar_url" width="120" height="120" />
         </div>
         <div>
-            <p><strong>ID:</strong>{{ user.id || '(未設定)' }}</p>
+            <p><strong>ID:</strong>{{ user.id }}</p>
             <p><strong>使用者名稱：</strong>{{ user.username }}</p>
             <p><strong>暱稱：</strong>{{ user.nickname || '(未設定)' }}</p>
-            <p><strong>身份：</strong>{{ user.role || '(未設定)' }}</p>
+            <p><strong>身份：</strong>{{ user.role }}</p>
+            <p><strong>創立時間：</strong>{{ user.created_at }}</p>
         </div>
         <hr>
     </div>

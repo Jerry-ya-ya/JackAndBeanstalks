@@ -32,7 +32,8 @@ def get_square():
         'username': user.username,
         'nickname': user.nickname,
         'avatar_url': user.avatar_url,
-        'role': user.role
+        'role': user.role,
+        'created_at': user.created_at.isoformat()
     } for user in users]
 
     return jsonify(user_list)

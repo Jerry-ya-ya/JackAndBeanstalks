@@ -75,6 +75,11 @@ const routes: Routes = [
       import('../pages/public/aboutwebsite/aboutwebsite.module').then(m => m.AboutwebsiteModule)
   },
   {
+    path: appPath.userhome,
+    loadChildren: () =>
+      import('../pages/private/userhome/userhome.module').then(m => m.UserhomeModule)
+  },
+  {
     path: '**',
     redirectTo: '',
   }

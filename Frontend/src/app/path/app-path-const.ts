@@ -25,4 +25,6 @@ export const appPath = {
     post: 'post',
     //aboutwebsite
     aboutwebsite: 'aboutwebsite',
+    //userhome
+    userhome: 'userhome',
 };

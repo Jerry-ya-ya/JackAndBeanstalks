@@ -6,37 +6,41 @@
   <div [ngClass]="{'hide-navbar': collapsed}">
     <!-- Public -->
     <div class="navbar navbar-public">
-        <a class="nav" [routerLink]="[path.home]">Home</a>
-        <a class="nav" [routerLink]="[path.member]">Member</a>
-        <a class="nav" [routerLink]="[path.aboutwebsite]">About-Page</a>
-        <a class="nav" [routerLink]="[path.register]">Register</a>
-        <a class="nav" [routerLink]="[path.login]">Login</a>
+      <a class="nav" [routerLink]="[path.home]">Home</a>
+      <a class="nav" [routerLink]="[path.member]">Member</a>
+      <a class="nav" [routerLink]="[path.aboutwebsite]">About-Page</a>
+      <a class="nav" [routerLink]="[path.register]">Register</a>
+      <a class="nav" [routerLink]="[path.login]">Login</a>
     </div>
+
     <!-- Private -->
     <div class="navbar navbar-private" *ngIf="isLoggedIn()">
-        <a class="nav-private" [routerLink]="[path.square]">Square</a>
-        <a class="nav-private" [routerLink]="[path.friend]">Friend</a>
-        <a class="nav-private" [routerLink]="[path.post]">Post-wall</a>
-        <a class="nav-private" [routerLink]="[path.todo]">Todo</a>
-        <a class="nav-private" [routerLink]="[path.setting]">Setting</a>
-        <a class="nav-private" [routerLink]="[path.profile]">Profile</a>
-        <a class="nav-private" [routerLink]="[path.crawler]">Crawler</a>
-        <a class="nav-private logout" (click)="logout()">Logout</a>
+      <a class="nav-private" [routerLink]="[path.userhome]">Home</a>
+      <a class="nav-private" [routerLink]="[path.square]">Square</a>
+      <a class="nav-private" [routerLink]="[path.friend]">Friend</a>
+      <a class="nav-private" [routerLink]="[path.post]">Post-wall</a>
+      <a class="nav-private" [routerLink]="[path.todo]">Todo</a>
+      <a class="nav-private" [routerLink]="[path.setting]">Setting</a>
+      <a class="nav-private" [routerLink]="[path.profile]">Profile</a>
+      <a class="nav-private" [routerLink]="[path.crawler]">Crawler</a>
+      <a class="nav-private logout" (click)="logout()">Logout</a>
     </div>
+
     <!-- Admin -->
     <div class="navbar navbar-admin" *ngIf="isAdmin()">
-        <a class="nav-admin" [routerLink]="['/']">User</a>
-        <a class="nav-admin" [routerLink]="['/']">Content</a>
-        <a class="nav-admin" [routerLink]="['/']">Logs</a>
-        <a class="nav-admin" [routerLink]="['/']">Announce</a>
-        <a class="nav-admin" [routerLink]="['/']">Events</a>
-        <a class="nav-admin" [routerLink]="['/']">Projects</a>
-        <a class="nav-admin" [routerLink]="['/']">Member</a>
+      <a class="nav-admin" [routerLink]="['/']">User</a>
+      <a class="nav-admin" [routerLink]="['/']">Content</a>
+      <a class="nav-admin" [routerLink]="['/']">Logs</a>
+      <a class="nav-admin" [routerLink]="['/']">Announce</a>
+      <a class="nav-admin" [routerLink]="['/']">Events</a>
+      <a class="nav-admin" [routerLink]="['/']">Projects</a>
+      <a class="nav-admin" [routerLink]="['/']">Member</a>
     </div>
+
     <!-- Superadmin -->
     <div class="navbar navbar-superadmin" *ngIf="isSuperadmin()">
-        <a class="nav-superadmin" [routerLink]="[path.promote]">Promote</a>
-        <a class="nav-superadmin" [routerLink]="['/']">Feature</a>
+      <a class="nav-superadmin" [routerLink]="[path.promote]">Promote</a>
+      <a class="nav-superadmin" [routerLink]="['/']">Feature</a>
     </div>
   </div>
 </div>

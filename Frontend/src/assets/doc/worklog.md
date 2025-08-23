@@ -225,3 +225,9 @@
 - Improved the design of the Resendverification page.
 
 - Created and improved the design of the post-wall page.
+
+## 2025/08/23 ##
+
+- 💥 The API for fetching GitHub repository data is causing users to be forcibly logged out. To avoid triggering the logout logic, a new HTTP client without interceptors was created.
+
+- Created and improved the design of the userhome page. Added the user creation time to the user cards on the Square page.
