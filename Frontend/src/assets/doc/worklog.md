@@ -232,6 +232,12 @@
 
 - Created and improved the design of the userhome page. Added the user creation time to the user cards on the Square page.
 
+## 2025/08/25 ##
+
 - 💥 Installing the package causes the navbar and multiple other packages to malfunction.
 
 - Repackaged the Angular project and upgraded the version from 19.2.14 to 20.2.0 to resolve the package installation issue.
+
+## 2025/08/26 ##
+
+- 💥 In Angular 20, the new version outputs the build files into the browser subdirectory instead of directly under dist/frontend. Updated the Dockerfile to correctly copy the files.
