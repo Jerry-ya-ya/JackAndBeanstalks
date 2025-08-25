@@ -14,8 +14,8 @@ RUN npx ng build --configuration=production
 # 第二階段：Nginx 提供靜態頁面
 FROM nginx:stable-alpine
 
-# 複製編譯後的檔案（Angular 19 的輸出結構）
-COPY --from=build /app/dist/jackandbeanstalks/browser /usr/share/nginx/html
+# 複製編譯後的檔案（Angular 的輸出結構）
+COPY --from=build /app/dist/frontend /usr/share/nginx/html
 
 # 複製 Nginx 配置
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf

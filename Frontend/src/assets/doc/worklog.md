@@ -231,3 +231,7 @@
 - 💥 The API for fetching GitHub repository data is causing users to be forcibly logged out. To avoid triggering the logout logic, a new HTTP client without interceptors was created.
 
 - Created and improved the design of the userhome page. Added the user creation time to the user cards on the Square page.
+
+- 💥 Installing the package causes the navbar and multiple other packages to malfunction.
+
+- Repackaged the Angular project and upgraded the version from 19.2.14 to 20.2.0 to resolve the package installation issue.

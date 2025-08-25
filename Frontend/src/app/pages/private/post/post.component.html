@@ -53,16 +53,16 @@
                 </div>
                 <div class="form-actions">
                     <div class="character-count">
-                        <span class="count-text">{{ content?.length || 0 }}/500</span>
+                        <span class="count-text">{{ content.length || 0 }}/500</span>
                         <div class="progress-bar">
-                            <div class="progress-fill" [style.width.%]="(content?.length || 0) / 5"></div>
+                            <div class="progress-fill" [style.width.%]="(content.length || 0) / 5"></div>
                         </div>
                     </div>
                     <button 
                         (click)="submitPost()" 
                         class="submit-btn"
-                        [disabled]="!content?.trim()"
-                        [class.active]="content?.trim()">
+                        [disabled]="!content.trim()"
+                        [class.active]="content.trim()">
                         <span class="btn-icon">🚀</span>
                         <span class="btn-text">發佈貼文</span>
                     </button>
