@@ -1,0 +1,55 @@
+<div class="tutorial-page">
+    <h2 class="section-title">使用教學</h2>
+    <p>點選第一張圖片紅框內的按鈕，上滑選擇加入主頁面，右上角點擊添加，就能在主頁看到WPA</p>
+    
+    <div class="carousel" tabindex="0" aria-label="教學圖片滑動區">
+        <div class="carousel-track">
+            <div class="card" *ngFor="let img of tutorialImagePaths; let i = index">
+                <div class="card-media">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <img [src]="img" [alt]="'教學圖片 ' + (i + 1)" loading="lazy" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span>{{ i + 1 }} / {{ tutorialImagePaths.length }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="swipe-hint" aria-hidden="true">← 向右滑動查看更多</p>
+    
+    <h3 class="section-subtitle">WPA 與 非 WPA 差異</h3>
+
+    <div class="compare-card">
+        <div class="compare-item wpa">
+            <h4>WPA（啟用）</h4>
+            <div class="phone-frame compare">
+                <div class="phone-screen">
+                    <img class="compare-media" src="tutorial/7.gif" alt="WPA 示範" loading="lazy" />
+                </div>
+            </div>
+            <ul>
+                <li>可離線瀏覽（Service Worker 快取）</li>
+                <li>安裝到桌面（Web App Manifest）</li>
+                <li>更快的重載體驗（資源快取）</li>
+                <li>支援背景同步/推播（視伺服器設定）</li>
+            </ul>
+        </div>
+        <div class="compare-item nowpa">
+            <h4>非 WPA</h4>
+            <div class="phone-frame compare">
+                <div class="phone-screen">
+                    <img class="compare-media" src="tutorial/8.gif" alt="非 WPA 示範" loading="lazy" />
+                </div>
+            </div>
+            <ul>
+                <li>需持續網路連線</li>
+                <li>無桌面安裝入口</li>
+                <li>每次載入依賴網路速度</li>
+                <li>較少進階體驗</li>
+            </ul>
+        </div>
+    </div>
+</div>

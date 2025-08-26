@@ -80,6 +80,11 @@ const routes: Routes = [
       import('../pages/private/userhome/userhome.module').then(m => m.UserhomeModule)
   },
   {
+    path: appPath.tutorial,
+    loadChildren: () =>
+      import('../pages/public/tutorial/tutorial.module').then(m => m.TutorialModule)
+  },
+  {
     path: '**',
     redirectTo: '',
   }
