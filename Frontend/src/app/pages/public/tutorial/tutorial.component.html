@@ -1,27 +1,5 @@
 <div class="tutorial-page">
-    <h2 class="section-title">使用教學</h2>
-    <p>點選第一張圖片紅框內的按鈕，上滑選擇加入主頁面，右上角點擊添加，就能在主頁看到WPA</p>
-    
-    <div class="carousel" tabindex="0" aria-label="教學圖片滑動區">
-        <div class="carousel-track">
-            <div class="card" *ngFor="let img of tutorialImagePaths; let i = index">
-                <div class="card-media">
-                    <div class="phone-frame">
-                        <div class="phone-screen">
-                            <img [src]="img" [alt]="'教學圖片 ' + (i + 1)" loading="lazy" />
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <span>{{ i + 1 }} / {{ tutorialImagePaths.length }}</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <p class="swipe-hint" aria-hidden="true">← 向右滑動查看更多</p>
-    
     <h3 class="section-subtitle">WPA 與 非 WPA 差異</h3>
-
     <div class="compare-card">
         <div class="compare-item wpa">
             <h4>WPA（啟用）</h4>
@@ -52,4 +30,26 @@
             </ul>
         </div>
     </div>
+
+    <h2 class="section-title">使用教學</h2>
+
+    <p>點選第一張圖片紅框內的按鈕，上滑選擇加入主頁面，右上角點擊添加，就能在主頁看到WPA</p>
+    
+    <div class="carousel" tabindex="0" aria-label="教學圖片滑動區">
+        <div class="carousel-track">
+            <div class="card" *ngFor="let img of tutorialImagePaths; let i = index">
+                <div class="card-media">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <img [src]="img" [alt]="'教學圖片 ' + (i + 1)" loading="lazy" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span>{{ i + 1 }} / {{ tutorialImagePaths.length }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="swipe-hint" aria-hidden="true">← 向右滑動查看更多</p>
 </div>

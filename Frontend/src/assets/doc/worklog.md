@@ -243,3 +243,7 @@
 - 💥 In Angular 20, the new version outputs the build files into the browser subdirectory instead of directly under dist/frontend. Updated the Dockerfile to correctly copy the files.
 
 - Created and improved the design of the tutorial page. Update content on the About page.
+
+## 2025/08/27 ##
+
+- Update content on the Home page and Tutorial page.
