@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, abort
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models import db, Post, User
 from datetime import datetime
@@ -55,3 +55,38 @@ def get_my_posts():
         {'id': p.id, 'content': p.content, 'created_at': p.created_at.strftime('%Y-%m-%d %H:%M')}
         for p in posts
     ])
+
+# 修改貼文
+@post_bp.route('/post/<int:post_id>', methods=['PUT'])
+@jwt_required()
+def update_post(post_id):
+    username = get_jwt_identity()
+    user = User.query.filter_by(username=username).first()
+
+    post = Post.query.get_or_404(post_id)
+    if post.user_id != user.id:
+        abort(403, description='無權限修改此貼文')
+
+    data = request.get_json()
+    content = data.get('content')
+    if not content:
+        return jsonify({'error': '內容不能為空'}), 400
+
+    post.content = content
+    db.session.commit()
+    return jsonify({'message': '已更新'})
+
+# 刪除貼文
+@post_bp.route('/post/<int:post_id>', methods=['DELETE'])
+@jwt_required()
+def delete_post(post_id):
+    username = get_jwt_identity()
+    user = User.query.filter_by(username=username).first()
+
+    post = Post.query.get_or_404(post_id)
+    if post.user_id != user.id:
+        abort(403, description='無權限刪除此貼文')
+
+    db.session.delete(post)
+    db.session.commit()
+    return jsonify({'message': '已刪除'})

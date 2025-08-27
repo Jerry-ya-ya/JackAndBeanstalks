@@ -9,11 +9,18 @@ import { environment } from '../../../../environments/environment';
   styleUrl: './post.component.css'
 })
 export class PostComponent {
+  // 貼文內容
   content: string = '';
+  // 貼文列表
   posts: any[] = [];
+  // 使用者資料
   user: any = null;
+  // 訊息
   message = '';
-
+  // 編輯模式
+  editMode: { [key: number]: boolean } = {};
+  editContent: { [key: number]: string } = {};
+  // 環境變數
   public environment = environment;
   public apiRoot: string = environment.apiUrl.replace('/api', '');
 
@@ -53,6 +60,45 @@ export class PostComponent {
         },
         error: err => {
           this.message = err.error?.error || '發文失敗';
+        }
+      });
+  }
+
+  enableEdit(post: any) {
+    this.editMode[post.id] = true;
+    this.editContent[post.id] = post.content;
+  }
+  
+  cancelEdit(postId: number) {
+    this.editMode[postId] = false;
+  }
+  
+  updatePost(postId: number) {
+    const newContent = this.editContent[postId];
+    this.http.put(`${environment.apiUrl}/post/${postId}`, { content: newContent }, this.headers)
+      .subscribe({
+        next: res => {
+          this.message = (res as any).message;
+          this.editMode[postId] = false;
+          this.loadMyPosts();
+        },
+        error: err => {
+          this.message = err.error?.error || '更新失敗';
+        }
+      });
+  }
+  
+  deletePost(postId: number) {
+    if (!confirm('確定要刪除這篇貼文？')) return;
+  
+    this.http.delete(`${environment.apiUrl}/post/${postId}`, this.headers)
+      .subscribe({
+        next: res => {
+          this.message = (res as any).message;
+          this.loadMyPosts();
+        },
+        error: err => {
+          this.message = err.error?.error || '刪除失敗';
         }
       });
   }
