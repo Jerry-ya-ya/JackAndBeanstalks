@@ -249,3 +249,5 @@
 - Update content on the Home page and Tutorial page.
 
 - Implemented the functionality to edit and delete posts.
+
+- Update content on the Home page.
