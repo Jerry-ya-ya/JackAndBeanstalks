@@ -40,3 +40,21 @@ def update_current_user():
     db.session.commit()
 
     return jsonify({'message': 'Profile updated'})
+
+# GET：根據用戶 ID 獲取用戶資料
+@me_bp.route('/public/<int:user_id>', methods=['GET'])
+@jwt_required()
+def public_user(user_id):
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({'error': '用戶不存在'}), 404
+
+    return jsonify({
+        'id': user.id,
+        'username': user.username,
+        'nickname': user.nickname,
+        'email': user.email,
+        'avatar_url': user.avatar_url,
+        'role': user.role,
+        'created_at': user.created_at.isoformat()
+    })

@@ -1,17 +1,35 @@
-<div>
-    <h2>重新寄送驗證信</h2>
-    <div>
-      <input [(ngModel)]="email" placeholder="請輸入註冊時的 Email">
+<div class="resend-view">
+  <div class="resend-card">
+    <div class="card-header">
+      <div class="header-icon">📧</div>
+      <h2 class="header-title">重新寄送驗證信</h2>
+      <p class="header-subtitle">請輸入註冊時使用的 Email，我們會再次寄出驗證連結</p>
     </div>
-    <div>
-      <button (click)="resend()">
-        重新寄送
+
+    <div class="card-body">
+      <label class="input-label" for="email">電子郵件</label>
+      <div class="input-group">
+        <input id="email" [(ngModel)]="email" type="email" placeholder="your@email.com" />
+      </div>
+
+      <button class="primary-btn" (click)="resend()" [disabled]="!email">
+        <span class="btn-icon">🔄</span>
+        <span>重新寄送</span>
       </button>
+
+      <p *ngIf="message" class="feedback success">
+        <span class="feedback-icon">✅</span>
+        {{ message }}
+      </p>
+      <p *ngIf="error" class="feedback error">
+        <span class="feedback-icon">⚠️</span>
+        {{ error }}
+      </p>
     </div>
-    <p *ngIf="message" style="color: green">
-      {{ message }}
-    </p>
-    <p *ngIf="error" style="color: red">
-      {{ error }}
-    </p>
+
+    <div class="card-footer">
+      <p>尚未註冊？<a [routerLink]="['/register']">建立一個帳號</a></p>
+      <p>已完成驗證？<a [routerLink]="['/login']">立即登入</a></p>
+    </div>
   </div>
+</div>

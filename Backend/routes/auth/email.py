@@ -72,7 +72,8 @@ def resend_verification():
         return jsonify({'message': '此帳號已驗證，無需重寄'}), 200
 
     token = generate_confirmation_token(email)
-    link = f"http://localhost:5000/api/verify-email/{token}"
+    base_url = current_app.config.get('API_URL', 'http://localhost:5000').rstrip('/')
+    link = f"{base_url}/api/verify-email/{token}"
 
     msg = Message('重新寄送帳號驗證信', sender='jerry0907zheng@gmail.com', recipients=[email])
     msg.body = f'請點擊以下連結完成帳號驗證：{link}'

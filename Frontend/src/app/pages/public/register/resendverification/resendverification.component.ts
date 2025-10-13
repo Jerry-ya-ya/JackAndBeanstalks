@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-resendverification',
@@ -13,7 +14,8 @@ export class ResendverificationComponent {
   error = '';
   constructor(private http: HttpClient) {}
   resend() {
-    this.http.post<any>('http://localhost:5000/api/resendverification', { email: this.email }).subscribe({
+    const apiBase = environment.apiUrl;
+    this.http.post<any>(`${apiBase}/resendverification`, { email: this.email }).subscribe({
       next: res => {
         this.message = res.message;
         this.error = '';

@@ -1,0 +1,120 @@
+<div class="about-website-container">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading-container">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">載入中...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="error-container">
+        <div class="error-icon">⚠️</div>
+        <h3 class="error-title">載入失敗</h3>
+        <p class="error-message">無法載入倉庫資料，請稍後再試。</p>
+        <button class="retry-button" (click)="loadRepoData()">重新載入</button>
+    </div>
+
+    <!-- Repository Data -->
+    <div *ngIf="repoData" class="repo-card">
+        <div class="repo-header">
+            <div class="repo-icon">📦</div>
+            <h3 class="repo-name">{{ repoData.name }}</h3>
+        </div>
+        
+        <div class="repo-content">
+            <p class="repo-description">{{ repoData.description }}</p>
+            
+            <div class="repo-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">🌟</span>
+                    <span class="stat-value">{{ repoData.stargazers_count }}</span>
+                    <span class="stat-label">stars</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">👀</span>
+                    <span class="stat-value">{{ repoData.watchers_count }}</span>
+                    <span class="stat-label">watchers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🍴</span>
+                    <span class="stat-value">{{ repoData.forks_count }}</span>
+                    <span class="stat-label">forks</span>
+                </div>
+            </div>
+
+            <div class="repo-meta">
+                <div class="meta-item">
+                    <span class="meta-icon">📅</span>
+                    <span class="meta-text">建立於 {{ repoData.created_at | date:'yyyy/MM/dd' }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-icon">🔄</span>
+                    <span class="meta-text">更新於 {{ repoData.updated_at | date:'yyyy/MM/dd' }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="repo-actions">
+            <a [href]="repoData.html_url" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="github-link">
+                <span class="link-icon">🔗</span>
+                <span class="link-text">在 GitHub 上查看</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-container">
+        <div class="features-card">
+            <div class="features-header">
+                <div class="features-icon">🚀</div>
+                <h3 class="features-title">技術特色</h3>
+            </div>
+            
+            <div class="features-content">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🐦‍🔥</div>
+                        <div class="feature-content">
+                            <h4 class="feature-title">Angular</h4>
+                            <p class="feature-description">Single Page Application (SPA) 提供流暢的頁面轉換，無需完整頁面重新載入。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">🪶</div>
+                        <div class="feature-content">
+                            <h4 class="feature-title">Flask</h4>
+                            <p class="feature-description">Python 微框架，設計簡潔且可擴展，適合建構 RESTful API 和網路服務。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon">🐘</div>
+                        <div class="feature-content">
+                            <h4 class="feature-title">PostgreSQL</h4>
+                            <p class="feature-description">強大的開源關聯式資料庫，以其可靠性、可擴展性和進階功能而聞名。</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">🐳</div>
+                        <div class="feature-content">
+                            <h4 class="feature-title">Docker</h4>
+                            <p class="feature-description">一個能把程式和它所需環境打包成輕量化容器，方便快速部署與跨平台運行的工具。</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✨</div>
+                        <div class="feature-content">
+                            <h4 class="feature-title">PWA (Progressive Web App)</h4>
+                            <p class="feature-description">PWA 讓網頁應用程式在操作體驗和功能上與原生行動應用程式相仿，設定方式請到教學頁面。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
