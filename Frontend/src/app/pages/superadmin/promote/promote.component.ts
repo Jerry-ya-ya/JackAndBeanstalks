@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
 interface User {
   id: number;
@@ -26,6 +27,7 @@ export class PromoteComponent implements OnInit {
   promotingUserId: number | null = null;
   demotingUserId: number | null = null;
   constructor(private http: HttpClient) {}
+  public apiRoot: string = environment.apiUrl.replace('/api', '');
 
   ngOnInit(): void {
     this.loadUsers();
@@ -34,7 +36,7 @@ export class PromoteComponent implements OnInit {
   loadUsers() {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.get<User[]>('http://localhost:5000/api/superadmin/promote', { headers })
+    this.http.get<User[]>(`${environment.apiUrl}/superadmin/promote`, { headers })
       .subscribe({
         next: users => {
           this.users = users;
@@ -87,7 +89,7 @@ export class PromoteComponent implements OnInit {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     
-    this.http.put<any>(`http://localhost:5000/api/superadmin/promote/${userId}`, {}, { headers })
+    this.http.put<any>(`${environment.apiUrl}/superadmin/promote/${userId}`, {}, { headers })
       .subscribe({
         next: res => {
           this.message = res.message;
@@ -115,7 +117,7 @@ export class PromoteComponent implements OnInit {
     this.demotingUserId = userId;
     const token = localStorage.getItem('token');
     const headers = { Authorization: `Bearer ${token}` };
-    this.http.put<any>(`http://localhost:5000/api/superadmin/demote/${userId}`, {}, { headers })
+    this.http.put<any>(`${environment.apiUrl}/superadmin/demote/${userId}`, {}, { headers })
       .subscribe({
         next: res => {
           this.message = res.message;

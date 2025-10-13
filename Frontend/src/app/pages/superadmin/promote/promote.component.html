@@ -58,7 +58,7 @@
                         <td class="user-id">{{ user.id }}</td>
                         <td class="username">
                             <div class="user-info">
-                                <img class="user-avatar" [src]="'http://localhost:5000/'+ user.avatar_url"/>
+                                <img class="user-avatar" [src]="apiRoot + '/' + user.avatar_url"/>
                                 <span>{{ user.username }}</span>
                             </div>
                         </td>

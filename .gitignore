@@ -91,6 +91,8 @@ node_modules/
 # Playwright cache（有時存在）
 .cache/
 
+Todo
+
 # 通用
 *.log
 *.swp

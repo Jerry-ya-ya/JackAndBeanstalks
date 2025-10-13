@@ -60,6 +60,31 @@ const routes: Routes = [
       import('../pages/superadmin/promote/promote.module').then(m => m.PromoteModule)
   },
   {
+    path: appPath.friend,
+    loadChildren: () =>
+      import('../pages/private/friend/friend.module').then(m => m.FriendModule)
+  },
+  {
+    path: appPath.post,
+    loadChildren: () =>
+      import('../pages/private/post/post.module').then(m => m.PostModule)
+  },
+  {
+    path: appPath.aboutwebsite,
+    loadChildren: () =>
+      import('../pages/public/aboutwebsite/aboutwebsite.module').then(m => m.AboutwebsiteModule)
+  },
+  {
+    path: appPath.userhome,
+    loadChildren: () =>
+      import('../pages/private/userhome/userhome.module').then(m => m.UserhomeModule)
+  },
+  {
+    path: appPath.tutorial,
+    loadChildren: () =>
+      import('../pages/public/tutorial/tutorial.module').then(m => m.TutorialModule)
+  },
+  {
     path: '**',
     redirectTo: '',
   }

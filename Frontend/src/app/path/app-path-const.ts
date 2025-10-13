@@ -19,4 +19,14 @@ export const appPath = {
     todo: 'todo',
     //promote
     promote: 'promote',
+    //friend
+    friend: 'friend',
+    //post
+    post: 'post',
+    //aboutwebsite
+    aboutwebsite: 'aboutwebsite',
+    //userhome
+    userhome: 'userhome',
+    //tutorial
+    tutorial: 'tutorial',
 };

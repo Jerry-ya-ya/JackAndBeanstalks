@@ -1,8 +1,6 @@
+import os
 import redis
 
-r = redis.StrictRedis(
-    host='redis',  # 如果未來用 Docker，可改為 'redis'
-    port=6379,
-    db=0,
-    decode_responses=True
-)
+# 統一由環境變數 REDIS_URL 控制，預設為 docker 服務名 'redis'
+_redis_url = os.getenv('REDIS_URL', 'http://localhost:6379/0')
+r = redis.from_url(_redis_url, decode_responses=True)
