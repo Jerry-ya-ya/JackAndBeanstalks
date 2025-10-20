@@ -1,0 +1,19 @@
+FROM maven:3.9-eclipse-temurin-17
+WORKDIR /workspace
+
+# 先帶入 pom.xml 以預抓依賴，加速第一次啟動
+COPY pom.xml ./
+RUN mvn -B -q -DskipTests dependency:go-offline
+
+# 若你使用 maven wrapper，可一併複製（非必須）
+# COPY .mvn/ .mvn/
+# COPY mvnw mvnw.cmd ./
+
+# 預設使用 dev profile（可於 docker run -e 覆蓋）
+ENV SPRING_PROFILES_ACTIVE=dev
+
+EXPOSE 8080
+
+# 啟動方式：spring-boot:run，會讀取掛載進來的 src；修改即時生效
+# 你也可以把 JVM args 放到 -Dspring-boot.run.jvmArguments
+CMD ["mvn", "-Dspring-boot.run.jvmArguments=-Xms256m -Xmx1g", "spring-boot:run"]

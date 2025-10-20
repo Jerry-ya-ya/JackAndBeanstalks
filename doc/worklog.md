@@ -259,3 +259,7 @@
 - Import flask final version.
 
 - Preparing to refactor the backend to replace Flask with Java.
+
+## 2025/10/20 ##
+
+- Dockerlize and run Health controller.
