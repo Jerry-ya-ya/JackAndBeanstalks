@@ -1,17 +1,17 @@
+server:
+  port: 8080
+
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_HOST:db}:${DB_PORT:5432}/${DB_NAME:backend_db}
+    url: jdbc:postgresql://${DB_SERVER:db}:${DB_PORT:5432}/${DB_NAME:your_SQLname}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:password}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate # 讓表結構交給 Flyway，避免 Hibernate 自動亂改
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-
-server:
-  port: 8080
 
 management:
   endpoints:
