@@ -267,3 +267,7 @@
 ## 2025/11/10 ##
 
 - Implemented Todo CRUD api in Java, update backend test.md.
+
+- Implemented Time, Greeting Api, and Test html.
+
+- 💥 Unable to hot restart.

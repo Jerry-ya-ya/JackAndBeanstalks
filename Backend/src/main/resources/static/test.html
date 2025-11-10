@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot API 測試頁</title>
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 40px;
+        }
+        h1 { color: #333; }
+        input, button {
+            padding: 8px 12px;
+            margin: 5px;
+        }
+        pre {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>測試 Spring Boot API</h1>
+
+    <div>
+        <label for="name">輸入名字：</label>
+        <input id="name" type="text" placeholder="輸入你的名字" />
+        <button id="helloBtn">呼叫 /api/hello</button>
+    </div>
+
+    <div>
+        <button id="timeBtn">呼叫 /api/time</button>
+    </div>
+
+    <h3>回應結果：</h3>
+    <pre id="output">尚未呼叫 API</pre>
+
+    <script>
+        const output = document.getElementById('output');
+
+        document.getElementById('helloBtn').addEventListener('click', async () => {
+            const name = document.getElementById('name').value || 'World';
+            try {
+                const res = await fetch(`/api/hello?name=${encodeURIComponent(name)}`);
+                const data = await res.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                output.textContent = '發生錯誤：' + err;
+            }
+        });
+
+        document.getElementById('timeBtn').addEventListener('click', async () => {
+            try {
+                const res = await fetch(`/api/time`);
+                const data = await res.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } catch (err) {
+                output.textContent = '發生錯誤：' + err;
+            }
+        });
+    </script>
+</body>
+</html>
