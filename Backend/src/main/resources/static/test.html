@@ -1,67 +1,194 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <title>Spring Boot API 測試頁</title>
-    <style>
-        body {
-            font-family: "Microsoft JhengHei", sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 40px;
-        }
-        h1 { color: #333; }
-        input, button {
-            padding: 8px 12px;
-            margin: 5px;
-        }
-        pre {
-            background: #fff;
-            border: 1px solid #ccc;
-            padding: 10px;
-            white-space: pre-wrap;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Spring Boot API 同頁測試</title>
+  <style>
+    body { font-family: "Microsoft JhengHei", system-ui, -apple-system, sans-serif; background:#f7f7f7; margin:0; padding:40px; }
+    h1,h2 { color:#333; margin:0 0 12px; }
+    section { background:#fff; border:1px solid #ddd; padding:16px; border-radius:10px; margin-bottom:20px; }
+    input, button { padding:8px 12px; margin:4px; }
+    table { width:100%; border-collapse:collapse; margin-top:8px; }
+    th, td { border:1px solid #eee; padding:8px; text-align:left; }
+    .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .muted { color:#777; font-size:12px; }
+    pre { background:#fafafa; border:1px solid #eee; padding:10px; white-space:pre-wrap; }
+    .done { text-decoration: line-through; color:#888; }
+  </style>
 </head>
 <body>
-    <h1>測試 Spring Boot API</h1>
+  <h1>Spring Boot API 同頁測試</h1>
 
-    <div>
-        <label for="name">輸入名字：</label>
-        <input id="name" type="text" placeholder="輸入你的名字" />
-        <button id="helloBtn">呼叫 /api/hello</button>
+  <!-- Hello / Time -->
+  <section>
+    <h2>基本測試</h2>
+    <div class="row">
+      <label for="name">名字：</label>
+      <input id="name" type="text" placeholder="World" />
+      <button id="helloBtn">GET /api/hello</button>
+      <button id="timeBtn">GET /api/time</button>
+    </div>
+    <div class="muted">回應</div>
+    <pre id="basicOutput">尚未呼叫</pre>
+  </section>
+
+  <!-- TODO 面板 -->
+  <section>
+    <h2>Todo CRUD（In-Memory）</h2>
+
+    <!-- 建立 -->
+    <div class="row">
+      <input id="newTitle" type="text" placeholder="輸入待辦事項標題" />
+      <button id="createBtn">POST /api/todos</button>
+      <button id="refreshBtn">GET /api/todos</button>
+      <button id="clearUIBtn" title="只清畫面，不清後端">清畫面</button>
     </div>
 
-    <div>
-        <button id="timeBtn">呼叫 /api/time</button>
-    </div>
+    <!-- 清單 -->
+    <table>
+      <thead><tr><th>ID</th><th>Title</th><th>Completed</th><th>操作</th></tr></thead>
+      <tbody id="todoTbody"></tbody>
+    </table>
 
-    <h3>回應結果：</h3>
-    <pre id="output">尚未呼叫 API</pre>
+    <div class="muted">最後一次 API 回應</div>
+    <pre id="todoOutput">尚未呼叫</pre>
+  </section>
 
-    <script>
-        const output = document.getElementById('output');
+  <script>
+    const basicOutput = document.getElementById('basicOutput');
+    const todoOutput  = document.getElementById('todoOutput');
+    const tbody       = document.getElementById('todoTbody');
 
-        document.getElementById('helloBtn').addEventListener('click', async () => {
-            const name = document.getElementById('name').value || 'World';
-            try {
-                const res = await fetch(`/api/hello?name=${encodeURIComponent(name)}`);
-                const data = await res.json();
-                output.textContent = JSON.stringify(data, null, 2);
-            } catch (err) {
-                output.textContent = '發生錯誤：' + err;
-            }
-        });
+    // ===== 基本測試 =====
+    document.getElementById('helloBtn').addEventListener('click', async () => {
+      const name = document.getElementById('name').value || 'World';
+      try {
+        const res = await fetch(`/api/hello?name=${encodeURIComponent(name)}`);
+        basicOutput.textContent = JSON.stringify(await res.json(), null, 2);
+      } catch (e) { basicOutput.textContent = '錯誤：' + e; }
+    });
 
-        document.getElementById('timeBtn').addEventListener('click', async () => {
-            try {
-                const res = await fetch(`/api/time`);
-                const data = await res.json();
-                output.textContent = JSON.stringify(data, null, 2);
-            } catch (err) {
-                output.textContent = '發生錯誤：' + err;
-            }
-        });
-    </script>
+    document.getElementById('timeBtn').addEventListener('click', async () => {
+      try {
+        const res = await fetch('/api/time');
+        basicOutput.textContent = JSON.stringify(await res.json(), null, 2);
+      } catch (e) { basicOutput.textContent = '錯誤：' + e; }
+    });
+
+    // ===== Todo CRUD =====
+    async function refreshTodos() {
+      const res = await fetch('/api/todos');
+      const data = await res.json();
+      renderTodos(data);
+      todoOutput.textContent = JSON.stringify(data, null, 2);
+    }
+
+    function renderTodos(items) {
+      tbody.innerHTML = '';
+      for (const t of items) {
+        const tr = document.createElement('tr');
+
+        const tdId = document.createElement('td');
+        tdId.textContent = t.id;
+
+        const tdTitle = document.createElement('td');
+        const span = document.createElement('span');
+        span.textContent = t.title;
+        if (t.completed) span.classList.add('done');
+        tdTitle.appendChild(span);
+
+        const tdCompleted = document.createElement('td');
+        const chk = document.createElement('input');
+        chk.type = 'checkbox';
+        chk.checked = t.completed;
+        chk.addEventListener('change', () => toggleCompleted(t.id, chk.checked));
+        tdCompleted.appendChild(chk);
+
+        const tdOps = document.createElement('td');
+        const editBtn = document.createElement('button');
+        editBtn.textContent = '改標題';
+        editBtn.addEventListener('click', () => renameTitle(t.id, span.textContent));
+        const delBtn = document.createElement('button');
+        delBtn.textContent = '刪除';
+        delBtn.addEventListener('click', () => removeTodo(t.id));
+        tdOps.appendChild(editBtn);
+        tdOps.appendChild(delBtn);
+
+        tr.appendChild(tdId);
+        tr.appendChild(tdTitle);
+        tr.appendChild(tdCompleted);
+        tr.appendChild(tdOps);
+
+        tbody.appendChild(tr);
+      }
+    }
+
+    async function createTodo(title) {
+      const res = await fetch('/api/todos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title })
+      });
+      const data = await res.json();
+      todoOutput.textContent = JSON.stringify(data, null, 2);
+      await refreshTodos();
+    }
+
+    async function toggleCompleted(id, completed) {
+      const res = await fetch(`/api/todos/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ completed })
+      });
+      const data = await res.json();
+      todoOutput.textContent = JSON.stringify(data, null, 2);
+      await refreshTodos();
+    }
+
+    async function renameTitle(id, oldTitle) {
+      const title = prompt('新標題：', oldTitle || '');
+      if (title === null) return;
+      const res = await fetch(`/api/todos/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title })
+      });
+      if (res.status === 200) {
+        const data = await res.json();
+        todoOutput.textContent = JSON.stringify(data, null, 2);
+      } else {
+        todoOutput.textContent = `更新失敗：HTTP ${res.status}`;
+      }
+      await refreshTodos();
+    }
+
+    async function removeTodo(id) {
+      const ok = confirm(`確定刪除 #${id} ?`);
+      if (!ok) return;
+      const res = await fetch(`/api/todos/${id}`, { method: 'DELETE' });
+      if (res.status !== 204) {
+        todoOutput.textContent = `刪除失敗：HTTP ${res.status}`;
+      } else {
+        todoOutput.textContent = `已刪除 #${id}`;
+      }
+      await refreshTodos();
+    }
+
+    // 綁定按鈕
+    document.getElementById('createBtn').addEventListener('click', () => {
+      const title = document.getElementById('newTitle').value.trim();
+      if (!title) { alert('請輸入標題'); return; }
+      createTodo(title);
+      document.getElementById('newTitle').value = '';
+    });
+
+    document.getElementById('refreshBtn').addEventListener('click', refreshTodos);
+    document.getElementById('clearUIBtn').addEventListener('click', () => {
+      tbody.innerHTML = ''; todoOutput.textContent = '已清畫面（後端資料仍在）';
+    });
+
+    // 初次載入就刷新一次
+    refreshTodos();
+  </script>
 </body>
 </html>

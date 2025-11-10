@@ -262,12 +262,14 @@
 
 ## 2025/10/20 ##
 
-- Dockerlize and run Health controller.
+- Dockerlize, connect to PG database and run Health controller.
 
 ## 2025/11/10 ##
 
 - Implemented Todo CRUD api in Java, update backend test.md.
 
-- Implemented Time, Greeting Api, and Test html.
+- Implemented Time, Greeting Api, and test.html.
 
-- 💥 Unable to hot restart.
+- Implemented Todo Api test in test.html.
+
+- 
