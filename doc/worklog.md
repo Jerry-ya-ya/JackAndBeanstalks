@@ -272,4 +272,6 @@
 
 - Implemented Todo Api test in test.html.
 
-- 
+## 2025/11/17 ##
+
+- Implemented In-Memory Todo CRUD and separate it from SQL Todo CRUD.

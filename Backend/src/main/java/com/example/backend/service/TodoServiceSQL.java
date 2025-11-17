@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TodoService {
+public class TodoServiceSQL {
     private final TodoRepository repo;
-    public TodoService(TodoRepository repo){ this.repo = repo; }
+    public TodoServiceSQL(TodoRepository repo){ this.repo = repo; }
 
     public List<Todo> list(){ return repo.findAll(); }
     public Todo get(Long id){ return repo.findById(id).orElseThrow(); }
