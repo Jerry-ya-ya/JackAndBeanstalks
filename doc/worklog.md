@@ -183,7 +183,7 @@
 
 ## 2025/08/15 ##
 
-- Trying to pulled images from Docker Hub to Microsoft Azure containers.
+- Trying to pull images from Docker Hub to Microsoft Azure containers.
 
 ## 2025/08/16 ##
 
@@ -275,3 +275,7 @@
 ## 2025/11/17 ##
 
 - Implemented In-Memory Todo CRUD and separate it from SQL Todo CRUD.
+
+## 2025/12/25 ##
+
+- Implemented GlobalExceptionalHandler and ApiErrorResponse.

@@ -44,3 +44,5 @@ curl.exe "http://localhost:8080/api/hello?name=$long"
 
 # Test html #
 http://localhost:8080/test.html
+
+# 後改成利用html測試 #

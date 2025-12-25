@@ -86,30 +86,98 @@
     const todoSQLOutput = document.getElementById('todoSQLOutput');
     const todoSQLbody = document.getElementById('todoSQLbody');
 
+    // 共用：統一處理 HTTP 回應與錯誤格式
+    async function handleResponse(res, outputEl) {
+        let text;
+        try {
+            text = await res.text();   // 先讀 raw，再試著當成 JSON parse
+        } catch (e) {
+            outputEl.textContent = '讀取回應失敗：' + e;
+            throw e;
+        }
+
+        if (!text) {
+            if (!res.ok) {
+                outputEl.textContent = `錯誤（無內容）：HTTP ${res.status}`;
+                throw new Error('HTTP ' + res.status);
+            }
+            outputEl.textContent = '成功（無內容）';
+            return null;
+        }
+
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            // 不是 JSON
+            if (!res.ok) {
+                outputEl.textContent = `錯誤（非 JSON）：HTTP ${res.status}\n` + text;
+                throw new Error('HTTP ' + res.status);
+            } else {
+                outputEl.textContent = text;
+                return text;
+            }
+        }
+
+        // 是 JSON
+        if (!res.ok) {
+            // 嘗試把我們的 ApiErrorResponse 顯示漂亮一點
+            const pretty = {
+                status: data.status,
+                error: data.error,
+                message: data.message,
+                errorCode: data.errorCode,
+                path: data.path,
+                details: data.details
+            };
+            outputEl.textContent = '錯誤回應：\n' + JSON.stringify(pretty, null, 2);
+            throw new Error('HTTP ' + res.status + ' - ' + (data.message || ''));
+        } else {
+            outputEl.textContent = JSON.stringify(data, null, 2);
+            return data;
+        }
+    }
+
     // ===== 基本測試 =====
     document.getElementById('helloBtn').addEventListener('click', async () => {
       const name = document.getElementById('name').value || 'World';
       try {
         const res = await fetch(`/api/hello?name=${encodeURIComponent(name)}`);
-        basicOutput.textContent = JSON.stringify(await res.json(), null, 2);
-      } catch (e) { basicOutput.textContent = '錯誤：' + e; }
+        await handleResponse(res, basicOutput);
+      } catch (e) {
+        console.error(e);
+      }
     });
 
     document.getElementById('timeBtn').addEventListener('click', async () => {
       try {
         const res = await fetch('/api/time');
-        basicOutput.textContent = JSON.stringify(await res.json(), null, 2);
-      } catch (e) { basicOutput.textContent = '錯誤：' + e; }
+        await handleResponse(res, basicOutput);
+      } catch (e) {
+        console.error(e);
+      }
     });
-
-
+    
     // ===== Todo IM CRUD =====
     async function refreshTodosIM() {
-      const res = await fetch('/api/todosIM');
-      const data = await res.json();
-      renderTodosIM(data);
-      todoIMOutput.textContent = JSON.stringify(data, null, 2);
+  try {
+    // 1. 取得 In-Memory Todos
+    const resIM = await fetch('/api/todosIM');
+    const imData = await handleResponse(resIM, todoIMOutput);
+
+    renderTodosIM(imData);
+    todoIMOutput.textContent = JSON.stringify(imData, null, 2);
+
+    // 2. 取得一般 Todos（帶 query 參數）
+    const res = await fetch(baseUrl() + '?' + params.toString());
+    const data = await handleResponse(res, todoOutput);
+    if (data) {
+      renderTodos(data);
     }
+  } catch (e) {
+    console.error(e);
+  }
+}
 
     function renderTodosIM(items) {
       todoIMbody.innerHTML = '';
