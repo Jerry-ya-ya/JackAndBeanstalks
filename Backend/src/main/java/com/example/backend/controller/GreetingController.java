@@ -1,4 +1,4 @@
-package com.example.backend.web;
+package com.example.backend.controller;
 
 import com.example.backend.dto.GreetingResponse;
 import jakarta.validation.constraints.Size;
@@ -12,7 +12,6 @@ import java.util.Map;
 @RequestMapping("/api")
 @Validated
 public class GreetingController {
-
     // GET /api/hello?name=Jerry
     @GetMapping("/hello")
     public GreetingResponse hello(
@@ -22,7 +21,7 @@ public class GreetingController {
     ) {
         return new GreetingResponse("Hello, " + name + "!");
     }
-
+    
     @GetMapping("/time")
     public Map<String, String> time() {
         var now = OffsetDateTime.now(ZoneId.of("Asia/Taipei"));

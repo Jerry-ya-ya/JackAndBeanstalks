@@ -279,3 +279,7 @@
 ## 2025/12/25 ##
 
 - Implemented GlobalExceptionalHandler and ApiErrorResponse.
+
+## 2025/12/27 ##
+
+- Implemented Register, Password encode, Login, and home page.

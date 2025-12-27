@@ -1,4 +1,4 @@
-package com.example.backend.web;
+package com.example.backend.controller;
 
 import com.example.backend.domain.Todo;
 import com.example.backend.service.TodoServiceSQL;
