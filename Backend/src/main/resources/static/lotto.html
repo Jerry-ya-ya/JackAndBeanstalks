@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta charset="UTF-8">
+        <title>樂透統計中心</title>
+        <style>
+            body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 40px; background-color: #f4f7f6; }
+            .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 800px; margin: auto; }
+            .input-group { display: flex; gap: 10px; margin-bottom: 20px; }
+            input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+            button { padding: 12px 24px; background: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; transition: 0.3s; }
+            button:hover { background: #0056b3; }
+            
+            table { width: 100%; border-collapse: collapse; margin-top: 30px; background: white; }
+            th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+            th { background-color: #f8f9fa; color: #333; }
+            .lotto-numbers { color: #d9534f; font-weight: bold; font-size: 1.1em; }
+            #statusMsg { font-weight: bold; margin-bottom: 10px; }
+        </style>
+    </head>
+    <body>
+    
+    <div class="card">
+        <h2>🎰 樂透大數據統計中心</h2>
+        
+        <div class="input-group">
+            <input type="number" id="groupCount" placeholder="輸入產生組數 (例如: 5)" min="1">
+            <button onclick="runLottoProcess()">開始模擬抽獎</button>
+        </div>
+        <div id="statusMsg"></div>
+    
+        <hr>
+    
+        <h3>近期統計結果 (Top 6)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>編號</th>
+                    <th>統計結果 (前 6 名出現最多數字)</th>
+                    <th>模擬次數</th>
+                    <th>時間</th>
+                </tr>
+            </thead>
+            <tbody id="historyBody">
+                </tbody>
+        </table>
+    </div>
+    
+    <script>
+        // 頁面載入時先執行一次查詢
+        window.onload = fetchHistory;
+    
+        // 執行抽獎邏輯
+        async function runLottoProcess() {
+            const groups = document.getElementById('groupCount').value;
+            const msg = document.getElementById('statusMsg');
+            if(!groups) { alert("請輸入組數"); return; }
+    
+            msg.innerText = "⏳ 大數據運算中...";
+            msg.style.color = "#666";
+    
+            try {
+                const response = await fetch(`/api/lotto/generate?groups=${groups}`, { method: 'POST' });
+                if (response.ok) {
+                    msg.innerText = "✅ 抽獎完成並已存入資料庫！";
+                    msg.style.color = "green";
+                    fetchHistory(); // 抽完立刻重新刷表格
+                }
+            } catch (error) {
+                msg.innerText = "❌ 連線失敗";
+            }
+        }
+    
+        // 從後端抓取歷史資料
+        async function fetchHistory() {
+            try {
+                const response = await fetch('/api/lotto/history');
+                if (!response.ok) {
+                    console.error("API 請求失敗:", response.status);
+                    document.getElementById('historyBody').innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">無法載入資料</td></tr>';
+                    return;
+                }
+                
+                const data = await response.json();
+                const tbody = document.getElementById('historyBody');
+                
+                if (!data || data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:#999;">尚無資料</td></tr>';
+                    return;
+                }
+                
+                // 反轉順序以顯示最新的在前面，並格式化顯示
+                tbody.innerHTML = data.slice().reverse().map(item => {
+                    // 格式化時間
+                    let timeStr = '-';
+                    if (item.createdAt) {
+                        const date = new Date(item.createdAt);
+                        timeStr = date.toLocaleString('zh-TW', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            second: '2-digit'
+                        });
+                    }
+                    
+                    // 格式化數字（移除可能的方括號）
+                    let numbers = item.numbers || '';
+                    numbers = numbers.replace(/[\[\]]/g, ''); // 移除方括號
+                    
+                    return `
+                        <tr>
+                            <td>${item.id || '-'}</td>
+                            <td class="lotto-numbers">${numbers}</td>
+                            <td>100,000 次</td>
+                            <td>${timeStr}</td>
+                        </tr>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error("無法載入歷史紀錄", error);
+                document.getElementById('historyBody').innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">載入錯誤: ' + error.message + '</td></tr>';
+            }
+        }
+    </script>
+    
+    </body>
+</html>

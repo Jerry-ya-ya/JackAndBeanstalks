@@ -1,0 +1,9 @@
+-- 清空舊資料（選用，視需求而定）
+-- TRUNCATE TABLE lotto RESTART IDENTITY;
+
+INSERT INTO lotto (numbers, created_at) VALUES 
+('3, 12, 18, 25, 33, 41', CURRENT_TIMESTAMP),
+('5, 8, 22, 30, 39, 42', CURRENT_TIMESTAMP),
+('1, 15, 20, 28, 35, 40', CURRENT_TIMESTAMP),
+('7, 14, 21, 29, 36, 42', CURRENT_TIMESTAMP),
+('2, 11, 19, 27, 34, 38', CURRENT_TIMESTAMP);

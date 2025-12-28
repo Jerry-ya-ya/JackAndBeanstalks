@@ -28,14 +28,16 @@ public class SecurityConfig {
                 // 靜態資源和頁面
                 .requestMatchers("/", "/register", "/login", "/register.html", "/login.html", "/test.html", "/home.html").permitAll()
                 .requestMatchers("/css/**", "/js/**", "/images/**", "/static/**", "/**.html").permitAll()
+                
                 // API 端點 - 必須在所有其他規則之前，確保 POST 請求不被攔截
                 .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers("/api/lotto/**").authenticated() // 樂透 API 需要登入
                 .anyRequest().authenticated() // 其他都要登入
             )
             .formLogin(form -> form
                 .loginPage("/login") // 明確指定登入頁面
                 .loginProcessingUrl("/perform_login") // 使用不同的 URL 避免與其他 POST 衝突
-                .defaultSuccessUrl("/test.html", true) // 登入成功後跳轉到測試頁面
+                .defaultSuccessUrl("/userhome.html", true) // 登入成功後跳轉到使用者頁面
                 .failureUrl("/login?error=true") // 登入失敗
                 .permitAll()
             )

@@ -283,3 +283,7 @@
 ## 2025/12/27 ##
 
 - Implemented Register, Password encode, Login, and home page.
+
+## 2025/12/28 ##
+
+- Implement Lotto feature and add data.sql for database initialization.

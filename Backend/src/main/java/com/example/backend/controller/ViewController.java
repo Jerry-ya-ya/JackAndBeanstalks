@@ -19,4 +19,14 @@ public class ViewController {
     public String registerPage() {
         return "forward:/register.html"; // 轉發到靜態資源
     }
+
+    @GetMapping("/userhome")
+    public String userhomePage() {
+        return "forward:/userhome.html"; // 轉發到靜態資源
+    }
+
+    @GetMapping("/lotto")
+    public String lottoPage() {
+        return "forward:/lotto.html"; // 轉發到靜態資源
+    }
 }
