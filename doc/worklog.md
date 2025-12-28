@@ -286,4 +286,6 @@
 
 ## 2025/12/28 ##
 
-- Implement Lotto feature and add data.sql for database initialization.
+- Implemented Lotto feature and add data.sql for database initialization.
+
+- Implemented data insertion, fixed the initialization of the data list before Hibernate's list construction, and improved UX.

@@ -88,11 +88,11 @@
         <section>
             <h2>會員登入</h2>
 
-            <div th:if="${param.error}" class="error">
+            <div id="errorMsg" class="error" style="display: none;">
                 帳號或密碼錯誤！
             </div>
 
-            <div th:if="${param.logout}" class="success">
+            <div id="logoutMsg" class="success" style="display: none;">
                 您已成功登出。
             </div>
 
@@ -112,5 +112,22 @@
                 <p>還沒有帳號嗎？ <a href="/register">按此註冊</a></p>
             </div>
         </section>
+        
+        <script>
+            // 檢查 URL 參數並顯示相應的訊息
+            window.onload = function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                
+                // 檢查是否有 error 參數
+                if (urlParams.get('error') === 'true' || urlParams.has('error')) {
+                    document.getElementById('errorMsg').style.display = 'block';
+                }
+                
+                // 檢查是否有 logout 參數
+                if (urlParams.get('logout') === 'true' || urlParams.has('logout')) {
+                    document.getElementById('logoutMsg').style.display = 'block';
+                }
+            };
+        </script>
     </body>
 </html>
