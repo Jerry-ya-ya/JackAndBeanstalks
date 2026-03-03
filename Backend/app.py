@@ -25,17 +25,17 @@ from flask_jwt_extended import JWTManager
 # 匯入 blueprint
 from routes.auth.auth import auth_bp
 from routes.auth.email import email_bp, init_mail
-from routes.todo import todo_bp
-from routes.me import me_bp
-from routes.avatar import avatar_bp
-from routes.square import square_bp
-from routes.changepassword import changepassword_bp
+from routes.todo.todo import todo_bp
+from routes.auth.me import me_bp
+from routes.auth.avatar import avatar_bp
+from routes.post.square import square_bp
+from routes.auth.changepassword import changepassword_bp
 from routes.admin.admin import admin_bp
 from routes.admin.promote import promote_bp
-from routes.test import test_utils
-from routes.friend import friend_bp
-from routes.crawler import crawler_bp
-from routes.post import post_bp
+from routes.test.test import test_utils
+from routes.auth.friend import friend_bp
+from routes.crawler.crawler import crawler_bp
+from routes.post.post import post_bp
 
 def setup_database(app, retries=5, wait=2):
     db.init_app(app)
@@ -143,10 +143,6 @@ def create_app():
     # 在開發和測試環境掛載測試工具
     if env in ['development', 'test']:
         app.register_blueprint(test_utils, url_prefix='/api')
-
-    @app.route("/healthz", methods=["GET"])
-    def healthz():
-        return "ok", 200
 
     return app
 

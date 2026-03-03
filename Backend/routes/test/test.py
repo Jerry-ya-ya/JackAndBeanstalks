@@ -1,4 +1,3 @@
-# app/routes/test_utils.py
 from flask import Blueprint, request
 from models import db, User
 
@@ -10,7 +9,6 @@ def clear_db():
     db.session.commit()
     return {'status': 'cleared'}
 
-# /api/test/verify-user
 @test_utils.route('/test/verify-user', methods=['POST'])
 def verify_user():
     data = request.json
