@@ -252,6 +252,10 @@
 
 - Update content on the Home page.
 
-## 2026/03/02 ##
+## 2026/03/03 ##
 
-- 
+- Refactored the backend structure to centralize route management, and fixed an issue where the super admin could not be correctly identified during registration.
+
+## 2026/03/03 ##
+
+- Implemented backend test scripts to the testing environment, and separated the development, testing, and production environment groups.

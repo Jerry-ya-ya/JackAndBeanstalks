@@ -96,7 +96,7 @@ def create_app():
     # 將 URL 設定加入 app config
     app.config['FRONTEND_URL'] = frontend_url
     app.config['API_URL'] = api_url
-    
+    print(f"")
     print(f"🌐 前端 URL: {frontend_url}")
     print(f"🔗 API URL: {api_url}")
 
