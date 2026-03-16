@@ -259,3 +259,7 @@
 ## 2026/03/03 ##
 
 - Implemented backend test scripts to the testing environment, and separated the development, testing, and production environment groups.
+
+## 2026/03/16 ##
+
+- Implemented startup, shutdown, pause, and rebuild scripts for the three application environments.
