@@ -1,91 +1,156 @@
-# Connecting the Department of Mathematics – A Social Hub
-A web-based platform developed by Jerry Zheng, designed to show the work of our team and become a social platform for students and teachers.
+<h1 align="center">🌐 Connecting the Department of Mathematics – A Social Hub</h1>
 
-## 🚀 Features
-- 🐦‍🔥 **Angular** – Single Page Application (SPA) provides smooth page transitions without the need for full page reloads.
-- 🔒 **Account Verification** – Gmail-based registration with email confirmation to ensure user authenticity.
-- 🦎 **Web-crawler** - Schedule the crawler to make it fetch data every 15 minutes.
+<p align="center">
+  A web-based platform developed by <strong>Jerry Zheng</strong>, designed to showcase our team's work
+  and build a collaborative social space for both students and faculty.
+</p>
 
-## 📜 Pages
-- 🏠 **Home** - Showcase Our Team's Vision, Recruitment Requirements, and Goals.
-- 👤 **Team member** - Show the key members of our team.
-- 🖼️ **Showcase** – (Planned) A dynamic display of team projects, competition records, and individual achievements.
-- 📬 **Contact & Join** – (Planned) Centralized page for reaching out and joining the team.
-- 🎨 **Customizable 3D Exhibit View** – (Planned) Showcase projects with an interactive 3D gallery using Three.js.
-- 💃 **User square** - Display all user profiles in the User Square.
-- 📸 **Hacknews Crawler** – Periodically fetches and displays recent posts from Hacker News.
-- 🧑‍💻 **Admin Panel** – (Planned) Role-based access to manage content and settings.
+<p align="center">
+  <img alt="Angular" src="https://img.shields.io/badge/Frontend-Angular-red?style=for-the-badge&logo=angular" />
+  <img alt="Flask" src="https://img.shields.io/badge/Backend-Flask-black?style=for-the-badge&logo=flask" />
+  <img alt="PostgreSQL" src="https://img.shields.io/badge/Database-PostgreSQL-blue?style=for-the-badge&logo=postgresql" />
+  <img alt="Docker" src="https://img.shields.io/badge/DevOps-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" />
+</p>
 
-## 🔧 Tech Stack
+<hr>
 
-| Layer        | Technology                     
-|--------------|--------------------------------
-| Frontend     | Angular, HTML/CSS, TypeScript
-| Backend      | Flask (Python) + Nginx
-| Database     | PostgreSQL
-| Others       | SQLAlchemy, JWT, Docker, Nginx
+<h2>🚀 Features</h2>
 
-## 🧱 Project Structure
-```
-├── frontend/                 # Angular frontend
-├── backend/                  # Flask backend with factory pattern
-├── docker-compose.yml        # Production configuration
-├── docker-compose.dev.yml    # Development configuration with hot reload
-└── README.md                 # You're here!
-```
+<ul>
+  <li>
+    <strong>Angular (SPA)</strong><br>
+    Built as a Single Page Application to provide smooth navigation without full page reloads.
+  </li>
+  <br>
+  <li>
+    <strong>Flask (Backend API)</strong><br>
+    A lightweight and extensible Python microframework, ideal for building RESTful APIs and web services.
+  </li>
+  <br>
+  <li>
+    <strong>Dockerized Environment</strong><br>
+    This project uses Docker to manage development, testing, and production environments efficiently.
+  </li>
+</ul>
 
-# 🐳 Fullstack App with Docker (Angular + Flask + PostgreSQL)
-This project uses Docker to manage both development and production environments for a fullstack web application built with Angular (frontend), Flask (backend), and PostgreSQL (database).
+<hr>
 
-## 🔐 Environment Variables
-Create a .env file in the root folder.
-Then copy .env.example to .env and update the values as needed.
+<h2>🏗️ Tech Stack</h2>
 
-## 🔁 Development Mode (with hot reload)
-Ideal for active development and debugging.
-- Angular uses ng serve with live reload.
-- Flask uses flask run --reload.
-- Source code is mounted via volumes.
-- PostgreSQL runs in the same container network.
+<table>
+  <thead>
+    <tr>
+      <th>Layer</th>
+      <th>Technology</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Frontend</td>
+      <td>Angular</td>
+    </tr>
+    <tr>
+      <td>Backend</td>
+      <td>Flask</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td>PostgreSQL</td>
+    </tr>
+    <tr>
+      <td>DevOps</td>
+      <td>Docker + Shell Scripts</td>
+    </tr>
+  </tbody>
+</table>
 
-```bash
-docker-compose -f docker-compose.dev.yml up --build
-```
+<hr>
 
-To stop:
-```bash
-docker-compose -f docker-compose.dev.yml down -v
-```
+<h2>🐳 Docker Setup</h2>
 
-## 🚀 Production Mode (for deployment)
+<p>
+  This project uses Docker to manage a full-stack web application environment, including:
+</p>
 
-Builds and runs optimized production images.
-- Angular is served as static files through Nginx.
-- Flask is served via Gunicorn.
-- PostgreSQL runs with persistent volume.
-- No code reloading. Use this for deployment or testing final builds.
+<ul>
+  <li>Frontend (Angular)</li>
+  <li>Backend (Flask)</li>
+  <li>Database (PostgreSQL)</li>
+</ul>
 
-```bash
-docker-compose up --build -d
-```
+<p>
+  It supports multiple environments for CI/CD workflows:
+</p>
 
-To stop:
+<ul>
+  <li>🛠️ Development</li>
+  <li>🧪 Testing</li>
+  <li>🚀 Production</li>
+</ul>
 
-```bash
-docker-compose down
-```
+<hr>
 
-## 🧪 Useful Commands
-| Task             | Command                               |
-| ---------------- | ------------------------------------- |
-| Check containers | `docker ps`                           |
-| Enter container  | `docker exec -it flask-dev /bin/bash` |
-| Rebuild images   | `docker-compose build --no-cache`     |
-| Reset DB volume  | `docker-compose down -v`              |
+<h2>🔧 Getting Started</h2>
 
-# 🛑 Notes
-- Don't commit .env, .venv/, or node_modules/.
+<p>Before running this project locally, please make sure you have installed:</p>
 
-- Add those to .gitignore in both frontend and backend folders.
+<ul>
+  <li>Docker</li>
+  <li>Git</li>
+</ul>
 
-- In production mode, do not use hot reload or volume mounts.
+<p>If you want to develop the frontend, you will also need:</p>
+
+<ul>
+  <li>Node.js</li>
+  <li>npm</li>
+</ul>
+
+<p>
+  These tools help provide a more convenient and consistent development environment for all contributors.
+</p>
+
+<hr>
+
+<h2>⚙️ Development Workflow</h2>
+
+<p>We provide three environments for CI/CD:</p>
+
+<pre><code>1dev
+2test
+3prod</code></pre>
+
+<p>Each environment includes the following scripts:</p>
+
+<pre><code>up.sh        # Start services
+down.sh      # Remove containers
+stop.sh      # Stop running containers
+rebuild.sh   # Rebuild containers</code></pre>
+
+<hr>
+
+<h2>▶️ Usage</h2>
+
+<p>Use the following pattern to run a script:</p>
+
+<pre><code>./scripts/&lt;environment&gt;/&lt;script&gt;</code></pre>
+
+<p>Example:</p>
+
+<pre><code>./scripts/1dev/up.sh</code></pre>
+
+<hr>
+
+<h2>💡 Notes</h2>
+
+<ul>
+  <li>Docker helps ensure the project runs consistently across different machines.</li>
+  <li>npm makes frontend development and dependency management easier.</li>
+  <li>The project is designed with scalability in mind and can continue evolving into a larger web application.</li>
+</ul>
+
+<hr>
+
+<p align="center">
+  <em>Built to connect ideas, people, and the Department of Mathematics.</em>
+</p>

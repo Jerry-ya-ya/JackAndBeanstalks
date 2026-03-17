@@ -267,3 +267,5 @@
 ## 2026/03/17 ##
 
 - Centralized backend environment management by consolidating environment variable files into a single file.
+
+- Update content on the README.md page.
