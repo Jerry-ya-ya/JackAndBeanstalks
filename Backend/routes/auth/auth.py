@@ -72,7 +72,7 @@ def register():
         'require_verification': True,  # 告訴前端需要驗證
         'role': role,
         'created_at': created_at.isoformat()
-    })
+    }), 201
 
 # 登入功能
 @auth_bp.route('/login', methods=['POST'])

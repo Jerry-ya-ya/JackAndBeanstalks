@@ -26,7 +26,6 @@ services:
       - "5000:5000"
     env_file:
       - .env
-      - .env.2test
     networks:
       - mynet
 
@@ -43,7 +42,6 @@ services:
       - /app/node_modules
     env_file:
       - .env
-      - .env.2test
     ports:
       - "4100:4100"
     networks:
@@ -58,7 +56,6 @@ services:
       DATABASE_URL: ${DATABASE_URL}
     env_file:
       - .env
-      - .env.2test
     volumes:
       - .:/app
     working_dir: /app
@@ -91,7 +88,6 @@ services:
       - PYTHONPATH=/app/Backend
     env_file:
       - .env
-      - .env.2test
     depends_on:
       - redis
     container_name: celery-worker-test
@@ -106,7 +102,7 @@ services:
     environment:
       - PYTHONPATH=/app/Backend
     env_file:
-      - .env.2test
+      - .env
     depends_on:
       - redis
       - celery_worker

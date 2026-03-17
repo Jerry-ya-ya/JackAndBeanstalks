@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from flask import Flask
-from config import Config
+from config import DevelopmentConfig, TestingConfig, ProductionConfig
 
 from flask_cors import CORS
 
@@ -48,17 +48,17 @@ def setup_database(app, retries=5, wait=2):
                 # 延遲導入避免循環導入
                 from celery_worker.crawler.logic import init_schedule_state
                 init_schedule_state()
-                print("✅ 資料庫初始化成功")
+                print("資料庫初始化成功")
                 return
         except OperationalError as e:
-            print(f"🔁 第 {i+1} 次重試：資料庫未就緒，等待 {wait} 秒...")
+            print(f"第 {i+1} 次重試：資料庫未就緒，等待 {wait} 秒...")
             time.sleep(wait)
         except Exception as e:
-            print(f"⚠️ 初始化資料庫時發生錯誤：{e}")
+            print(f"初始化資料庫時發生錯誤：{e}")
             time.sleep(wait)
 
     # 不要讓應用退出，改為背景持續重試
-    print("⚠️ 多次重試後仍無法初始化資料庫，將在背景持續重試，不阻塞啟動")
+    print("多次重試後仍無法初始化資料庫，將在背景持續重試，不阻塞啟動")
 
     import threading
 
@@ -71,23 +71,32 @@ def setup_database(app, retries=5, wait=2):
                     db.create_all()
                     from celery_worker.crawler.logic import init_schedule_state
                     init_schedule_state()
-                    print("✅ 背景資料庫初始化成功")
+                    print("背景資料庫初始化成功")
                     return
             except Exception as e:
-                print(f"🔁 背景第 {attempt} 次重試失敗：{e}，等待 {wait} 秒...")
+                print(f"背景第 {attempt} 次重試失敗：{e}，等待 {wait} 秒...")
                 time.sleep(wait)
 
     threading.Thread(target=background_retry, daemon=True).start()
 
-def create_app():
+config_map = {
+    "development": DevelopmentConfig,
+    "testing": TestingConfig,
+    "production": ProductionConfig,
+}
+
+def create_app(config_name="none"):
     app = Flask(__name__)
-    app.config.from_object(Config)
+    
+    if config_name == "none":
+        config_name = os.getenv('FLASK_ENV', 'development')
+    app.config.from_object(config_map[config_name])
     
     # 初始化配置（設定資料庫連線等）
-    Config.init_app(app)
+    config_map[config_name].init_app(app)
 
     # 獲取環境變數
-    env = os.getenv('FLASK_ENV', 'development')
+    env = os.getenv('FLASK_ENV', config_name)
     
     # 設定 URL 相關環境變數
     frontend_url = os.getenv("FRONTEND_URL", "http://localhost:4200")
@@ -97,22 +106,18 @@ def create_app():
     app.config['FRONTEND_URL'] = frontend_url
     app.config['API_URL'] = api_url
     print(f"")
-    print(f"🌐 前端 URL: {frontend_url}")
-    print(f"🔗 API URL: {api_url}")
+    print(f"config_name: {config_name}")
+    print(f"env: {env}")
+    print(f"前端 URL: {frontend_url}")
+    print(f"API URL: {api_url}")
 
     # 顯示 Redis/Celery 連線資訊
     redis_url_env = os.getenv('REDIS_URL', '')
     celery_broker_url = app.config.get('CELERY_BROKER_URL')
     celery_result_backend = app.config.get('CELERY_RESULT_BACKEND')
-    print(f"🧰 REDIS_URL (env): {redis_url_env or '(not set)'}")
-    print(f"📬 Celery Broker URL: {celery_broker_url}")
-    print(f"📦 Celery Result Backend: {celery_result_backend}")
-    
-    # 資料庫連線由配置檔案自動處理
-    if env == 'test':
-        print("🧪 測試環境：使用 SQLite 資料庫")
-    else:
-        print(f"🗄️ 資料庫連線：{app.config['SQLALCHEMY_DATABASE_URI']}")
+    print(f"REDIS_URL (env): {redis_url_env or '(not set)'}")
+    print(f"Celery Broker URL: {celery_broker_url}")
+    print(f"Celery Result Backend: {celery_result_backend}")
     
     # 初始化資料庫
     setup_database(app)

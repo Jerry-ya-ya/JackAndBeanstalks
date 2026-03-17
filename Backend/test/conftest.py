@@ -19,16 +19,8 @@ def app():
     os.environ["FLASK_ENV"] = "testing"
     os.environ["APP_ENV"] = "testing"
     
-    app = create_app()
-
+    app = create_app(config_name="testing")
     app.register_blueprint(health_bp, url_prefix='/api')
-
-    # 如果你的 create_app 需要參數（常見：create_app("testing")）
-    # app = create_app("testing")
-
-    app.config.update(
-        TESTING=True,
-    )
 
     return app
 
