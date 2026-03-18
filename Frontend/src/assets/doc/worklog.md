@@ -269,3 +269,7 @@
 - Centralized backend environment management by consolidating environment variable files into a single file.
 
 - Update content on the README.md page.
+
+## 2026/03/18 ##
+
+- Update angular kits and angular kits update steps part in README.md.
