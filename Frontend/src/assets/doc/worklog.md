@@ -258,13 +258,15 @@
 
 ## 2026/03/03 ##
 
-- Implemented backend test scripts to the testing environment, and separated the development, testing, and production environment groups.
+- Implemented backend test scripts with pytest to the testing environment, and separated the development, testing, and production environment groups.
 
 ## 2026/03/16 ##
 
 - Implemented startup, shutdown, pause, and rebuild scripts for the three application environments.
 
 ## 2026/03/17 ##
+
+- Implemented pytest tests for the user registration feature.
 
 - Centralized backend environment management by consolidating environment variable files into a single file.
 
@@ -273,3 +275,7 @@
 ## 2026/03/18 ##
 
 - Update angular kits and angular kits update steps part in README.md.
+
+## 2026/03/20 ##
+
+- Implemented pytest tests for the superadmin registration feature and the registration email sending feature.

@@ -141,6 +141,46 @@ rebuild.sh   # Rebuild containers</code></pre>
 
 <hr>
 
+<h2>▶️ Angular Kit Update</h2>
+
+<p>
+  Follow the steps below to update Angular and its related packages in the project.
+</p>
+
+<p><strong>Step 1: Navigate to the frontend directory</strong></p>
+
+<pre><code>cd frontend</code></pre>
+
+<p><strong>Step 2: Check outdated packages</strong></p>
+
+<pre><code>npm outdated</code></pre>
+
+<p>
+  This command will display all packages along with their current and latest available versions.
+</p>
+
+<p><strong>Step 3: Update Angular and dependencies</strong></p>
+
+<pre><code>npx ng update</code></pre>
+
+<pre><code>npm update</code></pre>
+
+<p><strong>Step 4: Clean and reinstall dependencies</strong></p>
+
+<pre><code>rm -rf node_modules package-lock.json</code></pre>
+
+<pre><code>npm install</code></pre>
+
+<p><strong>Step 5: Verify updates</strong></p>
+
+<pre><code>npm outdated</code></pre>
+
+<p>
+  Run this command again to ensure all packages have been successfully updated.
+</p>
+
+<hr>
+
 <h2>💡 Notes</h2>
 
 <ul>

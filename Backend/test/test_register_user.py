@@ -1,7 +1,7 @@
 def test_register_success(client):
     payload = {
-        "username": "testuser",
-        "email": "test@example.com",
+        "username": "testregisteruser",
+        "email": "testregisteruser@example.com",
         "password": "123456"
     }
 
