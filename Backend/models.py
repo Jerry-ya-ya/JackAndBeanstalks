@@ -61,11 +61,6 @@ class FriendRequest(db.Model):
     from_user = db.relationship('User', foreign_keys=[from_user_id], backref='sent_requests')
     to_user = db.relationship('User', foreign_keys=[to_user_id], backref='received_requests')
 
-    from_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    to_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    from_user = db.relationship('User', foreign_keys=[from_user_id], backref='sent_requests')
-    to_user = db.relationship('User', foreign_keys=[to_user_id], backref='received_requests')
-
 # 定義 Todo 模型
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)

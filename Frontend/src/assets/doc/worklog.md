@@ -279,3 +279,7 @@
 ## 2026/03/20 ##
 
 - Implemented pytest tests for the superadmin registration feature and the registration email sending feature.
+
+## 2026/07/03 ##
+
+- Fix backend admin checks and update frontend images.

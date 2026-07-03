@@ -37,8 +37,12 @@ from routes.auth.friend import friend_bp
 from routes.crawler.crawler import crawler_bp
 from routes.post.post import post_bp
 
-def setup_database(app, retries=5, wait=2):
+def setup_database(app, retries=5, wait=2, create_schema=True):
     db.init_app(app)
+
+    if not create_schema:
+        print("正式環境略過自動 db.create_all()，請使用 migration 管理 schema")
+        return
 
     for i in range(retries):
         try:
@@ -120,7 +124,7 @@ def create_app(config_name="none"):
     print(f"Celery Result Backend: {celery_result_backend}")
     
     # 初始化資料庫
-    setup_database(app)
+    setup_database(app, create_schema=env != 'production')
 
     # 初始化 JWT
     JWTManager(app)

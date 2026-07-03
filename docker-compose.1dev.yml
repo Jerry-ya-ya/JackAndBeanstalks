@@ -1,4 +1,4 @@
-name: jackandbeanstalk-dev
+name: cmenstudio-dev
 services:
   frontend:
     container_name: angular-dev
