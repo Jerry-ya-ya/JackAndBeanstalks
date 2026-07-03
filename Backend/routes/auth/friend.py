@@ -1,6 +1,7 @@
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from models import db, User, FriendRequest
 from flask import request, jsonify, Blueprint
+from routes.auth.utils import get_current_user_from_token
 
 friend_bp = Blueprint('friend_bp', __name__)
 
@@ -28,8 +29,9 @@ friend_bp = Blueprint('friend_bp', __name__)
 @friend_bp.route('/friends/remove/<int:friend_id>', methods=['DELETE'])
 @jwt_required()
 def remove_friend(friend_id):
-    identity = get_jwt_identity()
-    current_user = User.query.filter_by(username=identity).first()
+    current_user = get_current_user_from_token()
+    if not current_user:
+        return jsonify({'error': 'User not found'}), 404
     friend = User.query.get(friend_id)
 
     if not friend:
@@ -45,8 +47,9 @@ def remove_friend(friend_id):
 @friend_bp.route('/friends/list', methods=['GET'])
 @jwt_required()
 def get_friends():
-    identity = get_jwt_identity()
-    user = User.query.filter_by(username=identity).first()
+    user = get_current_user_from_token()
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
     
     return jsonify([
         {'id': f.id, 'username': f.username, 'email': f.email}
@@ -56,11 +59,14 @@ def get_friends():
 @friend_bp.route('/friends/request', methods=['POST'])
 @jwt_required()
 def send_friend_request():
-    identity = get_jwt_identity()
-    current_user = User.query.filter_by(username=identity).first()
+    current_user = get_current_user_from_token()
+    if not current_user:
+        return jsonify({'error': 'User not found'}), 404
 
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
     to_username = data.get('to_username')
+    if not to_username:
+        return jsonify({'error': '請填寫使用者名稱'}), 400
     to_user = User.query.filter_by(username=to_username).first()
 
     if not to_user or to_user == current_user:
@@ -85,8 +91,9 @@ def send_friend_request():
 @friend_bp.route('/friends/requests', methods=['GET'])
 @jwt_required()
 def get_friend_requests():
-    identity = get_jwt_identity()
-    current_user = User.query.filter_by(username=identity).first()
+    current_user = get_current_user_from_token()
+    if not current_user:
+        return jsonify({'error': 'User not found'}), 404
 
     requests = FriendRequest.query.filter_by(to_user_id=current_user.id).all()
     return jsonify([
@@ -97,8 +104,9 @@ def get_friend_requests():
 @friend_bp.route('/friends/accept/<int:request_id>', methods=['POST'])
 @jwt_required()
 def accept_friend_request(request_id):
-    identity = get_jwt_identity()
-    current_user = User.query.filter_by(username=identity).first()
+    current_user = get_current_user_from_token()
+    if not current_user:
+        return jsonify({'error': 'User not found'}), 404
 
     req = FriendRequest.query.get(request_id)
     if not req or req.to_user_id != current_user.id:
@@ -118,8 +126,9 @@ def accept_friend_request(request_id):
 @friend_bp.route('/friends/reject/<int:request_id>', methods=['POST'])
 @jwt_required()
 def reject_friend_request(request_id):
-    identity = get_jwt_identity()
-    current_user = User.query.filter_by(username=identity).first()
+    current_user = get_current_user_from_token()
+    if not current_user:
+        return jsonify({'error': 'User not found'}), 404
 
     req = FriendRequest.query.get(request_id)
     if not req or req.to_user_id != current_user.id:

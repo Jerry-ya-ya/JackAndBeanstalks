@@ -283,3 +283,5 @@
 ## 2026/07/03 ##
 
 - Fix backend admin checks and update frontend images.
+
+- Harden backend auth identity and request validation.

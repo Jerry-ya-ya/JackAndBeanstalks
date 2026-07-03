@@ -1,17 +1,19 @@
 from flask import Blueprint, request, jsonify, abort
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from models import db, Post, User
-from datetime import datetime
+from flask_jwt_extended import jwt_required
+from models import db, Post
+from routes.auth.utils import get_current_user_from_token
 
 post_bp = Blueprint('post', __name__)
 
 @post_bp.route('/post', methods=['POST'])
 @jwt_required()
 def create_post():
-    username = get_jwt_identity()
-    user = User.query.filter_by(username=username).first()
-    data = request.get_json()
-    content = data.get('content')
+    user = get_current_user_from_token()
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    data = request.get_json(silent=True) or {}
+    content = data.get('content', '').strip()
 
     if not content:
         return jsonify({'error': '內容不能為空'}), 400
@@ -47,8 +49,9 @@ def get_all_posts():
 @post_bp.route('/post/me', methods=['GET'])
 @jwt_required()
 def get_my_posts():
-    username = get_jwt_identity()
-    user = User.query.filter_by(username=username).first()
+    user = get_current_user_from_token()
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
     posts = Post.query.filter_by(user_id=user.id).order_by(Post.created_at.desc()).all()
 
     return jsonify([
@@ -60,15 +63,16 @@ def get_my_posts():
 @post_bp.route('/post/<int:post_id>', methods=['PUT'])
 @jwt_required()
 def update_post(post_id):
-    username = get_jwt_identity()
-    user = User.query.filter_by(username=username).first()
+    user = get_current_user_from_token()
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
 
     post = Post.query.get_or_404(post_id)
     if post.user_id != user.id:
         abort(403, description='無權限修改此貼文')
 
-    data = request.get_json()
-    content = data.get('content')
+    data = request.get_json(silent=True) or {}
+    content = data.get('content', '').strip()
     if not content:
         return jsonify({'error': '內容不能為空'}), 400
 
@@ -80,8 +84,9 @@ def update_post(post_id):
 @post_bp.route('/post/<int:post_id>', methods=['DELETE'])
 @jwt_required()
 def delete_post(post_id):
-    username = get_jwt_identity()
-    user = User.query.filter_by(username=username).first()
+    user = get_current_user_from_token()
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
 
     post = Post.query.get_or_404(post_id)
     if post.user_id != user.id:

@@ -1,13 +1,7 @@
 from functools import wraps
-from flask_jwt_extended import verify_jwt_in_request, get_jwt_identity
+from flask_jwt_extended import verify_jwt_in_request
 from flask import jsonify
-from models import User
-
-def get_current_user_from_token():
-    identity = get_jwt_identity()
-    if not identity:
-        return None
-    return User.query.filter_by(username=identity).first()
+from routes.auth.utils import get_current_user_from_token
 
 def admin_required(fn):
     @wraps(fn)

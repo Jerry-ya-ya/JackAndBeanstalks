@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from models import User
 from models import db
 from routes.admin.decorators import superadmin_required
-from flask_jwt_extended import get_jwt_identity
+from routes.auth.utils import get_current_user_from_token
 
 promote_bp = Blueprint('promote', __name__)
 
@@ -49,13 +49,15 @@ def promote_user(user_id):
 @promote_bp.route('/superadmin/demote/<int:user_id>', methods=['PUT'])
 @superadmin_required
 def demote_user(user_id):
-    acting_username = get_jwt_identity()  # 直接取得目前操作者的 username
+    acting_user = get_current_user_from_token()
+    if not acting_user:
+        return jsonify({'error': '使用者不存在'}), 401
 
     user = User.query.get(user_id)
     if not user:
         return jsonify({'error': '用戶不存在'}), 404
 
-    if user.username == acting_username:
+    if user.id == acting_user.id:
         return jsonify({'error': '不能降級自己'}), 400
 
     if user.role != 'admin':

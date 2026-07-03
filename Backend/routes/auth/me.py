@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from models import db, User
+from routes.auth.utils import get_current_user_from_token
 
 me_bp = Blueprint('me', __name__)
 
@@ -8,8 +9,7 @@ me_bp = Blueprint('me', __name__)
 @me_bp.route('/me', methods=['GET'])
 @jwt_required()
 def get_current_user():
-    current_identity = get_jwt_identity()
-    user = User.query.filter_by(username=current_identity).first()
+    user = get_current_user_from_token()
 
     if not user:
         return jsonify({'error': 'User not found'}), 404
@@ -28,13 +28,12 @@ def get_current_user():
 @me_bp.route('/me', methods=['PUT'])
 @jwt_required()
 def update_current_user():
-    current_identity = get_jwt_identity()
-    user = User.query.filter_by(username=current_identity).first()
+    user = get_current_user_from_token()
 
     if not user:
         return jsonify({'error': 'User not found'}), 404
 
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
     user.email = data.get('email', user.email)
     user.nickname = data.get('nickname', user.nickname)
     db.session.commit()

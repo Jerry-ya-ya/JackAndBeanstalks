@@ -13,17 +13,18 @@ auth_bp = Blueprint('auth', __name__)
 # 註冊新用戶
 @auth_bp.route('/register', methods=['POST'])
 def register():
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
 
     username = data.get('username')
     password = data.get('password')
-    hashed_pw = generate_password_hash(password)
     email = data.get('email')
     nickname = data.get('nickname')
     created_at = datetime.now()
 
     if not all([username, password, email]):
         return jsonify({'error': '請填寫所有必填欄位'}), 400
+
+    hashed_pw = generate_password_hash(password)
 
     if User.query.filter_by(username=username).first():
         return jsonify({'error': 'Username already exists'}), 400
@@ -77,11 +78,13 @@ def register():
 # 登入功能
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
 
     username = data.get('username')
     password = data.get('password')
-    role = data.get('role')
+
+    if not all([username, password]):
+        return jsonify({'error': '請填寫帳號和密碼'}), 400
     
     user = User.query.filter_by(username=username).first()
         
@@ -91,10 +94,12 @@ def login():
     if not user.email_verified:
         return jsonify({'error': '請先驗證你的 Email'}), 403  # 👈 阻止登入
 
-    token = create_access_token(identity=username, additional_claims={'role': user.role})
+    token = create_access_token(identity=str(user.id), additional_claims={'role': user.role})
     return jsonify({
         'access_token': token,
         'is_verified': True,  # 明確標示用戶已驗證
         'require_verification': False,  # 告訴前端不需要驗證
         'role': user.role,
+        'username': user.username,
+        'user_id': user.id,
     })

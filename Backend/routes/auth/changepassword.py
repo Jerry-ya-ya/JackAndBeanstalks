@@ -1,22 +1,25 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User
+from models import db
+from routes.auth.utils import get_current_user_from_token
 
 changepassword_bp = Blueprint('changepassword', __name__)
 
 @changepassword_bp.route('/changepassword', methods=['PUT'])
 @jwt_required()
 def changepassword():
-    current_identity = get_jwt_identity()
-    user = User.query.filter_by(username=current_identity).first()
+    user = get_current_user_from_token()
 
     if not user:
         return jsonify({'error': 'User not found'}), 404
 
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
     old_pw = data.get('old_password')
     new_pw = data.get('new_password')
+
+    if not all([old_pw, new_pw]):
+        return jsonify({'error': '請填寫舊密碼和新密碼'}), 400
 
     if not check_password_hash(user.password, old_pw):
         return jsonify({'error': '舊密碼錯誤'}), 400

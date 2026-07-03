@@ -52,18 +52,23 @@ def verify_email(token):
     db.session.commit()
 
     # 生成 access token
-    access_token = create_access_token(identity=user.username)
+    access_token = create_access_token(identity=str(user.id), additional_claims={'role': user.role})
     
     return jsonify({
         'message': 'Email 驗證成功',
         'access_token': access_token,
-        'username': user.username
+        'username': user.username,
+        'role': user.role,
+        'user_id': user.id
     })
 
 @email_bp.route('/resendverification', methods=['POST'])
 def resend_verification():
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
     email = data.get('email')
+
+    if not email:
+        return jsonify({'error': '請填寫 Email'}), 400
 
     user = User.query.filter_by(email=email).first()
     if not user:

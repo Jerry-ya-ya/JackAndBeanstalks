@@ -1,17 +1,19 @@
 import os
 
 from flask import Blueprint, request, jsonify, current_app, send_from_directory
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from werkzeug.utils import secure_filename
-from models import db, User
+from models import db
+from routes.auth.utils import get_current_user_from_token
 
 avatar_bp = Blueprint('avatar', __name__)
 
 @avatar_bp.route('/avatar', methods=['POST'])
 @jwt_required()
 def upload_avatar():
-    current_identity = get_jwt_identity()
-    user = User.query.filter_by(username=current_identity).first()
+    user = get_current_user_from_token()
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
 
     # 設定上傳檔案的類型
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
