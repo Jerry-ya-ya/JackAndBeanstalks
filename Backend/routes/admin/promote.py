@@ -13,15 +13,13 @@ def get_users():
     sort_by = request.args.get('sort_by', 'id')
     order = request.args.get('order', 'asc')
 
-    # 決定排序欄位
-    if sort_by == 'id':
-        sort_column = User.id
-    elif sort_by == 'created_at':
-        sort_column = User.created_at
-    elif sort_by == 'updated_at':
-        sort_column = User.updated_at
-    else:
-        sort_column = User.id  # fallback
+    sort_columns = {
+        'id': User.id,
+        'created_at': User.created_at,
+        'username': User.username,
+        'role': User.role,
+    }
+    sort_column = sort_columns.get(sort_by, User.id)
 
     # 排序方向
     if order == 'desc':

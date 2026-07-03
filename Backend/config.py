@@ -26,7 +26,8 @@ class BaseConfig:
 
     @classmethod
     def init_app(cls, app):
-        pass
+        if not app.config.get("JWT_SECRET_KEY") and not app.config.get("TESTING"):
+            raise RuntimeError("JWT_SECRET_KEY must be set")
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True

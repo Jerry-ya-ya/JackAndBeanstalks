@@ -285,3 +285,5 @@
 - Fix backend admin checks and update frontend images.
 
 - Harden backend auth identity and request validation.
+
+- Fix profile email validation, post pagination, and production config.

@@ -5,6 +5,33 @@ from routes.auth.utils import get_current_user_from_token
 
 post_bp = Blueprint('post', __name__)
 
+def get_pagination_args(default_per_page=20, max_per_page=50):
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', default_per_page, type=int)
+
+    page = max(page or 1, 1)
+    per_page = min(max(per_page or default_per_page, 1), max_per_page)
+    return page, per_page
+
+def serialize_post(post, include_user=False):
+    data = {
+        'id': post.id,
+        'content': post.content,
+        'created_at': post.created_at.strftime('%Y-%m-%d %H:%M'),
+        'user_id': post.user_id,
+    }
+
+    if include_user:
+        data['user'] = {
+            'id': post.user.id,
+            'username': post.user.username,
+            'nickname': post.user.nickname,
+            'avatar_url': post.user.avatar_url,
+            'role': post.user.role
+        }
+
+    return data
+
 @post_bp.route('/post', methods=['POST'])
 @jwt_required()
 def create_post():
@@ -27,24 +54,16 @@ def create_post():
 @post_bp.route('/post', methods=['GET'])
 @jwt_required()
 def get_all_posts():
-    posts = Post.query.order_by(Post.created_at.desc()).all()
+    page, per_page = get_pagination_args()
+    posts = (
+        Post.query
+        .order_by(Post.created_at.desc())
+        .limit(per_page)
+        .offset((page - 1) * per_page)
+        .all()
+    )
 
-    return jsonify([
-        {
-            'id': p.id, 
-            'content': p.content, 
-            'created_at': p.created_at.strftime('%Y-%m-%d %H:%M'),
-            'user_id': p.user_id,
-            'user': {
-                'id': p.user.id,
-                'username': p.user.username,
-                'nickname': p.user.nickname,
-                'avatar_url': p.user.avatar_url,
-                'role': p.user.role
-            }
-        }
-        for p in posts
-    ])
+    return jsonify([serialize_post(post, include_user=True) for post in posts])
 
 @post_bp.route('/post/me', methods=['GET'])
 @jwt_required()
@@ -52,12 +71,17 @@ def get_my_posts():
     user = get_current_user_from_token()
     if not user:
         return jsonify({'error': 'User not found'}), 404
-    posts = Post.query.filter_by(user_id=user.id).order_by(Post.created_at.desc()).all()
+    page, per_page = get_pagination_args()
+    posts = (
+        Post.query
+        .filter_by(user_id=user.id)
+        .order_by(Post.created_at.desc())
+        .limit(per_page)
+        .offset((page - 1) * per_page)
+        .all()
+    )
 
-    return jsonify([
-        {'id': p.id, 'content': p.content, 'created_at': p.created_at.strftime('%Y-%m-%d %H:%M')}
-        for p in posts
-    ])
+    return jsonify([serialize_post(post) for post in posts])
 
 # 修改貼文
 @post_bp.route('/post/<int:post_id>', methods=['PUT'])

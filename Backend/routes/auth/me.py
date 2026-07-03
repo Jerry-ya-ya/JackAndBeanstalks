@@ -1,6 +1,10 @@
-from flask import Blueprint, jsonify, request
+import os
+
+from flask import Blueprint, current_app, jsonify, request
 from flask_jwt_extended import jwt_required
+from flask_mail import Message
 from models import db, User
+from routes.auth.email import generate_confirmation_token, mail
 from routes.auth.utils import get_current_user_from_token
 
 me_bp = Blueprint('me', __name__)
@@ -34,11 +38,43 @@ def update_current_user():
         return jsonify({'error': 'User not found'}), 404
 
     data = request.get_json(silent=True) or {}
-    user.email = data.get('email', user.email)
+    new_email = data.get('email')
+    email_changed = False
+
+    if new_email is not None:
+        new_email = new_email.strip()
+        if not new_email:
+            return jsonify({'error': 'Email cannot be empty'}), 400
+
+        existing_user = User.query.filter(User.email == new_email, User.id != user.id).first()
+        if existing_user:
+            return jsonify({'error': 'Email already exists'}), 400
+
+        if new_email != user.email:
+            user.email = new_email
+            user.email_verified = False
+            email_changed = True
+
     user.nickname = data.get('nickname', user.nickname)
     db.session.commit()
 
-    return jsonify({'message': 'Profile updated'})
+    if email_changed:
+        token = generate_confirmation_token(user.email)
+        api_url = current_app.config.get('API_URL', 'http://localhost:5000').rstrip('/')
+        verify_link = f"{api_url}/api/verify-email/{token}"
+        sender_email = os.getenv('MAIL_USERNAME')
+        msg = Message(
+            subject='驗證你的新 Email',
+            sender=sender_email,
+            recipients=[user.email]
+        )
+        msg.body = f'請點擊連結完成新 Email 驗證：{verify_link}'
+        mail.send(msg)
+
+    return jsonify({
+        'message': 'Profile updated',
+        'email_verification_required': email_changed
+    })
 
 # GET：根據用戶 ID 獲取用戶資料
 @me_bp.route('/public/<int:user_id>', methods=['GET'])
