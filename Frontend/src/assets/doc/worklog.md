@@ -289,3 +289,7 @@
 - Fix profile email validation, post pagination, and production config.
 
 - Redesign the CMENStudio homepage.
+
+## 2026/07/04
+
+- Add timed EDEN and CMENStudio theme switching.

@@ -1,5 +1,5 @@
 <main class="cmen-home" [class.day-mode]="!isNightMode">
-  <section class="hero-shell" aria-label="CMENStudio homepage">
+  <section class="hero-shell" [attr.aria-label]="studioName + ' homepage'">
     <div class="hero-topbar">
       <button
         class="world-toggle"
@@ -10,6 +10,10 @@
         <span class="world-toggle__orbit">
           <span class="world-toggle__sun"></span>
           <span class="world-toggle__moon"></span>
+        </span>
+        <span class="world-toggle__meta">
+          <span>{{ countdownLabel }}</span>
+          <span>{{ nextModeLabel }}</span>
         </span>
       </button>
 
@@ -27,23 +31,20 @@
 
     <div class="hero-content">
       <div class="studio-mark">
-        <img src="icons/cmenstudio.png" alt="CMENStudio logo">
+        <img [src]="studioLogo" [alt]="studioLogoAlt">
       </div>
 
-      <p class="studio-kicker">Game Studio / Systems Lab</p>
-      <h1>CMENStudio</h1>
+      <p class="studio-kicker">{{ studioKicker }}</p>
+      <h1>{{ studioName }}</h1>
 
       <p class="studio-subtitle">
-        <span>Computing</span>
-        <span>Mathematics</span>
-        <span>Engineering</span>
-        <span>Network</span>
+        <span *ngFor="let word of studioSubtitle">{{ word }}</span>
       </p>
     </div>
 
     <div class="hero-status" aria-hidden="true">
       <span>BUILD 00.01</span>
-      <span>{{ isNightMode ? 'NIGHT OPS' : 'DAY QUEST' }}</span>
+      <span>{{ isNightMode ? 'EDEN NIGHT' : 'CMEN DAY' }}</span>
     </div>
   </section>
 </main>

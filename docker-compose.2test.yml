@@ -1,4 +1,4 @@
-name: jackandbeanstalk-test
+name: cmenstudio-test
 services:
   frontend:
     container_name: angular-test

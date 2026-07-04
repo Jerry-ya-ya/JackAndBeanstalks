@@ -1,4 +1,4 @@
-name: jackandbeanstalk-prod
+name: cmenstudio-prod
 services:
   frontend:
     image: jerryzheng0907/angular-frontend:latest
