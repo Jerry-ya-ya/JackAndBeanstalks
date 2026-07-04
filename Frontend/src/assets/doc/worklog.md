@@ -301,3 +301,5 @@
 - Unify the Angular pages with the shared studio theme.
 
 - Unify Angular themes and redesign the member directory.
+
+- Modernize the WPA tutorial page.
