@@ -1,16 +1,12 @@
 .navbar {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-    background: linear-gradient(90deg, #232526 0%, #414345 100%);
-    padding-left: 5px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 10px;
-    border-radius: 12px;
-    margin-bottom: 50px;
-    margin-left: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid rgba(141, 255, 122, 0.22);
+    border-radius: 8px;
+    margin: 0 10px 18px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
 }
 
 .nav, .nav-private, .nav-admin, .nav-superadmin {
@@ -19,14 +15,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 6px;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     font-weight: 600;
-    font-size: 2vw;
-    letter-spacing: 0.5px;
+    font-size: clamp(12px, 1.1vw, 15px);
+    letter-spacing: 0;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    background: #fff;
-    color: #232526;
+    background: rgba(255, 255, 255, 0.92);
+    color: #10140f;
     border: none;
     text-align: center;
 }
@@ -36,16 +32,16 @@
 .nav-admin { border: 2px solid #b266ff; background: #b266ff; color: #fff; }
 .nav-superadmin { border: 2px solid #ffd200; background: #ffd200; color: #232526; }
 
-.navbar-public { background: linear-gradient(90deg, #232526 0%, #414345 100%); }
-.navbar-private { background: linear-gradient(90deg, #0f2027 0%, #2c5364 100%); }
-.navbar-admin { background: linear-gradient(90deg, #42275a 0%, #734b6d 100%); }
-.navbar-superadmin { background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%); }
+.navbar-public { background: linear-gradient(90deg, #10140f 0%, #222a22 100%); }
+.navbar-private { background: linear-gradient(90deg, #0f2027 0%, #214347 100%); }
+.navbar-admin { background: linear-gradient(90deg, #342044 0%, #59345d 100%); }
+.navbar-superadmin { background: linear-gradient(90deg, #6a3f10 0%, #d19928 100%); }
 
 a, .nav, .nav-private, .nav-admin, .nav-superadmin {
     text-decoration: none;
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,17 +61,20 @@ a, .nav, .nav-private, .nav-admin, .nav-superadmin {
 .logout:hover { background: #fff; color: #ff4d4f; border: 2px solid #ff4d4f; }
 
 .sidebar {
+  position: relative;
+  z-index: 10;
   top: 0;
   left: 0;
-  background: #6bb7dd;
-  box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+  background: rgba(8, 10, 15, 0.94);
+  border-right: 1px solid rgba(141, 255, 122, 0.24);
+  box-shadow: 2px 0 22px rgba(0,0,0,0.28);
   transition: width 0.3s, transform 0.3s;
   display: flex;
   flex-direction: column;
   padding-top: 16px;
   padding-right: 10px;
-  backdrop-filter: blur(100px);
-  width: 70vw;
+  backdrop-filter: blur(18px);
+  width: min(70vw, 420px);
 }
 
 .sidebar.collapsed {
@@ -83,9 +82,12 @@ a, .nav, .nav-private, .nav-admin, .nav-superadmin {
 }
 
 .sidebar-toggle {
-  background: none;
-  border: none;
-  color: #fff;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(141, 255, 122, 0.3);
+  border-radius: 6px;
+  color: #f5f7ef;
   font-size: 28px;
   margin: 0 0 18px 10px;
   cursor: pointer;

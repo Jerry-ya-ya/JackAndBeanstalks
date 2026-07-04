@@ -287,3 +287,5 @@
 - Harden backend auth identity and request validation.
 
 - Fix profile email validation, post pagination, and production config.
+
+- Redesign the CMENStudio homepage.

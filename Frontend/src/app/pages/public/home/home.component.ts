@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { appPath } from '../../../path/app-path-const';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+  path = appPath;
+  isNightMode = true;
 
+  toggleWorldMode() {
+    this.isNightMode = !this.isNightMode;
+  }
 }
