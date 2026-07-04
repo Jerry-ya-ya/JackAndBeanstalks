@@ -295,3 +295,5 @@
 - Add timed EDEN and CMENStudio theme switching.
 
 - Add themed community news and polish the navigation menu.
+
+- Refine homepage news cards with glass overlays.
