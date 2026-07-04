@@ -47,4 +47,25 @@
       <span>{{ isNightMode ? 'EDEN NIGHT' : 'CMEN DAY' }}</span>
     </div>
   </section>
+
+  <section class="community-news" [attr.aria-label]="communityNewsTitle">
+    <div class="community-news__header">
+      <p class="studio-kicker">Community Feed</p>
+      <h2>{{ communityNewsTitle }}</h2>
+      <p>{{ communityNewsIntro }}</p>
+    </div>
+
+    <div class="news-grid">
+      <article class="news-card" *ngFor="let item of communityNews">
+        <div class="news-card__media">
+          <img [src]="studioLogo" [alt]="studioLogoAlt">
+        </div>
+        <div class="news-card__body">
+          <span>{{ item.tag }}</span>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.summary }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
 </main>

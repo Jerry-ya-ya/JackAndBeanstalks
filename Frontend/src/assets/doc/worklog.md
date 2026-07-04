@@ -293,3 +293,5 @@
 ## 2026/07/04
 
 - Add timed EDEN and CMENStudio theme switching.
+
+- Add themed community news and polish the navigation menu.
