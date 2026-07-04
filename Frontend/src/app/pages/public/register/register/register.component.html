@@ -1,27 +1,51 @@
-<br><br><br>
-<div class="register-container">
-  <h2>註冊帳號</h2>
-  <form (ngSubmit)="register()" autocomplete="off">
-    <div class="form-group">
-      <label for="username">帳號：</label>
-      <input id="username" [(ngModel)]="username" name="username" required>
-    </div>
-    <div class="form-group">
-      <label for="password">密碼：</label>
-      <input id="password" type="password" [(ngModel)]="password" name="password" required>
-    </div>
-    <div class="form-group">
-      <label for="email">郵箱：</label>
-      <input id="email" type="email" [(ngModel)]="email" name="email" required>
-    </div>
-    <button class="register-btn" type="submit">註冊</button>
-  </form>
+<main class="register-page">
+  <section class="register-shell" aria-label="Create account">
+    <div class="register-intro">
+      <p class="register-kicker">Account Gateway</p>
+      <h1>Join the Studio</h1>
+      <p>
+        Create an account for the CMENStudio and EDEN network. After registration, verify your email to unlock the full account flow.
+      </p>
 
-  <div class="resend-section">
-    <p>沒收到驗證信？</p>
-    <a [routerLink]="['resendverification']">重新寄送</a>
-  </div>
+      <div class="register-checklist" aria-label="Registration steps">
+        <span>1. Create credentials</span>
+        <span>2. Verify email</span>
+        <span>3. Enter the network</span>
+      </div>
+    </div>
 
-  <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
-  <p *ngIf="error" class="error-message">{{ error }}</p>
-</div>
+    <form class="register-panel" (ngSubmit)="register()" autocomplete="off">
+      <div class="panel-header">
+        <p class="register-kicker">New Player</p>
+        <h2>Register</h2>
+      </div>
+
+      <label class="form-field" for="username">
+        <span>Username</span>
+        <input id="username" [(ngModel)]="username" name="username" required placeholder="Choose your account name">
+      </label>
+
+      <label class="form-field" for="email">
+        <span>Email</span>
+        <input id="email" type="email" [(ngModel)]="email" name="email" required placeholder="you@example.com">
+      </label>
+
+      <label class="form-field" for="password">
+        <span>Password</span>
+        <input id="password" type="password" [(ngModel)]="password" name="password" required placeholder="Create a password">
+      </label>
+
+      <button class="register-btn" type="submit" [disabled]="submitting">
+        {{ submitting ? 'Creating...' : 'Create Account' }}
+      </button>
+
+      <div class="resend-section">
+        <span>Missing the verification email?</span>
+        <a [routerLink]="['resendverification']">Resend it</a>
+      </div>
+
+      <p *ngIf="successMessage" class="feedback success-message">{{ successMessage }}</p>
+      <p *ngIf="error" class="feedback error-message">{{ error }}</p>
+    </form>
+  </section>
+</main>

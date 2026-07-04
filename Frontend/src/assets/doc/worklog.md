@@ -303,3 +303,5 @@
 - Unify Angular themes and redesign the member directory.
 
 - Modernize the WPA tutorial page.
+
+- Modernize the registration page.

@@ -16,10 +16,19 @@ export class RegisterComponent {
   nickname = '';
   error = '';
   successMessage = '';
+  submitting = false;
   
   constructor(private apiService: ApiService) {}
 
   register() {
+    if (this.submitting) {
+      return;
+    }
+
+    this.submitting = true;
+    this.error = '';
+    this.successMessage = '';
+
     this.apiService.post<any>('/register', {
       username: this.username,
       password: this.password,
@@ -31,9 +40,11 @@ export class RegisterComponent {
         this.password = '';
         this.email = '';
         this.error = '';
+        this.submitting = false;
       },
       error: err => {
         this.error = err.error.error || '註冊失敗';
+        this.submitting = false;
       }
     });
   }

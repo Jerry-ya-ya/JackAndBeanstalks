@@ -1,118 +1,204 @@
-.register-container {
-  max-width: 380px;
-  margin: 40px auto;
-  padding: 32px 28px 24px 28px;
-  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
-  border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+:host {
+  display: block;
 }
 
-.register-container h2 {
-  margin-bottom: 24px;
-  color: #232526;
-  font-weight: 700;
-  letter-spacing: 1px;
-  font-size: 80px;
+.register-page {
+  min-height: 100vh;
+  padding: 116px clamp(16px, 4vw, 48px) 48px;
+  color: var(--studio-text);
+  background: var(--studio-page-bg);
 }
 
-.form-group {
-  width: 100%;
-  margin-bottom: 18px;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  margin-bottom: 6px;
-  color: #414345;
-  font-size: 30px;
-  font-weight: 500;
-}
-
-.form-group input {
-  padding: 10px 12px;
-  border: 1.5px solid #cfd8dc;
+.register-shell {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 480px);
+  gap: clamp(20px, 4vw, 56px);
+  align-items: stretch;
+  border: 1px solid var(--studio-line);
   border-radius: 8px;
-  font-size: 20px;
-  transition: border 0.2s, box-shadow 0.2s;
-  outline: none;
-  background: #fff;
+  padding: clamp(22px, 5vw, 64px);
+  background: color-mix(in srgb, var(--studio-panel) 86%, transparent);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
 }
 
-.form-group input:focus {
-  border: 1.5px solid #4f8cff;
-  box-shadow: 0 0 0 2px #e3f0ff;
+.register-intro,
+.register-panel {
+  position: relative;
+  z-index: 1;
+}
+
+.register-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-kicker {
+  margin: 0 0 12px;
+  color: var(--studio-accent);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.register-intro h1 {
+  margin: 0;
+  color: var(--studio-text);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(54px, 10vw, 140px);
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.register-intro p {
+  max-width: 720px;
+  margin: 18px 0 0;
+  color: var(--studio-muted);
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.6;
+}
+
+.register-checklist {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.register-checklist span {
+  min-height: 58px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--studio-line);
+  border-radius: 7px;
+  color: var(--studio-muted);
+  background: color-mix(in srgb, var(--studio-panel) 72%, transparent);
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.register-panel {
+  align-self: center;
+  display: grid;
+  gap: 16px;
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid var(--studio-line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--studio-panel) 82%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 18px 48px rgba(0,0,0,0.22);
+  backdrop-filter: blur(14px);
+}
+
+.panel-header h2 {
+  margin: 0;
+  color: var(--studio-text);
+  font-size: clamp(32px, 5vw, 62px);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+}
+
+.form-field span {
+  color: var(--studio-muted);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.form-field input {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--studio-line);
+  border-radius: 7px;
+  color: var(--studio-text);
+  background: color-mix(in srgb, var(--studio-panel-strong) 82%, transparent);
+}
+
+.form-field input:focus {
+  border-color: var(--studio-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--studio-accent) 20%, transparent);
 }
 
 .register-btn {
-  width: 100%;
-  padding: 12px 0;
-  background: linear-gradient(90deg, #4f8cff 0%, #1cb5e0 100%);
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 8px;
-  box-shadow: 0 2px 8px rgba(76, 175, 255, 0.08);
-  transition: background 0.2s, box-shadow 0.2s;
+  min-height: 50px;
+  margin-top: 4px;
+  border: 1px solid var(--studio-accent);
+  border-radius: 7px;
+  color: var(--studio-bg);
+  background: var(--studio-accent);
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
-.register-btn:hover {
-  background: linear-gradient(90deg, #1cb5e0 0%, #4f8cff 100%);
-  box-shadow: 0 4px 16px rgba(76, 175, 255, 0.15);
+.register-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
 }
 
 .resend-section {
-  margin-top: 18px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  color: var(--studio-muted);
   font-size: 14px;
 }
 
-.resend-section p {
-  font-size: 20px;
-  color: #000;
-}
-
 .resend-section a {
-  color: #4f8cff;
+  color: var(--studio-accent);
+  font-weight: 900;
   text-decoration: none;
-  margin-left: 4px;
-  transition: color 0.2s;
-  font-size: 15px;
 }
 
-.resend-section a:hover {
-  color: #1cb5e0;
+.feedback {
+  margin: 0;
+  padding: 12px;
+  border-radius: 7px;
+  font-weight: 800;
+  text-align: center;
 }
 
 .success-message {
-  color: #2ecc40;
-  margin-top: 16px;
-  font-weight: 600;
-  text-align: center;
+  color: var(--studio-accent);
+  background: color-mix(in srgb, var(--studio-accent) 14%, transparent);
 }
 
 .error-message {
-  color: #ff4d4f;
-  margin-top: 16px;
-  font-weight: 600;
-  text-align: center;
+  color: #ff8a8a;
+  background: rgba(255, 77, 79, 0.12);
 }
 
-@media (max-width: 500px) {
-  .register-container {
-    padding: 18px 6px 14px 6px;
-    max-width: 98vw;
+@media (max-width: 980px) {
+  .register-shell {
+    grid-template-columns: 1fr;
   }
-  .form-group input {
-    font-size: 14px;
+
+  .register-checklist {
+    grid-template-columns: 1fr;
   }
-  .register-btn {
-    font-size: 15px;
+}
+
+@media (max-width: 640px) {
+  .register-page {
+    padding: 92px 12px 28px;
+  }
+
+  .register-shell {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .resend-section {
+    flex-direction: column;
+    align-items: center;
   }
 }
