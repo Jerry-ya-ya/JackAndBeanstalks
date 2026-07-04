@@ -305,3 +305,5 @@
 - Modernize the WPA tutorial page.
 
 - Modernize the registration page.
+
+- Modernize the login page.
