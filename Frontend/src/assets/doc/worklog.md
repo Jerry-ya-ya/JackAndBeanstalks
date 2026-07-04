@@ -297,3 +297,7 @@
 - Add themed community news and polish the navigation menu.
 
 - Refine homepage news cards with glass overlays.
+
+- Unify the Angular pages with the shared studio theme.
+
+- Unify Angular themes and redesign the member directory.

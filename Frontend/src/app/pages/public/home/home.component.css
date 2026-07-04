@@ -76,107 +76,6 @@
   animation: slow-spin 22s linear infinite;
 }
 
-.hero-topbar {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 12px;
-  padding: 18px;
-}
-
-.login-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 82px;
-  min-height: 38px;
-  padding: 0 16px;
-  border: 1px solid var(--studio-line);
-  border-radius: 6px;
-  color: var(--studio-text);
-  background: rgba(255, 255, 255, 0.05);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.login-link:hover {
-  border-color: var(--studio-accent);
-  color: var(--studio-bg);
-  background: var(--studio-accent);
-}
-
-.world-toggle {
-  min-width: 132px;
-  height: 46px;
-  padding: 0 10px;
-  border: 1px solid var(--studio-line);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--studio-panel) 72%, transparent);
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: var(--studio-text);
-}
-
-.world-toggle__orbit {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--studio-line);
-  border-radius: 50%;
-  animation: slow-spin 7s linear infinite;
-  overflow: hidden;
-}
-
-.world-toggle__sun,
-.world-toggle__moon {
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  top: 0;
-}
-
-.world-toggle__sun {
-  left: 0;
-  background: var(--studio-warm);
-}
-
-.world-toggle__moon {
-  right: 0;
-  background: #111723;
-}
-
-.day-mode .world-toggle__moon {
-  background: #f7f3e5;
-}
-
-.world-toggle__meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1px;
-  line-height: 1;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.world-toggle__meta span:first-child {
-  font-size: 14px;
-  color: var(--studio-text);
-}
-
-.world-toggle__meta span:last-child {
-  font-size: 9px;
-  color: var(--studio-muted);
-  letter-spacing: 1px;
-}
-
 .hero-grid {
   position: absolute;
   inset: 0;
@@ -418,14 +317,6 @@ h1 {
     min-height: calc(100vh - 32px);
   }
 
-  .hero-topbar {
-    padding: 12px;
-  }
-
-  .world-toggle {
-    min-width: 112px;
-  }
-
   .hero-content {
     min-height: calc(100vh - 150px);
     padding: 18px;
@@ -452,8 +343,7 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-shell::after,
-  .world-toggle__orbit {
+  .hero-shell::after {
     animation: none;
   }
 }

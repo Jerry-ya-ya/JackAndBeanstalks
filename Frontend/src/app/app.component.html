@@ -1,9 +1,30 @@
-<div class="view">
+<div class="view" [class.day-mode]="!theme.isNightMode">
   <div class="navbar">
     <app-navbar>
       <!--  -->
     </app-navbar>
   </div>
+
+  <div class="global-actions">
+    <button
+      class="world-toggle"
+      type="button"
+      (click)="theme.toggleWorldMode()"
+      [attr.aria-label]="theme.isNightMode ? 'Switch to day mode' : 'Switch to night mode'"
+    >
+      <span class="world-toggle__orbit">
+        <span class="world-toggle__sun"></span>
+        <span class="world-toggle__moon"></span>
+      </span>
+      <span class="world-toggle__meta">
+        <span>{{ theme.countdownLabel }}</span>
+        <span>{{ theme.nextModeLabel }}</span>
+      </span>
+    </button>
+
+    <a class="login-link" [routerLink]="['/' + path.login]">Login</a>
+  </div>
+
   <div class="spa">
     <router-outlet></router-outlet>
   </div>

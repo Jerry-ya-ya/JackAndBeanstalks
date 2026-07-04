@@ -1,6 +1,5 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { appPath } from '../../../path/app-path-const';
+import { Component } from '@angular/core';
+import { ThemeService } from '../../../core/services/theme.service';
 
 interface CommunityNewsItem {
   title: string;
@@ -14,13 +13,7 @@ interface CommunityNewsItem {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  path = appPath;
-  isNightMode = true;
-  remainingSeconds = 300;
-  private readonly cycleSeconds = 300;
-  private timerId: ReturnType<typeof setInterval> | null = null;
-
+export class HomeComponent {
   readonly cmenSubtitle = ['Computing', 'Mathematics', 'Engineering', 'Network'];
   readonly edenSubtitle = ['Encode', 'Develop', 'Enlighten', 'Nexus'];
   readonly cmenNews: CommunityNewsItem[] = [
@@ -58,7 +51,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   ];
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(public theme: ThemeService) {}
+
+  get isNightMode() {
+    return this.theme.isNightMode;
+  }
 
   get studioName() {
     return this.isNightMode ? 'EDEN' : 'CMENStudio';
@@ -92,48 +89,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     return this.isNightMode
       ? 'Updates from the learning network, prepared for future admin publishing.'
       : 'Studio notes for players, makers, and future game development updates.';
-  }
-
-  get nextModeLabel() {
-    return this.isNightMode ? 'CMEN DAY' : 'EDEN NIGHT';
-  }
-
-  get countdownLabel() {
-    const minutes = Math.floor(this.remainingSeconds / 60).toString().padStart(2, '0');
-    const seconds = (this.remainingSeconds % 60).toString().padStart(2, '0');
-    return `${minutes}:${seconds}`;
-  }
-
-  ngOnInit() {
-    this.syncBodyTheme();
-    this.startWorldTimer();
-  }
-
-  ngOnDestroy() {
-    if (this.timerId) {
-      clearInterval(this.timerId);
-    }
-    this.document.body.classList.remove('eden-night-theme', 'cmen-day-theme');
-  }
-
-  toggleWorldMode() {
-    this.isNightMode = !this.isNightMode;
-    this.remainingSeconds = this.cycleSeconds;
-    this.syncBodyTheme();
-  }
-
-  private startWorldTimer() {
-    this.timerId = setInterval(() => {
-      this.remainingSeconds -= 1;
-
-      if (this.remainingSeconds <= 0) {
-        this.toggleWorldMode();
-      }
-    }, 1000);
-  }
-
-  private syncBodyTheme() {
-    this.document.body.classList.toggle('eden-night-theme', this.isNightMode);
-    this.document.body.classList.toggle('cmen-day-theme', !this.isNightMode);
   }
 }

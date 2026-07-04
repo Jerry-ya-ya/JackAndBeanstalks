@@ -1,7 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --app-bg: #080a0f;
-  --app-text: #f5f7ef;
+  --studio-bg: #080a0f;
+  --studio-panel: rgba(3, 14, 10, 0.82);
+  --studio-panel-strong: rgba(5, 18, 12, 0.94);
+  --studio-line: rgba(94, 255, 126, 0.28);
+  --studio-text: #effff2;
+  --studio-muted: #a7cdb2;
+  --studio-accent: #65ff82;
+  --studio-warm: #d8ff62;
+  --studio-danger: #20d889;
+  --studio-page-bg:
+    radial-gradient(circle at 18% 18%, rgba(94, 255, 126, 0.14), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(40, 216, 137, 0.12), transparent 24%),
+    linear-gradient(135deg, #020503 0%, #08150e 54%, #030907 100%);
+}
+
+body.cmen-day-theme {
+  --studio-bg: #f4f1de;
+  --studio-panel: rgba(255, 248, 218, 0.84);
+  --studio-panel-strong: rgba(255, 248, 218, 0.94);
+  --studio-line: rgba(22, 62, 65, 0.24);
+  --studio-text: #15191f;
+  --studio-muted: #506160;
+  --studio-accent: #176b7a;
+  --studio-warm: #d19129;
+  --studio-danger: #c64d48;
+  --studio-page-bg:
+    radial-gradient(circle at 18% 18%, rgba(23, 107, 122, 0.14), transparent 27%),
+    radial-gradient(circle at 82% 22%, rgba(209, 145, 41, 0.18), transparent 24%),
+    linear-gradient(135deg, #f4f1de 0%, #e8ead6 52%, #d9e4e0 100%);
 }
 
 * {
@@ -12,7 +39,277 @@ html,
 body {
   min-height: 100%;
   margin: 0;
-  background: var(--app-bg);
-  color: var(--app-text);
+  background: var(--studio-bg);
+  color: var(--studio-text);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  transition: background 0.3s, color 0.3s;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: var(--studio-accent);
+}
+
+body.eden-night-theme :is(
+  .about-website-container,
+  .crawler-container,
+  .friend-container,
+  .member-container,
+  .post-wall-container,
+  .profile-container,
+  .profile,
+  .setting-container,
+  .square,
+  .square-container,
+  .todo-container,
+  .tutorial-container,
+  .tutorial-page,
+  .user-home-container,
+  .userhome-container,
+  .promote-container,
+  .admin-dashboard,
+  .register-container,
+  .resend-view,
+  .resend-verification-container,
+  .verified-container,
+  .forgotpassword-container,
+  .spa > * > .view
+),
+body.cmen-day-theme :is(
+  .about-website-container,
+  .crawler-container,
+  .friend-container,
+  .member-container,
+  .post-wall-container,
+  .profile-container,
+  .profile,
+  .setting-container,
+  .square,
+  .square-container,
+  .todo-container,
+  .tutorial-container,
+  .tutorial-page,
+  .user-home-container,
+  .userhome-container,
+  .promote-container,
+  .admin-dashboard,
+  .register-container,
+  .resend-view,
+  .resend-verification-container,
+  .verified-container,
+  .forgotpassword-container,
+  .spa > * > .view
+) {
+  min-height: 100vh;
+  padding: 116px clamp(16px, 4vw, 48px) 48px;
+  color: var(--studio-text);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    var(--studio-page-bg);
+  background-size: 68px 68px, 68px 68px, auto;
+}
+
+body.eden-night-theme :is(.view) > :is(.box),
+body.cmen-day-theme :is(.view) > :is(.box),
+body.eden-night-theme :is(
+  .repo-card,
+  .features-card,
+  .creation-card,
+  .post-card,
+  .profile-card,
+  .setting-card,
+  .todo-card,
+  .friend-card,
+  .member-card,
+  .tutorial-card,
+  .promote-card,
+  .resend-card,
+  .stat-card,
+  .table-container,
+  .compare-card,
+  .compare-item,
+  .profileframe,
+  .user-card,
+  .card,
+  .login-box,
+  .register-box
+),
+body.cmen-day-theme :is(
+  .repo-card,
+  .features-card,
+  .creation-card,
+  .post-card,
+  .profile-card,
+  .setting-card,
+  .todo-card,
+  .friend-card,
+  .member-card,
+  .tutorial-card,
+  .promote-card,
+  .resend-card,
+  .stat-card,
+  .table-container,
+  .compare-card,
+  .compare-item,
+  .profileframe,
+  .user-card,
+  .card,
+  .login-box,
+  .register-box
+) {
+  border: 1px solid var(--studio-line);
+  border-radius: 8px;
+  color: var(--studio-text);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 36%),
+    color-mix(in srgb, var(--studio-panel) 88%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 18px 48px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
+}
+
+body.eden-night-theme :is(.view) > :is(.box),
+body.cmen-day-theme :is(.view) > :is(.box) {
+  width: min(520px, calc(100vw - 32px));
+  margin: 116px auto 48px;
+  padding: clamp(22px, 4vw, 36px);
+  position: relative;
+  z-index: 1;
+}
+
+:where(h1, h2, h3, h4) {
+  color: var(--studio-text);
+  letter-spacing: 0;
+}
+
+:where(.main-title, .section-title, .repo-name, .features-title, .empty-title, .box h1) {
+  color: var(--studio-text);
+  text-transform: uppercase;
+  text-shadow:
+    2px 2px 0 var(--studio-danger),
+    -2px -2px 0 color-mix(in srgb, var(--studio-accent) 38%, transparent);
+}
+
+:where(.subtitle, .repo-description, .feature-description, .empty-description, .loading-text, .meta-text, p) {
+  color: var(--studio-muted);
+}
+
+:where(input, textarea, select) {
+  width: 100%;
+  border: 1px solid var(--studio-line);
+  border-radius: 7px;
+  color: var(--studio-text);
+  background: color-mix(in srgb, var(--studio-panel-strong) 82%, transparent);
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+:where(input, textarea, select):focus {
+  border-color: var(--studio-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--studio-accent) 20%, transparent);
+}
+
+:where(button, .submit-btn, .retry-button, .github-link) {
+  border: 1px solid var(--studio-line);
+  border-radius: 7px;
+  color: var(--studio-text);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 42%),
+    color-mix(in srgb, var(--studio-panel-strong) 78%, transparent);
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+:where(button, .submit-btn, .retry-button, .github-link):hover:not(:disabled) {
+  border-color: var(--studio-accent);
+  color: var(--studio-bg);
+  background: var(--studio-accent);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--studio-accent) 22%, transparent);
+  transform: translateY(-1px);
+}
+
+:where(button, .submit-btn):disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+:where(.page-header, .section-header, .repo-header, .features-header, .card-header) {
+  border-color: var(--studio-line);
+}
+
+:where(.stat-item, .meta-item, .feature-item, .message, .empty-state) {
+  border: 1px solid color-mix(in srgb, var(--studio-line) 70%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--studio-panel) 74%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+@media (max-width: 760px) {
+  body.eden-night-theme :is(
+    .about-website-container,
+    .crawler-container,
+    .friend-container,
+    .member-container,
+    .post-wall-container,
+    .profile-container,
+    .profile,
+    .setting-container,
+    .square,
+    .square-container,
+    .todo-container,
+    .tutorial-container,
+    .tutorial-page,
+    .user-home-container,
+    .userhome-container,
+    .promote-container,
+    .admin-dashboard,
+    .register-container,
+    .resend-view,
+    .resend-verification-container,
+    .verified-container,
+    .forgotpassword-container,
+    .spa > * > .view
+  ),
+  body.cmen-day-theme :is(
+    .about-website-container,
+    .crawler-container,
+    .friend-container,
+    .member-container,
+    .post-wall-container,
+    .profile-container,
+    .profile,
+    .setting-container,
+    .square,
+    .square-container,
+    .todo-container,
+    .tutorial-container,
+    .tutorial-page,
+    .user-home-container,
+    .userhome-container,
+    .promote-container,
+    .admin-dashboard,
+    .register-container,
+    .resend-view,
+    .resend-verification-container,
+    .verified-container,
+    .forgotpassword-container,
+    .spa > * > .view
+  ) {
+    padding: 92px 12px 28px;
+  }
+
+  body.eden-night-theme :is(.view) > :is(.box),
+  body.cmen-day-theme :is(.view) > :is(.box) {
+    margin-top: 92px;
+  }
 }
