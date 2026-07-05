@@ -1,45 +1,55 @@
+:host {
+  display: block;
+}
+
 .friend-container {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 24px;
-  background: #f8fafc;
-  border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 116px clamp(16px, 4vw, 48px) 48px;
+  color: var(--studio-text);
+  background: var(--studio-page-bg);
   font-family: 'Segoe UI', 'Microsoft JhengHei', Arial, sans-serif;
 }
 
 .title {
+  max-width: 920px;
+  margin: 0 auto 24px;
   text-align: center;
-  margin-bottom: 24px;
-  color: #2d3748;
+  color: var(--studio-text);
   letter-spacing: 2px;
 }
 
 .card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  max-width: 920px;
+  margin: 0 auto 24px;
+  border: 1px solid var(--studio-line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--studio-panel) 86%, transparent);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
   padding: 20px 24px 16px 24px;
-  margin-bottom: 24px;
 }
 
 .section-divider {
+  max-width: 920px;
   height: 1px;
-  background: #e2e8f0;
-  margin: 24px 0;
+  background: var(--studio-line);
+  margin: 24px auto;
 }
 
 .input-user {
   padding: 8px 12px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--studio-line);
   border-radius: 6px;
+  color: var(--studio-text);
+  background: color-mix(in srgb, var(--studio-panel-strong) 82%, transparent);
   margin-right: 12px;
   font-size: 16px;
   outline: none;
   transition: border 0.2s;
 }
 .input-user:focus {
-  border: 1.5px solid #3182ce;
+  border: 1.5px solid var(--studio-accent);
 }
 
 .btn {
@@ -75,7 +85,7 @@
 
 .message {
   margin-top: 12px;
-  color: #38a169;
+  color: var(--studio-accent);
   font-weight: 500;
   font-size: 15px;
 }
@@ -93,7 +103,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--studio-line);
 }
 .request-item:last-child,
 .friend-item:last-child {
@@ -102,31 +112,30 @@
 
 .request-from {
   font-weight: 500;
-  color: #2b6cb0;
+  color: var(--studio-accent);
   flex: 1;
 }
 
 .friend-link {
-  color: #2d3748;
+  color: var(--studio-text);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s;
 }
 .friend-link:hover {
-  color: #3182ce;
+  color: var(--studio-accent);
   text-decoration: underline;
 }
 
 .empty-tip {
-  color: #a0aec0;
+  color: var(--studio-muted);
   text-align: center;
   margin: 12px 0 0 0;
 }
 
 @media (max-width: 700px) {
   .friend-container {
-    padding: 8px;
-    max-width: 98vw;
+    padding: 92px 12px 28px;
   }
   .card {
     padding: 12px 6px 10px 6px;

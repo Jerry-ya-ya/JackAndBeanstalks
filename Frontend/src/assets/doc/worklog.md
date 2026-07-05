@@ -307,3 +307,7 @@
 - Modernize the registration page.
 
 - Modernize the login page.
+
+## 2026/07/05
+
+- Modernize private settings and fix friend page background.
