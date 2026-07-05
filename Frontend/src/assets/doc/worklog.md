@@ -313,3 +313,5 @@
 - Modernize private settings and fix friend page background.
 
 - Modernize the private profile page.
+
+- Modernize the private crawler page.
