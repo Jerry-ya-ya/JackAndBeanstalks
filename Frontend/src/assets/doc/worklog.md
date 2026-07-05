@@ -311,3 +311,5 @@
 ## 2026/07/05
 
 - Modernize private settings and fix friend page background.
+
+- Modernize the private profile page.
