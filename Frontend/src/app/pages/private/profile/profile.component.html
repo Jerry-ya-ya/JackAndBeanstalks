@@ -1,44 +1,105 @@
-<div class="profile">
-    <div *ngIf="user">
-      <p>歡迎回來,{{ user.username }},{{ user.nickname }}！</p>
-    </div>
-    <div *ngIf="user">
-        <h2>我的個人資料</h2>
-        <p><strong>帳號：</strong>{{ user.username }}</p>
-        <p><strong>註冊時間：</strong>{{ user.created_at | date:'medium' }}</p>
-        <p><strong>電子郵件：</strong>{{ user.email }}</p>
-        
-        <div>
-            <label><strong>Email：</strong></label>
-            <input [(ngModel)]="user.email" [disabled]="!editing">
+<main class="profile-page">
+  <section *ngIf="user; else loadingProfile" class="profile-shell">
+    <header class="profile-hero">
+      <div class="identity-block">
+        <p class="profile-kicker">Private Profile</p>
+        <h1>{{ user.nickname || user.username }}</h1>
+        <p>歡迎回來，{{ user.username }}。這裡是你的玩家身份面板。</p>
+      </div>
+
+      <div class="avatar-orbit">
+        <img
+          *ngIf="user?.avatar_url; else avatarFallback"
+          [src]="apiRoot + '/' + user.avatar_url"
+          alt="User avatar"
+        >
+        <ng-template #avatarFallback>
+          <span>{{ (user.nickname || user.username || '?').charAt(0) }}</span>
+        </ng-template>
+      </div>
+    </header>
+
+    <section class="profile-grid">
+      <article class="profile-card">
+        <div class="card-header">
+          <p class="profile-kicker">Account Data</p>
+          <h2>我的個人資料</h2>
         </div>
-        
-        <div>
-            <label><strong>暱稱：</strong></label>
-            <input [(ngModel)]="user.nickname" [disabled]="!editing">
+
+        <dl class="profile-stats">
+          <div>
+            <dt>帳號</dt>
+            <dd>{{ user.username }}</dd>
+          </div>
+          <div>
+            <dt>註冊時間</dt>
+            <dd>{{ user.created_at | date:'medium' }}</dd>
+          </div>
+          <div>
+            <dt>電子郵件</dt>
+            <dd>{{ user.email }}</dd>
+          </div>
+        </dl>
+
+        <label class="form-field">
+          <span>Email</span>
+          <input type="email" [(ngModel)]="user.email" [disabled]="!editing">
+        </label>
+
+        <label class="form-field">
+          <span>暱稱</span>
+          <input type="text" [(ngModel)]="user.nickname" [disabled]="!editing">
+        </label>
+
+        <div class="action-row" *ngIf="!editing">
+          <button class="profile-button" type="button" (click)="editing = true">編輯資料</button>
         </div>
-        
-        <div *ngIf="!editing">
-            <button (click)="editing = true">編輯</button>
+
+        <div class="action-row" *ngIf="editing">
+          <button class="profile-button" type="button" (click)="saveProfile()">儲存</button>
+          <button class="profile-button profile-button--ghost" type="button" (click)="editing = false">取消</button>
         </div>
-        <div *ngIf="editing">
-            <button (click)="saveProfile()">儲存</button>
-            <button (click)="editing = false">取消</button>
-        </div>
+
         <p *ngIf="success" class="success-message">{{ success }}</p>
-    </div>
-    <div class="avatar-section">
-        <h3>頭像</h3>
-        <div *ngIf="user?.avatar_url">
-            <p>目前頭像：</p>
-            <img [src]="apiRoot + '/' + user.avatar_url" width="120" height="120" />
+      </article>
+
+      <article class="profile-card avatar-section">
+        <div class="card-header">
+          <p class="profile-kicker">Avatar Upload</p>
+          <h2>頭像</h2>
         </div>
-        <p>更換新頭像：</p>
-        <input type="file" (change)="onFileSelected($event)">
-        <div *ngIf="avatarPreview">
-            <p>預覽：</p>
-            <img [src]="avatarPreview" width="120" height="120">
+
+        <div class="avatar-preview-stack">
+          <div class="avatar-frame">
+            <img
+              *ngIf="avatarPreview || user?.avatar_url; else uploadFallback"
+              [src]="avatarPreview || (apiRoot + '/' + user.avatar_url)"
+              alt="Avatar preview"
+            >
+            <ng-template #uploadFallback>
+              <span>{{ (user.nickname || user.username || '?').charAt(0) }}</span>
+            </ng-template>
+          </div>
+          <p>{{ avatarPreview ? '新頭像預覽' : '目前頭像' }}</p>
         </div>
-        <button (click)="uploadAvatar()" [disabled]="!selectedFile">上傳頭像</button>
-    </div>
-</div>
+
+        <label class="file-drop">
+          <span>選擇新頭像</span>
+          <input type="file" accept="image/*" (change)="onFileSelected($event)">
+        </label>
+
+        <button class="profile-button" type="button" (click)="uploadAvatar()" [disabled]="!selectedFile">
+          上傳頭像
+        </button>
+      </article>
+    </section>
+  </section>
+
+  <ng-template #loadingProfile>
+    <section class="profile-loading">
+      <p class="profile-kicker">Loading</p>
+      <h1>Profile</h1>
+      <p>正在讀取你的玩家資料...</p>
+    </section>
+  </ng-template>
+</main>

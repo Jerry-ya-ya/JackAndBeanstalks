@@ -3,14 +3,16 @@ from celery.schedules import crontab
 import os
 
 # 確保環境變數設定正確
-ENV = os.getenv('FLASK_ENV', 'development')
+from config import DevelopmentConfig, TestingConfig, ProductionConfig
 
-if ENV == 'prod':   
-    from config.prod import ProductionConfig as Config
-elif ENV == 'test':
-    from config.test import TestingConfig as Config
-else:
-    from config.dev import DevelopmentConfig as Config
+config_map = {
+    "development": DevelopmentConfig,
+    "testing": TestingConfig,
+    "production": ProductionConfig,
+}
+
+env = os.getenv("FLASK_ENV", "development").lower()
+Config = config_map.get(env, DevelopmentConfig)
 
 celery = Celery(
     'jackandbeanstalks',

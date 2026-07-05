@@ -1,9 +1,10 @@
-version: '3.9'
+name: cmenstudio-test
 services:
   frontend:
+    container_name: angular-test
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - ./frontend:/app
       - /app/.angular/cache
@@ -11,27 +12,28 @@ services:
       - "4200:4200"
     environment:
       - CHOKIDAR_USEPOLLING=true
-    container_name: angular-test
     networks:
       - mynet
+
   backend:
+    container_name: flask-test
     build:
       context: ./backend
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - ./backend:/app
     ports:
       - "5000:5000"
     env_file:
       - .env
-      - .env.2test
-    container_name: flask-test
     networks:
       - mynet
-  test:
+
+  test-frontend:
+    container_name: frontend-e2e-test
     build:
       context: ./e2e
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     depends_on:
       - frontend
       - backend
@@ -40,17 +42,41 @@ services:
       - /app/node_modules
     env_file:
       - .env
-      - .env.2test
     ports:
       - "4100:4100"
-    container_name: e2e-test
     networks:
       - mynet
+
+  test-backend:
+    container_name: backend-pytest
+    build:
+      context: ./backend/test
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["pytest", "Backend/test"]
+
+  db:
+    container_name: pg-test
+    image: postgres:16
+    ports:
+      - "5433:5432"
+    env_file:
+      - .env
+    volumes:
+      - ./database/postgres_data:/var/lib/postgresql/data
+
   redis:
+    container_name: redis-test
     image: redis:latest
     ports:
       - "6379:6379"
-    container_name: redis
+
   celery_worker:
     build:
       context: Backend/celery_worker
@@ -62,10 +88,10 @@ services:
       - PYTHONPATH=/app/Backend
     env_file:
       - .env
-      - .env.2test
     depends_on:
       - redis
     container_name: celery-worker-test
+
   celery_beat:
     build:
       context: Backend/celery_worker
@@ -76,11 +102,12 @@ services:
     environment:
       - PYTHONPATH=/app/Backend
     env_file:
-      - .env.2test
+      - .env
     depends_on:
       - redis
       - celery_worker
     container_name: celery-beat-test
+    
 networks:
   mynet:
     driver: bridge

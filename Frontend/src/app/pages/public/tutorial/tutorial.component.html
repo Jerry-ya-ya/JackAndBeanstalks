@@ -1,55 +1,71 @@
-<div class="tutorial-page">
-    <h3 class="section-subtitle">WPA 與 非 WPA 差異</h3>
-    <div class="compare-card">
-        <div class="compare-item wpa">
-            <h4>WPA（啟用）</h4>
-            <div class="phone-frame compare">
-                <div class="phone-screen">
-                    <img class="compare-media" src="tutorial/7.gif" alt="WPA 示範" loading="lazy" />
-                </div>
-            </div>
-            <ul>
-                <li>可離線瀏覽（Service Worker 快取）</li>
-                <li>安裝到桌面（Web App Manifest）</li>
-                <li>更快的重載體驗（資源快取）</li>
-                <li>支援背景同步/推播（視伺服器設定）</li>
-            </ul>
-        </div>
-        <div class="compare-item nowpa">
-            <h4>非 WPA</h4>
-            <div class="phone-frame compare">
-                <div class="phone-screen">
-                    <img class="compare-media" src="tutorial/8.gif" alt="非 WPA 示範" loading="lazy" />
-                </div>
-            </div>
-            <ul>
-                <li>需持續網路連線</li>
-                <li>無桌面安裝入口</li>
-                <li>每次載入依賴網路速度</li>
-                <li>較少進階體驗</li>
-            </ul>
-        </div>
+<main class="tutorial-page">
+  <section class="tutorial-hero" aria-label="WPA desktop install tutorial">
+    <div>
+      <p class="tutorial-kicker">Desktop App Tutorial</p>
+      <h1>Build a WPA Shortcut</h1>
+      <p class="tutorial-lead">
+        Follow the six-step install path and turn the website into a desktop-style app experience.
+      </p>
     </div>
 
-    <h2 class="section-title">使用教學</h2>
-
-    <p>點選第一張圖片紅框內的按鈕，上滑選擇加入主頁面，右上角點擊添加，就能在主頁看到WPA</p>
-    
-    <div class="carousel" tabindex="0" aria-label="教學圖片滑動區">
-        <div class="carousel-track">
-            <div class="card" *ngFor="let img of tutorialImagePaths; let i = index">
-                <div class="card-media">
-                    <div class="phone-frame">
-                        <div class="phone-screen">
-                            <img [src]="img" [alt]="'教學圖片 ' + (i + 1)" loading="lazy" />
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <span>{{ i + 1 }} / {{ tutorialImagePaths.length }}</span>
-                </div>
-            </div>
-        </div>
+    <div class="tutorial-status" aria-label="Tutorial summary">
+      <span>2 GIF demos</span>
+      <span>6 install steps</span>
+      <span>Desktop ready</span>
     </div>
-    <p class="swipe-hint" aria-hidden="true">← 向右滑動查看更多</p>
-</div>
+  </section>
+
+  <section class="compare-section" aria-label="WPA comparison">
+    <div class="section-heading">
+      <p class="tutorial-kicker">Mode Check</p>
+      <h2>WPA vs Browser</h2>
+    </div>
+
+    <div class="compare-grid">
+      <article
+        class="compare-card"
+        *ngFor="let item of compareItems"
+        [class.compare-card--enabled]="item.type === 'enabled'"
+      >
+        <div class="compare-card__header">
+          <span>{{ item.label }}</span>
+          <h3>{{ item.title }}</h3>
+        </div>
+
+        <div class="device-frame">
+          <div class="device-screen">
+            <img [src]="item.image" [alt]="item.title + ' demo'" loading="lazy">
+          </div>
+        </div>
+
+        <ul>
+          <li *ngFor="let point of item.points">{{ point }}</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="steps-section" aria-label="Desktop installation steps">
+    <div class="section-heading">
+      <p class="tutorial-kicker">Install Route</p>
+      <h2>Six Steps</h2>
+      <p>Use the highlighted controls in each screenshot to add the app to the desktop launcher.</p>
+    </div>
+
+    <div class="step-grid">
+      <article class="step-card" *ngFor="let step of tutorialSteps; let i = index">
+        <div class="step-card__copy">
+          <span>Step {{ i + 1 }}</span>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.detail }}</p>
+        </div>
+
+        <div class="device-frame device-frame--step">
+          <div class="device-screen">
+            <img [src]="step.image" [alt]="step.title" loading="lazy">
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>

@@ -251,3 +251,67 @@
 - Implemented the functionality to edit and delete posts.
 
 - Update content on the Home page.
+
+## 2026/03/03 ##
+
+- Refactored the backend structure to centralize route management, and fixed an issue where the super admin could not be correctly identified during registration.
+
+## 2026/03/03 ##
+
+- Implemented backend test scripts with pytest to the testing environment, and separated the development, testing, and production environment groups.
+
+## 2026/03/16 ##
+
+- Implemented startup, shutdown, pause, and rebuild scripts for the three application environments.
+
+## 2026/03/17 ##
+
+- Implemented pytest tests for the user registration feature.
+
+- Centralized backend environment management by consolidating environment variable files into a single file.
+
+- Update content on the README.md page.
+
+## 2026/03/18 ##
+
+- Update angular kits and angular kits update steps part in README.md.
+
+## 2026/03/20 ##
+
+- Implemented pytest tests for the superadmin registration feature and the registration email sending feature.
+
+## 2026/07/03 ##
+
+- Fix backend admin checks and update frontend images.
+
+- Harden backend auth identity and request validation.
+
+- Fix profile email validation, post pagination, and production config.
+
+- Redesign the CMENStudio homepage.
+
+## 2026/07/04
+
+- Add timed EDEN and CMENStudio theme switching.
+
+- Add themed community news and polish the navigation menu.
+
+- Refine homepage news cards with glass overlays.
+
+- Unify the Angular pages with the shared studio theme.
+
+- Unify Angular themes and redesign the member directory.
+
+- Modernize the WPA tutorial page.
+
+- Modernize the registration page.
+
+- Modernize the login page.
+
+## 2026/07/05
+
+- Modernize private settings and fix friend page background.
+
+- Modernize the private profile page.
+
+- Modernize the private crawler page.

@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from models import User
 from models import db
 from routes.admin.decorators import superadmin_required
-from flask_jwt_extended import get_jwt_identity
+from routes.auth.utils import get_current_user_from_token
 
 promote_bp = Blueprint('promote', __name__)
 
@@ -13,15 +13,13 @@ def get_users():
     sort_by = request.args.get('sort_by', 'id')
     order = request.args.get('order', 'asc')
 
-    # 決定排序欄位
-    if sort_by == 'id':
-        sort_column = User.id
-    elif sort_by == 'created_at':
-        sort_column = User.created_at
-    elif sort_by == 'updated_at':
-        sort_column = User.updated_at
-    else:
-        sort_column = User.id  # fallback
+    sort_columns = {
+        'id': User.id,
+        'created_at': User.created_at,
+        'username': User.username,
+        'role': User.role,
+    }
+    sort_column = sort_columns.get(sort_by, User.id)
 
     # 排序方向
     if order == 'desc':
@@ -49,13 +47,15 @@ def promote_user(user_id):
 @promote_bp.route('/superadmin/demote/<int:user_id>', methods=['PUT'])
 @superadmin_required
 def demote_user(user_id):
-    acting_username = get_jwt_identity()  # 直接取得目前操作者的 username
+    acting_user = get_current_user_from_token()
+    if not acting_user:
+        return jsonify({'error': '使用者不存在'}), 401
 
     user = User.query.get(user_id)
     if not user:
         return jsonify({'error': '用戶不存在'}), 404
 
-    if user.username == acting_username:
+    if user.id == acting_user.id:
         return jsonify({'error': '不能降級自己'}), 400
 
     if user.role != 'admin':

@@ -89,35 +89,47 @@
         </svg>
         <!-- poison dragon -->
     </div>
-    <div class="box">
-        <h1>
-            登入
-        </h1>
-        <div class="login-box">
-            <input [(ngModel)]="username" placeholder="帳號">
-            <input [(ngModel)]="password" type="password" placeholder="密碼">
-            <div class="rowframe">
-                <div class="remember">
-                    <input class="checkbox" type="checkbox">
-                    <p>
-                        記住密碼
-                    </p>
-                </div>
-                <p>
-                    忘記密碼?
-                </p>
-                <a [routerLink]="['forgotpassword']">找回密碼</a>
+    <section class="login-shell" aria-label="Login">
+        <div class="login-copy">
+            <p class="login-kicker">Access Portal</p>
+            <h1>Login</h1>
+            <p>Return to the CMENStudio and EDEN network. The old vector guardian is still watching the gate.</p>
+        </div>
+
+        <form class="login-panel" (ngSubmit)="login()" autocomplete="off">
+            <div class="panel-header">
+                <p class="login-kicker">Player Auth</p>
+                <h2>Sign In</h2>
             </div>
-            <button (click)="login()">
-                登入
+
+            <label class="form-field">
+                <span>Username</span>
+                <input [(ngModel)]="username" name="username" required placeholder="Enter your account">
+            </label>
+
+            <label class="form-field">
+                <span>Password</span>
+                <input [(ngModel)]="password" name="password" type="password" required placeholder="Enter your password">
+            </label>
+
+            <div class="login-tools">
+                <label class="remember">
+                    <input class="checkbox" type="checkbox">
+                    <span>Remember</span>
+                </label>
+                <a [routerLink]="['forgotpassword']">Forgot password?</a>
+            </div>
+
+            <button class="login-button" type="submit" [disabled]="submitting">
+                {{ submitting ? 'Signing in...' : 'Sign In' }}
             </button>
-        </div>
-        <div class="rowframe">
-            <p>
-                沒有帳號?
-            </p>
-            <a [routerLink]="['/' + path.register]">註冊帳號</a>
-        </div>
-    </div>
+
+            <p *ngIf="error" class="error-message">{{ error }}</p>
+
+            <div class="register-link">
+                <span>No account yet?</span>
+                <a [routerLink]="['/' + path.register]">Create one</a>
+            </div>
+        </form>
+    </section>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br>

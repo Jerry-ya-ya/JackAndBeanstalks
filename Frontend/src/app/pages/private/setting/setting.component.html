@@ -1,22 +1,56 @@
-<h3>
-    修改密碼
-</h3>
+<main class="setting-page">
+  <section class="setting-hero" aria-label="Account settings">
+    <div>
+      <p class="setting-kicker">Private Control Panel</p>
+      <h1>Settings</h1>
+      <p>Manage account security and keep your access point locked down.</p>
+    </div>
 
-<div>
-    <label>
-        舊密碼：
-    </label>
-    <input type="password" [(ngModel)]="oldPassword">
-</div>
-<div>
-    <label>
-        新密碼：
-    </label>
-    <input type="password" [(ngModel)]="newPassword">
-</div>
-<button (click)="changePassword()">
-    變更密碼
-</button>
-<p *ngIf="passwordMessage">
-    {{ passwordMessage }}
-</p>
+    <div class="status-panel">
+      <span>Account Security</span>
+      <strong>Password Gate</strong>
+      <small>Manual update required</small>
+    </div>
+  </section>
+
+  <section class="settings-grid">
+    <form class="setting-card" (ngSubmit)="changePassword()" autocomplete="off">
+      <div class="card-header">
+        <p class="setting-kicker">Security</p>
+        <h2>Change Password</h2>
+      </div>
+
+      <label class="form-field">
+        <span>Current Password</span>
+        <input type="password" name="oldPassword" [(ngModel)]="oldPassword" required placeholder="Enter current password">
+      </label>
+
+      <label class="form-field">
+        <span>New Password</span>
+        <input type="password" name="newPassword" [(ngModel)]="newPassword" required placeholder="Enter new password">
+      </label>
+
+      <button class="setting-button" type="submit" [disabled]="submitting">
+        {{ submitting ? 'Updating...' : 'Update Password' }}
+      </button>
+
+      <p
+        *ngIf="passwordMessage"
+        class="setting-message"
+        [class.setting-message--success]="isSuccessMessage"
+      >
+        {{ passwordMessage }}
+      </p>
+    </form>
+
+    <aside class="setting-card setting-card--info">
+      <p class="setting-kicker">Security Notes</p>
+      <h2>Keep It Tight</h2>
+      <ul>
+        <li>Use a password you do not reuse elsewhere.</li>
+        <li>Change your password if a device is shared or lost.</li>
+        <li>Log out after using a public computer.</li>
+      </ul>
+    </aside>
+  </section>
+</main>

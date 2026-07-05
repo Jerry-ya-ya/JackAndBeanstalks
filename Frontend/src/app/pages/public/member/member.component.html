@@ -1,273 +1,122 @@
-<br>
-<div class="view">
-    <!-- G1Professor -->
-    <div class="animation-container">
-        <div class="title-box">
-            <h1 class="title">
-                第一屆
-            </h1>
-        </div>
+<main class="member-page">
+  <section class="member-directory" aria-label="Studio member directory">
+    <div class="member-directory__header">
+      <p class="member-kicker">Studio Member Select</p>
+      <h1>Members</h1>
+      <p>Choose a member node to open the GitHub-powered profile panel.</p>
     </div>
-    <div class="rowframe">
-        <div class="profileframe">
-            <div class="role">
-                系主任
-            </div>
-            <div class="profile">
-                <img class="profile" src="https://www.math.fju.edu.tw/images/tlpteam/l_chien-chang-yen-1626176770.jpg">
-            </div>
-            <span class="name">
-                嚴健彰
-            </span>
-        </div>
-        <div class="profileframe">
-            <div class="role">
-                助理教授
-            </div>
-            <div class="profile">
-                <img class="profile" src="https://www.math.fju.edu.tw/images/tlpteam/l_jun-jie-pan-1626177577.jpg">
-            </div>
-            <span class="name">
-                潘俊杰
-            </span>
-        </div>
-        <div class="profileframe">
-            <div class="role">
-                助理教授
-            </div>
-            <div class="profile">
-                <img class="profile" src="https://www.math.fju.edu.tw/images/tlpteam/m_tcyu-1722484227.jpg">
-            </div>
-            <span class="name">
-                俞讚城
-            </span>
-        </div>
-    </div>
-    <!-- G1Professor -->
 
-    <!-- G1Teammate -->
-    <div class="rowframe">
-        <div class="profileframe">
-            <div class="role">
-                團長
-            </div>
-            <div class="profile">
-                <img class="short-profile" src="member/JWH.png">
-            </div>
-            <span class="name">
-                簡偉恆
-            </span>
-        </div>
-        <div class="profileframe">
-            <div class="role">
-                副團長
-            </div>
-            <div class="profile">
-                <img class="short-profile" src="member/LYH.jpg">
-            </div>
-            <span class="name">
-                盧詠涵
-            </span>
-        </div>
-        <div class="profileframe">
-            <div class="role">
-                資安組
-            </div>
-            <div class="profile">
-                <img class="profile" src="salamander/salamander2.webp">
-            </div>
-            <span class="name">
-                蕭士壕,
-            </span>
-            <span class="name">
-                盧詠涵.
-            </span>
-        </div>
+    <div class="member-button-grid">
+      <button
+        class="member-button"
+        type="button"
+        *ngFor="let member of demoMembers"
+        (click)="selectMember(member)"
+        [class.active]="selectedMember.id === member.id"
+      >
+        <span class="member-button__avatar">
+          <img [src]="memberAvatar" [alt]="member.name + ' avatar'">
+        </span>
+        <span class="member-button__text">
+          <strong>{{ member.name }}</strong>
+          <small>{{ member.role }}</small>
+        </span>
+      </button>
     </div>
-    <div class="rowframe">
-        <div class="profileframe">
-            <div class="role">
-                計算機結構組
-            </div>
-            <div class="profile">
-                <img class="profile" src="salamander/salamander3.webp">
-            </div>
-            <span class="name">
-                趙仲德,
-            </span>
-            <span class="name">
-                李欣翰.
-            </span>
-        </div>
-        <div class="profileframe">
-            <div class="role">
-                教學組
-            </div>
-            <div class="profile">
-                <img class="profile" src="member/SSJ.png">
-            </div>
-            <span class="name">
-                許順傑(程式),
-            </span>
-            <span class="name">
-                盧詠涵(數學).
-            </span>
-        </div>
-        <div class="profileframe">
-            <div class="role">
-                UI,UX設計
-            </div>
-            <div class="profile">
-                <img class="short-profile" src="member/ZZW.jpg">
-            </div>
-            <span class="name">
-                鄭兆崴
-            </span>
-        </div>
-    </div>
-    <div class="rowframe">
-        <div class="profileframe">
-            <div class="role">
-                外援組
-            </div>
-            <div class="profile">
-                <img class="profile" src="salamander/salamander1.webp">
-            </div>
-            <span class="name">
-                簡語辰
-            </span>
-        </div>
-    </div>
-    <!-- G1Teammate -->
+  </section>
 
-    <!-- G2Professor -->
-    <div class="animation-container">
-        <div class="title-box">
-            <h1 class="title">
-                第二屆
-            </h1>
-        </div>
-    </div>
-    <div class="rowframe">
-        <div class="profileframe">
-            <div class="role">
-                教授
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
-        </div>
-        <div class="profileframe">
-            <div class="role">
-                教授
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
-        </div>
-        <div class="profileframe">
-            <div class="role">
-                教授
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
-        </div>
-    </div>
-    <!-- G1Professor -->
+  <section class="member-profile" aria-label="Selected GitHub member profile">
+    <section class="member-hero">
+      <div class="member-hero__content">
+        <p class="member-kicker">Selected Member / GitHub Signal</p>
+        <h2>{{ displayName }}</h2>
+        <p class="member-handle">@{{ profile?.login || selectedMember.githubUsername }}</p>
+        <p class="member-bio">{{ profileBio }}</p>
 
-    <!-- G1Teammate -->
-    <div class="rowframe">
-        <div class="profileframe">
-            <div class="role">
-                團長
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
+        <div class="member-links">
+          <a class="member-link" [href]="profile?.html_url || profileUrl" target="_blank" rel="noopener noreferrer">
+            GitHub Profile
+          </a>
+          <a *ngIf="profileBlog" class="member-link member-link--ghost" [href]="profileBlog" target="_blank" rel="noopener noreferrer">
+            Website
+          </a>
         </div>
-        <div class="profileframe">
-            <div class="role">
-                副團長
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
+      </div>
+
+      <div class="member-card">
+        <div class="member-avatar">
+          <img [src]="memberAvatar" [alt]="displayName + ' GitHub avatar'">
         </div>
-        <div class="profileframe">
-            <div class="role">
-                資安組
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
+        <div class="member-card__meta">
+          <span>{{ selectedMember.role }}</span>
+          <span>{{ profile?.company || 'CMENStudio' }}</span>
+          <span>{{ profile?.location || 'Network Node Online' }}</span>
         </div>
-    </div>
-    <div class="rowframe">
-        <div class="profileframe">
-            <div class="role">
-                計算機結構組
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
+      </div>
+    </section>
+
+    <section *ngIf="loading" class="state-panel">
+      <div class="state-panel__spinner"></div>
+      <p>Loading GitHub signal...</p>
+    </section>
+
+    <section *ngIf="!loading && error" class="state-panel state-panel--warning">
+      <p>{{ error }}</p>
+      <button type="button" (click)="loadGithubProfile()">Retry</button>
+    </section>
+
+    <section *ngIf="!loading" class="github-stats" aria-label="GitHub statistics">
+      <article class="stat-card">
+        <span>{{ profile?.public_repos || 0 }}</span>
+        <p>Public Repos</p>
+      </article>
+      <article class="stat-card">
+        <span>{{ profile?.followers || 0 }}</span>
+        <p>Followers</p>
+      </article>
+      <article class="stat-card">
+        <span>{{ profile?.following || 0 }}</span>
+        <p>Following</p>
+      </article>
+    </section>
+
+    <section class="member-grid" aria-label="Member capabilities">
+      <article class="capability-card" *ngFor="let item of capabilities">
+        <span>{{ item.label }}</span>
+        <p>{{ item.value }}</p>
+      </article>
+    </section>
+
+    <section class="repo-section" aria-label="Recent GitHub repositories">
+      <div class="repo-section__header">
+        <p class="member-kicker">Recent Builds</p>
+        <h2>GitHub Projects</h2>
+        <p>Pulled from the selected public GitHub profile. These slots can become real studio members later.</p>
+      </div>
+
+      <div class="repo-grid" *ngIf="repositories.length > 0; else emptyRepos">
+        <a
+          class="repo-card"
+          *ngFor="let repo of repositories"
+          [href]="repo.html_url"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="repo-card__language">{{ repo.language || 'Repository' }}</span>
+          <h3>{{ repo.name }}</h3>
+          <p>{{ repo.description || 'No description yet, but the console light is on.' }}</p>
+          <div class="repo-card__footer">
+            <span>Stars {{ repo.stargazers_count }}</span>
+            <span>{{ repo.updated_at | date:'yyyy/MM/dd' }}</span>
+          </div>
+        </a>
+      </div>
+
+      <ng-template #emptyRepos>
+        <div class="empty-repos">
+          <p>Repository data is waiting for GitHub to answer.</p>
         </div>
-        <div class="profileframe">
-            <div class="role">
-                教學組
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
-        </div>
-        <div class="profileframe">
-            <div class="role">
-                UI,UX設計
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
-        </div>
-    </div>
-    <div class="rowframe">
-        <div class="profileframe">
-            <div class="role">
-                外援組
-            </div>
-            <div class="profile">
-                <!--  -->
-            </div>
-            <span class="name">
-                <!--  -->
-            </span>
-        </div>
-    </div>
-    <!-- G2Teammate -->
-</div>
+      </ng-template>
+    </section>
+  </section>
+</main>

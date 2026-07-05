@@ -17,10 +17,18 @@ export class LoginComponent {
   role = '';
 
   error = '';
+  submitting = false;
   
   constructor(private apiService: ApiService) {}
 
   login() {
+    if (this.submitting) {
+      return;
+    }
+
+    this.submitting = true;
+    this.error = '';
+
     this.apiService.post<any>('/login', {
       username: this.username,
       password: this.password,
@@ -31,7 +39,10 @@ export class LoginComponent {
         localStorage.setItem('role', res.role);
         location.reload(); // 登入後刷新頁面
       },
-      error: () => this.error = '登入失敗，請檢查帳號密碼'
+      error: () => {
+        this.error = '登入失敗，請檢查帳號密碼';
+        this.submitting = false;
+      }
     });
   }
 }
