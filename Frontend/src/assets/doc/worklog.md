@@ -315,3 +315,7 @@
 - Modernize the private profile page.
 
 - Modernize the private crawler page.
+
+## 2026/07/08
+
+- Fix missing todo route in Docker deployment.

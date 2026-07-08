@@ -1,7 +1,3 @@
-# pip install virtualenv
-# python3 -m virtualenv myenv
-# .\myenv\Scripts\activate
-
 # 先載入 .env，再載入 Config，確保環境變數在設定載入前就位
 from dotenv import load_dotenv
 load_dotenv()
