@@ -9,7 +9,7 @@ services:
 
   backend:
     image: jerryzheng0907/backend:latest
-    build: ./backend
+    build: ./Backend
     ports:
       - "5000:5000"
     env_file:

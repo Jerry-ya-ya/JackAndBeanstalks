@@ -3,10 +3,10 @@ services:
   frontend:
     container_name: angular-dev
     build:
-      context: ./frontend
+      context: ./Frontend
       dockerfile: Dockerfile.dev
     volumes:
-      - ./frontend:/app
+      - ./Frontend:/app
       - /app/node_modules
       - /app/.angular/cache
     ports:
@@ -17,10 +17,10 @@ services:
   backend:
     container_name: flask-dev
     build:
-      context: ./backend
+      context: ./Backend
       dockerfile: Dockerfile.dev
     volumes:
-      - ./backend:/app
+      - ./Backend:/app
     ports:
       - "5000:5000"
     env_file:
