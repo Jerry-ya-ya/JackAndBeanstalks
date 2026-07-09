@@ -325,3 +325,5 @@
 - Improve theme contrast and add the ouroboros day-night control.
 
 - Add friend actions to the square page.
+
+- Improve square page readability and remove fake like counts.

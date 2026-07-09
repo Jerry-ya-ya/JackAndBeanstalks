@@ -1,45 +1,72 @@
 .square {
-  margin-top: 83px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-  padding-bottom: 200px;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 116px clamp(16px, 4vw, 48px) 72px;
+  color: var(--studio-text);
+  background: var(--studio-page-bg);
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 32px;
-  color: #2d3a4b;
-  font-weight: 700;
+  margin: 0 auto 32px;
+  color: var(--studio-text);
+  font-size: clamp(36px, 6vw, 76px);
+  font-weight: 900;
   letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow:
+    2px 2px 0 var(--studio-danger),
+    -2px -2px 0 color-mix(in srgb, var(--studio-accent) 36%, transparent);
+}
+
+:host-context(.cmen-day-theme) h2 {
+  color: #14343a;
+  text-shadow:
+    2px 2px 0 rgba(209, 145, 41, 0.3),
+    -1px -1px 0 rgba(255, 248, 218, 0.92);
+}
+
+:host-context(.eden-night-theme) .user-card p {
+  color: #c8ffd5;
+}
+
+:host-context(.cmen-day-theme) .user-card p {
+  color: #334c50;
+}
+
+:host-context(.cmen-day-theme) .user-card strong {
+  color: #176b7a;
 }
 
 .user-card {
+  max-width: 980px;
+  margin: 0 auto 20px;
   display: flex;
   align-items: center;
-  background: #f7f9fa;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid var(--studio-line);
+  background: color-mix(in srgb, var(--studio-panel) 86%, transparent);
+  border-radius: 8px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
   padding: 20px 28px;
-  margin-bottom: 24px;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+  backdrop-filter: blur(14px);
 }
 
 .user-card:hover {
-  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  border-color: color-mix(in srgb, var(--studio-accent) 58%, var(--studio-line));
+  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.28);
+  transform: translateY(-2px);
 }
 
 .user-card img {
   border-radius: 50%;
-  border: 3px solid #e0e7ef;
+  border: 3px solid color-mix(in srgb, var(--studio-accent) 52%, var(--studio-line));
   width: 100px;
   height: 100px;
   object-fit: cover;
   margin-right: 32px;
-  background: #fff;
+  background: color-mix(in srgb, var(--studio-panel-strong) 86%, transparent);
 }
 
 .user-card > div:first-child {
@@ -53,11 +80,11 @@ h2 {
 .user-card p {
   margin: 6px 0;
   font-size: 1.08rem;
-  color: #34495e;
+  color: var(--studio-muted);
 }
 
 .user-card strong {
-  color: #1a73e8;
+  color: var(--studio-accent);
   font-weight: 600;
 }
 
@@ -135,7 +162,7 @@ h2 {
 
 hr {
   border: none;
-  border-top: 1px solid #e0e7ef;
+  border-top: 1px solid var(--studio-line);
   margin: 18px 0 0 0;
 }
 
@@ -152,6 +179,6 @@ hr {
     height: 80px;
   }
   .square {
-    padding: 8px;
+    padding: 92px 12px 36px;
   }
 }
