@@ -319,3 +319,7 @@
 ## 2026/07/08
 
 - Fix missing todo route in Docker deployment.
+
+## 2026/07/09
+
+- Improve theme contrast and add the ouroboros day-night control.
