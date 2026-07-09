@@ -61,6 +61,78 @@ h2 {
   font-weight: 600;
 }
 
+.friend-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.friend-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--studio-line, #cbd5e1);
+  border-radius: 999px;
+  color: var(--studio-accent, #1a73e8);
+  background: color-mix(in srgb, var(--studio-accent, #1a73e8) 12%, transparent);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.friend-status--self {
+  color: var(--studio-bg, #fff);
+  background: var(--studio-accent, #1a73e8);
+}
+
+.btn {
+  min-height: 36px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 800;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.16);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.btn-primary {
+  background: #3182ce;
+}
+
+.btn-danger {
+  background: #e53e3e;
+}
+
+.friend-message {
+  margin: 10px 0 0;
+  color: var(--studio-accent, #1a73e8);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+:host-context(.cmen-day-theme) .friend-message,
+:host-context(.cmen-day-theme) .friend-status {
+  color: #14343a;
+}
+
+:host-context(.eden-night-theme) .friend-message,
+:host-context(.eden-night-theme) .friend-status {
+  color: #bfffd0;
+}
+
 hr {
   border: none;
   border-top: 1px solid #e0e7ef;

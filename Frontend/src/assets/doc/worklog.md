@@ -323,3 +323,5 @@
 ## 2026/07/09
 
 - Improve theme contrast and add the ouroboros day-night control.
+
+- Add friend actions to the square page.
