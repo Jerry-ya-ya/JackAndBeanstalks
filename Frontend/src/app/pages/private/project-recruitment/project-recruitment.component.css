@@ -1,0 +1,262 @@
+:host {
+  display: block;
+}
+
+.recruit-page {
+  min-height: 100vh;
+  padding: 116px clamp(16px, 4vw, 48px) 48px;
+  color: var(--studio-text);
+  background: var(--studio-page-bg);
+  font-family: "Segoe UI", "Microsoft JhengHei", Arial, sans-serif;
+}
+
+.recruit-hero,
+.recruit-card,
+.recruit-list,
+.project-card {
+  border: 1px solid var(--studio-line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--studio-panel) 86%, transparent);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
+}
+
+.recruit-hero {
+  min-height: 340px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 320px);
+  gap: 24px;
+  align-items: end;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: clamp(28px, 6vw, 72px);
+}
+
+.recruit-kicker {
+  margin: 0 0 12px;
+  color: var(--studio-accent);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.recruit-hero h1 {
+  margin: 0;
+  color: var(--studio-text);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(52px, 10vw, 128px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.recruit-hero p:last-child,
+.project-summary,
+.project-meta,
+.empty-state {
+  color: var(--studio-muted);
+  line-height: 1.6;
+}
+
+.recruit-status {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid var(--studio-line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--studio-panel-strong) 78%, transparent);
+}
+
+.recruit-status span,
+.recruit-status small,
+.form-field span,
+.project-owner {
+  color: var(--studio-muted);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.recruit-status strong {
+  color: var(--studio-text);
+  font-size: clamp(42px, 7vw, 70px);
+  line-height: 1;
+}
+
+.recruit-grid {
+  max-width: 1180px;
+  margin: 18px auto 0;
+  display: grid;
+  grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.18fr);
+  gap: 18px;
+}
+
+.recruit-card,
+.recruit-list {
+  padding: clamp(20px, 3vw, 34px);
+}
+
+.card-header h2,
+.project-card h3 {
+  margin: 0 0 18px;
+  color: var(--studio-text);
+  line-height: 1;
+}
+
+.card-header h2 {
+  font-size: clamp(28px, 4vw, 52px);
+  text-transform: uppercase;
+}
+
+.form-field {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: 12px;
+}
+
+.form-field input,
+.form-field textarea,
+.join-panel input {
+  min-height: 46px;
+  width: 100%;
+  padding: 0 14px;
+  border: 1px solid var(--studio-line);
+  border-radius: 7px;
+  color: var(--studio-text);
+  background: color-mix(in srgb, var(--studio-panel-strong) 82%, transparent);
+  outline: none;
+}
+
+.form-field textarea {
+  min-height: 120px;
+  padding-top: 12px;
+  resize: vertical;
+}
+
+.recruit-button {
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid var(--studio-accent);
+  border-radius: 7px;
+  color: var(--studio-bg);
+  background: var(--studio-accent);
+  cursor: pointer;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.recruit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+.recruit-button--ghost {
+  color: var(--studio-text);
+  background: transparent;
+}
+
+.status-message {
+  margin: 14px 0 0;
+  color: var(--studio-accent);
+  font-weight: 800;
+}
+
+.project-card {
+  padding: 20px;
+  margin-bottom: 14px;
+}
+
+.project-card__top,
+.project-actions,
+.join-panel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.project-card__top {
+  justify-content: space-between;
+}
+
+.project-card h3 {
+  font-size: clamp(24px, 3vw, 36px);
+}
+
+.project-count,
+.project-badge,
+.member-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--studio-line);
+  border-radius: 999px;
+  color: var(--studio-accent);
+  background: color-mix(in srgb, var(--studio-accent) 12%, transparent);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.project-meta,
+.member-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.member-list {
+  margin: 16px 0;
+}
+
+.join-panel {
+  margin-top: 16px;
+}
+
+.join-panel input {
+  flex: 1;
+}
+
+.project-actions {
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.empty-state {
+  padding: 22px;
+  border: 1px dashed var(--studio-line);
+  border-radius: 8px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .recruit-hero,
+  .recruit-grid,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .recruit-page {
+    padding: 92px 12px 28px;
+  }
+
+  .recruit-hero,
+  .recruit-card,
+  .recruit-list {
+    padding: 22px;
+  }
+
+  .project-card__top,
+  .join-panel {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

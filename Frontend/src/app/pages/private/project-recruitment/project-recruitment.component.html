@@ -1,0 +1,114 @@
+<main class="recruit-page">
+  <section class="recruit-hero">
+    <div>
+      <p class="recruit-kicker">Project Board</p>
+      <h1>專案招募</h1>
+      <p>建立你的遊戲、工具或研究專案招募，讓其他使用者登記加入。</p>
+    </div>
+
+    <div class="recruit-status">
+      <span>Open Projects</span>
+      <strong>{{ projects.length }}</strong>
+      <small>Recruitment slots online</small>
+    </div>
+  </section>
+
+  <section class="recruit-grid">
+    <form class="recruit-card recruit-form" (ngSubmit)="createProject()">
+      <div class="card-header">
+        <p class="recruit-kicker">Create</p>
+        <h2>建立招募</h2>
+      </div>
+
+      <label class="form-field">
+        <span>專案名稱</span>
+        <input name="title" [(ngModel)]="form.title" placeholder="例如：EDEN Rogue-lite Prototype" required>
+      </label>
+
+      <label class="form-field">
+        <span>招募內容</span>
+        <textarea name="summary" [(ngModel)]="form.summary" rows="5" placeholder="簡短描述專案目標、玩法、需要的人。" required></textarea>
+      </label>
+
+      <div class="form-row">
+        <label class="form-field">
+          <span>需求角色</span>
+          <input name="role_needed" [(ngModel)]="form.role_needed" placeholder="程式 / 美術 / 企劃">
+        </label>
+
+        <label class="form-field">
+          <span>人數上限</span>
+          <input type="number" name="max_members" min="1" [(ngModel)]="form.max_members" placeholder="不限">
+        </label>
+      </div>
+
+      <label class="form-field">
+        <span>聯絡方式</span>
+        <input name="contact" [(ngModel)]="form.contact" placeholder="Discord / Email / 站內訊息">
+      </label>
+
+      <button class="recruit-button" type="submit" [disabled]="submitting">
+        {{ submitting ? '建立中...' : '發布招募' }}
+      </button>
+
+      <p *ngIf="statusMessage" class="status-message">{{ statusMessage }}</p>
+    </form>
+
+    <section class="recruit-list">
+      <div class="card-header">
+        <p class="recruit-kicker">Join</p>
+        <h2>招募列表</h2>
+      </div>
+
+      <div *ngIf="loading" class="empty-state">載入中...</div>
+
+      <article *ngFor="let project of projects" class="project-card">
+        <div class="project-card__top">
+          <div>
+            <p class="project-owner">{{ project.creator.nickname || project.creator.username }}</p>
+            <h3>{{ project.title }}</h3>
+          </div>
+          <span class="project-count">{{ project.member_count }}{{ project.max_members ? '/' + project.max_members : '' }}</span>
+        </div>
+
+        <p class="project-summary">{{ project.summary }}</p>
+
+        <div class="project-meta">
+          <span *ngIf="project.role_needed">需求：{{ project.role_needed }}</span>
+          <span *ngIf="project.contact">聯絡：{{ project.contact }}</span>
+          <span>{{ project.created_at }}</span>
+        </div>
+
+        <div class="member-list" *ngIf="project.members.length > 0">
+          <span *ngFor="let member of project.members">{{ member.user.nickname || member.user.username }}</span>
+        </div>
+
+        <div class="join-panel" *ngIf="!project.owned_by_me && !project.joined_by_me && !isFull(project)">
+          <input
+            [(ngModel)]="joinMessages[project.id]"
+            [name]="'joinMessage' + project.id"
+            placeholder="給發起人的一句話">
+          <button class="recruit-button" type="button" (click)="joinProject(project)" [disabled]="actionLoading[project.id]">
+            {{ actionLoading[project.id] ? '登記中...' : '登記加入' }}
+          </button>
+        </div>
+
+        <div class="project-actions" *ngIf="project.owned_by_me || project.joined_by_me || isFull(project)">
+          <span *ngIf="project.owned_by_me" class="project-badge">你建立的招募</span>
+          <span *ngIf="project.joined_by_me" class="project-badge">已登記加入</span>
+          <span *ngIf="isFull(project) && !project.joined_by_me" class="project-badge">名額已滿</span>
+          <button
+            *ngIf="project.joined_by_me"
+            class="recruit-button recruit-button--ghost"
+            type="button"
+            (click)="leaveProject(project)"
+            [disabled]="actionLoading[project.id]">
+            {{ actionLoading[project.id] ? '處理中...' : '取消登記' }}
+          </button>
+        </div>
+      </article>
+
+      <div *ngIf="!loading && projects.length === 0" class="empty-state">目前還沒有專案招募。</div>
+    </section>
+  </section>
+</main>
