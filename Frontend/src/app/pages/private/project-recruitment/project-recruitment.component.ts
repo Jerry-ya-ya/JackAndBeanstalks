@@ -45,6 +45,7 @@ export class ProjectRecruitmentComponent implements OnInit {
   projects: ProjectRecruitment[] = [];
   loading = false;
   submitting = false;
+  deletingProject: Record<number, boolean> = {};
   actionLoading: Record<number, boolean> = {};
   joinMessages: Record<number, string> = {};
   statusMessage = '';
@@ -153,8 +154,34 @@ export class ProjectRecruitmentComponent implements OnInit {
     });
   }
 
+  deleteProject(project: ProjectRecruitment) {
+    if (!project.owned_by_me || this.deletingProject[project.id]) {
+      return;
+    }
+
+    this.deletingProject[project.id] = true;
+    this.apiService.delete<{ message: string; id: number }>(
+      `/project-recruitments/${project.id}`,
+      this.apiService.createAuthHeaders()
+    ).subscribe({
+      next: result => {
+        this.projects = this.projects.filter(item => item.id !== result.id);
+        delete this.deletingProject[project.id];
+        this.statusMessage = '招募已刪除';
+      },
+      error: err => {
+        this.statusMessage = err.error?.error || '刪除招募失敗';
+        delete this.deletingProject[project.id];
+      }
+    });
+  }
+
   isFull(project: ProjectRecruitment) {
     return !!project.max_members && project.member_count >= project.max_members;
+  }
+
+  get ownedProjects() {
+    return this.projects.filter(project => project.owned_by_me);
   }
 
   private replaceProject(updated: ProjectRecruitment) {

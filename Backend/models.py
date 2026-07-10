@@ -120,3 +120,17 @@ class ProjectRecruitmentMember(db.Model):
 
     project = db.relationship('ProjectRecruitment', back_populates='members')
     user = db.relationship('User', backref='project_recruitment_memberships')
+
+
+def load_models():
+    """Keep all table models registered from one place before schema creation."""
+    return (
+        User,
+        FriendRequest,
+        Todo,
+        News,
+        ScheduleState,
+        Post,
+        ProjectRecruitment,
+        ProjectRecruitmentMember,
+    )

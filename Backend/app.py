@@ -11,7 +11,7 @@ from flask_cors import CORS
 import os
 
 # 資料庫相關套件
-from models import db
+from models import db, load_models
 from sqlalchemy.exc import OperationalError
 import time
 
@@ -45,6 +45,7 @@ def setup_database(app, retries=5, wait=2, create_schema=True):
         try:
             with app.app_context():
                 # 嘗試資料庫操作
+                load_models()
                 db.create_all()
                 # 延遲導入避免循環導入
                 from celery_worker.crawler.logic import init_schedule_state
@@ -69,6 +70,7 @@ def setup_database(app, retries=5, wait=2, create_schema=True):
             attempt += 1
             try:
                 with app.app_context():
+                    load_models()
                     db.create_all()
                     from celery_worker.crawler.logic import init_schedule_state
                     init_schedule_state()

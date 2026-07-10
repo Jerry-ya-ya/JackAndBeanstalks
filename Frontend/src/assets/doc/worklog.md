@@ -320,6 +320,10 @@
 
 - Fix missing todo route in Docker deployment.
 
+## 2026/07/11
+
+- Add recruitment management tools.
+
 ## 2026/07/10
 
 - Add project recruitment pages and APIs.

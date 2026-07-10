@@ -132,6 +132,23 @@ def join_project_recruitment(project_id):
     return jsonify(serialize_project(project, current_user))
 
 
+@project_recruitment_bp.route('/project-recruitments/<int:project_id>', methods=['DELETE'])
+@jwt_required()
+def delete_project_recruitment(project_id):
+    current_user = get_current_user_from_token()
+    if not current_user:
+        return jsonify({'error': 'User not found'}), 404
+
+    project = ProjectRecruitment.query.get_or_404(project_id)
+    if project.creator_id != current_user.id:
+        return jsonify({'error': '只能刪除自己發布的招募'}), 403
+
+    db.session.delete(project)
+    db.session.commit()
+
+    return jsonify({'message': '招募已刪除', 'id': project_id})
+
+
 @project_recruitment_bp.route('/project-recruitments/<int:project_id>/join', methods=['DELETE'])
 @jwt_required()
 def leave_project_recruitment(project_id):

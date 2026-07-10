@@ -111,4 +111,64 @@
       <div *ngIf="!loading && projects.length === 0" class="empty-state">目前還沒有專案招募。</div>
     </section>
   </section>
+
+  <section class="manage-section">
+    <div class="card-header manage-header">
+      <div>
+        <p class="recruit-kicker">Manage</p>
+        <h2>管理已發布招募</h2>
+      </div>
+      <span class="project-count">{{ ownedProjects.length }} Active</span>
+    </div>
+
+    <div *ngIf="loading" class="empty-state">同步你的招募資料中...</div>
+
+    <div *ngIf="!loading && ownedProjects.length === 0" class="empty-state">
+      你目前還沒有發布中的招募。
+    </div>
+
+    <article *ngFor="let project of ownedProjects" class="manage-card">
+      <div class="manage-card__summary">
+        <div>
+          <p class="project-owner">{{ project.created_at }}</p>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.summary }}</p>
+        </div>
+
+        <div class="manage-metrics">
+          <span>{{ project.member_count }}{{ project.max_members ? '/' + project.max_members : '' }}</span>
+          <small>Members</small>
+        </div>
+      </div>
+
+      <div class="project-meta">
+        <span *ngIf="project.role_needed">需求：{{ project.role_needed }}</span>
+        <span *ngIf="project.contact">聯絡：{{ project.contact }}</span>
+      </div>
+
+      <div class="applicant-list" *ngIf="project.members.length > 0">
+        <div *ngFor="let member of project.members" class="applicant-card">
+          <div>
+            <strong>{{ member.user.nickname || member.user.username }}</strong>
+            <span>{{ member.created_at }}</span>
+          </div>
+          <p>{{ member.message || '沒有留下登記留言。' }}</p>
+        </div>
+      </div>
+
+      <div *ngIf="project.members.length === 0" class="empty-state empty-state--compact">
+        目前還沒有人登記加入。
+      </div>
+
+      <div class="manage-actions">
+        <button
+          class="recruit-button recruit-button--danger"
+          type="button"
+          (click)="deleteProject(project)"
+          [disabled]="deletingProject[project.id]">
+          {{ deletingProject[project.id] ? '刪除中...' : '刪除招募' }}
+        </button>
+      </div>
+    </article>
+  </section>
 </main>
