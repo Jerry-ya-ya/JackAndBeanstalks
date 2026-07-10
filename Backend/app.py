@@ -11,7 +11,7 @@ from flask_cors import CORS
 import os
 
 # 資料庫相關套件
-from models import db
+from models import db, load_models
 from sqlalchemy.exc import OperationalError
 import time
 
@@ -32,6 +32,7 @@ from routes.test.test import test_utils
 from routes.auth.friend import friend_bp
 from routes.crawler.crawler import crawler_bp
 from routes.post.post import post_bp
+from routes.project_recruitment.project_recruitment import project_recruitment_bp
 
 def setup_database(app, retries=5, wait=2, create_schema=True):
     db.init_app(app)
@@ -44,6 +45,7 @@ def setup_database(app, retries=5, wait=2, create_schema=True):
         try:
             with app.app_context():
                 # 嘗試資料庫操作
+                load_models()
                 db.create_all()
                 # 延遲導入避免循環導入
                 from celery_worker.crawler.logic import init_schedule_state
@@ -68,6 +70,7 @@ def setup_database(app, retries=5, wait=2, create_schema=True):
             attempt += 1
             try:
                 with app.app_context():
+                    load_models()
                     db.create_all()
                     from celery_worker.crawler.logic import init_schedule_state
                     init_schedule_state()
@@ -144,6 +147,7 @@ def create_app(config_name="none"):
     app.register_blueprint(promote_bp, url_prefix='/api')
     app.register_blueprint(friend_bp, url_prefix='/api')
     app.register_blueprint(post_bp, url_prefix='/api')
+    app.register_blueprint(project_recruitment_bp, url_prefix='/api')
     
     # 在開發和測試環境掛載測試工具
     if env in ['development', 'test']:

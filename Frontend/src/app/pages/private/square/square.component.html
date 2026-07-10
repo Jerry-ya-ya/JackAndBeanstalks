@@ -11,6 +11,37 @@
             <p><strong>暱稱：</strong>{{ user.nickname || '(未設定)' }}</p>
             <p><strong>身份：</strong>{{ user.role }}</p>
             <p><strong>創立時間：</strong>{{ user.created_at }}</p>
+
+            <div class="friend-actions">
+                <ng-container *ngIf="isCurrentUser(user.id); else friendControls">
+                    <span class="friend-status friend-status--self">這是你</span>
+                </ng-container>
+
+                <ng-template #friendControls>
+                <ng-container *ngIf="isFriend(user.id); else requestFriend">
+                    <span class="friend-status">已是朋友</span>
+                    <button
+                        class="btn btn-danger"
+                        type="button"
+                        (click)="removeFriend(user)"
+                        [disabled]="friendActionLoading[user.id]">
+                        {{ friendActionLoading[user.id] ? '處理中...' : '刪除好友' }}
+                    </button>
+                </ng-container>
+
+                <ng-template #requestFriend>
+                    <button
+                        class="btn btn-primary"
+                        type="button"
+                        (click)="sendFriendRequest(user)"
+                        [disabled]="friendActionLoading[user.id]">
+                        {{ friendActionLoading[user.id] ? '處理中...' : '發送邀請' }}
+                    </button>
+                </ng-template>
+                </ng-template>
+            </div>
+
+            <p *ngIf="friendMessages[user.id]" class="friend-message">{{ friendMessages[user.id] }}</p>
         </div>
         <hr>
     </div>

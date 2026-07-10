@@ -182,6 +182,10 @@
   color: #fff;
 }
 
+:host-context(.cmen-day-theme) .stat-value {
+  color: #14343a;
+}
+
 .stat-label {
   font-size: 12px;
   opacity: 0.8;
@@ -234,10 +238,24 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+:host-context(.cmen-day-theme) .github-link {
+  color: #14343a;
+  background: rgba(255, 248, 218, 0.72);
+  border-color: rgba(20, 52, 58, 0.26);
+  box-shadow: 0 10px 24px rgba(20, 52, 58, 0.12);
+}
+
 .github-link:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+:host-context(.cmen-day-theme) .github-link:hover {
+  color: #fff8da;
+  background: #176b7a;
+  border-color: #176b7a;
+  box-shadow: 0 12px 28px rgba(23, 107, 122, 0.22);
 }
 
 .link-icon {
@@ -356,6 +374,11 @@
   font-size: 18px;
   font-weight: 600;
   color: #fff;
+}
+
+:host-context(.cmen-day-theme) .feature-title {
+  color: #14343a;
+  text-shadow: none;
 }
 
 .feature-description {

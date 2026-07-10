@@ -6,21 +6,46 @@
   </div>
 
   <div class="global-actions">
-    <button
-      class="world-toggle"
-      type="button"
-      (click)="theme.toggleWorldMode()"
-      [attr.aria-label]="theme.isNightMode ? 'Switch to day mode' : 'Switch to night mode'"
-    >
-      <span class="world-toggle__orbit">
-        <span class="world-toggle__sun"></span>
-        <span class="world-toggle__moon"></span>
-      </span>
-      <span class="world-toggle__meta">
-        <span>{{ theme.countdownLabel }}</span>
-        <span>{{ theme.nextModeLabel }}</span>
-      </span>
-    </button>
+    <div class="world-control" [class.world-control--night]="theme.isNightMode" [class.world-control--locked]="theme.isWorldLocked">
+      <button
+        class="world-slider"
+        type="button"
+        (click)="toggleWorldFromClick($event)"
+        (pointerdown)="beginWorldSlide($event)"
+        (pointermove)="moveWorldSlide($event)"
+        (pointerup)="finishWorldSlide($event)"
+        [attr.aria-label]="theme.isNightMode ? 'Switch to day mode' : 'Switch to night mode'"
+      >
+        <span class="world-slider__label world-slider__label--day">DAY</span>
+        <span class="world-slider__label world-slider__label--night">NIGHT</span>
+        <span class="world-slider__thumb">
+          <span class="world-toggle__orbit">
+            <span class="world-toggle__sun"></span>
+            <span class="world-toggle__moon"></span>
+          </span>
+        </span>
+        <span class="world-toggle__meta">
+          <span>{{ theme.countdownLabel }}</span>
+          <span>{{ theme.nextModeLabel }}</span>
+        </span>
+      </button>
+
+      <button
+        class="world-lock"
+        type="button"
+        role="switch"
+        (click)="theme.toggleWorldLock()"
+        [class.world-lock--active]="theme.isWorldLocked"
+        [attr.aria-checked]="theme.isWorldLocked"
+        [attr.aria-label]="theme.isWorldLocked ? 'Unlock automatic day and night switching' : 'Lock current day or night mode'"
+      >
+        <span class="world-lock__label">LOCK</span>
+        <span class="world-lock__track">
+          <span class="world-lock__thumb"></span>
+        </span>
+        <span class="world-lock__state">{{ theme.lockStateLabel }}</span>
+      </button>
+    </div>
 
     <a class="login-link" [routerLink]="['/' + path.login]">Login</a>
   </div>

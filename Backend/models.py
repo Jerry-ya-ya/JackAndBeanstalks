@@ -88,3 +88,49 @@ class Post(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', backref='posts')
+
+class ProjectRecruitment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(120), nullable=False)
+    summary = db.Column(db.Text, nullable=False)
+    role_needed = db.Column(db.String(120))
+    contact = db.Column(db.String(160))
+    max_members = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    creator_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    creator = db.relationship('User', backref='project_recruitments')
+    members = db.relationship(
+        'ProjectRecruitmentMember',
+        back_populates='project',
+        cascade='all, delete-orphan'
+    )
+
+class ProjectRecruitmentMember(db.Model):
+    __table_args__ = (
+        db.UniqueConstraint('project_id', 'user_id', name='uq_project_recruitment_member'),
+    )
+
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.Text)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    project_id = db.Column(db.Integer, db.ForeignKey('project_recruitment.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    project = db.relationship('ProjectRecruitment', back_populates='members')
+    user = db.relationship('User', backref='project_recruitment_memberships')
+
+
+def load_models():
+    """Keep all table models registered from one place before schema creation."""
+    return (
+        User,
+        FriendRequest,
+        Todo,
+        News,
+        ScheduleState,
+        Post,
+        ProjectRecruitment,
+        ProjectRecruitmentMember,
+    )

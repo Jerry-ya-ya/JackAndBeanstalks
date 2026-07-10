@@ -169,6 +169,33 @@
   font-size: 18px;
 }
 
+:host-context(.cmen-day-theme) .main-title,
+:host-context(.cmen-day-theme) .section-title,
+:host-context(.cmen-day-theme) .empty-title {
+  color: #14343a;
+  text-shadow:
+    2px 2px 0 rgba(209, 145, 41, 0.28),
+    -1px -1px 0 rgba(255, 248, 218, 0.9);
+}
+
+:host-context(.cmen-day-theme) .subtitle,
+:host-context(.cmen-day-theme) .empty-description {
+  color: #334c50;
+  font-weight: 700;
+  opacity: 1;
+}
+
+:host-context(.cmen-day-theme) .post-count {
+  color: #14343a;
+  background: rgba(255, 248, 218, 0.76);
+  border: 1px solid rgba(20, 52, 58, 0.2);
+}
+
+:host-context(.cmen-day-theme) .count-number,
+:host-context(.cmen-day-theme) .count-label {
+  color: #14343a;
+}
+
 /* 貼文網格 */
 .posts-grid {
   display: flex;
@@ -270,6 +297,31 @@
   font-size: 16px;
   line-height: 1.6;
   margin: 0;
+}
+
+:host-context(.eden-night-theme) .author-name,
+:host-context(.eden-night-theme) .post-text,
+:host-context(.eden-night-theme) .empty-title {
+  color: #effff2;
+  text-shadow: 0 1px 8px rgba(101, 255, 130, 0.2);
+}
+
+:host-context(.eden-night-theme) .post-time,
+:host-context(.eden-night-theme) .stat-item,
+:host-context(.eden-night-theme) .empty-description {
+  color: #bfffd0;
+  opacity: 1;
+}
+
+:host-context(.cmen-day-theme) .author-name,
+:host-context(.cmen-day-theme) .post-text {
+  color: #14343a;
+}
+
+:host-context(.cmen-day-theme) .post-time,
+:host-context(.cmen-day-theme) .stat-item {
+  color: #506160;
+  opacity: 1;
 }
 
 .post-footer {
