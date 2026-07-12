@@ -343,3 +343,5 @@
 - Group project todos and refresh the todo page.
 
 - Improve login redirect and friend request refresh.
+
+- Add fallback avatars to the square page.

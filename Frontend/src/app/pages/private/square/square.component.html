@@ -2,8 +2,16 @@
     <h2>用戶廣場</h2>
     
     <div *ngFor="let user of users" class="user-card">
-        <div>
-            <img [src]="apiRoot + '/' + user.avatar_url" width="120" height="120" />
+        <div class="square-avatar">
+            <img
+                *ngIf="user.avatar_url; else avatarFallback"
+                [src]="apiRoot + '/' + user.avatar_url"
+                width="120"
+                height="120"
+                alt="User avatar" />
+            <ng-template #avatarFallback>
+                <span>{{ getAvatarInitial(user) }}</span>
+            </ng-template>
         </div>
         <div>
             <p><strong>ID:</strong>{{ user.id }}</p>

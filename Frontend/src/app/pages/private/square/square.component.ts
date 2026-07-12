@@ -80,6 +80,10 @@ export class SquareComponent implements OnInit {
     return this.currentUserId === userId;
   }
 
+  getAvatarInitial(user: any) {
+    return (user?.nickname || user?.username || '?').charAt(0).toUpperCase();
+  }
+
   sendFriendRequest(user: any) {
     if (!user?.username || this.isCurrentUser(user.id) || this.friendActionLoading[user.id]) {
       return;
