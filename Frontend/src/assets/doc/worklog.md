@@ -320,18 +320,6 @@
 
 - Fix missing todo route in Docker deployment.
 
-## 2026/07/12
-
-- Add project todo dispatch for recruitment teams.
-
-## 2026/07/11
-
-- Add recruitment management tools.
-
-## 2026/07/10
-
-- Add project recruitment pages and APIs.
-
 ## 2026/07/09
 
 - Improve theme contrast and add the ouroboros day-night control.
@@ -339,3 +327,17 @@
 - Add friend actions to the square page.
 
 - Improve square page readability and remove fake like counts.
+
+## 2026/07/10
+
+- Add project recruitment pages and APIs.
+
+## 2026/07/11
+
+- Add recruitment management tools.
+
+## 2026/07/12
+
+- Add project todo dispatch for recruitment teams.
+
+- Group project todos and refresh the todo page.

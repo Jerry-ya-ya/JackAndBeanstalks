@@ -26,4 +26,37 @@
             </button>
         </li>
     </ul>
+
+    <section class="project-todo-section">
+        <div class="project-todo-section__header">
+            <div>
+                <p>Project Categories</p>
+                <h3>專案分類</h3>
+            </div>
+            <strong>{{ projectTodoGroups.length }}</strong>
+        </div>
+
+        <div *ngIf="projectTodoGroups.length === 0" class="project-empty">
+            目前沒有專案指派的 Todo。
+        </div>
+
+        <article *ngFor="let group of projectTodoGroups" class="project-todo-card">
+            <div class="project-todo-card__title">
+                <h4>{{ group.projectTitle }}</h4>
+                <span>{{ group.done }}/{{ group.total }} done</span>
+            </div>
+
+            <div class="project-progress">
+                <div [style.width.%]="group.total ? (group.done / group.total) * 100 : 0"></div>
+            </div>
+
+            <ul class="project-task-list">
+                <li *ngFor="let todo of group.todos" [class.is-done]="todo.done">
+                    <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
+                    <span>{{ todo.text }}</span>
+                    <small>{{ todo.assignee_name || '未指定' }}</small>
+                </li>
+            </ul>
+        </article>
+    </section>
 </div>

@@ -1,35 +1,40 @@
 .todo-container {
-    margin-top: 83px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-    padding: 36px 28px 48px 28px;
+    max-width: 1120px;
+    margin: 0 auto;
+    border: 1px solid var(--studio-line);
+    border-radius: 8px;
+    color: var(--studio-text);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--studio-accent) 10%, transparent), transparent 42%),
+      color-mix(in srgb, var(--studio-panel) 88%, transparent);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 24px 70px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
+    padding: clamp(24px, 4vw, 42px);
 }
 
 h2 {
   text-align: center;
-  color: #2d3a4b;
-  font-weight: 700;
+  color: var(--studio-text);
+  font-weight: 900;
   margin-bottom: 24px;
+  text-transform: uppercase;
 }
 
 input[type="text"], input[ngmodel], input[placeholder] {
   width: 70%;
   padding: 8px 12px;
-  border: 1px solid #e0e7ef;
+  border: 1px solid var(--studio-line);
   border-radius: 6px;
   font-size: 1rem;
-  background: #f7f9fa;
+  color: var(--studio-text);
+  background: color-mix(in srgb, var(--studio-panel-strong) 82%, transparent);
   margin-right: 8px;
 }
 
 button {
-  background: #1a73e8;
-  color: #fff;
-  border: none;
+  background: var(--studio-accent);
+  color: var(--studio-bg);
+  border: 1px solid var(--studio-accent);
   border-radius: 6px;
   padding: 7px 18px;
   font-size: 1rem;
@@ -39,7 +44,9 @@ button {
   transition: background 0.2s;
 }
 button:hover {
-  background: #1761c6;
+  color: var(--studio-bg);
+  background: var(--studio-accent);
+  box-shadow: 0 12px 24px color-mix(in srgb, var(--studio-accent) 20%, transparent);
 }
 
 ul {
@@ -51,9 +58,10 @@ ul {
 li {
   display: flex;
   align-items: center;
-  background: #f7f9fa;
+  border: 1px solid var(--studio-line);
+  background: color-mix(in srgb, var(--studio-panel-strong) 76%, transparent);
   border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
   padding: 12px 16px;
   margin-bottom: 14px;
   transition: box-shadow 0.2s;
@@ -63,7 +71,7 @@ li:hover {
 }
 
 input[type="checkbox"] {
-  accent-color: #1a73e8;
+  accent-color: var(--studio-accent);
   width: 20px;
   height: 20px;
   margin-right: 16px;
@@ -72,7 +80,7 @@ input[type="checkbox"] {
 span {
   flex: 1;
   font-size: 1.08rem;
-  color: #34495e;
+  color: var(--studio-text);
   word-break: break-all;
 }
 
@@ -80,22 +88,139 @@ small {
   margin-left: 10px;
   padding: 4px 8px;
   border-radius: 999px;
-  color: #24527a;
-  background: #e6f0ff;
+  color: var(--studio-accent);
+  background: color-mix(in srgb, var(--studio-accent) 14%, transparent);
   font-size: 0.78rem;
   font-weight: 700;
   white-space: nowrap;
 }
 
 button:last-child {
-  background: #ff4d4f;
+  border-color: color-mix(in srgb, var(--studio-danger) 72%, var(--studio-line));
+  background: var(--studio-danger);
   color: #fff;
   margin-left: 12px;
 }
 button:last-child:hover {
-  background: #fff;
-  color: #ff4d4f;
-  border: 2px solid #ff4d4f;
+  background: transparent;
+  color: var(--studio-danger);
+  border: 1px solid var(--studio-danger);
+}
+
+.project-todo-section {
+  margin-top: 34px;
+  padding-top: 26px;
+  border-top: 1px solid var(--studio-line);
+}
+
+.project-todo-section__header,
+.project-todo-card__title,
+.project-task-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.project-todo-section__header {
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.project-todo-section__header p {
+  margin: 0 0 6px;
+  color: var(--studio-accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+.project-todo-section__header h3 {
+  margin: 0;
+  color: var(--studio-text);
+  font-size: 1.5rem;
+}
+
+.project-todo-section__header strong {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--studio-bg);
+  background: var(--studio-accent);
+}
+
+.project-empty {
+  padding: 18px;
+  border: 1px dashed var(--studio-line);
+  border-radius: 10px;
+  color: var(--studio-muted);
+  text-align: center;
+  background: color-mix(in srgb, var(--studio-panel-strong) 70%, transparent);
+}
+
+.project-todo-card {
+  margin-bottom: 16px;
+  padding: 18px;
+  border: 1px solid var(--studio-line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--studio-accent) 12%, transparent), transparent 58%),
+    color-mix(in srgb, var(--studio-panel-strong) 80%, transparent);
+  box-shadow: 0 3px 14px rgba(38, 71, 112, 0.08);
+}
+
+.project-todo-card__title {
+  justify-content: space-between;
+}
+
+.project-todo-card__title h4 {
+  margin: 0;
+  color: var(--studio-text);
+  font-size: 1.15rem;
+}
+
+.project-todo-card__title span {
+  flex: none;
+  width: auto;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--studio-accent);
+  background: color-mix(in srgb, var(--studio-accent) 14%, transparent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.project-progress {
+  height: 8px;
+  margin: 14px 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--studio-line) 58%, transparent);
+}
+
+.project-progress div {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--studio-accent), var(--studio-warm));
+  transition: width 0.2s ease;
+}
+
+.project-task-list {
+  margin-top: 0;
+}
+
+.project-task-list li {
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  box-shadow: none;
+}
+
+.project-task-list li.is-done span {
+  color: var(--studio-muted);
+  text-decoration: line-through;
 }
 
 @media (max-width: 600px) {
@@ -108,5 +233,14 @@ button:last-child:hover {
   }
   li {
     padding: 8px 4px;
+  }
+  .project-todo-section__header,
+  .project-todo-card__title,
+  .project-task-list li {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .project-task-list input[type="checkbox"] {
+    margin-right: 0;
   }
 }

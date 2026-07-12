@@ -7,6 +7,13 @@ import { ApiService } from '../../../core/services/api.service';
 // Models
 import { Todo } from './todo.model';
 
+interface ProjectTodoGroup {
+  projectTitle: string;
+  todos: Todo[];
+  total: number;
+  done: number;
+}
+
 @Component({
   selector: 'app-todo',
   standalone: false,
@@ -55,5 +62,24 @@ export class TodoComponent implements OnInit {
   deleteTodo(id: number) {
     this.apiService.delete(`/todos/${id}`, this.apiService.createAuthHeaders())
       .subscribe(() => this.todos = this.todos.filter(t => t.id !== id));
+  }
+
+  get projectTodoGroups(): ProjectTodoGroup[] {
+    const groups = this.todos
+      .filter(todo => !!todo.project_title)
+      .reduce<Record<string, Todo[]>>((grouped, todo) => {
+        const projectTitle = todo.project_title || 'Unsorted Project';
+        grouped[projectTitle] = [...(grouped[projectTitle] || []), todo];
+        return grouped;
+      }, {});
+
+    return Object.entries(groups)
+      .map(([projectTitle, todos]) => ({
+        projectTitle,
+        todos: [...todos].sort((a, b) => Number(a.done) - Number(b.done) || a.text.localeCompare(b.text)),
+        total: todos.length,
+        done: todos.filter(todo => todo.done).length,
+      }))
+      .sort((a, b) => a.projectTitle.localeCompare(b.projectTitle));
   }
 }
