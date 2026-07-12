@@ -47,6 +47,9 @@ export class ProjectRecruitmentComponent implements OnInit {
   submitting = false;
   deletingProject: Record<number, boolean> = {};
   actionLoading: Record<number, boolean> = {};
+  todoLoading: Record<number, boolean> = {};
+  todoTexts: Record<number, string> = {};
+  todoTargets: Record<number, string> = {};
   joinMessages: Record<number, string> = {};
   statusMessage = '';
   joinMessage = '';
@@ -172,6 +175,51 @@ export class ProjectRecruitmentComponent implements OnInit {
       error: err => {
         this.statusMessage = err.error?.error || '刪除招募失敗';
         delete this.deletingProject[project.id];
+      }
+    });
+  }
+
+  publishTodo(project: ProjectRecruitment) {
+    const text = (this.todoTexts[project.id] || '').trim();
+    const target = this.todoTargets[project.id] || 'team';
+
+    if (!project.owned_by_me || !text || this.todoLoading[project.id]) {
+      return;
+    }
+
+    const payload: {
+      text: string;
+      project_id: number;
+      assign_to_team?: boolean;
+      assignee_user_id?: number;
+    } = {
+      text,
+      project_id: project.id,
+    };
+
+    if (target === 'team') {
+      payload.assign_to_team = true;
+    } else if (target === 'captain') {
+      payload.assignee_user_id = project.creator.id;
+    } else {
+      payload.assignee_user_id = Number(target);
+    }
+
+    this.todoLoading[project.id] = true;
+    this.apiService.post(
+      '/todos',
+      payload,
+      this.apiService.createAuthHeaders()
+    ).subscribe({
+      next: () => {
+        this.todoTexts[project.id] = '';
+        this.todoTargets[project.id] = 'team';
+        delete this.todoLoading[project.id];
+        this.statusMessage = 'Todo 已發布';
+      },
+      error: err => {
+        this.statusMessage = err.error?.error || '發布 Todo 失敗';
+        delete this.todoLoading[project.id];
       }
     });
   }

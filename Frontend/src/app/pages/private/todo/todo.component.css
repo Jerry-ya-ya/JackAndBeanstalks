@@ -76,6 +76,17 @@ span {
   word-break: break-all;
 }
 
+small {
+  margin-left: 10px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #24527a;
+  background: #e6f0ff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 button:last-child {
   background: #ff4d4f;
   color: #fff;

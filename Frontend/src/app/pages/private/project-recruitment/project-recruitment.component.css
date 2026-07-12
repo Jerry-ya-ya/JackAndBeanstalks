@@ -132,7 +132,9 @@
 
 .form-field input,
 .form-field textarea,
-.join-panel input {
+.join-panel input,
+.todo-publisher input,
+.todo-publisher select {
   min-height: 46px;
   width: 100%;
   padding: 0 14px;
@@ -309,6 +311,45 @@
   line-height: 1.5;
 }
 
+.todo-publisher {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--studio-accent) 42%, var(--studio-line));
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--studio-accent) 12%, transparent), transparent 58%),
+    color-mix(in srgb, var(--studio-panel-strong) 78%, transparent);
+}
+
+.todo-publisher__header,
+.todo-publisher__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.todo-publisher__header {
+  justify-content: space-between;
+}
+
+.todo-publisher h4 {
+  margin: 0;
+  color: var(--studio-text);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.todo-publisher select {
+  max-width: 210px;
+  color: var(--studio-text);
+}
+
+.todo-publisher input {
+  flex: 1;
+}
+
 .manage-actions {
   justify-content: flex-end;
   margin-top: 16px;
@@ -362,8 +403,14 @@
   .join-panel,
   .manage-header,
   .manage-card__summary,
-  .manage-actions {
+  .manage-actions,
+  .todo-publisher__header,
+  .todo-publisher__controls {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .todo-publisher select {
+    max-width: none;
   }
 }

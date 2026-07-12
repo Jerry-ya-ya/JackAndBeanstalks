@@ -31,7 +31,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True)
     email_verified = db.Column(db.Boolean, default=False)
     
-    todos = db.relationship('Todo', backref='user', lazy=True) # 一對多關聯
+    todos = db.relationship('Todo', foreign_keys='Todo.user_id', backref='user', lazy=True) # 一對多關聯
 
     friends = relationship(
         'User',
@@ -67,6 +67,12 @@ class Todo(db.Model):
     text = db.Column(db.String(200), nullable=False)
     done = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # 將來可用來綁定使用者
+    created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    project_id = db.Column(db.Integer, db.ForeignKey('project_recruitment.id'))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    creator = db.relationship('User', foreign_keys=[created_by_id], backref='created_todos')
+    project = db.relationship('ProjectRecruitment', backref='todos')
 
 # 定義新聞模型
 class News(db.Model):

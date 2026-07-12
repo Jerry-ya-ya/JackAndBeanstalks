@@ -160,6 +160,37 @@
         目前還沒有人登記加入。
       </div>
 
+      <form class="todo-publisher" (ngSubmit)="publishTodo(project)">
+        <div class="todo-publisher__header">
+          <div>
+            <p class="recruit-kicker">Todo Dispatch</p>
+            <h4>發布團隊 Todo</h4>
+          </div>
+          <select
+            [(ngModel)]="todoTargets[project.id]"
+            [name]="'todoTarget' + project.id">
+            <option value="team">整個團隊</option>
+            <option value="captain">隊長自己</option>
+            <option *ngFor="let member of project.members" [value]="member.user.id">
+              {{ member.user.nickname || member.user.username }}
+            </option>
+          </select>
+        </div>
+
+        <div class="todo-publisher__controls">
+          <input
+            [(ngModel)]="todoTexts[project.id]"
+            [name]="'todoText' + project.id"
+            placeholder="例如：完成角色控制器第一版">
+          <button
+            class="recruit-button"
+            type="submit"
+            [disabled]="todoLoading[project.id]">
+            {{ todoLoading[project.id] ? '發布中...' : '發布 Todo' }}
+          </button>
+        </div>
+      </form>
+
       <div class="manage-actions">
         <button
           class="recruit-button recruit-button--danger"

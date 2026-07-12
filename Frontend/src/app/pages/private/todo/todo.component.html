@@ -17,6 +17,10 @@
                 {{ todo.text }}
             </span>
 
+            <small *ngIf="todo.project_title">
+                {{ todo.project_title }} · {{ todo.assignee_name }}
+            </small>
+
             <button (click)="deleteTodo(todo.id)">
                 Delete
             </button>
