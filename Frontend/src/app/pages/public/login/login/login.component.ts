@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { ApiService } from '../../../../core/services/api.service';
 import { appPath } from '../../../../path/app-path-const';
@@ -19,7 +20,10 @@ export class LoginComponent {
   error = '';
   submitting = false;
   
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router
+  ) {}
 
   login() {
     if (this.submitting) {
@@ -37,7 +41,7 @@ export class LoginComponent {
         localStorage.setItem('token', res.access_token);
         localStorage.setItem('username', res.username);
         localStorage.setItem('role', res.role);
-        location.reload(); // 登入後刷新頁面
+        this.router.navigate([appPath.userhome]);
       },
       error: () => {
         this.error = '登入失敗，請檢查帳號密碼';

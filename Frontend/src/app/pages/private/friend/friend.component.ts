@@ -18,8 +18,7 @@ export class FriendComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.loadFriends();
-    this.loadRequests();
+    this.refreshFriendPage();
   }
 
   // followFriend() {
@@ -86,6 +85,11 @@ export class FriendComponent implements OnInit {
     ).subscribe(res => this.requests = res);
   }
 
+  refreshFriendPage() {
+    this.loadFriends();
+    this.loadRequests();
+  }
+
   acceptRequest(id: number) {
     this.apiService.post(
       `/friends/accept/${id}`,
@@ -94,7 +98,7 @@ export class FriendComponent implements OnInit {
     ).subscribe({
       next: res => {
         this.message = (res as any).message;
-        this.loadRequests();
+        this.refreshFriendPage();
       },
       error: err => {
         this.message = err.error?.error || '接受失敗';

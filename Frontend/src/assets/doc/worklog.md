@@ -341,3 +341,5 @@
 - Add project todo dispatch for recruitment teams.
 
 - Group project todos and refresh the todo page.
+
+- Improve login redirect and friend request refresh.
