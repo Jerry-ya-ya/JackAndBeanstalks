@@ -77,6 +77,22 @@ input[type="checkbox"] {
   margin-right: 16px;
 }
 
+.priority-badge {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  min-width: 42px;
+  height: 30px;
+  margin-right: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+}
+
 span {
   flex: 1;
   font-size: 1.08rem;

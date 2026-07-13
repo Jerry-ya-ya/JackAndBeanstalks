@@ -2,6 +2,7 @@ export interface Todo {
     id: number;
     text: string;
     done: boolean;
+    priority: number;
     user_id?: number;
     created_by_id?: number;
     project_id?: number;

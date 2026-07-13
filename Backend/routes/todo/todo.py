@@ -13,6 +13,7 @@ def serialize_todo(todo):
         'id': todo.id,
         'text': todo.text,
         'done': todo.done,
+        'priority': todo.priority,
         'user_id': todo.user_id,
         'created_by_id': todo.created_by_id,
         'project_id': todo.project_id,
@@ -44,6 +45,21 @@ def get_project_assignee_ids(project, data):
 
     return [assignee_user_id]
 
+
+def parse_priority(value):
+    if value in [None, '']:
+        return 5
+
+    try:
+        priority = int(value)
+    except (TypeError, ValueError):
+        return None
+
+    if priority < 0 or priority > 9:
+        return None
+
+    return priority
+
 # C 新增待辦事項
 @todo_bp.route('/todos', methods=['POST'])
 @jwt_required()# 登入保護
@@ -56,6 +72,10 @@ def add_todo():
     text = data.get('text', '').strip()
     if not text:
         return jsonify({'error': 'Todo text is required'}), 400
+
+    priority = parse_priority(data.get('priority'))
+    if priority is None:
+        return jsonify({'error': 'Todo priority must be between 0 and 9'}), 400
 
     project_id = data.get('project_id')
     if project_id:
@@ -70,6 +90,7 @@ def add_todo():
         new_todos = [
             Todo(
                 text=text,
+                priority=priority,
                 user_id=assignee_id,
                 created_by_id=user.id,
                 project_id=project.id,
@@ -81,7 +102,7 @@ def add_todo():
 
         return jsonify([serialize_todo(todo) for todo in new_todos]), 201
 
-    new_todo = Todo(text=text, user_id=user.id, created_by_id=user.id)
+    new_todo = Todo(text=text, priority=priority, user_id=user.id, created_by_id=user.id)
 
     db.session.add(new_todo)
     db.session.commit()
@@ -134,6 +155,13 @@ def update_todo(todo_id):
         if not text:
             return jsonify({'error': 'Todo text cannot be empty'}), 400
         todo.text = text
+
+    if 'priority' in data:
+        priority = parse_priority(data.get('priority'))
+        if priority is None:
+            return jsonify({'error': 'Todo priority must be between 0 and 9'}), 400
+        todo.priority = priority
+
     todo.done = data.get('done', todo.done)
     db.session.commit()
 

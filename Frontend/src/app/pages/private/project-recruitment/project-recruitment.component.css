@@ -134,7 +134,8 @@
 .form-field textarea,
 .join-panel input,
 .todo-publisher input,
-.todo-publisher select {
+.todo-publisher select,
+.todo-priority input {
   min-height: 46px;
   width: 100%;
   padding: 0 14px;
@@ -350,6 +351,35 @@
   flex: 1;
 }
 
+.todo-priority {
+  display: grid;
+  grid-template-columns: auto 92px 44px minmax(150px, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.todo-priority span,
+.todo-priority small {
+  color: var(--studio-muted);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.todo-priority strong {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 900;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
 .manage-actions {
   justify-content: flex-end;
   margin-top: 16px;
@@ -405,12 +435,17 @@
   .manage-card__summary,
   .manage-actions,
   .todo-publisher__header,
-  .todo-publisher__controls {
+  .todo-publisher__controls,
+  .todo-priority {
     align-items: stretch;
     flex-direction: column;
   }
 
   .todo-publisher select {
     max-width: none;
+  }
+
+  .todo-priority {
+    grid-template-columns: 1fr;
   }
 }

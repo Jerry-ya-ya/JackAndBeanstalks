@@ -345,3 +345,7 @@
 - Improve login redirect and friend request refresh.
 
 - Add fallback avatars to the square page.
+
+## 2026/07/14
+
+- Add todo priority and Alembic migrations.

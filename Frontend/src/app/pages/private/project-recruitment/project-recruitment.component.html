@@ -177,6 +177,20 @@
           </select>
         </div>
 
+        <label class="todo-priority">
+          <span>優先級</span>
+          <input
+            type="number"
+            min="0"
+            max="9"
+            [(ngModel)]="todoPriorities[project.id]"
+            [name]="'todoPriority' + project.id">
+          <strong [style.background]="getPriorityColor(getTodoPriority(project.id))">
+            {{ getTodoPriority(project.id) }}
+          </strong>
+          <small>0 最緊急 / 9 最不緊急</small>
+        </label>
+
         <div class="todo-publisher__controls">
           <input
             [(ngModel)]="todoTexts[project.id]"

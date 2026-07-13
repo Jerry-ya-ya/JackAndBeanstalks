@@ -50,6 +50,7 @@ export class ProjectRecruitmentComponent implements OnInit {
   todoLoading: Record<number, boolean> = {};
   todoTexts: Record<number, string> = {};
   todoTargets: Record<number, string> = {};
+  todoPriorities: Record<number, number> = {};
   joinMessages: Record<number, string> = {};
   statusMessage = '';
   joinMessage = '';
@@ -182,6 +183,7 @@ export class ProjectRecruitmentComponent implements OnInit {
   publishTodo(project: ProjectRecruitment) {
     const text = (this.todoTexts[project.id] || '').trim();
     const target = this.todoTargets[project.id] || 'team';
+    const priority = this.getTodoPriority(project.id);
 
     if (!project.owned_by_me || !text || this.todoLoading[project.id]) {
       return;
@@ -190,11 +192,13 @@ export class ProjectRecruitmentComponent implements OnInit {
     const payload: {
       text: string;
       project_id: number;
+      priority: number;
       assign_to_team?: boolean;
       assignee_user_id?: number;
     } = {
       text,
       project_id: project.id,
+      priority,
     };
 
     if (target === 'team') {
@@ -214,6 +218,7 @@ export class ProjectRecruitmentComponent implements OnInit {
       next: () => {
         this.todoTexts[project.id] = '';
         this.todoTargets[project.id] = 'team';
+        this.todoPriorities[project.id] = 5;
         delete this.todoLoading[project.id];
         this.statusMessage = 'Todo 已發布';
       },
@@ -222,6 +227,16 @@ export class ProjectRecruitmentComponent implements OnInit {
         delete this.todoLoading[project.id];
       }
     });
+  }
+
+  getTodoPriority(projectId: number) {
+    const priority = Number(this.todoPriorities[projectId] ?? 5);
+    return Math.min(9, Math.max(0, priority));
+  }
+
+  getPriorityColor(priority: number) {
+    const level = Math.min(9, Math.max(0, Number(priority)));
+    return `hsl(${(level / 9) * 120}, 78%, 46%)`;
   }
 
   isFull(project: ProjectRecruitment) {

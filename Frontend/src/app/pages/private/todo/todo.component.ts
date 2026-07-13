@@ -53,7 +53,8 @@ export class TodoComponent implements OnInit {
   toggleDone(todo: Todo) {
     this.apiService.put<Todo>(`/todos/${todo.id}`, {
       text: todo.text,
-      done: !todo.done
+      done: !todo.done,
+      priority: todo.priority
     }, this.apiService.createAuthHeaders()).subscribe(updated => todo.done = updated.done);
   }
 
@@ -76,10 +77,23 @@ export class TodoComponent implements OnInit {
     return Object.entries(groups)
       .map(([projectTitle, todos]) => ({
         projectTitle,
-        todos: [...todos].sort((a, b) => Number(a.done) - Number(b.done) || a.text.localeCompare(b.text)),
+        todos: [...todos].sort((a, b) =>
+          Number(a.done) - Number(b.done) ||
+          this.getTodoPriority(a) - this.getTodoPriority(b) ||
+          a.text.localeCompare(b.text)
+        ),
         total: todos.length,
         done: todos.filter(todo => todo.done).length,
       }))
       .sort((a, b) => a.projectTitle.localeCompare(b.projectTitle));
+  }
+
+  getTodoPriority(todo: Todo) {
+    return Math.min(9, Math.max(0, Number(todo.priority ?? 5)));
+  }
+
+  getPriorityColor(priority: number) {
+    const level = Math.min(9, Math.max(0, Number(priority)));
+    return `hsl(${(level / 9) * 120}, 78%, 46%)`;
   }
 }

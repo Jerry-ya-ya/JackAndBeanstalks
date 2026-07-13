@@ -66,6 +66,7 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(200), nullable=False)
     done = db.Column(db.Boolean, default=False)
+    priority = db.Column(db.Integer, default=5, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # 將來可用來綁定使用者
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     project_id = db.Column(db.Integer, db.ForeignKey('project_recruitment.id'))
