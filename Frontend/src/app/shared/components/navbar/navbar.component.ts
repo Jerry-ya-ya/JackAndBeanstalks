@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { appPath } from '../../../path/app-path-const';
 
 @Component({
@@ -11,6 +12,9 @@ export class NavbarComponent {
   path = appPath; // 將 appPath 物件賦值給 path 屬性
 
   collapsed = true;
+
+  constructor(private router: Router) {}
+
   toggleSidebar() {
     this.collapsed = !this.collapsed;
   }
@@ -18,7 +22,9 @@ export class NavbarComponent {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
-    location.reload(); // 或導向登入頁
+    localStorage.removeItem('username');
+    this.collapsed = true;
+    this.router.navigate([appPath.login]);
   }
 
   isLoggedIn() {

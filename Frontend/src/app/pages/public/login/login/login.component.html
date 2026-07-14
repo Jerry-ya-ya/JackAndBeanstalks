@@ -96,7 +96,7 @@
             <p>Return to the CMENStudio and EDEN network. The old vector guardian is still watching the gate.</p>
         </div>
 
-        <form class="login-panel" (ngSubmit)="login()" autocomplete="off">
+        <form class="login-panel" (ngSubmit)="login()" autocomplete="on">
             <div class="panel-header">
                 <p class="login-kicker">Player Auth</p>
                 <h2>Sign In</h2>
@@ -104,17 +104,32 @@
 
             <label class="form-field">
                 <span>Username</span>
-                <input [(ngModel)]="username" name="username" required placeholder="Enter your account">
+                <input
+                    id="login-username"
+                    [(ngModel)]="username"
+                    name="username"
+                    autocomplete="username"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    required
+                    placeholder="Enter your account">
             </label>
 
             <label class="form-field">
                 <span>Password</span>
-                <input [(ngModel)]="password" name="password" type="password" required placeholder="Enter your password">
+                <input
+                    id="login-password"
+                    [(ngModel)]="password"
+                    name="password"
+                    type="password"
+                    autocomplete="current-password"
+                    required
+                    placeholder="Enter your password">
             </label>
 
             <div class="login-tools">
                 <label class="remember">
-                    <input class="checkbox" type="checkbox">
+                    <input class="checkbox" type="checkbox" name="remember" autocomplete="off">
                     <span>Remember</span>
                 </label>
                 <a [routerLink]="['forgotpassword']">Forgot password?</a>

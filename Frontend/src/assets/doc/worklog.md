@@ -351,3 +351,5 @@
 - Add todo priority and Alembic migrations.
 
 - Add fallback avatars to private post pages.
+
+- Improve logout navigation and login autofill.
