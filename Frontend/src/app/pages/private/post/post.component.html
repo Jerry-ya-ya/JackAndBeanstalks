@@ -23,7 +23,15 @@
             <div class="card-header">
                 <div class="user-info">
                     <div class="avatar-container">
-                        <img [src]="user?.avatar_url ? (apiRoot + '/' + user.avatar_url) : ''" alt="用戶頭像" class="user-avatar" />
+                        <div class="user-avatar">
+                            <img
+                                *ngIf="user?.avatar_url; else userAvatarFallback"
+                                [src]="apiRoot + '/' + user.avatar_url"
+                                alt="用戶頭像" />
+                            <ng-template #userAvatarFallback>
+                                <span>{{ getAvatarInitial(user) }}</span>
+                            </ng-template>
+                        </div>
                         <div class="avatar-ring"></div>
                     </div>
                     <div class="user-details">
@@ -105,7 +113,15 @@
                     <div class="post-header">
                         <div class="post-meta">
                             <div class="post-author">
-                                <img [src]="user?.avatar_url ? (apiRoot + '/' + user.avatar_url) : 'assets/salamander/salamander1.webp'" alt="作者頭像" class="author-avatar" />
+                                <div class="author-avatar">
+                                    <img
+                                        *ngIf="user?.avatar_url; else authorAvatarFallback"
+                                        [src]="apiRoot + '/' + user.avatar_url"
+                                        alt="作者頭像" />
+                                    <ng-template #authorAvatarFallback>
+                                        <span>{{ getAvatarInitial(user) }}</span>
+                                    </ng-template>
+                                </div>
                                 <span class="author-name">{{ user?.username || '我' }}</span>
                             </div>
                             <div class="post-time">

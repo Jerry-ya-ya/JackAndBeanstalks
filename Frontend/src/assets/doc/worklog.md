@@ -349,3 +349,5 @@
 ## 2026/07/14
 
 - Add todo priority and Alembic migrations.
+
+- Add fallback avatars to private post pages.

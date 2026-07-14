@@ -117,11 +117,41 @@
 }
 
 .user-avatar {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+}
+
+.user-avatar img,
+.user-avatar span {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  object-fit: cover;
   border: 3px solid #667eea;
+}
+
+.user-avatar img {
+  object-fit: cover;
+}
+
+.user-avatar span,
+.author-avatar span {
+  display: grid;
+  place-items: center;
+  color: var(--studio-bg);
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--studio-warm) 42%, transparent), transparent 36%),
+    linear-gradient(135deg, var(--studio-accent), color-mix(in srgb, var(--studio-danger) 72%, var(--studio-accent)));
+  font-weight: 900;
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 8px 18px color-mix(in srgb, var(--studio-accent) 18%, transparent);
+}
+
+.user-avatar span {
+  font-size: 22px;
 }
 
 .avatar-ring {
@@ -472,11 +502,27 @@
 }
 
 .author-avatar {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.author-avatar img,
+.author-avatar span {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  object-fit: cover;
   border: 2px solid #667eea;
+}
+
+.author-avatar img {
+  object-fit: cover;
+}
+
+.author-avatar span {
+  font-size: 18px;
 }
 
 .author-name {

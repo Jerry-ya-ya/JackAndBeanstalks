@@ -50,6 +50,10 @@ export class PostComponent {
       .subscribe(data => this.posts = data);
   }
 
+  getAvatarInitial(user: any) {
+    return (user?.nickname || user?.username || '?').charAt(0).toUpperCase();
+  }
+
   submitPost() {
     this.http.post<any>(`${environment.apiUrl}/post`, { content: this.content }, this.headers)
       .subscribe({

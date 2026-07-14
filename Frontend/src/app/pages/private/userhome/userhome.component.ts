@@ -70,6 +70,10 @@ export class UserhomeComponent {
     return this.users.find(user => user.id === userId);
   }
 
+  getAvatarInitial(user: any) {
+    return (user?.nickname || user?.username || '?').charAt(0).toUpperCase();
+  }
+
   ngOnInit(): void {
     console.log('UserHome component initialized - loading all users and posts');
     this.loadAllUsers();
