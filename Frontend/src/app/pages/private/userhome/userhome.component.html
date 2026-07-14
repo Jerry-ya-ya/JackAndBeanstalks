@@ -1,95 +1,102 @@
 <div class="user-home-container">
-    <!-- 載入狀態 -->
-    <div *ngIf="loading" class="loading-container">
-        <div class="loading-spinner"></div>
-        <p>載入中...</p>
+  <!-- 載入狀態 -->
+  @if (loading) {
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>載入中...</p>
     </div>
+  }
 
-    <!-- 錯誤狀態 -->
-    <div *ngIf="error" class="error-container">
-        <div class="error-icon">⚠️</div>
-        <h3>載入失敗</h3>
-        <p>{{ errorMessage || '無法載入用戶資料或貼文' }}</p>
-        <div class="error-details">
-            <p><strong>API URL:</strong> {{ environment.apiUrl }}</p>
-        </div>
+  <!-- 錯誤狀態 -->
+  @if (error) {
+    <div class="error-container">
+      <div class="error-icon">⚠️</div>
+      <h3>載入失敗</h3>
+      <p>{{ errorMessage || '無法載入用戶資料或貼文' }}</p>
+      <div class="error-details">
+        <p><strong>API URL:</strong> {{ environment.apiUrl }}</p>
+      </div>
     </div>
+  }
 
-    <!-- 所有用戶的貼文 -->
-    <div *ngIf="!loading && !error" class="user-content">
-        <!-- 頁面標題 -->
-        <div class="page-header">
-            <div class="header-content">
-                <h1 class="main-title">
-                    <span class="title-icon">🌍</span>
-                    所有人的貼文
-                </h1>
-                <p class="subtitle">查看所有用戶分享的想法和生活點滴</p>
-            </div>
+  <!-- 所有用戶的貼文 -->
+  @if (!loading && !error) {
+    <div class="user-content">
+      <!-- 頁面標題 -->
+      <div class="page-header">
+        <div class="header-content">
+          <h1 class="main-title">
+            <span class="title-icon">🌍</span>
+            所有人的貼文
+          </h1>
+          <p class="subtitle">查看所有用戶分享的想法和生活點滴</p>
         </div>
-
-        <!-- 貼文列表 -->
-        <div class="posts-section">
-            <div class="section-header">
-                <h3 class="section-title">
-                    <span class="title-icon">📝</span>
-                    所有貼文
-                </h3>
-                <div class="post-count">
-                    <span class="count-number">{{ posts.length }}</span>
-                    <span class="count-label">篇貼文</span>
-                </div>
-            </div>
-
-            <div class="posts-grid">
-                <div *ngFor="let post of posts; let i = index" class="post-card" [style.animation-delay]="i * 0.1 + 's'">
-                    <div class="post-content">
-                        <div class="post-header">
-                            <div class="post-meta">
-                                <div class="post-author">
-                                    <div class="author-avatar">
-                                        <img
-                                            *ngIf="post.user?.avatar_url; else authorAvatarFallback"
-                                            [src]="apiRoot + '/' + post.user.avatar_url"
-                                            alt="作者頭像" />
-                                        <ng-template #authorAvatarFallback>
-                                            <span>{{ getAvatarInitial(post.user) }}</span>
-                                        </ng-template>
-                                    </div>
-                                    <span class="author-name">{{ post.user?.username || '未知用戶' }}</span>
-                                    <span class="author-role" *ngIf="post.user?.role">
-                                        <span class="role-badge">{{ post.user.role }}</span>
-                                    </span>
-                                </div>
-                                <div class="post-time">
-                                    <span class="time-icon">🕒</span>
-                                    <span class="time-text">{{ post.created_at }}</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="post-body">
-                            <p class="post-text">{{ post.content }}</p>
-                        </div>
-                        
-                        <div class="post-footer">
-                            <div class="post-stats">
-                                <span class="stat-item">
-                                    <span class="stat-icon">💬</span>
-                                    <span class="stat-number">0</span>
-                                </span>
-                            </div>
-                        </div>
+      </div>
+      <!-- 貼文列表 -->
+      <div class="posts-section">
+        <div class="section-header">
+          <h3 class="section-title">
+            <span class="title-icon">📝</span>
+            所有貼文
+          </h3>
+          <div class="post-count">
+            <span class="count-number">{{ posts.length }}</span>
+            <span class="count-label">篇貼文</span>
+          </div>
+        </div>
+        <div class="posts-grid">
+          @for (post of posts; track post; let i = $index) {
+            <div class="post-card" [style.animation-delay]="i * 0.1 + 's'">
+              <div class="post-content">
+                <div class="post-header">
+                  <div class="post-meta">
+                    <div class="post-author">
+                      <div class="author-avatar">
+                        @if (post.user?.avatar_url) {
+                          <img
+                            [src]="apiRoot + '/' + post.user.avatar_url"
+                            alt="作者頭像" />
+                        } @else {
+                          <span>{{ getAvatarInitial(post.user) }}</span>
+                        }
+                      </div>
+                      <span class="author-name">{{ post.user?.username || '未知用戶' }}</span>
+                      @if (post.user?.role) {
+                        <span class="author-role">
+                          <span class="role-badge">{{ post.user.role }}</span>
+                        </span>
+                      }
                     </div>
+                    <div class="post-time">
+                      <span class="time-icon">🕒</span>
+                      <span class="time-text">{{ post.created_at }}</span>
+                    </div>
+                  </div>
                 </div>
+                <div class="post-body">
+                  <p class="post-text">{{ post.content }}</p>
+                </div>
+                <div class="post-footer">
+                  <div class="post-stats">
+                    <span class="stat-item">
+                      <span class="stat-icon">💬</span>
+                      <span class="stat-number">0</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <!-- 空狀態 -->
-            <div *ngIf="posts.length === 0" class="empty-state">
-                <div class="empty-icon">📝</div>
-                <h3 class="empty-title">還沒有貼文</h3>
-                <p class="empty-description">成為第一個分享想法的人吧！</p>
-            </div>
+          }
         </div>
+        <!-- 空狀態 -->
+        @if (posts.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">📝</div>
+            <h3 class="empty-title">還沒有貼文</h3>
+            <p class="empty-description">成為第一個分享想法的人吧！</p>
+          </div>
+        }
+      </div>
     </div>
+  }
 </div>

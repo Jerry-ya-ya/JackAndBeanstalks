@@ -17,14 +17,18 @@
         <span>重新寄送</span>
       </button>
 
-      <p *ngIf="message" class="feedback success">
-        <span class="feedback-icon">✅</span>
-        {{ message }}
-      </p>
-      <p *ngIf="error" class="feedback error">
-        <span class="feedback-icon">⚠️</span>
-        {{ error }}
-      </p>
+      @if (message) {
+        <p class="feedback success">
+          <span class="feedback-icon">✅</span>
+          {{ message }}
+        </p>
+      }
+      @if (error) {
+        <p class="feedback error">
+          <span class="feedback-icon">⚠️</span>
+          {{ error }}
+        </p>
+      }
     </div>
 
     <div class="card-footer">

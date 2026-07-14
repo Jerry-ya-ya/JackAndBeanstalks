@@ -44,8 +44,12 @@
         <a [routerLink]="['resendverification']">Resend it</a>
       </div>
 
-      <p *ngIf="successMessage" class="feedback success-message">{{ successMessage }}</p>
-      <p *ngIf="error" class="feedback error-message">{{ error }}</p>
+      @if (successMessage) {
+        <p class="feedback success-message">{{ successMessage }}</p>
+      }
+      @if (error) {
+        <p class="feedback error-message">{{ error }}</p>
+      }
     </form>
   </section>
 </main>

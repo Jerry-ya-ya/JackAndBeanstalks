@@ -7,11 +7,13 @@
         <p>追蹤最新科技情報，把資料節點送回你的工作室控制台。</p>
       </div>
 
-      <div class="crawler-status" *ngIf="scheduleInfo">
-        <span>Next Scan</span>
-        <strong>{{ scheduleInfo.next_run | date:'HH:mm' : 'Asia/Taipei' }}</strong>
-        <small>{{ scheduleInfo.next_run | date:'yyyy/MM/dd' : 'Asia/Taipei' }}</small>
-      </div>
+      @if (scheduleInfo) {
+        <div class="crawler-status">
+          <span>Next Scan</span>
+          <strong>{{ scheduleInfo.next_run | date:'HH:mm' : 'Asia/Taipei' }}</strong>
+          <small>{{ scheduleInfo.next_run | date:'yyyy/MM/dd' : 'Asia/Taipei' }}</small>
+        </div>
+      }
     </header>
 
     <section class="crawler-toolbar">
@@ -20,16 +22,18 @@
         <button (click)="loadNews()" class="crawler-button crawler-button--ghost">重新整理</button>
       </div>
 
-      <div *ngIf="scheduleInfo" class="schedule-grid">
-        <div class="info-item">
-          <span class="label">上次爬蟲時間</span>
-          <span class="value">{{ scheduleInfo.last_run | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</span>
+      @if (scheduleInfo) {
+        <div class="schedule-grid">
+          <div class="info-item">
+            <span class="label">上次爬蟲時間</span>
+            <span class="value">{{ scheduleInfo.last_run | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">下次預定爬蟲</span>
+            <span class="value">{{ scheduleInfo.next_run | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</span>
+          </div>
         </div>
-        <div class="info-item">
-          <span class="label">下次預定爬蟲</span>
-          <span class="value">{{ scheduleInfo.next_run | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</span>
-        </div>
-      </div>
+      }
     </section>
 
     <section class="news-panel">
@@ -38,22 +42,25 @@
         <h2>資料流</h2>
       </div>
 
-      <ol class="news-list" *ngIf="news.length > 0; else emptyNews">
-        <li *ngFor="let item of news; let i = index" class="news-item">
-          <span class="news-index">{{ i + 1 }}</span>
-          <div class="news-content">
-            <time class="news-time">{{ item.created_at | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</time>
-            <a [href]="item.url" target="_blank" rel="noopener noreferrer" class="news-title">{{ item.title }}</a>
-          </div>
-        </li>
-      </ol>
-
-      <ng-template #emptyNews>
+      @if (news.length > 0) {
+        <ol class="news-list">
+          @for (item of news; track item; let i = $index) {
+            <li class="news-item">
+              <span class="news-index">{{ i + 1 }}</span>
+              <div class="news-content">
+                <time class="news-time">{{ item.created_at | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</time>
+                <a [href]="item.url" target="_blank" rel="noopener noreferrer" class="news-title">{{ item.title }}</a>
+              </div>
+            </li>
+          }
+        </ol>
+      } @else {
         <div class="empty-state">
           <p class="crawler-kicker">No Signal</p>
           <p>目前還沒有新聞資料。</p>
         </div>
-      </ng-template>
+      }
+
     </section>
   </section>
 </main>

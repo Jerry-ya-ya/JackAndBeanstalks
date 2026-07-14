@@ -34,13 +34,14 @@
         {{ submitting ? 'Updating...' : 'Update Password' }}
       </button>
 
-      <p
-        *ngIf="passwordMessage"
-        class="setting-message"
-        [class.setting-message--success]="isSuccessMessage"
-      >
-        {{ passwordMessage }}
-      </p>
+      @if (passwordMessage) {
+        <p
+          class="setting-message"
+          [class.setting-message--success]="isSuccessMessage"
+          >
+          {{ passwordMessage }}
+        </p>
+      }
     </form>
 
     <aside class="setting-card setting-card--info">

@@ -18,7 +18,9 @@
       <h1>{{ studioName }}</h1>
 
       <p class="studio-subtitle">
-        <span *ngFor="let word of studioSubtitle">{{ word }}</span>
+        @for (word of studioSubtitle; track word) {
+          <span>{{ word }}</span>
+        }
       </p>
     </div>
 
@@ -36,16 +38,18 @@
     </div>
 
     <div class="news-grid">
-      <article class="news-card" *ngFor="let item of communityNews">
-        <div class="news-card__media">
-          <img [src]="studioLogo" [alt]="studioLogoAlt">
-        </div>
-        <div class="news-card__body">
-          <span>{{ item.tag }}</span>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.summary }}</p>
-        </div>
-      </article>
+      @for (item of communityNews; track item) {
+        <article class="news-card">
+          <div class="news-card__media">
+            <img [src]="studioLogo" [alt]="studioLogoAlt">
+          </div>
+          <div class="news-card__body">
+            <span>{{ item.tag }}</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.summary }}</p>
+          </div>
+        </article>
+      }
     </div>
   </section>
 </main>

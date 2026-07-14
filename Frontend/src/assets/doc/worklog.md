@@ -353,3 +353,5 @@
 - Add fallback avatars to private post pages.
 
 - Improve logout navigation and login autofill.
+
+- Upgrade Angular frontend dependencies.

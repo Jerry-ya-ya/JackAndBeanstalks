@@ -22,26 +22,27 @@
     </div>
 
     <div class="compare-grid">
-      <article
-        class="compare-card"
-        *ngFor="let item of compareItems"
-        [class.compare-card--enabled]="item.type === 'enabled'"
-      >
-        <div class="compare-card__header">
-          <span>{{ item.label }}</span>
-          <h3>{{ item.title }}</h3>
-        </div>
-
-        <div class="device-frame">
-          <div class="device-screen">
-            <img [src]="item.image" [alt]="item.title + ' demo'" loading="lazy">
+      @for (item of compareItems; track item) {
+        <article
+          class="compare-card"
+          [class.compare-card--enabled]="item.type === 'enabled'"
+          >
+          <div class="compare-card__header">
+            <span>{{ item.label }}</span>
+            <h3>{{ item.title }}</h3>
           </div>
-        </div>
-
-        <ul>
-          <li *ngFor="let point of item.points">{{ point }}</li>
-        </ul>
-      </article>
+          <div class="device-frame">
+            <div class="device-screen">
+              <img [src]="item.image" [alt]="item.title + ' demo'" loading="lazy">
+            </div>
+          </div>
+          <ul>
+            @for (point of item.points; track point) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+        </article>
+      }
     </div>
   </section>
 
@@ -53,19 +54,20 @@
     </div>
 
     <div class="step-grid">
-      <article class="step-card" *ngFor="let step of tutorialSteps; let i = index">
-        <div class="step-card__copy">
-          <span>Step {{ i + 1 }}</span>
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.detail }}</p>
-        </div>
-
-        <div class="device-frame device-frame--step">
-          <div class="device-screen">
-            <img [src]="step.image" [alt]="step.title" loading="lazy">
+      @for (step of tutorialSteps; track step; let i = $index) {
+        <article class="step-card">
+          <div class="step-card__copy">
+            <span>Step {{ i + 1 }}</span>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.detail }}</p>
           </div>
-        </div>
-      </article>
+          <div class="device-frame device-frame--step">
+            <div class="device-screen">
+              <img [src]="step.image" [alt]="step.title" loading="lazy">
+            </div>
+          </div>
+        </article>
+      }
     </div>
   </section>
 </main>

@@ -7,22 +7,18 @@ Create Date: 2026-07-13
 from alembic import op
 import sqlalchemy as sa
 
-
 revision = "001_recruit_todo"
 down_revision = None
 branch_labels = None
 depends_on = None
 
-
 def has_table(inspector, table_name):
     return table_name in inspector.get_table_names()
-
 
 def has_column(inspector, table_name, column_name):
     if not has_table(inspector, table_name):
         return False
     return column_name in [column["name"] for column in inspector.get_columns(table_name)]
-
 
 def upgrade():
     bind = op.get_bind()
@@ -89,7 +85,6 @@ def upgrade():
             END $$;
             """
         )
-
 
 def downgrade():
     bind = op.get_bind()

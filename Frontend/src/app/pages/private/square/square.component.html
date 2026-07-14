@@ -1,56 +1,54 @@
 <div class="square">
-    <h2>用戶廣場</h2>
-    
-    <div *ngFor="let user of users" class="user-card">
-        <div class="square-avatar">
-            <img
-                *ngIf="user.avatar_url; else avatarFallback"
-                [src]="apiRoot + '/' + user.avatar_url"
-                width="120"
-                height="120"
-                alt="User avatar" />
-            <ng-template #avatarFallback>
-                <span>{{ getAvatarInitial(user) }}</span>
-            </ng-template>
+  <h2>用戶廣場</h2>
+
+  @for (user of users; track user) {
+    <div class="user-card">
+      <div class="square-avatar">
+        @if (user.avatar_url) {
+          <img
+            [src]="apiRoot + '/' + user.avatar_url"
+            width="120"
+            height="120"
+            alt="User avatar" />
+        } @else {
+          <span>{{ getAvatarInitial(user) }}</span>
+        }
+      </div>
+      <div>
+        <p><strong>ID:</strong>{{ user.id }}</p>
+        <p><strong>使用者名稱：</strong>{{ user.username }}</p>
+        <p><strong>暱稱：</strong>{{ user.nickname || '(未設定)' }}</p>
+        <p><strong>身份：</strong>{{ user.role }}</p>
+        <p><strong>創立時間：</strong>{{ user.created_at }}</p>
+        <div class="friend-actions">
+          @if (isCurrentUser(user.id)) {
+            <span class="friend-status friend-status--self">這是你</span>
+          } @else {
+            @if (isFriend(user.id)) {
+              <span class="friend-status">已是朋友</span>
+              <button
+                class="btn btn-danger"
+                type="button"
+                (click)="removeFriend(user)"
+                [disabled]="friendActionLoading[user.id]">
+                {{ friendActionLoading[user.id] ? '處理中...' : '刪除好友' }}
+              </button>
+            } @else {
+              <button
+                class="btn btn-primary"
+                type="button"
+                (click)="sendFriendRequest(user)"
+                [disabled]="friendActionLoading[user.id]">
+                {{ friendActionLoading[user.id] ? '處理中...' : '發送邀請' }}
+              </button>
+            }
+          }
         </div>
-        <div>
-            <p><strong>ID:</strong>{{ user.id }}</p>
-            <p><strong>使用者名稱：</strong>{{ user.username }}</p>
-            <p><strong>暱稱：</strong>{{ user.nickname || '(未設定)' }}</p>
-            <p><strong>身份：</strong>{{ user.role }}</p>
-            <p><strong>創立時間：</strong>{{ user.created_at }}</p>
-
-            <div class="friend-actions">
-                <ng-container *ngIf="isCurrentUser(user.id); else friendControls">
-                    <span class="friend-status friend-status--self">這是你</span>
-                </ng-container>
-
-                <ng-template #friendControls>
-                <ng-container *ngIf="isFriend(user.id); else requestFriend">
-                    <span class="friend-status">已是朋友</span>
-                    <button
-                        class="btn btn-danger"
-                        type="button"
-                        (click)="removeFriend(user)"
-                        [disabled]="friendActionLoading[user.id]">
-                        {{ friendActionLoading[user.id] ? '處理中...' : '刪除好友' }}
-                    </button>
-                </ng-container>
-
-                <ng-template #requestFriend>
-                    <button
-                        class="btn btn-primary"
-                        type="button"
-                        (click)="sendFriendRequest(user)"
-                        [disabled]="friendActionLoading[user.id]">
-                        {{ friendActionLoading[user.id] ? '處理中...' : '發送邀請' }}
-                    </button>
-                </ng-template>
-                </ng-template>
-            </div>
-
-            <p *ngIf="friendMessages[user.id]" class="friend-message">{{ friendMessages[user.id] }}</p>
-        </div>
-        <hr>
-    </div>
-</div>
+        @if (friendMessages[user.id]) {
+          <p class="friend-message">{{ friendMessages[user.id] }}</p>
+        }
+      </div>
+      <hr>
+      </div>
+    }
+  </div>

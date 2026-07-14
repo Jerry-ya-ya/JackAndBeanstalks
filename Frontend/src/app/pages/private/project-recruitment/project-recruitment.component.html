@@ -51,7 +51,9 @@
         {{ submitting ? '建立中...' : '發布招募' }}
       </button>
 
-      <p *ngIf="statusMessage" class="status-message">{{ statusMessage }}</p>
+      @if (statusMessage) {
+        <p class="status-message">{{ statusMessage }}</p>
+      }
     </form>
 
     <section class="recruit-list">
@@ -60,160 +62,190 @@
         <h2>招募列表</h2>
       </div>
 
-      <div *ngIf="loading" class="empty-state">載入中...</div>
+      @if (loading) {
+        <div class="empty-state">載入中...</div>
+      }
 
-      <article *ngFor="let project of projects" class="project-card">
-        <div class="project-card__top">
-          <div>
-            <p class="project-owner">{{ project.creator.nickname || project.creator.username }}</p>
-            <h3>{{ project.title }}</h3>
+      @for (project of projects; track project) {
+        <article class="project-card">
+          <div class="project-card__top">
+            <div>
+              <p class="project-owner">{{ project.creator.nickname || project.creator.username }}</p>
+              <h3>{{ project.title }}</h3>
+            </div>
+            <span class="project-count">{{ project.member_count }}{{ project.max_members ? '/' + project.max_members : '' }}</span>
           </div>
-          <span class="project-count">{{ project.member_count }}{{ project.max_members ? '/' + project.max_members : '' }}</span>
+          <p class="project-summary">{{ project.summary }}</p>
+          <div class="project-meta">
+            @if (project.role_needed) {
+              <span>需求：{{ project.role_needed }}</span>
+            }
+            @if (project.contact) {
+              <span>聯絡：{{ project.contact }}</span>
+            }
+            <span>{{ project.created_at }}</span>
+          </div>
+          @if (project.members.length > 0) {
+            <div class="member-list">
+              @for (member of project.members; track member) {
+                <span>{{ member.user.nickname || member.user.username }}</span>
+              }
+            </div>
+          }
+          @if (!project.owned_by_me && !project.joined_by_me && !isFull(project)) {
+            <div class="join-panel">
+              <input
+                [(ngModel)]="joinMessages[project.id]"
+                [name]="'joinMessage' + project.id"
+                placeholder="給發起人的一句話">
+                <button class="recruit-button" type="button" (click)="joinProject(project)" [disabled]="actionLoading[project.id]">
+                  {{ actionLoading[project.id] ? '登記中...' : '登記加入' }}
+                </button>
+              </div>
+            }
+            @if (project.owned_by_me || project.joined_by_me || isFull(project)) {
+              <div class="project-actions">
+                @if (project.owned_by_me) {
+                  <span class="project-badge">你建立的招募</span>
+                }
+                @if (project.joined_by_me) {
+                  <span class="project-badge">已登記加入</span>
+                }
+                @if (isFull(project) && !project.joined_by_me) {
+                  <span class="project-badge">名額已滿</span>
+                }
+                @if (project.joined_by_me) {
+                  <button
+                    class="recruit-button recruit-button--ghost"
+                    type="button"
+                    (click)="leaveProject(project)"
+                    [disabled]="actionLoading[project.id]">
+                    {{ actionLoading[project.id] ? '處理中...' : '取消登記' }}
+                  </button>
+                }
+              </div>
+            }
+          </article>
+        }
+
+        @if (!loading && projects.length === 0) {
+          <div class="empty-state">目前還沒有專案招募。</div>
+        }
+      </section>
+    </section>
+
+    <section class="manage-section">
+      <div class="card-header manage-header">
+        <div>
+          <p class="recruit-kicker">Manage</p>
+          <h2>管理已發布招募</h2>
         </div>
+        <span class="project-count">{{ ownedProjects.length }} Active</span>
+      </div>
 
-        <p class="project-summary">{{ project.summary }}</p>
+      @if (loading) {
+        <div class="empty-state">同步你的招募資料中...</div>
+      }
 
-        <div class="project-meta">
-          <span *ngIf="project.role_needed">需求：{{ project.role_needed }}</span>
-          <span *ngIf="project.contact">聯絡：{{ project.contact }}</span>
-          <span>{{ project.created_at }}</span>
+      @if (!loading && ownedProjects.length === 0) {
+        <div class="empty-state">
+          你目前還沒有發布中的招募。
         </div>
+      }
 
-        <div class="member-list" *ngIf="project.members.length > 0">
-          <span *ngFor="let member of project.members">{{ member.user.nickname || member.user.username }}</span>
-        </div>
-
-        <div class="join-panel" *ngIf="!project.owned_by_me && !project.joined_by_me && !isFull(project)">
-          <input
-            [(ngModel)]="joinMessages[project.id]"
-            [name]="'joinMessage' + project.id"
-            placeholder="給發起人的一句話">
-          <button class="recruit-button" type="button" (click)="joinProject(project)" [disabled]="actionLoading[project.id]">
-            {{ actionLoading[project.id] ? '登記中...' : '登記加入' }}
-          </button>
-        </div>
-
-        <div class="project-actions" *ngIf="project.owned_by_me || project.joined_by_me || isFull(project)">
-          <span *ngIf="project.owned_by_me" class="project-badge">你建立的招募</span>
-          <span *ngIf="project.joined_by_me" class="project-badge">已登記加入</span>
-          <span *ngIf="isFull(project) && !project.joined_by_me" class="project-badge">名額已滿</span>
+      @for (project of ownedProjects; track project) {
+        <article class="manage-card">
+          <div class="manage-card__summary">
+            <div>
+              <p class="project-owner">{{ project.created_at }}</p>
+              <h3>{{ project.title }}</h3>
+              <p>{{ project.summary }}</p>
+            </div>
+            <div class="manage-metrics">
+              <span>{{ project.member_count }}{{ project.max_members ? '/' + project.max_members : '' }}</span>
+              <small>Members</small>
+            </div>
+          </div>
+          <div class="project-meta">
+            @if (project.role_needed) {
+              <span>需求：{{ project.role_needed }}</span>
+            }
+            @if (project.contact) {
+              <span>聯絡：{{ project.contact }}</span>
+            }
+          </div>
+          @if (project.members.length > 0) {
+            <div class="applicant-list">
+              @for (member of project.members; track member) {
+                <div class="applicant-card">
+                  <div>
+                    <strong>{{ member.user.nickname || member.user.username }}</strong>
+                    <span>{{ member.created_at }}</span>
+                  </div>
+                  <p>{{ member.message || '沒有留下登記留言。' }}</p>
+                </div>
+              }
+            </div>
+          }
+          @if (project.members.length === 0) {
+            <div class="empty-state empty-state--compact">
+              目前還沒有人登記加入。
+            </div>
+          }
+          <form class="todo-publisher" (ngSubmit)="publishTodo(project)">
+            <div class="todo-publisher__header">
+              <div>
+                <p class="recruit-kicker">Todo Dispatch</p>
+                <h4>發布團隊 Todo</h4>
+              </div>
+              <select
+                [(ngModel)]="todoTargets[project.id]"
+                [name]="'todoTarget' + project.id">
+              <option value="team">整個團隊</option>
+              <option value="captain">隊長自己</option>
+              @for (member of project.members; track member) {
+                <option [value]="member.user.id">
+                  {{ member.user.nickname || member.user.username }}
+                </option>
+              }
+            </select>
+          </div>
+          <label class="todo-priority">
+            <span>優先級</span>
+            <input
+              type="number"
+              min="0"
+              max="9"
+              [(ngModel)]="todoPriorities[project.id]"
+              [name]="'todoPriority' + project.id">
+            <strong [style.background]="getPriorityColor(getTodoPriority(project.id))">
+              {{ getTodoPriority(project.id) }}
+            </strong>
+            <small>0 最緊急 / 9 最不緊急</small>
+          </label>
+          <div class="todo-publisher__controls">
+            <input
+              [(ngModel)]="todoTexts[project.id]"
+              [name]="'todoText' + project.id"
+              placeholder="例如：完成角色控制器第一版">
+            <button
+              class="recruit-button"
+              type="submit"
+              [disabled]="todoLoading[project.id]">
+              {{ todoLoading[project.id] ? '發布中...' : '發布 Todo' }}
+            </button>
+          </div>
+        </form>
+        <div class="manage-actions">
           <button
-            *ngIf="project.joined_by_me"
-            class="recruit-button recruit-button--ghost"
+            class="recruit-button recruit-button--danger"
             type="button"
-            (click)="leaveProject(project)"
-            [disabled]="actionLoading[project.id]">
-            {{ actionLoading[project.id] ? '處理中...' : '取消登記' }}
+            (click)="deleteProject(project)"
+            [disabled]="deletingProject[project.id]">
+            {{ deletingProject[project.id] ? '刪除中...' : '刪除招募' }}
           </button>
         </div>
       </article>
-
-      <div *ngIf="!loading && projects.length === 0" class="empty-state">目前還沒有專案招募。</div>
-    </section>
-  </section>
-
-  <section class="manage-section">
-    <div class="card-header manage-header">
-      <div>
-        <p class="recruit-kicker">Manage</p>
-        <h2>管理已發布招募</h2>
-      </div>
-      <span class="project-count">{{ ownedProjects.length }} Active</span>
-    </div>
-
-    <div *ngIf="loading" class="empty-state">同步你的招募資料中...</div>
-
-    <div *ngIf="!loading && ownedProjects.length === 0" class="empty-state">
-      你目前還沒有發布中的招募。
-    </div>
-
-    <article *ngFor="let project of ownedProjects" class="manage-card">
-      <div class="manage-card__summary">
-        <div>
-          <p class="project-owner">{{ project.created_at }}</p>
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.summary }}</p>
-        </div>
-
-        <div class="manage-metrics">
-          <span>{{ project.member_count }}{{ project.max_members ? '/' + project.max_members : '' }}</span>
-          <small>Members</small>
-        </div>
-      </div>
-
-      <div class="project-meta">
-        <span *ngIf="project.role_needed">需求：{{ project.role_needed }}</span>
-        <span *ngIf="project.contact">聯絡：{{ project.contact }}</span>
-      </div>
-
-      <div class="applicant-list" *ngIf="project.members.length > 0">
-        <div *ngFor="let member of project.members" class="applicant-card">
-          <div>
-            <strong>{{ member.user.nickname || member.user.username }}</strong>
-            <span>{{ member.created_at }}</span>
-          </div>
-          <p>{{ member.message || '沒有留下登記留言。' }}</p>
-        </div>
-      </div>
-
-      <div *ngIf="project.members.length === 0" class="empty-state empty-state--compact">
-        目前還沒有人登記加入。
-      </div>
-
-      <form class="todo-publisher" (ngSubmit)="publishTodo(project)">
-        <div class="todo-publisher__header">
-          <div>
-            <p class="recruit-kicker">Todo Dispatch</p>
-            <h4>發布團隊 Todo</h4>
-          </div>
-          <select
-            [(ngModel)]="todoTargets[project.id]"
-            [name]="'todoTarget' + project.id">
-            <option value="team">整個團隊</option>
-            <option value="captain">隊長自己</option>
-            <option *ngFor="let member of project.members" [value]="member.user.id">
-              {{ member.user.nickname || member.user.username }}
-            </option>
-          </select>
-        </div>
-
-        <label class="todo-priority">
-          <span>優先級</span>
-          <input
-            type="number"
-            min="0"
-            max="9"
-            [(ngModel)]="todoPriorities[project.id]"
-            [name]="'todoPriority' + project.id">
-          <strong [style.background]="getPriorityColor(getTodoPriority(project.id))">
-            {{ getTodoPriority(project.id) }}
-          </strong>
-          <small>0 最緊急 / 9 最不緊急</small>
-        </label>
-
-        <div class="todo-publisher__controls">
-          <input
-            [(ngModel)]="todoTexts[project.id]"
-            [name]="'todoText' + project.id"
-            placeholder="例如：完成角色控制器第一版">
-          <button
-            class="recruit-button"
-            type="submit"
-            [disabled]="todoLoading[project.id]">
-            {{ todoLoading[project.id] ? '發布中...' : '發布 Todo' }}
-          </button>
-        </div>
-      </form>
-
-      <div class="manage-actions">
-        <button
-          class="recruit-button recruit-button--danger"
-          type="button"
-          (click)="deleteProject(project)"
-          [disabled]="deletingProject[project.id]">
-          {{ deletingProject[project.id] ? '刪除中...' : '刪除招募' }}
-        </button>
-      </div>
-    </article>
+    }
   </section>
 </main>

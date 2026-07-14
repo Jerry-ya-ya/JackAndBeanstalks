@@ -7,21 +7,22 @@
     </div>
 
     <div class="member-button-grid">
-      <button
-        class="member-button"
-        type="button"
-        *ngFor="let member of demoMembers"
-        (click)="selectMember(member)"
-        [class.active]="selectedMember.id === member.id"
-      >
-        <span class="member-button__avatar">
-          <img [src]="memberAvatar" [alt]="member.name + ' avatar'">
-        </span>
-        <span class="member-button__text">
-          <strong>{{ member.name }}</strong>
-          <small>{{ member.role }}</small>
-        </span>
-      </button>
+      @for (member of demoMembers; track member) {
+        <button
+          class="member-button"
+          type="button"
+          (click)="selectMember(member)"
+          [class.active]="selectedMember.id === member.id"
+          >
+          <span class="member-button__avatar">
+            <img [src]="memberAvatar" [alt]="member.name + ' avatar'">
+          </span>
+          <span class="member-button__text">
+            <strong>{{ member.name }}</strong>
+            <small>{{ member.role }}</small>
+          </span>
+        </button>
+      }
     </div>
   </section>
 
@@ -37,9 +38,11 @@
           <a class="member-link" [href]="profile?.html_url || profileUrl" target="_blank" rel="noopener noreferrer">
             GitHub Profile
           </a>
-          <a *ngIf="profileBlog" class="member-link member-link--ghost" [href]="profileBlog" target="_blank" rel="noopener noreferrer">
-            Website
-          </a>
+          @if (profileBlog) {
+            <a class="member-link member-link--ghost" [href]="profileBlog" target="_blank" rel="noopener noreferrer">
+              Website
+            </a>
+          }
         </div>
       </div>
 
@@ -55,36 +58,44 @@
       </div>
     </section>
 
-    <section *ngIf="loading" class="state-panel">
-      <div class="state-panel__spinner"></div>
-      <p>Loading GitHub signal...</p>
-    </section>
+    @if (loading) {
+      <section class="state-panel">
+        <div class="state-panel__spinner"></div>
+        <p>Loading GitHub signal...</p>
+      </section>
+    }
 
-    <section *ngIf="!loading && error" class="state-panel state-panel--warning">
-      <p>{{ error }}</p>
-      <button type="button" (click)="loadGithubProfile()">Retry</button>
-    </section>
+    @if (!loading && error) {
+      <section class="state-panel state-panel--warning">
+        <p>{{ error }}</p>
+        <button type="button" (click)="loadGithubProfile()">Retry</button>
+      </section>
+    }
 
-    <section *ngIf="!loading" class="github-stats" aria-label="GitHub statistics">
-      <article class="stat-card">
-        <span>{{ profile?.public_repos || 0 }}</span>
-        <p>Public Repos</p>
-      </article>
-      <article class="stat-card">
-        <span>{{ profile?.followers || 0 }}</span>
-        <p>Followers</p>
-      </article>
-      <article class="stat-card">
-        <span>{{ profile?.following || 0 }}</span>
-        <p>Following</p>
-      </article>
-    </section>
+    @if (!loading) {
+      <section class="github-stats" aria-label="GitHub statistics">
+        <article class="stat-card">
+          <span>{{ profile?.public_repos || 0 }}</span>
+          <p>Public Repos</p>
+        </article>
+        <article class="stat-card">
+          <span>{{ profile?.followers || 0 }}</span>
+          <p>Followers</p>
+        </article>
+        <article class="stat-card">
+          <span>{{ profile?.following || 0 }}</span>
+          <p>Following</p>
+        </article>
+      </section>
+    }
 
     <section class="member-grid" aria-label="Member capabilities">
-      <article class="capability-card" *ngFor="let item of capabilities">
-        <span>{{ item.label }}</span>
-        <p>{{ item.value }}</p>
-      </article>
+      @for (item of capabilities; track item) {
+        <article class="capability-card">
+          <span>{{ item.label }}</span>
+          <p>{{ item.value }}</p>
+        </article>
+      }
     </section>
 
     <section class="repo-section" aria-label="Recent GitHub repositories">
@@ -94,29 +105,31 @@
         <p>Pulled from the selected public GitHub profile. These slots can become real studio members later.</p>
       </div>
 
-      <div class="repo-grid" *ngIf="repositories.length > 0; else emptyRepos">
-        <a
-          class="repo-card"
-          *ngFor="let repo of repositories"
-          [href]="repo.html_url"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <span class="repo-card__language">{{ repo.language || 'Repository' }}</span>
-          <h3>{{ repo.name }}</h3>
-          <p>{{ repo.description || 'No description yet, but the console light is on.' }}</p>
-          <div class="repo-card__footer">
-            <span>Stars {{ repo.stargazers_count }}</span>
-            <span>{{ repo.updated_at | date:'yyyy/MM/dd' }}</span>
-          </div>
-        </a>
-      </div>
-
-      <ng-template #emptyRepos>
+      @if (repositories.length > 0) {
+        <div class="repo-grid">
+          @for (repo of repositories; track repo) {
+            <a
+              class="repo-card"
+              [href]="repo.html_url"
+              target="_blank"
+              rel="noopener noreferrer"
+              >
+              <span class="repo-card__language">{{ repo.language || 'Repository' }}</span>
+              <h3>{{ repo.name }}</h3>
+              <p>{{ repo.description || 'No description yet, but the console light is on.' }}</p>
+              <div class="repo-card__footer">
+                <span>Stars {{ repo.stargazers_count }}</span>
+                <span>{{ repo.updated_at | date:'yyyy/MM/dd' }}</span>
+              </div>
+            </a>
+          }
+        </div>
+      } @else {
         <div class="empty-repos">
           <p>Repository data is waiting for GitHub to answer.</p>
         </div>
-      </ng-template>
+      }
+
     </section>
   </section>
 </main>

@@ -6,7 +6,9 @@
     <label for="to">輸入用戶名：</label>
     <input id="to" [(ngModel)]="toUsername" placeholder="username" class="input-user">
     <button class="btn btn-primary" (click)="sendRequest()">發送邀請</button>
-    <p *ngIf="message" class="message">{{ message }}</p>
+    @if (message) {
+      <p class="message">{{ message }}</p>
+    }
   </div>
 
   <div class="section-divider"></div>
@@ -14,14 +16,20 @@
   <!-- 接收邀請清單 -->
   <div class="requests-section card">
     <h3>收到的邀請</h3>
-    <ul *ngIf="requests.length > 0">
-      <li *ngFor="let req of requests" class="request-item">
-        <span class="request-from">{{ req.from_username }}</span>
-        <button class="btn btn-success" (click)="acceptRequest(req.id)">接受</button>
-        <button class="btn btn-danger" (click)="rejectRequest(req.id)">拒絕</button>
-      </li>
-    </ul>
-    <p *ngIf="requests.length === 0" class="empty-tip">目前沒有收到邀請。</p>
+    @if (requests.length > 0) {
+      <ul>
+        @for (req of requests; track req) {
+          <li class="request-item">
+            <span class="request-from">{{ req.from_username }}</span>
+            <button class="btn btn-success" (click)="acceptRequest(req.id)">接受</button>
+            <button class="btn btn-danger" (click)="rejectRequest(req.id)">拒絕</button>
+          </li>
+        }
+      </ul>
+    }
+    @if (requests.length === 0) {
+      <p class="empty-tip">目前沒有收到邀請。</p>
+    }
   </div>
 
   <div class="section-divider"></div>
@@ -29,14 +37,20 @@
   <!-- 好友列表 -->
   <div class="friends-section card">
     <h3>好友列表</h3>
-    <ul *ngIf="friends.length > 0" class="friend-list">
-      <li *ngFor="let f of friends" class="friend-item">
-        <a [routerLink]="['/square', f.id]" class="friend-link">
-          {{ f.username }}（{{ f.email }}）
-        </a>
-        <button class="btn btn-danger" (click)="removeFriend(f.id)">刪除</button>
-      </li>
-    </ul>
-    <p *ngIf="friends.length === 0" class="empty-tip">你尚未有好友</p>
+    @if (friends.length > 0) {
+      <ul class="friend-list">
+        @for (f of friends; track f) {
+          <li class="friend-item">
+            <a [routerLink]="['/square', f.id]" class="friend-link">
+              {{ f.username }}（{{ f.email }}）
+            </a>
+            <button class="btn btn-danger" (click)="removeFriend(f.id)">刪除</button>
+          </li>
+        }
+      </ul>
+    }
+    @if (friends.length === 0) {
+      <p class="empty-tip">你尚未有好友</p>
+    }
   </div>
 </div>

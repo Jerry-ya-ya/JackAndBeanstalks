@@ -1,73 +1,77 @@
 <div class="todo-container">
-    <h2>
-        Todo List
-    </h2>
+  <h2>
+    Todo List
+  </h2>
 
-    <input [(ngModel)]="newTodoText" placeholder="Add new todo" />
+  <input [(ngModel)]="newTodoText" placeholder="Add new todo" />
 
-    <button (click)="addTodo()">
-        Add
-    </button>
-  
-    <ul>
-        <li *ngFor="let todo of todos">
-            <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
+  <button (click)="addTodo()">
+    Add
+  </button>
 
-            <strong
+  <ul>
+    @for (todo of todos; track todo) {
+      <li>
+        <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
+        <strong
+          class="priority-badge"
+          [style.background]="getPriorityColor(getTodoPriority(todo))">
+          P{{ getTodoPriority(todo) }}
+        </strong>
+        <span [ngStyle]="{ 'text-decoration': todo.done ? 'line-through' : 'none' }">
+          {{ todo.text }}
+        </span>
+        @if (todo.project_title) {
+          <small>
+            {{ todo.project_title }} · {{ todo.assignee_name }}
+          </small>
+        }
+        <button (click)="deleteTodo(todo.id)">
+          Delete
+        </button>
+      </li>
+    }
+  </ul>
+
+  <section class="project-todo-section">
+    <div class="project-todo-section__header">
+      <div>
+        <p>Project Categories</p>
+        <h3>專案分類</h3>
+      </div>
+      <strong>{{ projectTodoGroups.length }}</strong>
+    </div>
+
+    @if (projectTodoGroups.length === 0) {
+      <div class="project-empty">
+        目前沒有專案指派的 Todo。
+      </div>
+    }
+
+    @for (group of projectTodoGroups; track group) {
+      <article class="project-todo-card">
+        <div class="project-todo-card__title">
+          <h4>{{ group.projectTitle }}</h4>
+          <span>{{ group.done }}/{{ group.total }} done</span>
+        </div>
+        <div class="project-progress">
+          <div [style.width.%]="group.total ? (group.done / group.total) * 100 : 0"></div>
+        </div>
+        <ul class="project-task-list">
+          @for (todo of group.todos; track todo) {
+            <li [class.is-done]="todo.done">
+              <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
+              <strong
                 class="priority-badge"
                 [style.background]="getPriorityColor(getTodoPriority(todo))">
                 P{{ getTodoPriority(todo) }}
-            </strong>
-            
-            <span [ngStyle]="{ 'text-decoration': todo.done ? 'line-through' : 'none' }">
-                {{ todo.text }}
-            </span>
-
-            <small *ngIf="todo.project_title">
-                {{ todo.project_title }} · {{ todo.assignee_name }}
-            </small>
-
-            <button (click)="deleteTodo(todo.id)">
-                Delete
-            </button>
-        </li>
-    </ul>
-
-    <section class="project-todo-section">
-        <div class="project-todo-section__header">
-            <div>
-                <p>Project Categories</p>
-                <h3>專案分類</h3>
-            </div>
-            <strong>{{ projectTodoGroups.length }}</strong>
-        </div>
-
-        <div *ngIf="projectTodoGroups.length === 0" class="project-empty">
-            目前沒有專案指派的 Todo。
-        </div>
-
-        <article *ngFor="let group of projectTodoGroups" class="project-todo-card">
-            <div class="project-todo-card__title">
-                <h4>{{ group.projectTitle }}</h4>
-                <span>{{ group.done }}/{{ group.total }} done</span>
-            </div>
-
-            <div class="project-progress">
-                <div [style.width.%]="group.total ? (group.done / group.total) * 100 : 0"></div>
-            </div>
-
-            <ul class="project-task-list">
-                <li *ngFor="let todo of group.todos" [class.is-done]="todo.done">
-                    <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
-                    <strong
-                        class="priority-badge"
-                        [style.background]="getPriorityColor(getTodoPriority(todo))">
-                        P{{ getTodoPriority(todo) }}
-                    </strong>
-                    <span>{{ todo.text }}</span>
-                    <small>{{ todo.assignee_name || '未指定' }}</small>
-                </li>
-            </ul>
-        </article>
-    </section>
+              </strong>
+              <span>{{ todo.text }}</span>
+              <small>{{ todo.assignee_name || '未指定' }}</small>
+            </li>
+          }
+        </ul>
+      </article>
+    }
+  </section>
 </div>
