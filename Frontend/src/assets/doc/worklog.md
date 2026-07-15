@@ -361,3 +361,5 @@
 - Upgrade Angular frontend from 21 to 22.
 
 - Add admin homepage news content management.
+
+- Improve admin content responsive layout.
