@@ -82,6 +82,20 @@ class News(db.Model):
     url = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+class HomeNewsItem(db.Model):
+    __table_args__ = (
+        db.CheckConstraint("theme IN ('cmen', 'eden')", name='ck_home_news_theme'),
+    )
+
+    id = db.Column(db.Integer, primary_key=True)
+    theme = db.Column(db.String(20), nullable=False)
+    title = db.Column(db.String(120), nullable=False)
+    summary = db.Column(db.Text, nullable=False)
+    tag = db.Column(db.String(40), nullable=False)
+    sort_order = db.Column(db.Integer, default=0, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
 class ScheduleState(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     job_name = db.Column(db.String(50), unique=True, nullable=False)
@@ -136,6 +150,7 @@ def load_models():
         FriendRequest,
         Todo,
         News,
+        HomeNewsItem,
         ScheduleState,
         Post,
         ProjectRecruitment,

@@ -27,6 +27,7 @@ from routes.auth.avatar import avatar_bp
 from routes.post.square import square_bp
 from routes.auth.changepassword import changepassword_bp
 from routes.admin.admin import admin_bp
+from routes.admin.content import content_bp
 from routes.admin.promote import promote_bp
 from routes.test.test import test_utils
 from routes.auth.friend import friend_bp
@@ -144,6 +145,7 @@ def create_app(config_name="none"):
     app.register_blueprint(changepassword_bp, url_prefix='/api')
     app.register_blueprint(crawler_bp, url_prefix='/api')
     app.register_blueprint(admin_bp, url_prefix='/api')
+    app.register_blueprint(content_bp, url_prefix='/api')
     app.register_blueprint(promote_bp, url_prefix='/api')
     app.register_blueprint(friend_bp, url_prefix='/api')
     app.register_blueprint(post_bp, url_prefix='/api')

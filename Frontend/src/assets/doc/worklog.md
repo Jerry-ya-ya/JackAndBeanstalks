@@ -359,3 +359,5 @@
 ## 2026/07/15
 
 - Upgrade Angular frontend from 21 to 22.
+
+- Add admin homepage news content management.

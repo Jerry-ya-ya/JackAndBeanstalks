@@ -1,11 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { HomeContentService } from '../../../core/services/home-content.service';
 import { ThemeService } from '../../../core/services/theme.service';
-
-interface CommunityNewsItem {
-  title: string;
-  summary: string;
-  tag: string;
-}
 
 @Component({
   selector: 'app-home',
@@ -14,45 +9,20 @@ interface CommunityNewsItem {
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   readonly cmenSubtitle = ['Computing', 'Mathematics', 'Engineering', 'Network'];
   readonly edenSubtitle = ['Encode', 'Develop', 'Enlighten', 'Nexus'];
-  readonly cmenNews: CommunityNewsItem[] = [
-    {
-      title: 'Prototype Lab Opens',
-      summary: 'A small corner for gameplay sketches, tiny tools, and strange experiments.',
-      tag: 'Studio'
-    },
-    {
-      title: 'Player Notes Wanted',
-      summary: 'Collecting first impressions before the next round of game-facing polish.',
-      tag: 'Community'
-    },
-    {
-      title: 'Devlog Queue',
-      summary: 'Future posts will track builds, experiments, and useful lessons from production.',
-      tag: 'Devlog'
-    }
-  ];
-  readonly edenNews: CommunityNewsItem[] = [
-    {
-      title: 'Knowledge Node Online',
-      summary: 'EDEN prepares a shared space for questions, references, and learning trails.',
-      tag: 'Network'
-    },
-    {
-      title: 'Learning Routes Drafted',
-      summary: 'Encode, Develop, Enlighten, and Nexus will shape the first content channels.',
-      tag: 'Roadmap'
-    },
-    {
-      title: 'Admin News Tools Planned',
-      summary: 'Community news cards are placeholders until editable publishing is unlocked.',
-      tag: 'System'
-    }
-  ];
 
-  constructor(public theme: ThemeService) {}
+  constructor(
+    public theme: ThemeService,
+    private homeContent: HomeContentService
+  ) {}
+
+  ngOnInit() {
+    this.homeContent.loadPublicContent().subscribe({
+      error: error => console.error('Failed to load homepage news:', error)
+    });
+  }
 
   get isNightMode() {
     return this.theme.isNightMode;
@@ -79,7 +49,7 @@ export class HomeComponent {
   }
 
   get communityNews() {
-    return this.isNightMode ? this.edenNews : this.cmenNews;
+    return this.homeContent.getNews(this.isNightMode ? 'eden' : 'cmen');
   }
 
   get communityNewsTitle() {

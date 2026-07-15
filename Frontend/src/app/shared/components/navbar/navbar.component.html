@@ -38,7 +38,7 @@
     @if (isAdmin()) {
       <div class="navbar navbar-admin">
         <a class="nav-admin" [routerLink]="['/']">User</a>
-        <a class="nav-admin" [routerLink]="['/']">Content</a>
+        <a class="nav-admin" [routerLink]="[path.content]">Content</a>
         <a class="nav-admin" [routerLink]="['/']">Logs</a>
         <a class="nav-admin" [routerLink]="['/']">Announce</a>
         <a class="nav-admin" [routerLink]="['/']">Events</a>
