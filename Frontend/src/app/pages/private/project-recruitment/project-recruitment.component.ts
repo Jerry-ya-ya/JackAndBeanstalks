@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 
 interface ProjectRecruitmentMember {
@@ -39,6 +39,7 @@ interface ProjectRecruitment {
   selector: 'app-project-recruitment',
   standalone: false,
   templateUrl: './project-recruitment.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './project-recruitment.component.css'
 })
 export class ProjectRecruitmentComponent implements OnInit {

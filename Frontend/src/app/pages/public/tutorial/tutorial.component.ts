@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 interface TutorialStep {
   title: string;
@@ -18,6 +18,7 @@ interface CompareItem {
   selector: 'app-tutorial',
   standalone: false,
   templateUrl: './tutorial.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./tutorial.component.css']
 })
 export class TutorialComponent {

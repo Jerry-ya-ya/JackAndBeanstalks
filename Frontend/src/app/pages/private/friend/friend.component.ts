@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 
 @Component({
   selector: 'app-friend',
   standalone: false,
   templateUrl: './friend.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './friend.component.css'
 })
 export class FriendComponent implements OnInit {

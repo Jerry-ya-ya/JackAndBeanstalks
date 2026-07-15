@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 //Tools
 import { OnInit } from '@angular/core';
@@ -18,6 +18,7 @@ interface ProjectTodoGroup {
   selector: 'app-todo',
   standalone: false,
   templateUrl: './todo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './todo.component.css'
 })
 export class TodoComponent implements OnInit {

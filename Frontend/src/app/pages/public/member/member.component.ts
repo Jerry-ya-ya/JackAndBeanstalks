@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { forkJoin } from 'rxjs';
 
 interface GithubProfile {
@@ -42,6 +42,7 @@ interface MemberCapability {
   selector: 'app-member',
   standalone: false,
   templateUrl: './member.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './member.component.css'
 })
 export class MemberComponent implements OnInit {

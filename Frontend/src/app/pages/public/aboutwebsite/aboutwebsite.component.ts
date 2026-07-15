@@ -1,10 +1,11 @@
 import { HttpClient, HttpBackend } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-aboutwebsite',
   standalone: false,
   templateUrl: './aboutwebsite.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './aboutwebsite.component.css'
 })
 export class AboutwebsiteComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
@@ -7,6 +7,7 @@ import { environment } from '../../../../environments/environment';
   selector: 'app-setting',
   standalone: false,
   templateUrl: './setting.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './setting.component.css'
 })
 export class SettingComponent {

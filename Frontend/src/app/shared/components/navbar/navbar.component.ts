@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { appPath } from '../../../path/app-path-const';
 
@@ -6,6 +6,7 @@ import { appPath } from '../../../path/app-path-const';
   selector: 'app-navbar',
   standalone: false,
   templateUrl: './navbar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {

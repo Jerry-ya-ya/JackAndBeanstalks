@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiService } from '../../../../core/services/api.service';
@@ -8,6 +8,7 @@ import { appPath } from '../../../../path/app-path-const';
   selector: 'app-login',
   standalone: false,
   templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './login.component.css'
 })
 export class LoginComponent {

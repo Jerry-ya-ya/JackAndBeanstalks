@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ApiService } from '../../../../core/services/api.service';
 import { appPath } from '../../../../path/app-path-const';
 
@@ -6,6 +6,7 @@ import { appPath } from '../../../../path/app-path-const';
   selector: 'app-register',
   standalone: false,
   templateUrl: './register.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {

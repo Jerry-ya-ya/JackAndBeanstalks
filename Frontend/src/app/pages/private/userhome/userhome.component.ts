@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 
@@ -7,6 +7,7 @@ import { environment } from '../../../../environments/environment';
   selector: 'app-userhome',
   standalone: false,
   templateUrl: './userhome.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './userhome.component.css'
 })
 export class UserhomeComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { OnDestroy, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +9,7 @@ import { ApiService } from '../../../core/services/api.service';
   selector: 'app-crawler',
   standalone: false,
   templateUrl: './crawler.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crawler.component.css'
 })
 export class CrawlerComponent implements OnInit, OnDestroy {

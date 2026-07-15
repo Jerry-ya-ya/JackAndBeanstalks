@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 
@@ -6,6 +6,7 @@ import { environment } from '../../../../environments/environment';
   selector: 'app-post',
   standalone: false,
   templateUrl: './post.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './post.component.css'
 })
 export class PostComponent {

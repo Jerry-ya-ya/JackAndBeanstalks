@@ -354,4 +354,8 @@
 
 - Improve logout navigation and login autofill.
 
-- Upgrade Angular frontend dependencies.
+- Upgrade Angular frontend from 20 to 21.
+
+## 2026/07/15
+
+- Upgrade Angular frontend from 21 to 22.

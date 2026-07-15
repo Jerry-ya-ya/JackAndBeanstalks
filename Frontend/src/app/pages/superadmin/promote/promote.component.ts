@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 
 interface User {
@@ -17,6 +17,7 @@ interface User {
   selector: 'app-promote',
   standalone: false,
   templateUrl: './promote.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './promote.component.css'
 })
 export class PromoteComponent implements OnInit {
