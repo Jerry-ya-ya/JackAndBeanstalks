@@ -4,6 +4,7 @@ from sqlalchemy.exc import IntegrityError
 
 from models import db, ProjectRecruitment, ProjectRecruitmentMember
 from routes.auth.utils import get_current_user_from_token
+from time_utils import to_taipei_text
 
 project_recruitment_bp = Blueprint('project_recruitment', __name__)
 
@@ -22,7 +23,7 @@ def serialize_member(member):
     return {
         'id': member.id,
         'message': member.message,
-        'created_at': member.created_at.strftime('%Y-%m-%d %H:%M') if member.created_at else None,
+        'created_at': to_taipei_text(member.created_at),
         'user': serialize_user(member.user),
     }
 
@@ -37,7 +38,7 @@ def serialize_project(project, current_user):
         'role_needed': project.role_needed,
         'contact': project.contact,
         'max_members': project.max_members,
-        'created_at': project.created_at.strftime('%Y-%m-%d %H:%M') if project.created_at else None,
+        'created_at': to_taipei_text(project.created_at),
         'creator': serialize_user(project.creator),
         'members': [serialize_member(member) for member in project.members],
         'member_count': len(project.members),

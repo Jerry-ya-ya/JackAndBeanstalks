@@ -6,6 +6,7 @@ from flask_mail import Message
 from models import db, User
 from routes.auth.email import generate_confirmation_token, mail
 from routes.auth.utils import get_current_user_from_token
+from time_utils import to_taipei_iso
 
 me_bp = Blueprint('me', __name__)
 
@@ -23,7 +24,7 @@ def get_current_user():
         'username': user.username,
         'email': user.email,
         'nickname': user.nickname,
-        'created_at': user.created_at.isoformat(),
+        'created_at': to_taipei_iso(user.created_at),
         'avatar_url': user.avatar_url,
         'role': user.role,
     })
@@ -91,5 +92,5 @@ def public_user(user_id):
         'email': user.email,
         'avatar_url': user.avatar_url,
         'role': user.role,
-        'created_at': user.created_at.isoformat()
+        'created_at': to_taipei_iso(user.created_at)
     })

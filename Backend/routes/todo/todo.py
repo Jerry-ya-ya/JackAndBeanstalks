@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required
 from models import db, ProjectRecruitment, Todo
 from routes.auth.utils import get_current_user_from_token
+from time_utils import to_taipei_text
 
 todo_bp = Blueprint('todo', __name__)
 
@@ -19,7 +20,7 @@ def serialize_todo(todo):
         'project_id': todo.project_id,
         'project_title': todo.project.title if todo.project else None,
         'assignee_name': todo.user.nickname or todo.user.username if todo.user else None,
-        'created_at': todo.created_at.strftime('%Y-%m-%d %H:%M') if todo.created_at else None,
+        'created_at': to_taipei_text(todo.created_at),
     }
 
 

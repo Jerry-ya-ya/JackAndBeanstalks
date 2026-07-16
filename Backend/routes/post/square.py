@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from models import User
 from flask_jwt_extended import jwt_required
+from time_utils import to_taipei_iso
 
 square_bp = Blueprint('square', __name__)
 
@@ -31,7 +32,7 @@ def get_square():
         'nickname': user.nickname,
         'avatar_url': user.avatar_url,
         'role': user.role,
-        'created_at': user.created_at.isoformat()
+        'created_at': to_taipei_iso(user.created_at)
     } for user in users]
 
     return jsonify(user_list)

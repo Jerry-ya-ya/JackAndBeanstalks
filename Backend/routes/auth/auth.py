@@ -6,7 +6,7 @@ from routes.auth.email import generate_confirmation_token, mail
 from flask_mail import Message
 import os
 from flask import current_app
-from datetime import datetime
+from time_utils import taipei_now, to_taipei_iso
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -19,7 +19,7 @@ def register():
     password = data.get('password')
     email = data.get('email')
     nickname = data.get('nickname')
-    created_at = datetime.now()
+    created_at = taipei_now()
 
     if not all([username, password, email]):
         return jsonify({'error': '請填寫所有必填欄位'}), 400
@@ -72,7 +72,7 @@ def register():
         'is_verified': False,  # 明確標示用戶尚未驗證
         'require_verification': True,  # 告訴前端需要驗證
         'role': role,
-        'created_at': created_at.isoformat()
+        'created_at': to_taipei_iso(created_at)
     }), 201
 
 # 登入功能

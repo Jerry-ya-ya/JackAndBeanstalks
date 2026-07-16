@@ -363,3 +363,7 @@
 - Add admin homepage news content management.
 
 - Improve admin content responsive layout.
+
+## 2026/07/16
+
+- Normalize backend timestamps to UTC+8.

@@ -3,9 +3,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
-from datetime import datetime, timezone
+from time_utils import taipei_now, to_taipei_iso
 
-date_format = datetime.now(timezone.utc)
+date_format = taipei_now()
 
 db = SQLAlchemy()
 
@@ -49,14 +49,14 @@ class User(db.Model):
             'role': self.role,
             'email_verified': self.email_verified,
             'avatar_url': self.avatar_url,
-            'created_at': self.created_at.isoformat() if self.created_at else None
+            'created_at': to_taipei_iso(self.created_at)
         }
 
 class FriendRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     from_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     to_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=taipei_now)
 
     from_user = db.relationship('User', foreign_keys=[from_user_id], backref='sent_requests')
     to_user = db.relationship('User', foreign_keys=[to_user_id], backref='received_requests')
@@ -70,7 +70,7 @@ class Todo(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # 將來可用來綁定使用者
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     project_id = db.Column(db.Integer, db.ForeignKey('project_recruitment.id'))
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=taipei_now)
 
     creator = db.relationship('User', foreign_keys=[created_by_id], backref='created_todos')
     project = db.relationship('ProjectRecruitment', backref='todos')
@@ -80,7 +80,7 @@ class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text, nullable=False)
     url = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=taipei_now)
 
 class HomeNewsItem(db.Model):
     __table_args__ = (
@@ -93,8 +93,8 @@ class HomeNewsItem(db.Model):
     summary = db.Column(db.Text, nullable=False)
     tag = db.Column(db.String(40), nullable=False)
     sort_order = db.Column(db.Integer, default=0, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=taipei_now)
+    updated_at = db.Column(db.DateTime, default=taipei_now, onupdate=taipei_now)
 
 class ScheduleState(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -105,7 +105,7 @@ class ScheduleState(db.Model):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=taipei_now)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', backref='posts')
@@ -117,7 +117,7 @@ class ProjectRecruitment(db.Model):
     role_needed = db.Column(db.String(120))
     contact = db.Column(db.String(160))
     max_members = db.Column(db.Integer)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=taipei_now)
 
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     creator = db.relationship('User', backref='project_recruitments')
@@ -134,7 +134,7 @@ class ProjectRecruitmentMember(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     message = db.Column(db.Text)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, default=taipei_now)
 
     project_id = db.Column(db.Integer, db.ForeignKey('project_recruitment.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

@@ -1,10 +1,10 @@
 from flask import Blueprint, current_app
 from apscheduler.schedulers.background import BackgroundScheduler
-from datetime import datetime, timedelta
+from datetime import timedelta
 from .logic import fetch_and_store_news
-import pytz
 from flask import Flask
 from models import ScheduleState, db
+from time_utils import taipei_now
 
 from .crawlerlogger import crawler_logger
 
@@ -30,8 +30,7 @@ def start_scheduler(flask_app: Flask):
                 misfire_grace_time=30  # 允許最多延遲 30 秒
             )
 
-            tz = pytz.timezone('Asia/Taipei')
-            next_run = datetime.now(tz) + timedelta(minutes=15) #  記錄「下一次執行時間」變數，供前端查詢用
+            next_run = taipei_now() + timedelta(minutes=15) #  記錄「下一次執行時間」變數，供前端查詢用
 
             scheduler.start()# 啟動排程器
 
@@ -42,16 +41,15 @@ def start_scheduler(flask_app: Flask):
 
 def scheduled_task():
     global last_run, next_run
-    crawler_logger.info(f"🟡 scheduled_task 被呼叫 {datetime.now()}")
+    crawler_logger.info(f"🟡 scheduled_task 被呼叫 {taipei_now()}")
     try: # Flask 的資料庫操作需要有「應用上下文」，這句是必要的包裝！
         with app.app_context():
-            start_time = datetime.now()
+            start_time = taipei_now()
             added = fetch_and_store_news() # 執行你自定義的爬蟲邏輯，並回傳新增了幾筆資料
-            end_time = datetime.now()
+            end_time = taipei_now()
             crawler_logger.info(f"🟢 爬蟲成功新增 {added} 筆資料，耗時 {(end_time - start_time).total_seconds()} 秒")
 
-            tz = pytz.timezone('Asia/Taipei')
-            now = datetime.now(tz)
+            now = taipei_now()
             future = now + timedelta(minutes=15) # 記錄上次與下次執行時間（給前端 info 顯示）
 
             state = ScheduleState.query.filter_by(job_name="news_crawler").first()

@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, abort
 from flask_jwt_extended import jwt_required
 from models import db, Post
 from routes.auth.utils import get_current_user_from_token
+from time_utils import to_taipei_text
 
 post_bp = Blueprint('post', __name__)
 
@@ -17,7 +18,7 @@ def serialize_post(post, include_user=False):
     data = {
         'id': post.id,
         'content': post.content,
-        'created_at': post.created_at.strftime('%Y-%m-%d %H:%M'),
+        'created_at': to_taipei_text(post.created_at),
         'user_id': post.user_id,
     }
 

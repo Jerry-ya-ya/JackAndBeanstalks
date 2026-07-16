@@ -6,6 +6,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..'))
 from models import News, db
 from models import ScheduleState
+from time_utils import taipei_now
 
 logic_bp = Blueprint('logic_bp', __name__)
 
@@ -22,7 +23,7 @@ def fetch_and_store_news():
             link = title_tag['href']
             # 檢查是否已存在（避免重複）
             if not News.query.filter_by(title=title, url=link).first():
-                news = News(title=title, url=link)
+                news = News(title=title, url=link, created_at=taipei_now())
                 db.session.add(news)
                 added += 1
 

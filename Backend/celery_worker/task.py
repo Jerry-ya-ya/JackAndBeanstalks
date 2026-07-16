@@ -4,9 +4,9 @@ from .crawler.logic import fetch_and_store_news  # 你的爬蟲核心
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from datetime import datetime, timedelta
-import pytz
 from models import db, ScheduleState
+from time_utils import taipei_now
+from datetime import timedelta
 
 @celery.task
 def hello():
@@ -14,21 +14,20 @@ def hello():
 
 @celery.task(bind=True, max_retries=3)
 def scheduled_crawl_task(self):
-    crawler_logger.info(f"🟡 Celery 任務執行 {datetime.now()}")
+    crawler_logger.info(f"🟡 Celery 任務執行 {taipei_now()}")
     try:
         # 延遲導入 Flask app 避免循環導入
         from app import create_app
         app = create_app()
         
         with app.app_context():
-            start_time = datetime.now()
+            start_time = taipei_now()
             added = fetch_and_store_news()
-            end_time = datetime.now()
+            end_time = taipei_now()
 
             crawler_logger.info(f"🟢 爬蟲新增 {added} 筆資料，耗時 {(end_time - start_time).total_seconds()} 秒")
 
-            tz = pytz.timezone('Asia/Taipei')
-            now = datetime.now(tz)
+            now = taipei_now()
             future = now + timedelta(minutes=15)
 
             state = ScheduleState.query.filter_by(job_name="news_crawler").first()

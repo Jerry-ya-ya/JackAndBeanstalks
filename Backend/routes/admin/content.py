@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 
 from models import db, HomeNewsItem
 from routes.admin.decorators import admin_required
+from time_utils import to_taipei_iso
 
 content_bp = Blueprint('content', __name__)
 
@@ -53,8 +54,8 @@ def serialize_home_news(item):
         'summary': item.summary,
         'tag': item.tag,
         'sort_order': item.sort_order,
-        'created_at': item.created_at.isoformat() if item.created_at else None,
-        'updated_at': item.updated_at.isoformat() if item.updated_at else None,
+        'created_at': to_taipei_iso(item.created_at),
+        'updated_at': to_taipei_iso(item.updated_at),
     }
 
 
