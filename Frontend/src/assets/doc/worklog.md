@@ -367,3 +367,5 @@
 ## 2026/07/16
 
 - Normalize backend timestamps to UTC+8.
+
+- Add public update worklog page.

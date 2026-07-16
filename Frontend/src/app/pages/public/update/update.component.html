@@ -1,0 +1,70 @@
+<main class="update-page">
+  <section class="update-hero">
+    <div>
+      <p class="update-kicker">Patch Notes</p>
+      <h1>Update</h1>
+      <p>Public release notes generated from the project worklog.</p>
+    </div>
+
+    @if (latestEntry) {
+      <aside class="latest-card">
+        <span>Latest</span>
+        <strong>{{ latestEntry.date }}</strong>
+        <small>{{ latestEntry.items.length }} changes</small>
+      </aside>
+    }
+  </section>
+
+  @if (loading) {
+    <section class="state-panel">Loading update log...</section>
+  }
+
+  @if (error) {
+    <section class="state-panel state-panel--error">{{ error }}</section>
+  }
+
+  @if (!loading && !error) {
+    @if (latestEntry) {
+      <section class="latest-section">
+        <div class="section-heading">
+          <p class="update-kicker">Newest Build Notes</p>
+          <h2>{{ latestEntry.date }}</h2>
+        </div>
+
+        <ul class="latest-list">
+          @for (item of latestEntry.items; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </section>
+    }
+
+    <section class="timeline-section">
+      <div class="section-heading">
+        <p class="update-kicker">Full History</p>
+        <h2>Worklog Timeline</h2>
+      </div>
+
+      <div class="timeline">
+        @for (section of sections; track section.title) {
+          <article class="version-block">
+            <h3>{{ section.title }}</h3>
+
+            <div class="entry-stack">
+              @for (entry of section.entries; track entry.date) {
+                <div class="entry-card">
+                  <div class="entry-date">{{ entry.date }}</div>
+                  <ul>
+                    @for (item of entry.items; track item) {
+                      <li>{{ item }}</li>
+                    }
+                  </ul>
+                </div>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  }
+</main>

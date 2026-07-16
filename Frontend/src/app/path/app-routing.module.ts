@@ -95,6 +95,11 @@ const routes: Routes = [
       import('../pages/public/tutorial/tutorial.module').then(m => m.TutorialModule)
   },
   {
+    path: appPath.update,
+    loadChildren: () =>
+      import('../pages/public/update/update.module').then(m => m.UpdateModule)
+  },
+  {
     path: '**',
     redirectTo: '',
   }

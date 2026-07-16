@@ -33,4 +33,6 @@ export const appPath = {
     userhome: 'userhome',
     //tutorial
     tutorial: 'tutorial',
+    //update
+    update: 'update',
 };
