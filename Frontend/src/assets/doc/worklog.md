@@ -375,3 +375,7 @@
 ## 2026/07/17
 
 - Reverse update timeline and stabilize todo project groups.
+
+## 2026/07/18
+
+- Add todo claim ownership workflow.

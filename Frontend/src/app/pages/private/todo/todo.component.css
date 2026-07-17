@@ -77,6 +77,11 @@ input[type="checkbox"] {
   margin-right: 16px;
 }
 
+input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
 .priority-badge {
   display: inline-grid;
   place-items: center;
@@ -121,6 +126,34 @@ button:last-child:hover {
   background: transparent;
   color: var(--studio-danger);
   border: 1px solid var(--studio-danger);
+}
+
+.done-button {
+  border-color: color-mix(in srgb, var(--studio-success, #42d392) 70%, var(--studio-line));
+  background: color-mix(in srgb, var(--studio-success, #42d392) 78%, var(--studio-accent));
+  color: #062015;
+}
+
+.done-button:hover {
+  color: color-mix(in srgb, var(--studio-success, #42d392) 82%, #fff);
+  background: transparent;
+}
+
+li.is-claimed {
+  border-color: color-mix(in srgb, var(--studio-accent) 58%, var(--studio-line));
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--studio-accent) 14%, transparent), transparent 72%),
+    color-mix(in srgb, var(--studio-panel-strong) 78%, transparent);
+}
+
+li.is-done span {
+  color: var(--studio-muted);
+  text-decoration: line-through;
+}
+
+.claim-badge {
+  color: var(--studio-warm);
+  background: color-mix(in srgb, var(--studio-warm) 16%, transparent);
 }
 
 .project-todo-section {

@@ -28,6 +28,7 @@ export class TodoComponent implements OnInit {
   todos: Todo[] = [];
   projectTodoGroups: ProjectTodoGroup[] = [];
   newTodoText: string = '';
+  currentUserId: number | null = null;
   
   constructor(private apiService: ApiService) {}
 
@@ -54,13 +55,25 @@ export class TodoComponent implements OnInit {
     forkJoin({
       assignedTodos: this.apiService.get<Todo[]>('/todos', headers),
       createdTodos: this.apiService.get<Todo[]>('/todos?created_by_me=true', headers),
-    }).subscribe(({ assignedTodos, createdTodos }) => {
+      currentUser: this.apiService.get<{ id: number }>('/me', headers),
+    }).subscribe(({ assignedTodos, createdTodos, currentUser }) => {
+        this.currentUserId = currentUser.id;
         this.setTodos(this.mergeTodos(assignedTodos, createdTodos));
       });
   }
   
   // U
   // 更新待辦事項
+  toggleClaim(todo: Todo) {
+    this.apiService.put<Todo>(`/todos/${todo.id}`, {
+      text: todo.text,
+      claimed: !todo.claimed_by_id,
+      priority: todo.priority
+    }, this.apiService.createAuthHeaders()).subscribe(updated => {
+      this.setTodos(this.todos.map(item => item.id === updated.id ? updated : item));
+    });
+  }
+
   toggleDone(todo: Todo) {
     this.apiService.put<Todo>(`/todos/${todo.id}`, {
       text: todo.text,
@@ -138,5 +151,13 @@ export class TodoComponent implements OnInit {
   getPriorityColor(priority: number) {
     const level = Math.min(9, Math.max(0, Number(priority)));
     return `hsl(${(level / 9) * 120}, 78%, 46%)`;
+  }
+
+  getTodoClaimLabel(todo: Todo) {
+    return todo.claimed_by_name ? `佔領：${todo.claimed_by_name}` : '未佔領';
+  }
+
+  canToggleClaim(todo: Todo) {
+    return !todo.done && (!todo.claimed_by_id || todo.claimed_by_id === this.currentUserId);
   }
 }

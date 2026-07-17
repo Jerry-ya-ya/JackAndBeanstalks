@@ -11,21 +11,30 @@
 
   <ul>
     @for (todo of todos; track todo.id) {
-      <li>
-        <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
+      <li [class.is-claimed]="todo.claimed_by_id" [class.is-done]="todo.done">
+        <input
+          type="checkbox"
+          [checked]="!!todo.claimed_by_id"
+          [disabled]="!canToggleClaim(todo)"
+          (change)="toggleClaim(todo)"
+          title="佔領任務">
         <strong
           class="priority-badge"
           [style.background]="getPriorityColor(getTodoPriority(todo))">
           P{{ getTodoPriority(todo) }}
         </strong>
-        <span [ngStyle]="{ 'text-decoration': todo.done ? 'line-through' : 'none' }">
+        <span>
           {{ todo.text }}
         </span>
+        <small class="claim-badge">{{ getTodoClaimLabel(todo) }}</small>
         @if (todo.project_title) {
           <small>
             {{ todo.project_title }} · {{ todo.assignee_name }}
           </small>
         }
+        <button class="done-button" (click)="toggleDone(todo)">
+          {{ todo.done ? 'Reopen' : 'Done' }}
+        </button>
         <button (click)="deleteTodo(todo.id)">
           Delete
         </button>
@@ -59,15 +68,24 @@
         </div>
         <ul class="project-task-list">
           @for (todo of group.todos; track todo.id) {
-            <li [class.is-done]="todo.done">
-              <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
+            <li [class.is-claimed]="todo.claimed_by_id" [class.is-done]="todo.done">
+              <input
+                type="checkbox"
+                [checked]="!!todo.claimed_by_id"
+                [disabled]="!canToggleClaim(todo)"
+                (change)="toggleClaim(todo)"
+                title="佔領任務">
               <strong
                 class="priority-badge"
                 [style.background]="getPriorityColor(getTodoPriority(todo))">
                 P{{ getTodoPriority(todo) }}
               </strong>
               <span>{{ todo.text }}</span>
+              <small class="claim-badge">{{ getTodoClaimLabel(todo) }}</small>
               <small>{{ todo.assignee_name || '未指定' }}</small>
+              <button class="done-button" (click)="toggleDone(todo)">
+                {{ todo.done ? 'Reopen' : 'Done' }}
+              </button>
             </li>
           }
         </ul>

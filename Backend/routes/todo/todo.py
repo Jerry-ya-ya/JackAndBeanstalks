@@ -17,9 +17,11 @@ def serialize_todo(todo):
         'priority': todo.priority,
         'user_id': todo.user_id,
         'created_by_id': todo.created_by_id,
+        'claimed_by_id': todo.claimed_by_id,
         'project_id': todo.project_id,
         'project_title': todo.project.title if todo.project else None,
         'assignee_name': todo.user.nickname or todo.user.username if todo.user else None,
+        'claimed_by_name': todo.claimed_by.nickname or todo.claimed_by.username if todo.claimed_by else None,
         'created_at': to_taipei_text(todo.created_at),
     }
 
@@ -163,7 +165,22 @@ def update_todo(todo_id):
             return jsonify({'error': 'Todo priority must be between 0 and 9'}), 400
         todo.priority = priority
 
-    todo.done = data.get('done', todo.done)
+    if 'claimed' in data:
+        claimed = bool(data.get('claimed'))
+        if claimed:
+            if todo.claimed_by_id and todo.claimed_by_id != user.id:
+                return jsonify({'error': '此任務已被其他成員佔領'}), 409
+            todo.claimed_by_id = user.id
+        elif todo.claimed_by_id in [None, user.id] or todo.created_by_id == user.id:
+            todo.claimed_by_id = None
+        else:
+            return jsonify({'error': '只能取消自己佔領的任務'}), 403
+
+    if 'done' in data:
+        if data.get('done') and todo.claimed_by_id and todo.claimed_by_id != user.id and todo.created_by_id != user.id:
+            return jsonify({'error': '只能完成自己佔領的任務'}), 403
+        todo.done = bool(data.get('done'))
+
     db.session.commit()
 
     return jsonify(serialize_todo(todo))

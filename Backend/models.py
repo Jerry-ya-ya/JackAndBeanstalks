@@ -69,10 +69,12 @@ class Todo(db.Model):
     priority = db.Column(db.Integer, default=5, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # 將來可用來綁定使用者
     created_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    claimed_by_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     project_id = db.Column(db.Integer, db.ForeignKey('project_recruitment.id'))
     created_at = db.Column(db.DateTime, default=taipei_now)
 
     creator = db.relationship('User', foreign_keys=[created_by_id], backref='created_todos')
+    claimed_by = db.relationship('User', foreign_keys=[claimed_by_id], backref='claimed_todos')
     project = db.relationship('ProjectRecruitment', backref='todos')
 
 # 定義新聞模型
