@@ -280,6 +280,8 @@
 
 - Implemented pytest tests for the superadmin registration feature and the registration email sending feature.
 
+<h1 style="color:gold;"> V4 </h1>
+
 ## 2026/07/03 ##
 
 - Fix backend admin checks and update frontend images.
@@ -369,3 +371,7 @@
 - Normalize backend timestamps to UTC+8.
 
 - Add public update worklog page.
+
+## 2026/07/17
+
+- Reverse update timeline and stabilize todo project groups.

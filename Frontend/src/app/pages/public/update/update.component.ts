@@ -18,6 +18,7 @@ interface WorklogSection {
 })
 export class UpdateComponent implements OnInit {
   sections: WorklogSection[] = [];
+  displaySections: WorklogSection[] = [];
   latestEntry: WorklogEntry | null = null;
   loading = true;
   error = '';
@@ -46,6 +47,7 @@ export class UpdateComponent implements OnInit {
 
       const markdown = await response.text();
       this.sections = this.parseWorklog(markdown);
+      this.displaySections = this.reverseWorklog(this.sections);
       this.latestEntry = this.findLatestEntry(this.sections);
 
       if (!this.latestEntry) {
@@ -133,6 +135,15 @@ export class UpdateComponent implements OnInit {
     }
 
     return null;
+  }
+
+  private reverseWorklog(sections: WorklogSection[]): WorklogSection[] {
+    return sections
+      .map(section => ({
+        ...section,
+        entries: [...section.entries].reverse()
+      }))
+      .reverse();
   }
 
   private createDefaultSection(sections: WorklogSection[]): WorklogSection {

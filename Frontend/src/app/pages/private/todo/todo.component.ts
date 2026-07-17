@@ -2,12 +2,15 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 //Tools
 import { OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { ApiService } from '../../../core/services/api.service';
 
 // Models
 import { Todo } from './todo.model';
 
 interface ProjectTodoGroup {
+  key: string;
+  projectId: number | null;
   projectTitle: string;
   todos: Todo[];
   total: number;
@@ -23,6 +26,7 @@ interface ProjectTodoGroup {
 })
 export class TodoComponent implements OnInit {
   todos: Todo[] = [];
+  projectTodoGroups: ProjectTodoGroup[] = [];
   newTodoText: string = '';
   
   constructor(private apiService: ApiService) {}
@@ -37,7 +41,7 @@ export class TodoComponent implements OnInit {
     if (!this.newTodoText.trim()) return;
     this.apiService.post<Todo>('/todos', { text: this.newTodoText }, this.apiService.createAuthHeaders())
       .subscribe(todo => {
-        this.todos.push(todo);
+        this.setTodos([...this.todos, todo]);
         this.newTodoText = '';
       });
   }
@@ -45,8 +49,14 @@ export class TodoComponent implements OnInit {
   // R
   // 取得所有待辦事項
   fetchTodos() {
-    this.apiService.get<Todo[]>('/todos', this.apiService.createAuthHeaders())
-      .subscribe(data => this.todos = data);
+    const headers = this.apiService.createAuthHeaders();
+
+    forkJoin({
+      assignedTodos: this.apiService.get<Todo[]>('/todos', headers),
+      createdTodos: this.apiService.get<Todo[]>('/todos?created_by_me=true', headers),
+    }).subscribe(({ assignedTodos, createdTodos }) => {
+        this.setTodos(this.mergeTodos(assignedTodos, createdTodos));
+      });
   }
   
   // U
@@ -56,37 +66,69 @@ export class TodoComponent implements OnInit {
       text: todo.text,
       done: !todo.done,
       priority: todo.priority
-    }, this.apiService.createAuthHeaders()).subscribe(updated => todo.done = updated.done);
+    }, this.apiService.createAuthHeaders()).subscribe(updated => {
+      this.setTodos(this.todos.map(item => item.id === updated.id ? updated : item));
+    });
   }
 
   // D
   // 刪除待辦事項
   deleteTodo(id: number) {
     this.apiService.delete(`/todos/${id}`, this.apiService.createAuthHeaders())
-      .subscribe(() => this.todos = this.todos.filter(t => t.id !== id));
+      .subscribe(() => this.setTodos(this.todos.filter(t => t.id !== id)));
   }
 
-  get projectTodoGroups(): ProjectTodoGroup[] {
-    const groups = this.todos
-      .filter(todo => !!todo.project_title)
-      .reduce<Record<string, Todo[]>>((grouped, todo) => {
+  private setTodos(todos: Todo[]) {
+    this.todos = todos;
+    this.projectTodoGroups = this.buildProjectTodoGroups(todos);
+  }
+
+  private buildProjectTodoGroups(todos: Todo[]): ProjectTodoGroup[] {
+    const groups = todos
+      .filter(todo => !!todo.project_id || !!todo.project_title)
+      .reduce<Record<string, { projectId: number | null; projectTitle: string; todos: Todo[] }>>((grouped, todo) => {
+        const projectId = todo.project_id ?? null;
         const projectTitle = todo.project_title || 'Unsorted Project';
-        grouped[projectTitle] = [...(grouped[projectTitle] || []), todo];
+        const groupKey = `${projectId ?? 'none'}:${projectTitle}`;
+
+        grouped[groupKey] ??= { projectId, projectTitle, todos: [] };
+        grouped[groupKey].todos.push(todo);
+
         return grouped;
       }, {});
 
     return Object.entries(groups)
-      .map(([projectTitle, todos]) => ({
-        projectTitle,
-        todos: [...todos].sort((a, b) =>
+      .map(([key, group]) => ({
+        key,
+        projectId: group.projectId,
+        projectTitle: group.projectTitle,
+        todos: [...group.todos].sort((a, b) =>
           Number(a.done) - Number(b.done) ||
           this.getTodoPriority(a) - this.getTodoPriority(b) ||
           a.text.localeCompare(b.text)
         ),
-        total: todos.length,
-        done: todos.filter(todo => todo.done).length,
+        total: group.todos.length,
+        done: group.todos.filter(todo => todo.done).length,
       }))
-      .sort((a, b) => a.projectTitle.localeCompare(b.projectTitle));
+      .sort((a, b) =>
+        a.projectTitle.localeCompare(b.projectTitle) ||
+        Number(a.projectId ?? 0) - Number(b.projectId ?? 0)
+      );
+  }
+
+  private mergeTodos(...todoLists: Todo[][]) {
+    const merged = new Map<number, Todo>();
+
+    for (const todo of todoLists.flat()) {
+      merged.set(todo.id, todo);
+    }
+
+    return [...merged.values()].sort((a, b) =>
+      Number(a.done) - Number(b.done) ||
+      this.getTodoPriority(a) - this.getTodoPriority(b) ||
+      (b.created_at || '').localeCompare(a.created_at || '') ||
+      b.id - a.id
+    );
   }
 
   getTodoPriority(todo: Todo) {

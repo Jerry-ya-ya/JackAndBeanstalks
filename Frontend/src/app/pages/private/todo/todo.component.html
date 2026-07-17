@@ -10,7 +10,7 @@
   </button>
 
   <ul>
-    @for (todo of todos; track todo) {
+    @for (todo of todos; track todo.id) {
       <li>
         <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
         <strong
@@ -48,7 +48,7 @@
       </div>
     }
 
-    @for (group of projectTodoGroups; track group) {
+    @for (group of projectTodoGroups; track group.key) {
       <article class="project-todo-card">
         <div class="project-todo-card__title">
           <h4>{{ group.projectTitle }}</h4>
@@ -58,7 +58,7 @@
           <div [style.width.%]="group.total ? (group.done / group.total) * 100 : 0"></div>
         </div>
         <ul class="project-task-list">
-          @for (todo of group.todos; track todo) {
+          @for (todo of group.todos; track todo.id) {
             <li [class.is-done]="todo.done">
               <input type="checkbox" [checked]="todo.done" (change)="toggleDone(todo)">
               <strong
