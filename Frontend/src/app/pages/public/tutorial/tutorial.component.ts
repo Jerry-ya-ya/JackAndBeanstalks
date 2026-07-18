@@ -1,16 +1,16 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 interface TutorialStep {
-  title: string;
-  detail: string;
+  titleKey: string;
+  detailKey: string;
   image: string;
 }
 
 interface CompareItem {
-  title: string;
-  label: string;
+  titleKey: string;
+  labelKey: string;
   image: string;
-  points: string[];
+  pointKeys: string[];
   type: 'enabled' | 'disabled';
 }
 
@@ -24,50 +24,60 @@ interface CompareItem {
 export class TutorialComponent {
   readonly compareItems: CompareItem[] = [
     {
-      title: 'WPA Enabled',
-      label: 'Installable App Mode',
+      titleKey: 'tutorial.compare.enabled.title',
+      labelKey: 'tutorial.compare.enabled.label',
       image: 'tutorial/7.gif',
       type: 'enabled',
-      points: ['Desktop launch icon', 'App-like window', 'Cached resources', 'Faster repeat visits']
+      pointKeys: [
+        'tutorial.compare.enabled.points.desktopIcon',
+        'tutorial.compare.enabled.points.appWindow',
+        'tutorial.compare.enabled.points.cachedResources',
+        'tutorial.compare.enabled.points.fasterVisits'
+      ]
     },
     {
-      title: 'Browser Only',
-      label: 'Standard Web Mode',
+      titleKey: 'tutorial.compare.browser.title',
+      labelKey: 'tutorial.compare.browser.label',
       image: 'tutorial/8.gif',
       type: 'disabled',
-      points: ['Depends on browser tab', 'No desktop shortcut', 'Network-first loading', 'Less native feeling']
+      pointKeys: [
+        'tutorial.compare.browser.points.browserTab',
+        'tutorial.compare.browser.points.noShortcut',
+        'tutorial.compare.browser.points.networkFirst',
+        'tutorial.compare.browser.points.lessNative'
+      ]
     }
   ];
 
   readonly tutorialSteps: TutorialStep[] = [
     {
-      title: 'Open Browser Menu',
-      detail: 'Tap the highlighted browser menu button to find install options.',
+      titleKey: 'tutorial.steps.openMenu.title',
+      detailKey: 'tutorial.steps.openMenu.detail',
       image: 'tutorial/1.jpg'
     },
     {
-      title: 'Choose Add',
-      detail: 'Select the add-to-home or install action from the browser sheet.',
+      titleKey: 'tutorial.steps.chooseAdd.title',
+      detailKey: 'tutorial.steps.chooseAdd.detail',
       image: 'tutorial/2.jpg'
     },
     {
-      title: 'Confirm Install',
-      detail: 'Review the app name and confirm the desktop installation.',
+      titleKey: 'tutorial.steps.confirmInstall.title',
+      detailKey: 'tutorial.steps.confirmInstall.detail',
       image: 'tutorial/3.jpg'
     },
     {
-      title: 'Finish Setup',
-      detail: 'Let the browser create the app shortcut and window mode.',
+      titleKey: 'tutorial.steps.finishSetup.title',
+      detailKey: 'tutorial.steps.finishSetup.detail',
       image: 'tutorial/4.jpg'
     },
     {
-      title: 'Find the Icon',
-      detail: 'The app icon appears on the device desktop or launcher.',
+      titleKey: 'tutorial.steps.findIcon.title',
+      detailKey: 'tutorial.steps.findIcon.detail',
       image: 'tutorial/5.jpg'
     },
     {
-      title: 'Launch as App',
-      detail: 'Open the shortcut to use the website as a desktop-style app.',
+      titleKey: 'tutorial.steps.launchApp.title',
+      detailKey: 'tutorial.steps.launchApp.detail',
       image: 'tutorial/6.jpg'
     }
   ];

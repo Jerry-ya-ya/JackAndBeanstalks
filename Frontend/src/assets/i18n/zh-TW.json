@@ -198,5 +198,78 @@
       "docker": "一個能把程式和它所需環境打包成輕量化容器，方便快速部署與跨平台運行的工具。",
       "pwa": "PWA 讓網頁應用程式在操作體驗和功能上與原生行動應用程式相仿，設定方式請到教學頁面。"
     }
+  },
+  "tutorial": {
+    "aria": {
+      "hero": "WPA 桌面安裝教學",
+      "summary": "教學摘要",
+      "comparison": "WPA 比較",
+      "compareDemo": "{{ title }} 示範",
+      "steps": "桌面安裝步驟"
+    },
+    "hero": {
+      "kicker": "桌面 App 教學",
+      "title": "建立 WPA 捷徑",
+      "lead": "跟著六個安裝步驟，把網站變成類似桌面 App 的使用體驗。"
+    },
+    "summary": {
+      "gifDemos": "2 個 GIF 示範",
+      "installSteps": "6 個安裝步驟",
+      "desktopReady": "桌面可用"
+    },
+    "compare": {
+      "kicker": "模式檢查",
+      "title": "WPA vs 瀏覽器",
+      "enabled": {
+        "title": "已啟用 WPA",
+        "label": "可安裝 App 模式",
+        "points": {
+          "desktopIcon": "桌面啟動圖示",
+          "appWindow": "類 App 視窗",
+          "cachedResources": "快取資源",
+          "fasterVisits": "重複造訪更快速"
+        }
+      },
+      "browser": {
+        "title": "僅使用瀏覽器",
+        "label": "標準網頁模式",
+        "points": {
+          "browserTab": "依賴瀏覽器分頁",
+          "noShortcut": "沒有桌面捷徑",
+          "networkFirst": "以網路載入優先",
+          "lessNative": "較不像原生 App"
+        }
+      }
+    },
+    "steps": {
+      "kicker": "安裝路線",
+      "title": "六個步驟",
+      "description": "依照每張截圖中標示的控制項，把 App 加到桌面啟動器。",
+      "stepLabel": "步驟 {{ index }}",
+      "openMenu": {
+        "title": "開啟瀏覽器選單",
+        "detail": "點選標示出的瀏覽器選單按鈕，找到安裝選項。"
+      },
+      "chooseAdd": {
+        "title": "選擇新增",
+        "detail": "從瀏覽器選單中選擇加入主畫面或安裝動作。"
+      },
+      "confirmInstall": {
+        "title": "確認安裝",
+        "detail": "確認 App 名稱，並同意安裝到桌面。"
+      },
+      "finishSetup": {
+        "title": "完成設定",
+        "detail": "讓瀏覽器建立 App 捷徑與視窗模式。"
+      },
+      "findIcon": {
+        "title": "找到圖示",
+        "detail": "App 圖示會出現在裝置桌面或啟動器中。"
+      },
+      "launchApp": {
+        "title": "以 App 啟動",
+        "detail": "打開捷徑，像桌面 App 一樣使用這個網站。"
+      }
+    }
   }
 }

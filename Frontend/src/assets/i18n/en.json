@@ -198,5 +198,78 @@
       "docker": "A tool that packages an app and its required environment into lightweight containers for fast deployment and cross-platform execution.",
       "pwa": "PWA makes web applications feel closer to native mobile apps in experience and capability. Setup instructions are available on the tutorial page."
     }
+  },
+  "tutorial": {
+    "aria": {
+      "hero": "WPA desktop install tutorial",
+      "summary": "Tutorial summary",
+      "comparison": "WPA comparison",
+      "compareDemo": "{{ title }} demo",
+      "steps": "Desktop installation steps"
+    },
+    "hero": {
+      "kicker": "Desktop App Tutorial",
+      "title": "Build a WPA Shortcut",
+      "lead": "Follow the six-step install path and turn the website into a desktop-style app experience."
+    },
+    "summary": {
+      "gifDemos": "2 GIF demos",
+      "installSteps": "6 install steps",
+      "desktopReady": "Desktop ready"
+    },
+    "compare": {
+      "kicker": "Mode Check",
+      "title": "WPA vs Browser",
+      "enabled": {
+        "title": "WPA Enabled",
+        "label": "Installable App Mode",
+        "points": {
+          "desktopIcon": "Desktop launch icon",
+          "appWindow": "App-like window",
+          "cachedResources": "Cached resources",
+          "fasterVisits": "Faster repeat visits"
+        }
+      },
+      "browser": {
+        "title": "Browser Only",
+        "label": "Standard Web Mode",
+        "points": {
+          "browserTab": "Depends on browser tab",
+          "noShortcut": "No desktop shortcut",
+          "networkFirst": "Network-first loading",
+          "lessNative": "Less native feeling"
+        }
+      }
+    },
+    "steps": {
+      "kicker": "Install Route",
+      "title": "Six Steps",
+      "description": "Use the highlighted controls in each screenshot to add the app to the desktop launcher.",
+      "stepLabel": "Step {{ index }}",
+      "openMenu": {
+        "title": "Open Browser Menu",
+        "detail": "Tap the highlighted browser menu button to find install options."
+      },
+      "chooseAdd": {
+        "title": "Choose Add",
+        "detail": "Select the add-to-home or install action from the browser sheet."
+      },
+      "confirmInstall": {
+        "title": "Confirm Install",
+        "detail": "Review the app name and confirm the desktop installation."
+      },
+      "finishSetup": {
+        "title": "Finish Setup",
+        "detail": "Let the browser create the app shortcut and window mode."
+      },
+      "findIcon": {
+        "title": "Find the Icon",
+        "detail": "The app icon appears on the device desktop or launcher."
+      },
+      "launchApp": {
+        "title": "Launch as App",
+        "detail": "Open the shortcut to use the website as a desktop-style app."
+      }
+    }
   }
 }

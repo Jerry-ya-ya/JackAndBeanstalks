@@ -198,5 +198,78 @@
       "docker": "앱과 필요한 실행 환경을 가벼운 컨테이너로 묶어 빠른 배포와 크로스 플랫폼 실행을 돕는 도구입니다.",
       "pwa": "PWA는 웹 애플리케이션의 사용 경험과 기능을 네이티브 모바일 앱에 가깝게 만들어 줍니다. 설정 방법은 튜토리얼 페이지에서 확인할 수 있습니다."
     }
+  },
+  "tutorial": {
+    "aria": {
+      "hero": "WPA 데스크톱 설치 튜토리얼",
+      "summary": "튜토리얼 요약",
+      "comparison": "WPA 비교",
+      "compareDemo": "{{ title }} 데모",
+      "steps": "데스크톱 설치 단계"
+    },
+    "hero": {
+      "kicker": "데스크톱 App 튜토리얼",
+      "title": "WPA 바로가기 만들기",
+      "lead": "여섯 단계의 설치 과정을 따라 웹사이트를 데스크톱 App 같은 경험으로 바꿔 보세요."
+    },
+    "summary": {
+      "gifDemos": "GIF 데모 2개",
+      "installSteps": "설치 단계 6개",
+      "desktopReady": "데스크톱 준비 완료"
+    },
+    "compare": {
+      "kicker": "모드 확인",
+      "title": "WPA vs 브라우저",
+      "enabled": {
+        "title": "WPA 활성화",
+        "label": "설치 가능한 App 모드",
+        "points": {
+          "desktopIcon": "데스크톱 실행 아이콘",
+          "appWindow": "App 같은 창",
+          "cachedResources": "캐시된 리소스",
+          "fasterVisits": "재방문 속도 향상"
+        }
+      },
+      "browser": {
+        "title": "브라우저만 사용",
+        "label": "표준 웹 모드",
+        "points": {
+          "browserTab": "브라우저 탭에 의존",
+          "noShortcut": "데스크톱 바로가기 없음",
+          "networkFirst": "네트워크 우선 로딩",
+          "lessNative": "네이티브 느낌이 적음"
+        }
+      }
+    },
+    "steps": {
+      "kicker": "설치 경로",
+      "title": "여섯 단계",
+      "description": "각 스크린샷에서 강조된 컨트롤을 사용해 App을 데스크톱 런처에 추가하세요.",
+      "stepLabel": "단계 {{ index }}",
+      "openMenu": {
+        "title": "브라우저 메뉴 열기",
+        "detail": "강조된 브라우저 메뉴 버튼을 눌러 설치 옵션을 찾습니다."
+      },
+      "chooseAdd": {
+        "title": "추가 선택",
+        "detail": "브라우저 시트에서 홈 화면에 추가 또는 설치 동작을 선택합니다."
+      },
+      "confirmInstall": {
+        "title": "설치 확인",
+        "detail": "App 이름을 확인하고 데스크톱 설치를 승인합니다."
+      },
+      "finishSetup": {
+        "title": "설정 완료",
+        "detail": "브라우저가 App 바로가기와 창 모드를 만들도록 기다립니다."
+      },
+      "findIcon": {
+        "title": "아이콘 찾기",
+        "detail": "App 아이콘이 기기 데스크톱 또는 런처에 나타납니다."
+      },
+      "launchApp": {
+        "title": "App으로 실행",
+        "detail": "바로가기를 열어 웹사이트를 데스크톱 App처럼 사용합니다."
+      }
+    }
   }
 }

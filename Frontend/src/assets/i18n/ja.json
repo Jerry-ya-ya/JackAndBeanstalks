@@ -198,5 +198,78 @@
       "docker": "アプリと必要な環境を軽量コンテナにまとめ、素早いデプロイとクロスプラットフォーム実行を可能にするツールです。",
       "pwa": "PWA は Web アプリの操作感と機能をネイティブモバイルアプリに近づけます。設定方法はチュートリアルページをご覧ください。"
     }
+  },
+  "tutorial": {
+    "aria": {
+      "hero": "WPA デスクトップインストールチュートリアル",
+      "summary": "チュートリアル概要",
+      "comparison": "WPA 比較",
+      "compareDemo": "{{ title }} デモ",
+      "steps": "デスクトップインストール手順"
+    },
+    "hero": {
+      "kicker": "デスクトップ App チュートリアル",
+      "title": "WPA ショートカットを作成",
+      "lead": "6 つのインストール手順に沿って、Web サイトをデスクトップ App のような体験に変えます。"
+    },
+    "summary": {
+      "gifDemos": "2 つの GIF デモ",
+      "installSteps": "6 つのインストール手順",
+      "desktopReady": "デスクトップ対応"
+    },
+    "compare": {
+      "kicker": "モード確認",
+      "title": "WPA vs ブラウザ",
+      "enabled": {
+        "title": "WPA 有効",
+        "label": "インストール可能 App モード",
+        "points": {
+          "desktopIcon": "デスクトップ起動アイコン",
+          "appWindow": "App 風ウィンドウ",
+          "cachedResources": "リソースのキャッシュ",
+          "fasterVisits": "再訪問がより高速"
+        }
+      },
+      "browser": {
+        "title": "ブラウザのみ",
+        "label": "標準 Web モード",
+        "points": {
+          "browserTab": "ブラウザタブに依存",
+          "noShortcut": "デスクトップショートカットなし",
+          "networkFirst": "ネットワーク優先の読み込み",
+          "lessNative": "ネイティブ感は控えめ"
+        }
+      }
+    },
+    "steps": {
+      "kicker": "インストールルート",
+      "title": "6 ステップ",
+      "description": "各スクリーンショットで強調された操作を使って、App をデスクトップランチャーに追加します。",
+      "stepLabel": "ステップ {{ index }}",
+      "openMenu": {
+        "title": "ブラウザメニューを開く",
+        "detail": "強調表示されたブラウザメニューボタンをタップして、インストールオプションを探します。"
+      },
+      "chooseAdd": {
+        "title": "追加を選択",
+        "detail": "ブラウザのシートからホーム画面に追加、またはインストール操作を選択します。"
+      },
+      "confirmInstall": {
+        "title": "インストールを確認",
+        "detail": "App 名を確認し、デスクトップへのインストールを承認します。"
+      },
+      "finishSetup": {
+        "title": "設定を完了",
+        "detail": "ブラウザに App ショートカットとウィンドウモードを作成させます。"
+      },
+      "findIcon": {
+        "title": "アイコンを探す",
+        "detail": "App アイコンが端末のデスクトップまたはランチャーに表示されます。"
+      },
+      "launchApp": {
+        "title": "App として起動",
+        "detail": "ショートカットを開いて、Web サイトをデスクトップ App のように使用します。"
+      }
+    }
   }
 }

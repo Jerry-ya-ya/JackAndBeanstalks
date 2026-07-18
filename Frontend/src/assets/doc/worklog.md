@@ -395,3 +395,5 @@
 - Add i18n support to the members page.
 
 - Add i18n support to the about page.
+
+- Add i18n support to the tutorial page.
