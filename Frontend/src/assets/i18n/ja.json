@@ -72,5 +72,29 @@
       "promote": "権限",
       "feature": "機能"
     }
+  },
+  "world": {
+    "mode": {
+      "day": "昼",
+      "night": "夜"
+    },
+    "status": {
+      "cmenDay": "CMEN 昼",
+      "edenNight": "EDEN 夜",
+      "cmenLock": "CMEN 固定",
+      "edenLock": "EDEN 固定",
+      "locked": "固定中"
+    },
+    "lock": {
+      "label": "固定",
+      "on": "ON",
+      "off": "OFF"
+    },
+    "aria": {
+      "switchToDay": "昼モードに切り替え",
+      "switchToNight": "夜モードに切り替え",
+      "lock": "現在の昼夜モードを固定",
+      "unlock": "自動昼夜切り替えの固定を解除"
+    }
   }
 }

@@ -72,5 +72,29 @@
       "promote": "Promote",
       "feature": "Feature"
     }
+  },
+  "world": {
+    "mode": {
+      "day": "DAY",
+      "night": "NIGHT"
+    },
+    "status": {
+      "cmenDay": "CMEN DAY",
+      "edenNight": "EDEN NIGHT",
+      "cmenLock": "CMEN LOCK",
+      "edenLock": "EDEN LOCK",
+      "locked": "LOCKED"
+    },
+    "lock": {
+      "label": "LOCK",
+      "on": "ON",
+      "off": "OFF"
+    },
+    "aria": {
+      "switchToDay": "Switch to day mode",
+      "switchToNight": "Switch to night mode",
+      "lock": "Lock current day or night mode",
+      "unlock": "Unlock automatic day and night switching"
+    }
   }
 }

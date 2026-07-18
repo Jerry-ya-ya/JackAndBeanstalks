@@ -72,5 +72,29 @@
       "promote": "權限",
       "feature": "功能"
     }
+  },
+  "world": {
+    "mode": {
+      "day": "白日",
+      "night": "夜晚"
+    },
+    "status": {
+      "cmenDay": "CMEN 白日",
+      "edenNight": "EDEN 夜晚",
+      "cmenLock": "CMEN 鎖定",
+      "edenLock": "EDEN 鎖定",
+      "locked": "鎖定"
+    },
+    "lock": {
+      "label": "鎖定",
+      "on": "開",
+      "off": "關"
+    },
+    "aria": {
+      "switchToDay": "切換到白日模式",
+      "switchToNight": "切換到夜晚模式",
+      "lock": "鎖定目前的日夜模式",
+      "unlock": "解除自動日夜切換鎖定"
+    }
   }
 }

@@ -2,7 +2,7 @@
 # docker run -d -p 4200:80 my-angular-app
 
 # 第一階段：建構 Angular 專案
-FROM node:20 AS build
+FROM node:26 AS build
 
 WORKDIR /app
 COPY . .

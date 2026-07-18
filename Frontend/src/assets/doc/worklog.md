@@ -387,3 +387,5 @@
 - Add i18n translations to the hamburger menu.
 
 - Add Japanese and Korean i18n support.
+
+- Add i18n to global controls and update the frontend build image.

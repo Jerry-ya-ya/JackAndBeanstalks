@@ -10,7 +10,7 @@
     "hero": {
       "cmen": {
         "kicker": "게임 스튜디오 / 시스템 랩",
-        "status": "CMEN 낮",
+        "status": "CMEN 주간 모드",
         "subtitle": {
           "computing": "컴퓨팅",
           "mathematics": "수학",
@@ -20,7 +20,7 @@
       },
       "eden": {
         "kicker": "지식 네트워크 / 학습 랩",
-        "status": "EDEN 밤",
+        "status": "EDEN 야간 모드",
         "subtitle": {
           "encode": "인코드",
           "develop": "개발",
@@ -71,6 +71,30 @@
     "superadmin": {
       "promote": "권한",
       "feature": "기능"
+    }
+  },
+  "world": {
+    "mode": {
+      "day": "낮",
+      "night": "밤"
+    },
+    "status": {
+      "cmenDay": "CMEN 낮",
+      "edenNight": "EDEN 밤",
+      "cmenLock": "CMEN 잠금",
+      "edenLock": "EDEN 잠금",
+      "locked": "잠김"
+    },
+    "lock": {
+      "label": "잠금",
+      "on": "ON",
+      "off": "OFF"
+    },
+    "aria": {
+      "switchToDay": "낮 모드로 전환",
+      "switchToNight": "밤 모드로 전환",
+      "lock": "현재 낮 또는 밤 모드 잠금",
+      "unlock": "자동 낮밤 전환 잠금 해제"
     }
   }
 }

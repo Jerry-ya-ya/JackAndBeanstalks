@@ -80,4 +80,28 @@ export class AppComponent {
   get currentLanguageLabel() {
     return this.languages.find(language => language.code === this.currentLanguage)?.label || '繁中';
   }
+
+  get worldSliderAriaKey() {
+    return this.theme.isNightMode ? 'world.aria.switchToDay' : 'world.aria.switchToNight';
+  }
+
+  get worldNextModeKey() {
+    if (this.theme.isWorldLocked) {
+      return this.theme.isNightMode ? 'world.status.edenLock' : 'world.status.cmenLock';
+    }
+
+    return this.theme.isNightMode ? 'world.status.cmenDay' : 'world.status.edenNight';
+  }
+
+  get worldCountdownKey() {
+    return this.theme.isWorldLocked ? 'world.status.locked' : '';
+  }
+
+  get worldLockAriaKey() {
+    return this.theme.isWorldLocked ? 'world.aria.unlock' : 'world.aria.lock';
+  }
+
+  get worldLockStateKey() {
+    return this.theme.isWorldLocked ? 'world.lock.on' : 'world.lock.off';
+  }
 }
