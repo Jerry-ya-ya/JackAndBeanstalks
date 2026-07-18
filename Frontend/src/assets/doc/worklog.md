@@ -381,3 +381,5 @@
 - Add todo claim ownership workflow.
 
 - Reduce post page CSS budget usage.
+
+- Add homepage i18n with a global language dropdown.

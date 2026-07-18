@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/services/interceptors/auth-interceptor.service';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
@@ -31,7 +33,16 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    ...provideTranslateService({
+      fallbackLang: 'zh-TW',
+      lang: localStorage.getItem('language') || 'zh-TW',
+      loader: provideTranslateHttpLoader({
+        prefix: '/assets/i18n/',
+        suffix: '.json',
+        useHttpBackend: true
+      })
+    })
   ],
   bootstrap: [AppComponent]
 })

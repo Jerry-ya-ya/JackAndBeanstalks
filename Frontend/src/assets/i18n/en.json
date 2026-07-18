@@ -1,0 +1,40 @@
+{
+  "home": {
+    "aria": {
+      "homepage": "{{ studioName }} homepage"
+    },
+    "language": {
+      "label": "Language selector"
+    },
+    "logoAlt": "{{ studioName }} logo",
+    "hero": {
+      "cmen": {
+        "kicker": "Game Studio / Systems Lab",
+        "status": "CMEN DAY",
+        "subtitle": {
+          "computing": "Computing",
+          "mathematics": "Mathematics",
+          "engineering": "Engineering",
+          "network": "Network"
+        }
+      },
+      "eden": {
+        "kicker": "Knowledge Network / Learning Lab",
+        "status": "EDEN NIGHT",
+        "subtitle": {
+          "encode": "Encode",
+          "develop": "Develop",
+          "enlighten": "Enlighten",
+          "nexus": "Nexus"
+        }
+      }
+    },
+    "news": {
+      "kicker": "Community Feed",
+      "cmenTitle": "CMENStudio Community News",
+      "edenTitle": "EDEN Community News",
+      "cmenIntro": "Studio notes for players, makers, and future game development updates.",
+      "edenIntro": "Updates from the learning network, prepared for future admin publishing."
+    }
+  }
+}

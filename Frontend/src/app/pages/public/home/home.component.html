@@ -1,5 +1,5 @@
 <main class="cmen-home" [class.day-mode]="!isNightMode">
-  <section class="hero-shell" [attr.aria-label]="studioName + ' homepage'">
+  <section class="hero-shell" [attr.aria-label]="'home.aria.homepage' | translate:{ studioName: studioName }">
     <div class="hero-grid" aria-hidden="true">
       <span></span>
       <span></span>
@@ -11,37 +11,37 @@
 
     <div class="hero-content">
       <div class="studio-mark">
-        <img [src]="studioLogo" [alt]="studioLogoAlt">
+        <img [src]="studioLogo" [alt]="'home.logoAlt' | translate:{ studioName: studioName }">
       </div>
 
-      <p class="studio-kicker">{{ studioKicker }}</p>
+      <p class="studio-kicker">{{ studioKickerKey | translate }}</p>
       <h1>{{ studioName }}</h1>
 
       <p class="studio-subtitle">
-        @for (word of studioSubtitle; track word) {
-          <span>{{ word }}</span>
+        @for (wordKey of studioSubtitleKeys; track wordKey) {
+          <span>{{ wordKey | translate }}</span>
         }
       </p>
     </div>
 
     <div class="hero-status" aria-hidden="true">
       <span>BUILD 00.01</span>
-      <span>{{ isNightMode ? 'EDEN NIGHT' : 'CMEN DAY' }}</span>
+      <span>{{ heroStatusKey | translate }}</span>
     </div>
   </section>
 
-  <section class="community-news" [attr.aria-label]="communityNewsTitle">
+  <section class="community-news" [attr.aria-label]="communityNewsTitleKey | translate">
     <div class="community-news__header">
-      <p class="studio-kicker">Community Feed</p>
-      <h2>{{ communityNewsTitle }}</h2>
-      <p>{{ communityNewsIntro }}</p>
+      <p class="studio-kicker">{{ 'home.news.kicker' | translate }}</p>
+      <h2>{{ communityNewsTitleKey | translate }}</h2>
+      <p>{{ communityNewsIntroKey | translate }}</p>
     </div>
 
     <div class="news-grid">
       @for (item of communityNews; track item) {
         <article class="news-card">
           <div class="news-card__media">
-            <img [src]="studioLogo" [alt]="studioLogoAlt">
+            <img [src]="studioLogo" [alt]="'home.logoAlt' | translate:{ studioName: studioName }">
           </div>
           <div class="news-card__body">
             <span>{{ item.tag }}</span>

@@ -10,8 +10,18 @@ import { ThemeService } from '../../../core/services/theme.service';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  readonly cmenSubtitle = ['Computing', 'Mathematics', 'Engineering', 'Network'];
-  readonly edenSubtitle = ['Encode', 'Develop', 'Enlighten', 'Nexus'];
+  readonly cmenSubtitleKeys = [
+    'home.hero.cmen.subtitle.computing',
+    'home.hero.cmen.subtitle.mathematics',
+    'home.hero.cmen.subtitle.engineering',
+    'home.hero.cmen.subtitle.network'
+  ];
+  readonly edenSubtitleKeys = [
+    'home.hero.eden.subtitle.encode',
+    'home.hero.eden.subtitle.develop',
+    'home.hero.eden.subtitle.enlighten',
+    'home.hero.eden.subtitle.nexus'
+  ];
 
   constructor(
     public theme: ThemeService,
@@ -32,33 +42,31 @@ export class HomeComponent implements OnInit {
     return this.isNightMode ? 'EDEN' : 'CMENStudio';
   }
 
-  get studioKicker() {
-    return this.isNightMode ? 'Knowledge Network / Learning Lab' : 'Game Studio / Systems Lab';
+  get studioKickerKey() {
+    return this.isNightMode ? 'home.hero.eden.kicker' : 'home.hero.cmen.kicker';
   }
 
-  get studioSubtitle() {
-    return this.isNightMode ? this.edenSubtitle : this.cmenSubtitle;
+  get studioSubtitleKeys() {
+    return this.isNightMode ? this.edenSubtitleKeys : this.cmenSubtitleKeys;
   }
 
   get studioLogo() {
     return this.isNightMode ? 'icons/eden.png' : 'icons/cmenstudio.png';
   }
 
-  get studioLogoAlt() {
-    return `${this.studioName} logo`;
+  get heroStatusKey() {
+    return this.isNightMode ? 'home.hero.eden.status' : 'home.hero.cmen.status';
   }
 
   get communityNews() {
     return this.homeContent.getNews(this.isNightMode ? 'eden' : 'cmen');
   }
 
-  get communityNewsTitle() {
-    return this.isNightMode ? 'EDEN Community News' : 'CMENStudio Community News';
+  get communityNewsTitleKey() {
+    return this.isNightMode ? 'home.news.edenTitle' : 'home.news.cmenTitle';
   }
 
-  get communityNewsIntro() {
-    return this.isNightMode
-      ? 'Updates from the learning network, prepared for future admin publishing.'
-      : 'Studio notes for players, makers, and future game development updates.';
+  get communityNewsIntroKey() {
+    return this.isNightMode ? 'home.news.edenIntro' : 'home.news.cmenIntro';
   }
 }

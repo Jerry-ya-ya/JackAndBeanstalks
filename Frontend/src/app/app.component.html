@@ -47,6 +47,38 @@
       </button>
     </div>
 
+    <div class="language-switcher" [class.language-switcher--open]="languageMenuOpen">
+      <button
+        class="language-trigger"
+        type="button"
+        (click)="toggleLanguageMenu()"
+        aria-haspopup="listbox"
+        [attr.aria-expanded]="languageMenuOpen"
+        aria-label="Language selector"
+      >
+        <span class="language-trigger__mark">LANG</span>
+        <span class="language-trigger__value">{{ currentLanguageLabel }}</span>
+        <span class="language-trigger__chevron"></span>
+      </button>
+
+      @if (languageMenuOpen) {
+        <div class="language-menu" role="listbox">
+          @for (language of languages; track language.code) {
+            <button
+              type="button"
+              role="option"
+              [class.active]="currentLanguage === language.code"
+              [attr.aria-selected]="currentLanguage === language.code"
+              (click)="switchLanguage(language.code)"
+            >
+              <span>{{ language.label }}</span>
+              <small>{{ language.name }}</small>
+            </button>
+          }
+        </div>
+      }
+    </div>
+
     <a class="login-link" [routerLink]="['/' + path.login]">Login</a>
   </div>
 

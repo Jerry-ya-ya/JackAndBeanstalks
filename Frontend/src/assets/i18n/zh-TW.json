@@ -1,0 +1,40 @@
+{
+  "home": {
+    "aria": {
+      "homepage": "{{ studioName }} 主頁"
+    },
+    "language": {
+      "label": "語言切換"
+    },
+    "logoAlt": "{{ studioName }} 標誌",
+    "hero": {
+      "cmen": {
+        "kicker": "遊戲工作室 / 系統實驗室",
+        "status": "CMEN 白日",
+        "subtitle": {
+          "computing": "運算",
+          "mathematics": "數學",
+          "engineering": "工程",
+          "network": "網路"
+        }
+      },
+      "eden": {
+        "kicker": "知識網路 / 學習實驗室",
+        "status": "EDEN 夜晚",
+        "subtitle": {
+          "encode": "編碼",
+          "develop": "開發",
+          "enlighten": "啟發",
+          "nexus": "樞紐"
+        }
+      }
+    },
+    "news": {
+      "kicker": "社群動態",
+      "cmenTitle": "CMENStudio 社群新聞",
+      "edenTitle": "EDEN 社群新聞",
+      "cmenIntro": "給玩家、創作者與未來遊戲開發者更新的工作室筆記。",
+      "edenIntro": "來自學習網路的更新，已準備好未來由管理員發布。"
+    }
+  }
+}
