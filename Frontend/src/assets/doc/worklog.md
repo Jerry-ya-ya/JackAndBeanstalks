@@ -379,3 +379,5 @@
 ## 2026/07/18
 
 - Add todo claim ownership workflow.
+
+- Reduce post page CSS budget usage.

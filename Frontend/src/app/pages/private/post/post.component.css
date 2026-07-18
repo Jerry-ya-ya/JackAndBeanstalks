@@ -1,137 +1,150 @@
-/* 主容器 */
 .post-wall-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 20px;
+  color: #fff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
-/* 頁面標題區域 */
-.page-header {
-  text-align: center;
-  margin-bottom: 40px;
+.page-header,
+.post-creation-section,
+.message-container,
+.section-header {
+  margin-bottom: 30px;
+}
+
+.page-header,
+.empty-state {
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 
-.header-content {
+.header-content,
+.post-content {
   position: relative;
   z-index: 2;
 }
 
-.main-title {
-  font-size: 3rem;
-  font-weight: 700;
-  color: white;
-  margin: 0 0 10px 0;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+.main-title,
+.section-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.title-icon {
-  font-size: 2.5rem;
+.main-title {
+  margin-bottom: 10px;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.section-title {
+  font-size: 1.8rem;
+}
+
+.title-icon,
+.empty-icon {
   animation: float 3s ease-in-out infinite;
 }
 
+.title-icon {
+  font-size: 2.2rem;
+}
+
+.subtitle,
+.count-label,
+.empty-description {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
   margin: 0;
-  font-weight: 300;
+  font-size: 1.2rem;
 }
 
-.header-decoration {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-}
-
-.floating-elements {
-  position: relative;
-  height: 100%;
-}
-
-.floating-icon {
-  position: absolute;
-  font-size: 2rem;
-  opacity: 0.3;
-  animation: float 4s ease-in-out infinite;
-}
-
-.floating-icon:nth-child(1) {
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.floating-icon:nth-child(2) {
-  top: 60%;
-  right: 15%;
-  animation-delay: 1.5s;
-}
-
-.floating-icon:nth-child(3) {
-  top: 30%;
-  right: 25%;
-  animation-delay: 3s;
-}
-
-/* 發文區域 */
-.post-creation-section {
-  margin-bottom: 40px;
+.creation-card,
+.post-card,
+.empty-state {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(18px);
 }
 
 .creation-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
   padding: 30px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.creation-card:hover {
+.creation-card:hover,
+.post-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.16);
 }
 
-.card-header {
-  margin-bottom: 25px;
+.card-header,
+.post-header,
+.post-body {
+  margin-bottom: 20px;
 }
 
-.user-info {
+.user-info,
+.post-author,
+.post-time,
+.post-actions,
+.form-actions,
+.message,
+.stat-item {
   display: flex;
   align-items: center;
-  gap: 15px;
+}
+
+.user-info,
+.post-author {
+  gap: 12px;
 }
 
 .avatar-container {
   position: relative;
 }
 
-.user-avatar {
+.user-avatar,
+.author-avatar {
   display: grid;
   place-items: center;
-  width: 50px;
-  height: 50px;
+  flex: 0 0 auto;
 }
 
+.user-avatar,
 .user-avatar img,
 .user-avatar span {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  border: 3px solid #667eea;
 }
 
-.user-avatar img {
+.author-avatar,
+.author-avatar img,
+.author-avatar span {
+  width: 40px;
+  height: 40px;
+}
+
+.user-avatar img,
+.user-avatar span,
+.author-avatar img,
+.author-avatar span {
+  border: 2px solid #667eea;
+  border-radius: 50%;
+}
+
+.user-avatar img,
+.author-avatar img {
   object-fit: cover;
 }
 
@@ -140,51 +153,57 @@
   display: grid;
   place-items: center;
   color: var(--studio-bg);
-  background:
-    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--studio-warm) 42%, transparent), transparent 36%),
-    linear-gradient(135deg, var(--studio-accent), color-mix(in srgb, var(--studio-danger) 72%, var(--studio-accent)));
+  background: linear-gradient(135deg, var(--studio-accent), color-mix(in srgb, var(--studio-danger) 72%, var(--studio-accent)));
   font-weight: 900;
   text-transform: uppercase;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    0 8px 18px color-mix(in srgb, var(--studio-accent) 18%, transparent);
 }
 
 .user-avatar span {
   font-size: 22px;
 }
 
-.avatar-ring {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 2px solid rgba(102, 126, 234, 0.3);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
+.author-avatar span {
+  font-size: 18px;
 }
 
-.user-details {
+.avatar-ring {
+  position: absolute;
+  inset: -5px;
+  border: 2px solid rgba(102, 126, 234, 0.28);
+  border-radius: 50%;
+}
+
+.user-details,
+.post-text,
+span {
   flex: 1;
 }
 
-.username {
-  font-size: 1.3rem;
-  font-weight: 600;
+.username,
+.author-name,
+.post-text {
   color: #333;
-  margin: 0 0 5px 0;
+}
+
+.username {
+  margin: 0 0 5px;
+  font-size: 1.3rem;
+}
+
+.author-name,
+.stat-number {
+  font-weight: 700;
+}
+
+.post-status,
+.post-time,
+.count-text,
+.stat-item {
+  color: #666;
 }
 
 .post-status {
-  font-size: 0.9rem;
-  color: #666;
   font-style: italic;
-}
-
-/* 表單區域 */
-.post-form {
-  position: relative;
 }
 
 .textarea-container {
@@ -193,24 +212,24 @@
 }
 
 .post-textarea {
+  box-sizing: border-box;
   width: 100%;
   min-height: 120px;
-  padding: 20px;
+  padding: 18px;
   border: 2px solid #e1e5e9;
-  border-radius: 15px;
-  font-size: 1rem;
-  font-family: inherit;
+  border-radius: 14px;
+  color: #333;
+  background: rgba(255, 255, 255, 0.82);
+  font: inherit;
   resize: vertical;
-  background: rgba(255, 255, 255, 0.8);
-  transition: all 0.3s ease;
-  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .post-textarea:focus {
   outline: none;
   border-color: #667eea;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
 }
 
 .post-textarea::placeholder {
@@ -220,375 +239,220 @@
 
 .textarea-decoration {
   position: absolute;
-  bottom: 10px;
   right: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  pointer-events: none;
-}
-
-.decoration-line {
-  width: 30px;
+  bottom: 10px;
+  width: 38px;
   height: 2px;
+  pointer-events: none;
   background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 1px;
 }
 
 .decoration-dots {
-  display: flex;
-  gap: 3px;
+  display: none;
 }
 
-.decoration-dots span {
-  width: 4px;
-  height: 4px;
-  background: #667eea;
-  border-radius: 50%;
-  animation: blink 2s infinite;
-}
-
-.decoration-dots span:nth-child(2) {
-  animation-delay: 0.5s;
-}
-
-.decoration-dots span:nth-child(3) {
-  animation-delay: 1s;
-}
-
-/* 表單操作區域 */
 .form-actions {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
 .character-count {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 5px;
-}
-
-.count-text {
-  font-size: 0.9rem;
-  color: #666;
-  font-weight: 500;
+  display: grid;
+  gap: 6px;
 }
 
 .progress-bar {
   width: 100px;
   height: 4px;
-  background: #e1e5e9;
-  border-radius: 2px;
   overflow: hidden;
+  border-radius: 999px;
+  background: #e1e5e9;
 }
 
 .progress-fill {
   height: 100%;
+  border-radius: inherit;
   background: linear-gradient(90deg, #667eea, #764ba2);
-  border-radius: 2px;
-  transition: width 0.3s ease;
+}
+
+.submit-btn,
+.action-btn {
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .submit-btn {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 12px 25px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  color: #fff;
   background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  border: none;
-  border-radius: 25px;
   font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  font-weight: 700;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.38);
 }
 
 .submit-btn:disabled {
-  opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
-}
-
-.submit-btn.active {
-  animation: pulse 2s infinite;
-}
-
-.btn-icon {
-  font-size: 1.1rem;
-}
-
-/* 訊息提示 */
-.message-container {
-  margin-bottom: 30px;
+  opacity: 0.5;
 }
 
 .message {
-  display: flex;
-  align-items: center;
   gap: 10px;
   padding: 15px 20px;
   border-radius: 10px;
-  font-weight: 500;
-}
-
-.message.success {
+  color: #fff;
   background: linear-gradient(135deg, #4ade80, #22c55e);
-  color: white;
+  font-weight: 700;
   box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
-}
-
-.message-icon {
-  font-size: 1.2rem;
-}
-
-/* 貼文列表區域 */
-.posts-section {
-  position: relative;
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
   padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.section-title {
-  font-size: 1.8rem;
-  color: white;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .post-count {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  place-items: center;
   gap: 5px;
 }
 
 .count-number {
+  color: #fff;
   font-size: 2rem;
-  font-weight: 700;
-  color: white;
-}
-
-.count-label {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-:host-context(.cmen-day-theme) .main-title,
-:host-context(.cmen-day-theme) .section-title {
-  color: #14343a;
-  text-shadow:
-    2px 2px 0 rgba(209, 145, 41, 0.32),
-    -1px -1px 0 rgba(255, 248, 218, 0.88);
-}
-
-:host-context(.cmen-day-theme) .subtitle {
-  color: #334c50;
-  font-weight: 700;
-}
-
-:host-context(.cmen-day-theme) .count-number {
-  color: #14343a;
-  text-shadow: 0 1px 0 rgba(255, 248, 218, 0.9);
-}
-
-:host-context(.cmen-day-theme) .count-label {
-  color: #506160;
   font-weight: 800;
 }
 
-/* 貼文網格 */
 .posts-grid {
   display: grid;
-  gap: 25px;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
 }
 
-/* 貼文卡片 */
 .post-card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  animation: slideInUp 0.6s ease forwards;
+  padding: 25px;
+  animation: slideInUp 0.45s ease forwards;
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(24px);
 }
 
-.post-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-}
-
-.card-decoration {
+.post-card::before {
+  content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   pointer-events: none;
-}
-
-.decoration-pattern {
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
-  animation: rotate 20s linear infinite;
-}
-
-.decoration-corner {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 30px 30px 0;
-  border-color: transparent rgba(102, 126, 234, 0.1) transparent transparent;
-}
-
-/* 貼文內容 */
-.post-content {
-  position: relative;
-  z-index: 2;
+  background: radial-gradient(circle at 100% 0%, rgba(102, 126, 234, 0.10), transparent 34%);
 }
 
 .post-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 20px;
 }
 
 .post-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.post-author {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.author-avatar {
-  flex: 0 0 auto;
   display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
+  gap: 10px;
 }
 
-.author-avatar img,
-.author-avatar span {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #667eea;
-}
-
-.author-avatar img {
-  object-fit: cover;
-}
-
-.author-avatar span {
-  font-size: 18px;
-}
-
-.author-name {
-  font-weight: 600;
-  color: #333;
-  font-size: 1.1rem;
-}
-
-.post-time {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-.time-icon {
-  font-size: 0.8rem;
-}
-
-.post-actions {
-  display: flex;
+.post-time,
+.post-actions,
+.post-stats {
   gap: 10px;
 }
 
 .action-btn {
+  display: grid;
+  place-items: center;
   width: 35px;
   height: 35px;
-  border: none;
   border-radius: 50%;
-  background: rgba(102, 126, 234, 0.1);
   color: #667eea;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: rgba(102, 126, 234, 0.12);
 }
 
 .action-btn:hover {
+  color: #fff;
   background: #667eea;
-  color: white;
-  transform: scale(1.1);
-}
-
-.action-icon {
-  font-size: 1rem;
-}
-
-/* 貼文主體 */
-.post-body {
-  margin-bottom: 20px;
+  transform: scale(1.08);
 }
 
 .post-text {
+  margin: 0;
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #333;
-  margin: 0;
   word-wrap: break-word;
 }
 
+.post-footer {
+  padding-top: 15px;
+  border-top: 1px solid #e1e5e9;
+}
+
+.post-stats {
+  display: flex;
+}
+
+.stat-item {
+  gap: 5px;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.stat-item:hover {
+  color: #667eea;
+}
+
+.empty-state {
+  padding: 56px 20px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.empty-icon {
+  margin-bottom: 18px;
+  font-size: 4rem;
+}
+
+.empty-title {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 1.8rem;
+}
+
+:host-context(.cmen-day-theme) .main-title,
+:host-context(.cmen-day-theme) .section-title,
+:host-context(.cmen-day-theme) .count-number {
+  color: #14343a;
+  text-shadow: 0 1px 0 rgba(255, 248, 218, 0.9);
+}
+
+:host-context(.cmen-day-theme) .subtitle,
+:host-context(.cmen-day-theme) .count-label {
+  color: #334c50;
+  font-weight: 800;
+}
+
 :host-context(.eden-night-theme) .username,
-:host-context(.eden-night-theme) .author-name {
+:host-context(.eden-night-theme) .author-name,
+:host-context(.eden-night-theme) .post-text {
   color: #effff2;
-  text-shadow: 0 1px 8px rgba(101, 255, 130, 0.22);
 }
 
 :host-context(.eden-night-theme) .post-status {
@@ -596,129 +460,8 @@
   font-weight: 700;
 }
 
-:host-context(.eden-night-theme) .post-text {
-  color: #effff2;
-  font-weight: 650;
-}
-
-/* 貼文底部 */
-.post-footer {
-  border-top: 1px solid #e1e5e9;
-  padding-top: 15px;
-}
-
-.post-stats {
-  display: flex;
-  gap: 20px;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.9rem;
-  color: #666;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.stat-item:hover {
-  color: #667eea;
-}
-
-.stat-icon {
-  font-size: 0.8rem;
-}
-
-.stat-number {
-  font-weight: 600;
-}
-
-/* 空狀態 */
-.empty-state {
-  text-align: center;
-  padding: 60px 20px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  position: relative;
-  overflow: hidden;
-}
-
-.empty-icon {
-  font-size: 4rem;
-  margin-bottom: 20px;
-  animation: float 3s ease-in-out infinite;
-}
-
-.empty-title {
-  font-size: 1.8rem;
-  color: white;
-  margin: 0 0 10px 0;
-  font-weight: 600;
-}
-
-.empty-description {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 0;
-}
-
-.empty-decoration {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-}
-
-.empty-decoration .floating-element {
-  position: absolute;
-  font-size: 1.5rem;
-  opacity: 0.3;
-  animation: float 4s ease-in-out infinite;
-}
-
-.empty-decoration .floating-element:nth-child(1) {
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.empty-decoration .floating-element:nth-child(2) {
-  top: 60%;
-  right: 15%;
-  animation-delay: 2s;
-}
-
-/* 動畫 */
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
-@keyframes blink {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
+  50% { transform: translateY(-8px); }
 }
 
 @keyframes slideInUp {
@@ -728,55 +471,41 @@
   }
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* 響應式設計 */
 @media (max-width: 768px) {
   .post-wall-container {
     padding: 15px;
   }
-  
+
   .main-title {
     font-size: 2rem;
   }
-  
-  .creation-card {
+
+  .creation-card,
+  .post-card {
     padding: 20px;
   }
-  
-  .form-actions {
-    flex-direction: column;
+
+  .form-actions,
+  .section-header,
+  .post-header {
     align-items: stretch;
-    gap: 15px;
+    flex-direction: column;
   }
-  
+
   .submit-btn {
-    width: 100%;
     justify-content: center;
+    width: 100%;
   }
-  
+
   .posts-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .section-header {
-    flex-direction: column;
     gap: 15px;
     text-align: center;
   }
-  
-  .post-header {
-    flex-direction: column;
-    gap: 15px;
-  }
-  
+
   .post-actions {
     align-self: flex-end;
   }
@@ -786,16 +515,13 @@
   .main-title {
     font-size: 1.5rem;
   }
-  
+
   .title-icon {
     font-size: 1.8rem;
   }
-  
-  .creation-card {
-    padding: 15px;
-  }
-  
+
+  .creation-card,
   .post-card {
-    padding: 20px;
+    padding: 16px;
   }
 }
