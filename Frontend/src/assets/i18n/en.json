@@ -36,5 +36,41 @@
       "cmenIntro": "Studio notes for players, makers, and future game development updates.",
       "edenIntro": "Updates from the learning network, prepared for future admin publishing."
     }
+  },
+  "nav": {
+    "public": {
+      "home": "Home",
+      "member": "Member",
+      "about": "About",
+      "tutorial": "Tutorial",
+      "update": "Update",
+      "register": "Register",
+      "login": "Login"
+    },
+    "private": {
+      "home": "Home",
+      "postWall": "Post Wall",
+      "square": "Square",
+      "recruit": "Recruit",
+      "friend": "Friend",
+      "todo": "Todo",
+      "setting": "Setting",
+      "profile": "Profile",
+      "crawler": "Crawler",
+      "logout": "Logout"
+    },
+    "admin": {
+      "user": "User",
+      "content": "Content",
+      "logs": "Logs",
+      "announce": "Announce",
+      "events": "Events",
+      "projects": "Projects",
+      "member": "Member"
+    },
+    "superadmin": {
+      "promote": "Promote",
+      "feature": "Feature"
+    }
   }
 }

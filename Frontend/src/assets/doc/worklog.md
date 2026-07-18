@@ -383,3 +383,5 @@
 - Reduce post page CSS budget usage.
 
 - Add homepage i18n with a global language dropdown.
+
+- Add i18n translations to the hamburger menu.

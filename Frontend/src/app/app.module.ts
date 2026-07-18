@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/services/interceptors/auth-interceptor.service';
-import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateService, TranslatePipe } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
@@ -19,6 +19,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    TranslatePipe,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(), // 只在生產模式下啟用 Service Worker

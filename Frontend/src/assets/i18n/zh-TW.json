@@ -36,5 +36,41 @@
       "cmenIntro": "給玩家、創作者與未來遊戲開發者更新的工作室筆記。",
       "edenIntro": "來自學習網路的更新，已準備好未來由管理員發布。"
     }
+  },
+  "nav": {
+    "public": {
+      "home": "主頁",
+      "member": "成員",
+      "about": "關於",
+      "tutorial": "教學",
+      "update": "更新",
+      "register": "註冊",
+      "login": "登入"
+    },
+    "private": {
+      "home": "私人主頁",
+      "postWall": "貼文牆",
+      "square": "廣場",
+      "recruit": "招募",
+      "friend": "好友",
+      "todo": "待辦",
+      "setting": "設定",
+      "profile": "個人資料",
+      "crawler": "爬蟲",
+      "logout": "登出"
+    },
+    "admin": {
+      "user": "使用者",
+      "content": "內容",
+      "logs": "紀錄",
+      "announce": "公告",
+      "events": "活動",
+      "projects": "專案",
+      "member": "成員"
+    },
+    "superadmin": {
+      "promote": "權限",
+      "feature": "功能"
+    }
   }
 }

@@ -10,49 +10,49 @@
   <div [ngClass]="{'hide-navbar': collapsed}">
     <!-- Public -->
     <div class="navbar navbar-public">
-      <a class="nav" [routerLink]="[path.home]">Home</a>
-      <a class="nav" [routerLink]="[path.member]">Member</a>
-      <a class="nav" [routerLink]="[path.aboutwebsite]">About-Page</a>
-      <a class="nav" [routerLink]="[path.tutorial]">Tutorial</a>
-      <a class="nav" [routerLink]="[path.update]">Update</a>
-      <a class="nav" [routerLink]="[path.register]">Register</a>
-      <a class="nav" [routerLink]="[path.login]">Login</a>
+      <a class="nav" [routerLink]="[path.home]">{{ 'nav.public.home' | translate }}</a>
+      <a class="nav" [routerLink]="[path.member]">{{ 'nav.public.member' | translate }}</a>
+      <a class="nav" [routerLink]="[path.aboutwebsite]">{{ 'nav.public.about' | translate }}</a>
+      <a class="nav" [routerLink]="[path.tutorial]">{{ 'nav.public.tutorial' | translate }}</a>
+      <a class="nav" [routerLink]="[path.update]">{{ 'nav.public.update' | translate }}</a>
+      <a class="nav" [routerLink]="[path.register]">{{ 'nav.public.register' | translate }}</a>
+      <a class="nav" [routerLink]="[path.login]">{{ 'nav.public.login' | translate }}</a>
     </div>
 
     <!-- Private -->
     @if (isLoggedIn()) {
       <div class="navbar navbar-private">
-        <a class="nav-private" [routerLink]="[path.userhome]">Home</a>
-        <a class="nav-private" [routerLink]="[path.post]">Post-wall</a>
-        <a class="nav-private" [routerLink]="[path.square]">Square</a>
-        <a class="nav-private" [routerLink]="[path.projectRecruitment]">Recruit</a>
-        <a class="nav-private" [routerLink]="[path.friend]">Friend</a>
-        <a class="nav-private" [routerLink]="[path.todo]">Todo</a>
-        <a class="nav-private" [routerLink]="[path.setting]">Setting</a>
-        <a class="nav-private" [routerLink]="[path.profile]">Profile</a>
-        <a class="nav-private" [routerLink]="[path.crawler]">Crawler</a>
-        <a class="nav-private logout" (click)="logout()">Logout</a>
+        <a class="nav-private" [routerLink]="[path.userhome]">{{ 'nav.private.home' | translate }}</a>
+        <a class="nav-private" [routerLink]="[path.post]">{{ 'nav.private.postWall' | translate }}</a>
+        <a class="nav-private" [routerLink]="[path.square]">{{ 'nav.private.square' | translate }}</a>
+        <a class="nav-private" [routerLink]="[path.projectRecruitment]">{{ 'nav.private.recruit' | translate }}</a>
+        <a class="nav-private" [routerLink]="[path.friend]">{{ 'nav.private.friend' | translate }}</a>
+        <a class="nav-private" [routerLink]="[path.todo]">{{ 'nav.private.todo' | translate }}</a>
+        <a class="nav-private" [routerLink]="[path.setting]">{{ 'nav.private.setting' | translate }}</a>
+        <a class="nav-private" [routerLink]="[path.profile]">{{ 'nav.private.profile' | translate }}</a>
+        <a class="nav-private" [routerLink]="[path.crawler]">{{ 'nav.private.crawler' | translate }}</a>
+        <a class="nav-private logout" (click)="logout()">{{ 'nav.private.logout' | translate }}</a>
       </div>
     }
 
     <!-- Admin -->
     @if (isAdmin()) {
       <div class="navbar navbar-admin">
-        <a class="nav-admin" [routerLink]="['/']">User</a>
-        <a class="nav-admin" [routerLink]="[path.content]">Content</a>
-        <a class="nav-admin" [routerLink]="['/']">Logs</a>
-        <a class="nav-admin" [routerLink]="['/']">Announce</a>
-        <a class="nav-admin" [routerLink]="['/']">Events</a>
-        <a class="nav-admin" [routerLink]="['/']">Projects</a>
-        <a class="nav-admin" [routerLink]="['/']">Member</a>
+        <a class="nav-admin" [routerLink]="['/']">{{ 'nav.admin.user' | translate }}</a>
+        <a class="nav-admin" [routerLink]="[path.content]">{{ 'nav.admin.content' | translate }}</a>
+        <a class="nav-admin" [routerLink]="['/']">{{ 'nav.admin.logs' | translate }}</a>
+        <a class="nav-admin" [routerLink]="['/']">{{ 'nav.admin.announce' | translate }}</a>
+        <a class="nav-admin" [routerLink]="['/']">{{ 'nav.admin.events' | translate }}</a>
+        <a class="nav-admin" [routerLink]="['/']">{{ 'nav.admin.projects' | translate }}</a>
+        <a class="nav-admin" [routerLink]="['/']">{{ 'nav.admin.member' | translate }}</a>
       </div>
     }
 
     <!-- Superadmin -->
     @if (isSuperadmin()) {
       <div class="navbar navbar-superadmin">
-        <a class="nav-superadmin" [routerLink]="[path.promote]">Promote</a>
-        <a class="nav-superadmin" [routerLink]="['/']">Feature</a>
+        <a class="nav-superadmin" [routerLink]="[path.promote]">{{ 'nav.superadmin.promote' | translate }}</a>
+        <a class="nav-superadmin" [routerLink]="['/']">{{ 'nav.superadmin.feature' | translate }}</a>
       </div>
     }
   </div>
