@@ -1,0 +1,76 @@
+{
+  "home": {
+    "aria": {
+      "homepage": "{{ studioName }} 홈페이지"
+    },
+    "language": {
+      "label": "언어 전환"
+    },
+    "logoAlt": "{{ studioName }} 로고",
+    "hero": {
+      "cmen": {
+        "kicker": "게임 스튜디오 / 시스템 랩",
+        "status": "CMEN 낮",
+        "subtitle": {
+          "computing": "컴퓨팅",
+          "mathematics": "수학",
+          "engineering": "공학",
+          "network": "네트워크"
+        }
+      },
+      "eden": {
+        "kicker": "지식 네트워크 / 학습 랩",
+        "status": "EDEN 밤",
+        "subtitle": {
+          "encode": "인코드",
+          "develop": "개발",
+          "enlighten": "계몽",
+          "nexus": "넥서스"
+        }
+      }
+    },
+    "news": {
+      "kicker": "커뮤니티 소식",
+      "cmenTitle": "CMENStudio 커뮤니티 소식",
+      "edenTitle": "EDEN 커뮤니티 소식",
+      "cmenIntro": "플레이어, 창작자, 미래의 게임 개발자를 위한 스튜디오 노트입니다.",
+      "edenIntro": "관리자 게시 기능을 위해 준비된 학습 네트워크의 업데이트입니다."
+    }
+  },
+  "nav": {
+    "public": {
+      "home": "홈",
+      "member": "멤버",
+      "about": "소개",
+      "tutorial": "튜토리얼",
+      "update": "업데이트",
+      "register": "가입",
+      "login": "로그인"
+    },
+    "private": {
+      "home": "개인 홈",
+      "postWall": "게시판",
+      "square": "광장",
+      "recruit": "모집",
+      "friend": "친구",
+      "todo": "Todo",
+      "setting": "설정",
+      "profile": "프로필",
+      "crawler": "크롤러",
+      "logout": "로그아웃"
+    },
+    "admin": {
+      "user": "사용자",
+      "content": "콘텐츠",
+      "logs": "로그",
+      "announce": "공지",
+      "events": "이벤트",
+      "projects": "프로젝트",
+      "member": "멤버"
+    },
+    "superadmin": {
+      "promote": "권한",
+      "feature": "기능"
+    }
+  }
+}

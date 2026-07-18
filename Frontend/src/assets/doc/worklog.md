@@ -385,3 +385,5 @@
 - Add homepage i18n with a global language dropdown.
 
 - Add i18n translations to the hamburger menu.
+
+- Add Japanese and Korean i18n support.

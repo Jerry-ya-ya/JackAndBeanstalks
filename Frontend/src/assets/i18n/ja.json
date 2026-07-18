@@ -1,0 +1,76 @@
+{
+  "home": {
+    "aria": {
+      "homepage": "{{ studioName }} ホームページ"
+    },
+    "language": {
+      "label": "言語切り替え"
+    },
+    "logoAlt": "{{ studioName }} ロゴ",
+    "hero": {
+      "cmen": {
+        "kicker": "ゲームスタジオ / システムラボ",
+        "status": "CMEN 昼",
+        "subtitle": {
+          "computing": "コンピューティング",
+          "mathematics": "数学",
+          "engineering": "工学",
+          "network": "ネットワーク"
+        }
+      },
+      "eden": {
+        "kicker": "知識ネットワーク / 学習ラボ",
+        "status": "EDEN 夜",
+        "subtitle": {
+          "encode": "エンコード",
+          "develop": "開発",
+          "enlighten": "啓発",
+          "nexus": "中枢"
+        }
+      }
+    },
+    "news": {
+      "kicker": "コミュニティニュース",
+      "cmenTitle": "CMENStudio コミュニティニュース",
+      "edenTitle": "EDEN コミュニティニュース",
+      "cmenIntro": "プレイヤー、クリエイター、未来のゲーム開発者へ向けたスタジオノート。",
+      "edenIntro": "管理者による今後の公開に備えた、学習ネットワークからの更新情報。"
+    }
+  },
+  "nav": {
+    "public": {
+      "home": "ホーム",
+      "member": "メンバー",
+      "about": "概要",
+      "tutorial": "チュートリアル",
+      "update": "更新",
+      "register": "登録",
+      "login": "ログイン"
+    },
+    "private": {
+      "home": "個人ホーム",
+      "postWall": "投稿ウォール",
+      "square": "広場",
+      "recruit": "募集",
+      "friend": "友達",
+      "todo": "Todo",
+      "setting": "設定",
+      "profile": "プロフィール",
+      "crawler": "クローラー",
+      "logout": "ログアウト"
+    },
+    "admin": {
+      "user": "ユーザー",
+      "content": "コンテンツ",
+      "logs": "ログ",
+      "announce": "告知",
+      "events": "イベント",
+      "projects": "プロジェクト",
+      "member": "メンバー"
+    },
+    "superadmin": {
+      "promote": "権限",
+      "feature": "機能"
+    }
+  }
+}

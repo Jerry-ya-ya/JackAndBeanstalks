@@ -15,7 +15,9 @@ export class AppComponent {
   path = appPath;
   readonly languages = [
     { code: 'zh-TW', label: '繁中', name: 'Traditional Chinese' },
-    { code: 'en', label: 'EN', name: 'English' }
+    { code: 'en', label: 'EN', name: 'English' },
+    { code: 'ja', label: 'JP', name: 'Japanese' },
+    { code: 'ko', label: 'KR', name: 'Korean' }
   ];
   currentLanguage = localStorage.getItem('language') || 'zh-TW';
   languageMenuOpen = false;
