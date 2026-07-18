@@ -393,3 +393,5 @@
 ## 2026/07/19
 
 - Add i18n support to the members page.
+
+- Add i18n support to the about page.

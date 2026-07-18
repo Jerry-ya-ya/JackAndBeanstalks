@@ -172,5 +172,31 @@
       "stars": "Stars {{ count }}",
       "empty": "Repository データは GitHub からの応答を待っています。"
     }
+  },
+  "about": {
+    "state": {
+      "loading": "読み込み中...",
+      "errorTitle": "読み込みに失敗しました",
+      "errorMessage": "リポジトリデータを読み込めません。しばらくしてから再試行してください。",
+      "retry": "再読み込み"
+    },
+    "repo": {
+      "stats": {
+        "stars": "stars",
+        "watchers": "watchers",
+        "forks": "forks"
+      },
+      "createdAt": "{{ date }} に作成",
+      "updatedAt": "{{ date }} に更新",
+      "viewOnGithub": "GitHub で見る"
+    },
+    "features": {
+      "title": "技術的な特徴",
+      "angular": "Single Page Application (SPA) により、ページ全体を再読み込みせずに滑らかな画面遷移を提供します。",
+      "flask": "シンプルで拡張しやすい設計の Python マイクロフレームワークで、RESTful API や Web サービスの構築に適しています。",
+      "postgresql": "信頼性、拡張性、高度な機能で知られる強力なオープンソースのリレーショナルデータベースです。",
+      "docker": "アプリと必要な環境を軽量コンテナにまとめ、素早いデプロイとクロスプラットフォーム実行を可能にするツールです。",
+      "pwa": "PWA は Web アプリの操作感と機能をネイティブモバイルアプリに近づけます。設定方法はチュートリアルページをご覧ください。"
+    }
   }
 }

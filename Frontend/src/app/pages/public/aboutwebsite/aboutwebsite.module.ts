@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { AboutwebsiteRoutingModule } from './aboutwebsite-routing.module';
 import { AboutwebsiteComponent } from './aboutwebsite.component';
@@ -10,6 +11,7 @@ import { AboutwebsiteComponent } from './aboutwebsite.component';
   ],
   imports: [
     CommonModule,
+    TranslatePipe,
     AboutwebsiteRoutingModule,
   ]
 })

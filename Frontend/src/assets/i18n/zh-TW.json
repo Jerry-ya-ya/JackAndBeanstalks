@@ -172,5 +172,31 @@
       "stars": "Stars {{ count }}",
       "empty": "Repository 資料正在等待 GitHub 回應。"
     }
+  },
+  "about": {
+    "state": {
+      "loading": "載入中...",
+      "errorTitle": "載入失敗",
+      "errorMessage": "無法載入倉庫資料，請稍後再試。",
+      "retry": "重新載入"
+    },
+    "repo": {
+      "stats": {
+        "stars": "stars",
+        "watchers": "watchers",
+        "forks": "forks"
+      },
+      "createdAt": "建立於 {{ date }}",
+      "updatedAt": "更新於 {{ date }}",
+      "viewOnGithub": "在 GitHub 上查看"
+    },
+    "features": {
+      "title": "技術特色",
+      "angular": "Single Page Application (SPA) 提供流暢的頁面轉換，無需完整頁面重新載入。",
+      "flask": "Python 微框架，設計簡潔且可擴展，適合建構 RESTful API 和網路服務。",
+      "postgresql": "強大的開源關聯式資料庫，以其可靠性、可擴展性和進階功能而聞名。",
+      "docker": "一個能把程式和它所需環境打包成輕量化容器，方便快速部署與跨平台運行的工具。",
+      "pwa": "PWA 讓網頁應用程式在操作體驗和功能上與原生行動應用程式相仿，設定方式請到教學頁面。"
+    }
   }
 }

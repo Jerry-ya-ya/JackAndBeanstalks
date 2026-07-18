@@ -172,5 +172,31 @@
       "stars": "Stars {{ count }}",
       "empty": "Repository data is waiting for GitHub to answer."
     }
+  },
+  "about": {
+    "state": {
+      "loading": "Loading...",
+      "errorTitle": "Loading failed",
+      "errorMessage": "Unable to load repository data. Please try again later.",
+      "retry": "Reload"
+    },
+    "repo": {
+      "stats": {
+        "stars": "stars",
+        "watchers": "watchers",
+        "forks": "forks"
+      },
+      "createdAt": "Created on {{ date }}",
+      "updatedAt": "Updated on {{ date }}",
+      "viewOnGithub": "View on GitHub"
+    },
+    "features": {
+      "title": "Technical Features",
+      "angular": "Single Page Application (SPA) support provides smooth page transitions without a full page reload.",
+      "flask": "A lightweight Python framework with a clean, extensible design for RESTful APIs and web services.",
+      "postgresql": "A powerful open-source relational database known for reliability, scalability, and advanced features.",
+      "docker": "A tool that packages an app and its required environment into lightweight containers for fast deployment and cross-platform execution.",
+      "pwa": "PWA makes web applications feel closer to native mobile apps in experience and capability. Setup instructions are available on the tutorial page."
+    }
   }
 }
