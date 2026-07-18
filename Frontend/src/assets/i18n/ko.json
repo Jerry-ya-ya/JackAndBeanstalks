@@ -96,5 +96,81 @@
       "lock": "현재 낮 또는 밤 모드 잠금",
       "unlock": "자동 낮밤 전환 잠금 해제"
     }
+  },
+  "member": {
+    "aria": {
+      "directory": "스튜디오 멤버 디렉터리",
+      "profile": "선택된 GitHub 멤버 프로필",
+      "memberAvatar": "{{ name }} 아바타",
+      "githubAvatar": "{{ name }} GitHub 아바타",
+      "githubStats": "GitHub 통계",
+      "capabilities": "멤버 역량",
+      "recentRepos": "최근 GitHub 리포지토리"
+    },
+    "directory": {
+      "kicker": "스튜디오 멤버 선택",
+      "title": "멤버",
+      "description": "멤버 노드를 선택하면 GitHub 기반 프로필 패널이 열립니다."
+    },
+    "demoSlots": {
+      "slot01": "멤버 슬롯 01",
+      "slot02": "멤버 슬롯 02",
+      "slot03": "멤버 슬롯 03",
+      "slot04": "멤버 슬롯 04",
+      "slot05": "멤버 슬롯 05",
+      "slot06": "멤버 슬롯 06",
+      "slot07": "멤버 슬롯 07",
+      "slot08": "멤버 슬롯 08",
+      "slot09": "멤버 슬롯 09",
+      "slot10": "멤버 슬롯 10",
+      "slot11": "멤버 슬롯 11",
+      "slot12": "멤버 슬롯 12"
+    },
+    "profile": {
+      "kicker": "선택된 멤버 / GitHub 신호",
+      "fallbackBio": "CMENStudio와 EDEN을 만드는 빌더입니다. 코드, 수학, 그리고 약간의 기묘한 실험으로 게임 지향 시스템을 다듬고 있습니다.",
+      "networkNode": "네트워크 노드 온라인"
+    },
+    "links": {
+      "githubProfile": "GitHub 프로필",
+      "website": "웹사이트"
+    },
+    "state": {
+      "loading": "GitHub 신호를 불러오는 중...",
+      "githubUnavailable": "GitHub 프로필 데이터를 일시적으로 사용할 수 없습니다.",
+      "retry": "다시 시도"
+    },
+    "stats": {
+      "publicRepos": "공개 Repos",
+      "followers": "팔로워",
+      "following": "팔로잉"
+    },
+    "capabilities": {
+      "direction": {
+        "label": "스튜디오 방향",
+        "value": "CMENStudio / EDEN"
+      },
+      "stack": {
+        "label": "주요 스택",
+        "value": "Angular, Flask, PostgreSQL"
+      },
+      "focus": {
+        "label": "초점",
+        "value": "게임 웹 시스템과 학습 네트워크"
+      },
+      "style": {
+        "label": "빌드 스타일",
+        "value": "전문적이고 게임 지향적이며 약간 낯선 감각"
+      }
+    },
+    "repos": {
+      "kicker": "최근 빌드",
+      "title": "GitHub 프로젝트",
+      "description": "선택된 공개 GitHub 프로필에서 가져옵니다. 이 슬롯들은 나중에 실제 스튜디오 멤버로 바꿀 수 있습니다.",
+      "repository": "Repository",
+      "noDescription": "아직 설명은 없지만 콘솔 불빛은 켜져 있습니다.",
+      "stars": "Stars {{ count }}",
+      "empty": "Repository 데이터가 GitHub 응답을 기다리고 있습니다."
+    }
   }
 }

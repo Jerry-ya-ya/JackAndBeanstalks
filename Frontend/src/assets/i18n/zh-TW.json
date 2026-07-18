@@ -96,5 +96,81 @@
       "lock": "鎖定目前的日夜模式",
       "unlock": "解除自動日夜切換鎖定"
     }
+  },
+  "member": {
+    "aria": {
+      "directory": "工作室成員目錄",
+      "profile": "已選擇的 GitHub 成員資料",
+      "memberAvatar": "{{ name }} 頭像",
+      "githubAvatar": "{{ name }} GitHub 頭像",
+      "githubStats": "GitHub 統計",
+      "capabilities": "成員能力",
+      "recentRepos": "近期 GitHub repositories"
+    },
+    "directory": {
+      "kicker": "工作室成員選擇",
+      "title": "成員",
+      "description": "選擇一個成員節點，開啟由 GitHub 資料驅動的個人面板。"
+    },
+    "demoSlots": {
+      "slot01": "成員席位 01",
+      "slot02": "成員席位 02",
+      "slot03": "成員席位 03",
+      "slot04": "成員席位 04",
+      "slot05": "成員席位 05",
+      "slot06": "成員席位 06",
+      "slot07": "成員席位 07",
+      "slot08": "成員席位 08",
+      "slot09": "成員席位 09",
+      "slot10": "成員席位 10",
+      "slot11": "成員席位 11",
+      "slot12": "成員席位 12"
+    },
+    "profile": {
+      "kicker": "已選成員 / GitHub 訊號",
+      "fallbackBio": "CMENStudio 與 EDEN 的建造者，用程式、數學與一些奇妙實驗打造面向遊戲的系統。",
+      "networkNode": "網路節點在線"
+    },
+    "links": {
+      "githubProfile": "GitHub 個人頁",
+      "website": "網站"
+    },
+    "state": {
+      "loading": "正在載入 GitHub 訊號...",
+      "githubUnavailable": "GitHub 個人資料暫時無法取得。",
+      "retry": "重試"
+    },
+    "stats": {
+      "publicRepos": "公開 Repos",
+      "followers": "追蹤者",
+      "following": "正在追蹤"
+    },
+    "capabilities": {
+      "direction": {
+        "label": "工作室方向",
+        "value": "CMENStudio / EDEN"
+      },
+      "stack": {
+        "label": "主要技術棧",
+        "value": "Angular, Flask, PostgreSQL"
+      },
+      "focus": {
+        "label": "專注領域",
+        "value": "遊戲網頁系統與學習網路"
+      },
+      "style": {
+        "label": "建造風格",
+        "value": "專業、遊戲感，並帶一點奇怪"
+      }
+    },
+    "repos": {
+      "kicker": "近期建造",
+      "title": "GitHub 專案",
+      "description": "資料來自已選擇的公開 GitHub 個人頁。這些席位未來可以替換成真正的工作室成員。",
+      "repository": "Repository",
+      "noDescription": "目前還沒有描述，但控制台的燈已經亮著。",
+      "stars": "Stars {{ count }}",
+      "empty": "Repository 資料正在等待 GitHub 回應。"
+    }
   }
 }

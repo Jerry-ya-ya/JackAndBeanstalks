@@ -96,5 +96,81 @@
       "lock": "現在の昼夜モードを固定",
       "unlock": "自動昼夜切り替えの固定を解除"
     }
+  },
+  "member": {
+    "aria": {
+      "directory": "スタジオメンバー一覧",
+      "profile": "選択中の GitHub メンバープロフィール",
+      "memberAvatar": "{{ name }} アバター",
+      "githubAvatar": "{{ name }} GitHub アバター",
+      "githubStats": "GitHub 統計",
+      "capabilities": "メンバー能力",
+      "recentRepos": "最近の GitHub リポジトリ"
+    },
+    "directory": {
+      "kicker": "スタジオメンバー選択",
+      "title": "メンバー",
+      "description": "メンバーノードを選択して、GitHub 情報を使ったプロフィールパネルを開きます。"
+    },
+    "demoSlots": {
+      "slot01": "メンバー枠 01",
+      "slot02": "メンバー枠 02",
+      "slot03": "メンバー枠 03",
+      "slot04": "メンバー枠 04",
+      "slot05": "メンバー枠 05",
+      "slot06": "メンバー枠 06",
+      "slot07": "メンバー枠 07",
+      "slot08": "メンバー枠 08",
+      "slot09": "メンバー枠 09",
+      "slot10": "メンバー枠 10",
+      "slot11": "メンバー枠 11",
+      "slot12": "メンバー枠 12"
+    },
+    "profile": {
+      "kicker": "選択メンバー / GitHub シグナル",
+      "fallbackBio": "CMENStudio と EDEN のビルダー。コード、数学、少し変わった実験でゲーム向けシステムを形にしています。",
+      "networkNode": "ネットワークノード稼働中"
+    },
+    "links": {
+      "githubProfile": "GitHub プロフィール",
+      "website": "ウェブサイト"
+    },
+    "state": {
+      "loading": "GitHub シグナルを読み込み中...",
+      "githubUnavailable": "GitHub プロフィールデータを一時的に取得できません。",
+      "retry": "再試行"
+    },
+    "stats": {
+      "publicRepos": "公開 Repos",
+      "followers": "フォロワー",
+      "following": "フォロー中"
+    },
+    "capabilities": {
+      "direction": {
+        "label": "スタジオ方針",
+        "value": "CMENStudio / EDEN"
+      },
+      "stack": {
+        "label": "主要スタック",
+        "value": "Angular, Flask, PostgreSQL"
+      },
+      "focus": {
+        "label": "フォーカス",
+        "value": "ゲーム向け Web システムと学習ネットワーク"
+      },
+      "style": {
+        "label": "ビルドスタイル",
+        "value": "プロらしく、ゲーム感があり、少し不思議"
+      }
+    },
+    "repos": {
+      "kicker": "最近のビルド",
+      "title": "GitHub プロジェクト",
+      "description": "選択中の公開 GitHub プロフィールから取得しています。これらの枠は将来、本物のスタジオメンバーにできます。",
+      "repository": "Repository",
+      "noDescription": "まだ説明はありませんが、コンソールのランプは点いています。",
+      "stars": "Stars {{ count }}",
+      "empty": "Repository データは GitHub からの応答を待っています。"
+    }
   }
 }

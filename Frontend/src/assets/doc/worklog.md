@@ -389,3 +389,7 @@
 - Add Japanese and Korean i18n support.
 
 - Add i18n to global controls and update the frontend build image.
+
+## 2026/07/19
+
+- Add i18n support to the members page.

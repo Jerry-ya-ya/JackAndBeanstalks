@@ -29,13 +29,13 @@ interface GithubRepository {
 interface StudioMember {
   id: number;
   name: string;
-  role: string;
+  roleKey: string;
   githubUsername: string;
 }
 
 interface MemberCapability {
-  label: string;
-  value: string;
+  labelKey: string;
+  valueKey: string;
 }
 
 @Component({
@@ -49,15 +49,15 @@ export class MemberComponent implements OnInit {
   readonly demoMembers: StudioMember[] = Array.from({ length: 12 }, (_, index) => ({
     id: index + 1,
     name: 'Jerry-ya-ya',
-    role: `Member Slot ${String(index + 1).padStart(2, '0')}`,
+    roleKey: `member.demoSlots.slot${String(index + 1).padStart(2, '0')}`,
     githubUsername: 'Jerry-ya-ya'
   }));
 
   readonly capabilities: MemberCapability[] = [
-    { label: 'Studio Direction', value: 'CMENStudio / EDEN' },
-    { label: 'Main Stack', value: 'Angular, Flask, PostgreSQL' },
-    { label: 'Focus', value: 'Game web systems and learning networks' },
-    { label: 'Build Style', value: 'Professional, game-driven, a little strange' }
+    { labelKey: 'member.capabilities.direction.label', valueKey: 'member.capabilities.direction.value' },
+    { labelKey: 'member.capabilities.stack.label', valueKey: 'member.capabilities.stack.value' },
+    { labelKey: 'member.capabilities.focus.label', valueKey: 'member.capabilities.focus.value' },
+    { labelKey: 'member.capabilities.style.label', valueKey: 'member.capabilities.style.value' }
   ];
 
   selectedMember = this.demoMembers[0];
@@ -99,7 +99,7 @@ export class MemberComponent implements OnInit {
       error: () => {
         this.profile = this.getFallbackProfile(member);
         this.repositories = [];
-        this.error = 'GitHub profile data is temporarily unavailable.';
+        this.error = 'member.state.githubUnavailable';
         this.loading = false;
       }
     });
@@ -110,7 +110,7 @@ export class MemberComponent implements OnInit {
   }
 
   get profileBio() {
-    return this.profile?.bio || 'Builder of CMENStudio and EDEN, shaping game-facing systems with code, math, and a few odd experiments.';
+    return this.profile?.bio || '';
   }
 
   get profileBlog() {

@@ -96,5 +96,81 @@
       "lock": "Lock current day or night mode",
       "unlock": "Unlock automatic day and night switching"
     }
+  },
+  "member": {
+    "aria": {
+      "directory": "Studio member directory",
+      "profile": "Selected GitHub member profile",
+      "memberAvatar": "{{ name }} avatar",
+      "githubAvatar": "{{ name }} GitHub avatar",
+      "githubStats": "GitHub statistics",
+      "capabilities": "Member capabilities",
+      "recentRepos": "Recent GitHub repositories"
+    },
+    "directory": {
+      "kicker": "Studio Member Select",
+      "title": "Members",
+      "description": "Choose a member node to open the GitHub-powered profile panel."
+    },
+    "demoSlots": {
+      "slot01": "Member Slot 01",
+      "slot02": "Member Slot 02",
+      "slot03": "Member Slot 03",
+      "slot04": "Member Slot 04",
+      "slot05": "Member Slot 05",
+      "slot06": "Member Slot 06",
+      "slot07": "Member Slot 07",
+      "slot08": "Member Slot 08",
+      "slot09": "Member Slot 09",
+      "slot10": "Member Slot 10",
+      "slot11": "Member Slot 11",
+      "slot12": "Member Slot 12"
+    },
+    "profile": {
+      "kicker": "Selected Member / GitHub Signal",
+      "fallbackBio": "Builder of CMENStudio and EDEN, shaping game-facing systems with code, math, and a few odd experiments.",
+      "networkNode": "Network Node Online"
+    },
+    "links": {
+      "githubProfile": "GitHub Profile",
+      "website": "Website"
+    },
+    "state": {
+      "loading": "Loading GitHub signal...",
+      "githubUnavailable": "GitHub profile data is temporarily unavailable.",
+      "retry": "Retry"
+    },
+    "stats": {
+      "publicRepos": "Public Repos",
+      "followers": "Followers",
+      "following": "Following"
+    },
+    "capabilities": {
+      "direction": {
+        "label": "Studio Direction",
+        "value": "CMENStudio / EDEN"
+      },
+      "stack": {
+        "label": "Main Stack",
+        "value": "Angular, Flask, PostgreSQL"
+      },
+      "focus": {
+        "label": "Focus",
+        "value": "Game web systems and learning networks"
+      },
+      "style": {
+        "label": "Build Style",
+        "value": "Professional, game-driven, a little strange"
+      }
+    },
+    "repos": {
+      "kicker": "Recent Builds",
+      "title": "GitHub Projects",
+      "description": "Pulled from the selected public GitHub profile. These slots can become real studio members later.",
+      "repository": "Repository",
+      "noDescription": "No description yet, but the console light is on.",
+      "stars": "Stars {{ count }}",
+      "empty": "Repository data is waiting for GitHub to answer."
+    }
   }
 }
