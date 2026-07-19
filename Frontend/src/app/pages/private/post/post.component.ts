@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -25,7 +26,10 @@ export class PostComponent {
   public environment = environment;
   public apiRoot: string = environment.apiUrl.replace('/api', '');
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private translate: TranslateService
+  ) {}
 
   get headers() {
     const token = localStorage.getItem('token');
@@ -42,7 +46,7 @@ export class PostComponent {
       next: data => {
         this.user = data;
       },
-      error: () => alert('取得個人資料失敗')
+      error: () => alert(this.translate.instant('postWall.feedback.profileFailure'))
     });
   }
 
@@ -64,7 +68,7 @@ export class PostComponent {
           this.loadMyPosts();
         },
         error: err => {
-          this.message = err.error?.error || '發文失敗';
+          this.message = err.error?.error || 'postWall.feedback.createFailure';
         }
       });
   }
@@ -88,13 +92,13 @@ export class PostComponent {
           this.loadMyPosts();
         },
         error: err => {
-          this.message = err.error?.error || '更新失敗';
+          this.message = err.error?.error || 'postWall.feedback.updateFailure';
         }
       });
   }
   
   deletePost(postId: number) {
-    if (!confirm('確定要刪除這篇貼文？')) return;
+    if (!confirm(this.translate.instant('postWall.confirm.delete'))) return;
   
     this.http.delete(`${environment.apiUrl}/post/${postId}`, this.headers)
       .subscribe({
@@ -103,7 +107,7 @@ export class PostComponent {
           this.loadMyPosts();
         },
         error: err => {
-          this.message = err.error?.error || '刪除失敗';
+          this.message = err.error?.error || 'postWall.feedback.deleteFailure';
         }
       });
   }

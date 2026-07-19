@@ -405,3 +405,7 @@
 - Add i18n support to the login page.
 
 - Add i18n support to the private home page.
+
+## 2026/07/20
+
+- Add i18n support to the private post wall.

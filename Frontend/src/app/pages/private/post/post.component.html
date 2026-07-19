@@ -4,9 +4,9 @@
     <div class="header-content">
       <h1 class="main-title">
         <span class="title-icon">📝</span>
-        我的貼文牆
+        {{ 'postWall.header.title' | translate }}
       </h1>
-      <p class="subtitle">分享你的想法，記錄生活的點滴</p>
+      <p class="subtitle">{{ 'postWall.header.subtitle' | translate }}</p>
     </div>
     <div class="header-decoration">
       <div class="floating-elements">
@@ -27,7 +27,7 @@
               @if (user?.avatar_url) {
                 <img
                   [src]="apiRoot + '/' + user.avatar_url"
-                  alt="用戶頭像" />
+                  [alt]="'postWall.creation.userAvatar' | translate" />
               } @else {
                 <span>{{ getAvatarInitial(user) }}</span>
               }
@@ -35,8 +35,8 @@
             <div class="avatar-ring"></div>
           </div>
           <div class="user-details">
-            <h3 class="username">{{ user?.username || '我的貼文' }}</h3>
-            <span class="post-status">正在撰寫...</span>
+            <h3 class="username">{{ user?.username || ('postWall.creation.defaultUsername' | translate) }}</h3>
+            <span class="post-status">{{ 'postWall.creation.status' | translate }}</span>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
           <textarea
             [(ngModel)]="content"
             rows="4"
-            placeholder="分享你的想法、心情或生活點滴..."
+            [placeholder]="'postWall.creation.placeholder' | translate"
             class="post-textarea"
             maxlength="500">
           </textarea>
@@ -72,7 +72,7 @@
             [disabled]="!content.trim()"
             [class.active]="content.trim()">
             <span class="btn-icon">🚀</span>
-            <span class="btn-text">發佈貼文</span>
+            <span class="btn-text">{{ 'postWall.creation.submit' | translate }}</span>
           </button>
         </div>
       </div>
@@ -84,7 +84,7 @@
     <div class="message-container">
       <div class="message success">
         <span class="message-icon">✓</span>
-        <span class="message-text">{{ message }}</span>
+        <span class="message-text">{{ message | translate }}</span>
       </div>
     </div>
   }
@@ -94,11 +94,11 @@
     <div class="section-header">
       <h2 class="section-title">
         <span class="title-icon">📋</span>
-        我的貼文記錄
+        {{ 'postWall.posts.title' | translate }}
       </h2>
       <div class="post-count">
         <span class="count-number">{{ posts.length }}</span>
-        <span class="count-label">篇貼文</span>
+        <span class="count-label">{{ 'postWall.posts.countLabel' | translate }}</span>
       </div>
     </div>
 
@@ -119,12 +119,12 @@
                     @if (user?.avatar_url) {
                       <img
                         [src]="apiRoot + '/' + user.avatar_url"
-                        alt="作者頭像" />
+                        [alt]="'postWall.posts.authorAvatar' | translate" />
                     } @else {
                       <span>{{ getAvatarInitial(user) }}</span>
                     }
                   </div>
-                  <span class="author-name">{{ user?.username || '我' }}</span>
+                  <span class="author-name">{{ user?.username || ('postWall.posts.me' | translate) }}</span>
                 </div>
                 <div class="post-time">
                   <span class="time-icon">🕒</span>
@@ -150,11 +150,11 @@
                 <div class="form-actions" style="margin-top:8px; display:flex; gap:8px;">
                   <button class="submit-btn" (click)="updatePost(post.id)">
                     <span class="btn-icon">💾</span>
-                    <span class="btn-text">儲存</span>
+                    <span class="btn-text">{{ 'postWall.edit.save' | translate }}</span>
                   </button>
                   <button class="submit-btn" (click)="cancelEdit(post.id)">
                     <span class="btn-icon">✖️</span>
-                    <span class="btn-text">取消</span>
+                    <span class="btn-text">{{ 'postWall.edit.cancel' | translate }}</span>
                   </button>
                 </div>
               } @else {
@@ -182,8 +182,8 @@
     @if (posts.length === 0) {
       <div class="empty-state">
         <div class="empty-icon">📝</div>
-        <h3 class="empty-title">還沒有貼文</h3>
-        <p class="empty-description">開始分享你的第一個想法吧！</p>
+        <h3 class="empty-title">{{ 'postWall.empty.title' | translate }}</h3>
+        <p class="empty-description">{{ 'postWall.empty.description' | translate }}</p>
         <div class="empty-decoration">
           <div class="floating-element">✨</div>
           <div class="floating-element">💭</div>

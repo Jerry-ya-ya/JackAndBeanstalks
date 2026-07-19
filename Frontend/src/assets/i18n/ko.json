@@ -385,5 +385,41 @@
       "title": "아직 게시글이 없습니다",
       "description": "가장 먼저 생각을 공유해 보세요."
     }
+  },
+  "postWall": {
+    "header": {
+      "title": "내 게시글 담벼락",
+      "subtitle": "생각을 공유하고 일상의 순간을 기록하세요."
+    },
+    "creation": {
+      "userAvatar": "사용자 아바타",
+      "defaultUsername": "내 게시글",
+      "status": "작성 중...",
+      "placeholder": "생각, 기분, 일상의 순간을 공유하세요...",
+      "submit": "게시글 발행"
+    },
+    "posts": {
+      "title": "내 게시글 기록",
+      "countLabel": "개 게시글",
+      "authorAvatar": "작성자 아바타",
+      "me": "나"
+    },
+    "edit": {
+      "save": "저장",
+      "cancel": "취소"
+    },
+    "empty": {
+      "title": "아직 게시글이 없습니다",
+      "description": "첫 번째 생각을 공유해 보세요."
+    },
+    "feedback": {
+      "profileFailure": "프로필 데이터를 가져오지 못했습니다",
+      "createFailure": "게시글 발행에 실패했습니다",
+      "updateFailure": "게시글 업데이트에 실패했습니다",
+      "deleteFailure": "게시글 삭제에 실패했습니다"
+    },
+    "confirm": {
+      "delete": "이 게시글을 삭제하시겠습니까?"
+    }
   }
 }

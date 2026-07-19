@@ -26,6 +26,48 @@
   z-index: 2;
 }
 
+.header-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-elements {
+  position: absolute;
+  inset: 0;
+}
+
+.floating-icon {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  font-size: 1.45rem;
+  animation: float 3.8s ease-in-out infinite;
+}
+
+.floating-icon:nth-child(1) {
+  top: 18%;
+  left: 12%;
+}
+
+.floating-icon:nth-child(2) {
+  right: 16%;
+  bottom: 18%;
+  animation-delay: 0.55s;
+}
+
+.floating-icon:nth-child(3) {
+  top: 20%;
+  right: 10%;
+  animation-delay: 1.1s;
+}
+
 .main-title,
 .section-title {
   display: flex;
@@ -174,9 +216,19 @@
 }
 
 .user-details,
-.post-text,
-span {
+.post-text {
   flex: 1;
+}
+
+.title-icon,
+.btn-icon,
+.action-icon,
+.stat-icon,
+.message-icon,
+.time-icon,
+.count-number,
+.count-label {
+  flex: 0 0 auto;
 }
 
 .username,

@@ -385,5 +385,41 @@
       "title": "還沒有貼文",
       "description": "成為第一個分享想法的人吧！"
     }
+  },
+  "postWall": {
+    "header": {
+      "title": "我的貼文牆",
+      "subtitle": "分享你的想法，記錄生活的點滴"
+    },
+    "creation": {
+      "userAvatar": "用戶頭像",
+      "defaultUsername": "我的貼文",
+      "status": "正在撰寫...",
+      "placeholder": "分享你的想法、心情或生活點滴...",
+      "submit": "發佈貼文"
+    },
+    "posts": {
+      "title": "我的貼文記錄",
+      "countLabel": "篇貼文",
+      "authorAvatar": "作者頭像",
+      "me": "我"
+    },
+    "edit": {
+      "save": "儲存",
+      "cancel": "取消"
+    },
+    "empty": {
+      "title": "還沒有貼文",
+      "description": "開始分享你的第一個想法吧！"
+    },
+    "feedback": {
+      "profileFailure": "取得個人資料失敗",
+      "createFailure": "發文失敗",
+      "updateFailure": "更新失敗",
+      "deleteFailure": "刪除失敗"
+    },
+    "confirm": {
+      "delete": "確定要刪除這篇貼文？"
+    }
   }
 }

@@ -385,5 +385,41 @@
       "title": "まだ投稿がありません",
       "description": "最初に思いを共有する人になりましょう。"
     }
+  },
+  "postWall": {
+    "header": {
+      "title": "自分の投稿ウォール",
+      "subtitle": "考えを共有し、日常のひとこまを記録しましょう。"
+    },
+    "creation": {
+      "userAvatar": "ユーザーアバター",
+      "defaultUsername": "自分の投稿",
+      "status": "執筆中...",
+      "placeholder": "考え、気分、日常のひとこまを共有しましょう...",
+      "submit": "投稿を公開"
+    },
+    "posts": {
+      "title": "自分の投稿記録",
+      "countLabel": "件の投稿",
+      "authorAvatar": "投稿者アバター",
+      "me": "自分"
+    },
+    "edit": {
+      "save": "保存",
+      "cancel": "キャンセル"
+    },
+    "empty": {
+      "title": "まだ投稿がありません",
+      "description": "最初の考えを共有してみましょう。"
+    },
+    "feedback": {
+      "profileFailure": "プロフィールデータの取得に失敗しました",
+      "createFailure": "投稿の公開に失敗しました",
+      "updateFailure": "投稿の更新に失敗しました",
+      "deleteFailure": "投稿の削除に失敗しました"
+    },
+    "confirm": {
+      "delete": "この投稿を削除してもよろしいですか？"
+    }
   }
 }

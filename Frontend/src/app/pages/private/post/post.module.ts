@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { PostRoutingModule } from './post-routing.module';
 import { PostComponent } from './post.component';
@@ -13,6 +14,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
+    TranslatePipe,
     PostRoutingModule,
     HttpClientModule,
     FormsModule
