@@ -271,5 +271,27 @@
         "detail": "바로가기를 열어 웹사이트를 데스크톱 App처럼 사용합니다."
       }
     }
+  },
+  "update": {
+    "hero": {
+      "kicker": "패치 노트",
+      "title": "업데이트",
+      "description": "프로젝트 worklog에서 생성된 공개 릴리스 노트입니다."
+    },
+    "latest": {
+      "label": "최신",
+      "kicker": "최신 빌드 노트",
+      "changeCount": "변경 {{ count }}개"
+    },
+    "state": {
+      "loading": "업데이트 로그를 불러오는 중...",
+      "empty": "업데이트 로그가 비어 있거나 분석할 수 없습니다.",
+      "unavailable": "현재 업데이트 로그를 사용할 수 없습니다."
+    },
+    "timeline": {
+      "kicker": "전체 기록",
+      "title": "Worklog 타임라인",
+      "defaultSection": "업데이트"
+    }
   }
 }

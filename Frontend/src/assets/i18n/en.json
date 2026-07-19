@@ -271,5 +271,27 @@
         "detail": "Open the shortcut to use the website as a desktop-style app."
       }
     }
+  },
+  "update": {
+    "hero": {
+      "kicker": "Patch Notes",
+      "title": "Update",
+      "description": "Public release notes generated from the project worklog."
+    },
+    "latest": {
+      "label": "Latest",
+      "kicker": "Newest Build Notes",
+      "changeCount": "{{ count }} changes"
+    },
+    "state": {
+      "loading": "Loading update log...",
+      "empty": "Update log is empty or cannot be parsed.",
+      "unavailable": "Update log is unavailable right now."
+    },
+    "timeline": {
+      "kicker": "Full History",
+      "title": "Worklog Timeline",
+      "defaultSection": "Updates"
+    }
   }
 }

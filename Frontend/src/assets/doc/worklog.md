@@ -397,3 +397,5 @@
 - Add i18n support to the about page.
 
 - Add i18n support to the tutorial page.
+
+- Add i18n support to the update page.

@@ -271,5 +271,27 @@
         "detail": "ショートカットを開いて、Web サイトをデスクトップ App のように使用します。"
       }
     }
+  },
+  "update": {
+    "hero": {
+      "kicker": "パッチノート",
+      "title": "更新",
+      "description": "プロジェクト worklog から生成された公開リリースノートです。"
+    },
+    "latest": {
+      "label": "最新",
+      "kicker": "最新ビルドノート",
+      "changeCount": "{{ count }} 件の変更"
+    },
+    "state": {
+      "loading": "更新ログを読み込み中...",
+      "empty": "更新ログが空、または解析できません。",
+      "unavailable": "現在、更新ログを利用できません。"
+    },
+    "timeline": {
+      "kicker": "全履歴",
+      "title": "Worklog タイムライン",
+      "defaultSection": "更新"
+    }
   }
 }

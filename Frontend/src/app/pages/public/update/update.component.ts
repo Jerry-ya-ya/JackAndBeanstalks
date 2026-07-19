@@ -51,11 +51,11 @@ export class UpdateComponent implements OnInit {
       this.latestEntry = this.findLatestEntry(this.sections);
 
       if (!this.latestEntry) {
-        this.error = 'Update log is empty or cannot be parsed.';
+        this.error = 'update.state.empty';
       }
     } catch (error) {
       console.error('Failed to load update log:', error);
-      this.error = 'Update log is unavailable right now.';
+      this.error = 'update.state.unavailable';
     } finally {
       window.clearTimeout(timeoutId);
       this.loading = false;
@@ -147,13 +147,13 @@ export class UpdateComponent implements OnInit {
   }
 
   private createDefaultSection(sections: WorklogSection[]): WorklogSection {
-    const section = { title: 'Updates', entries: [] };
+    const section = { title: 'update.timeline.defaultSection', entries: [] };
     sections.push(section);
     return section;
   }
 
   private createUndatedEntry(section: WorklogSection): WorklogEntry {
-    const entry = { date: 'Latest', items: [] };
+    const entry = { date: 'update.latest.label', items: [] };
     section.entries.push(entry);
     return entry;
   }

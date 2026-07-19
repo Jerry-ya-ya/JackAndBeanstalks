@@ -1,33 +1,33 @@
 <main class="update-page">
   <section class="update-hero">
     <div>
-      <p class="update-kicker">Patch Notes</p>
-      <h1>Update</h1>
-      <p>Public release notes generated from the project worklog.</p>
+      <p class="update-kicker">{{ 'update.hero.kicker' | translate }}</p>
+      <h1>{{ 'update.hero.title' | translate }}</h1>
+      <p>{{ 'update.hero.description' | translate }}</p>
     </div>
 
     @if (latestEntry) {
       <aside class="latest-card">
-        <span>Latest</span>
+        <span>{{ 'update.latest.label' | translate }}</span>
         <strong>{{ latestEntry.date }}</strong>
-        <small>{{ latestEntry.items.length }} changes</small>
+        <small>{{ 'update.latest.changeCount' | translate:{ count: latestEntry.items.length } }}</small>
       </aside>
     }
   </section>
 
   @if (loading) {
-    <section class="state-panel">Loading update log...</section>
+    <section class="state-panel">{{ 'update.state.loading' | translate }}</section>
   }
 
   @if (error) {
-    <section class="state-panel state-panel--error">{{ error }}</section>
+    <section class="state-panel state-panel--error">{{ error | translate }}</section>
   }
 
   @if (!loading && !error) {
     @if (latestEntry) {
       <section class="latest-section">
         <div class="section-heading">
-          <p class="update-kicker">Newest Build Notes</p>
+          <p class="update-kicker">{{ 'update.latest.kicker' | translate }}</p>
           <h2>{{ latestEntry.date }}</h2>
         </div>
 
@@ -41,19 +41,19 @@
 
     <section class="timeline-section">
       <div class="section-heading">
-        <p class="update-kicker">Full History</p>
-        <h2>Worklog Timeline</h2>
+        <p class="update-kicker">{{ 'update.timeline.kicker' | translate }}</p>
+        <h2>{{ 'update.timeline.title' | translate }}</h2>
       </div>
 
       <div class="timeline">
         @for (section of displaySections; track section.title) {
           <article class="version-block">
-            <h3>{{ section.title }}</h3>
+            <h3>{{ section.title.startsWith('update.') ? (section.title | translate) : section.title }}</h3>
 
             <div class="entry-stack">
               @for (entry of section.entries; track entry.date) {
                 <div class="entry-card">
-                  <div class="entry-date">{{ entry.date }}</div>
+                  <div class="entry-date">{{ entry.date.startsWith('update.') ? (entry.date | translate) : entry.date }}</div>
                   <ul>
                     @for (item of entry.items; track item) {
                       <li>{{ item }}</li>

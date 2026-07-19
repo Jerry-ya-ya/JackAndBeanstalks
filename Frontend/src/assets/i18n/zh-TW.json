@@ -271,5 +271,27 @@
         "detail": "打開捷徑，像桌面 App 一樣使用這個網站。"
       }
     }
+  },
+  "update": {
+    "hero": {
+      "kicker": "更新紀錄",
+      "title": "更新",
+      "description": "從專案 worklog 產生的公開版本更新紀錄。"
+    },
+    "latest": {
+      "label": "最新",
+      "kicker": "最新建置筆記",
+      "changeCount": "{{ count }} 項變更"
+    },
+    "state": {
+      "loading": "正在載入更新紀錄...",
+      "empty": "更新紀錄是空的，或目前無法解析。",
+      "unavailable": "更新紀錄目前無法使用。"
+    },
+    "timeline": {
+      "kicker": "完整歷史",
+      "title": "Worklog 時間線",
+      "defaultSection": "更新"
+    }
   }
 }
