@@ -89,21 +89,21 @@
     </svg>
     <!-- poison dragon -->
   </div>
-  <section class="login-shell" aria-label="Login">
+  <section class="login-shell" [attr.aria-label]="'login.aria.login' | translate">
     <div class="login-copy">
-      <p class="login-kicker">Access Portal</p>
-      <h1>Login</h1>
-      <p>Return to the CMENStudio and EDEN network. The old vector guardian is still watching the gate.</p>
+      <p class="login-kicker">{{ 'login.hero.kicker' | translate }}</p>
+      <h1>{{ 'login.hero.title' | translate }}</h1>
+      <p>{{ 'login.hero.description' | translate }}</p>
     </div>
 
     <form class="login-panel" (ngSubmit)="login()" autocomplete="on">
       <div class="panel-header">
-        <p class="login-kicker">Player Auth</p>
-        <h2>Sign In</h2>
+        <p class="login-kicker">{{ 'login.form.kicker' | translate }}</p>
+        <h2>{{ 'login.form.title' | translate }}</h2>
       </div>
 
       <label class="form-field">
-        <span>Username</span>
+        <span>{{ 'login.form.username' | translate }}</span>
         <input
           id="login-username"
           [(ngModel)]="username"
@@ -112,11 +112,11 @@
           autocapitalize="none"
           spellcheck="false"
           required
-          placeholder="Enter your account">
+          [placeholder]="'login.form.usernamePlaceholder' | translate">
       </label>
 
       <label class="form-field">
-        <span>Password</span>
+        <span>{{ 'login.form.password' | translate }}</span>
         <input
           id="login-password"
           [(ngModel)]="password"
@@ -124,28 +124,28 @@
           type="password"
           autocomplete="current-password"
           required
-          placeholder="Enter your password">
+          [placeholder]="'login.form.passwordPlaceholder' | translate">
       </label>
 
       <div class="login-tools">
         <label class="remember">
           <input class="checkbox" type="checkbox" name="remember" autocomplete="off">
-          <span>Remember</span>
+          <span>{{ 'login.form.remember' | translate }}</span>
         </label>
-        <a [routerLink]="['forgotpassword']">Forgot password?</a>
+        <a [routerLink]="['forgotpassword']">{{ 'login.links.forgotPassword' | translate }}</a>
       </div>
 
       <button class="login-button" type="submit" [disabled]="submitting">
-        {{ submitting ? 'Signing in...' : 'Sign In' }}
+        {{ (submitting ? 'login.form.signingIn' : 'login.form.signIn') | translate }}
       </button>
 
       @if (error) {
-        <p class="error-message">{{ error }}</p>
+        <p class="error-message">{{ error | translate }}</p>
       }
 
       <div class="register-link">
-        <span>No account yet?</span>
-        <a [routerLink]="['/' + path.register]">Create one</a>
+        <span>{{ 'login.links.noAccount' | translate }}</span>
+        <a [routerLink]="['/' + path.register]">{{ 'login.links.createOne' | translate }}</a>
       </div>
     </form>
   </section>

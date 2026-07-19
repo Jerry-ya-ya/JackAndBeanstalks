@@ -329,5 +329,34 @@
       "success": "註冊成功！請至信箱點擊驗證連結",
       "failure": "註冊失敗"
     }
+  },
+  "login": {
+    "aria": {
+      "login": "登入"
+    },
+    "hero": {
+      "kicker": "存取入口",
+      "title": "登入",
+      "description": "回到 CMENStudio 與 EDEN 網路。"
+    },
+    "form": {
+      "kicker": "玩家驗證",
+      "title": "登入",
+      "username": "使用者名稱",
+      "usernamePlaceholder": "輸入你的帳號",
+      "password": "密碼",
+      "passwordPlaceholder": "輸入你的密碼",
+      "remember": "記住我",
+      "signingIn": "登入中...",
+      "signIn": "登入"
+    },
+    "links": {
+      "forgotPassword": "忘記密碼？",
+      "noAccount": "還沒有帳號？",
+      "createOne": "建立帳號"
+    },
+    "feedback": {
+      "failure": "登入失敗，請檢查帳號密碼"
+    }
   }
 }

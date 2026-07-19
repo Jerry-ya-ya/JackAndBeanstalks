@@ -401,3 +401,5 @@
 - Add i18n support to the update page.
 
 - Add i18n support to the register page.
+
+- Add i18n support to the login page.

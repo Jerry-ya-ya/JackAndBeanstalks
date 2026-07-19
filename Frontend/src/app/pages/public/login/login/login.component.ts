@@ -45,7 +45,7 @@ export class LoginComponent {
         this.router.navigate([appPath.userhome]);
       },
       error: () => {
-        this.error = '登入失敗，請檢查帳號密碼';
+        this.error = 'login.feedback.failure';
         this.submitting = false;
       }
     });

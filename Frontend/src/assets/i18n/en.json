@@ -329,5 +329,34 @@
       "success": "Registration successful. Please check your email and open the verification link.",
       "failure": "Registration failed"
     }
+  },
+  "login": {
+    "aria": {
+      "login": "Login"
+    },
+    "hero": {
+      "kicker": "Access Portal",
+      "title": "Login",
+      "description": "Return to the CMENStudio and EDEN network. The old vector guardian is still watching the gate."
+    },
+    "form": {
+      "kicker": "Player Auth",
+      "title": "Sign In",
+      "username": "Username",
+      "usernamePlaceholder": "Enter your account",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "remember": "Remember",
+      "signingIn": "Signing in...",
+      "signIn": "Sign In"
+    },
+    "links": {
+      "forgotPassword": "Forgot password?",
+      "noAccount": "No account yet?",
+      "createOne": "Create one"
+    },
+    "feedback": {
+      "failure": "Login failed. Please check your username and password."
+    }
   }
 }

@@ -329,5 +329,34 @@
       "success": "登録に成功しました。メールボックスで確認リンクを開いてください。",
       "failure": "登録に失敗しました"
     }
+  },
+  "login": {
+    "aria": {
+      "login": "ログイン"
+    },
+    "hero": {
+      "kicker": "アクセス ポータル",
+      "title": "ログイン",
+      "description": "CMENStudio と EDEN ネットワークへ戻ります。古いベクターの守護者はいまもゲートを見張っています。"
+    },
+    "form": {
+      "kicker": "プレイヤー認証",
+      "title": "サインイン",
+      "username": "ユーザー名",
+      "usernamePlaceholder": "アカウントを入力",
+      "password": "パスワード",
+      "passwordPlaceholder": "パスワードを入力",
+      "remember": "記憶する",
+      "signingIn": "サインイン中...",
+      "signIn": "サインイン"
+    },
+    "links": {
+      "forgotPassword": "パスワードを忘れましたか？",
+      "noAccount": "まだアカウントがありませんか？",
+      "createOne": "作成する"
+    },
+    "feedback": {
+      "failure": "ログインに失敗しました。ユーザー名とパスワードを確認してください。"
+    }
   }
 }
