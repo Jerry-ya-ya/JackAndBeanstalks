@@ -1,54 +1,54 @@
 <main class="register-page">
-  <section class="register-shell" aria-label="Create account">
+  <section class="register-shell" [attr.aria-label]="'register.aria.createAccount' | translate">
     <div class="register-intro">
-      <p class="register-kicker">Account Gateway</p>
-      <h1>Join the Studio</h1>
+      <p class="register-kicker">{{ 'register.intro.kicker' | translate }}</p>
+      <h1>{{ 'register.intro.title' | translate }}</h1>
       <p>
-        Create an account for the CMENStudio and EDEN network. After registration, verify your email to unlock the full account flow.
+        {{ 'register.intro.description' | translate }}
       </p>
 
-      <div class="register-checklist" aria-label="Registration steps">
-        <span>1. Create credentials</span>
-        <span>2. Verify email</span>
-        <span>3. Enter the network</span>
+      <div class="register-checklist" [attr.aria-label]="'register.aria.steps' | translate">
+        <span>{{ 'register.steps.credentials' | translate }}</span>
+        <span>{{ 'register.steps.verifyEmail' | translate }}</span>
+        <span>{{ 'register.steps.enterNetwork' | translate }}</span>
       </div>
     </div>
 
     <form class="register-panel" (ngSubmit)="register()" autocomplete="off">
       <div class="panel-header">
-        <p class="register-kicker">New Player</p>
-        <h2>Register</h2>
+        <p class="register-kicker">{{ 'register.form.kicker' | translate }}</p>
+        <h2>{{ 'register.form.title' | translate }}</h2>
       </div>
 
       <label class="form-field" for="username">
-        <span>Username</span>
-        <input id="username" [(ngModel)]="username" name="username" required placeholder="Choose your account name">
+        <span>{{ 'register.form.username' | translate }}</span>
+        <input id="username" [(ngModel)]="username" name="username" required [placeholder]="'register.form.usernamePlaceholder' | translate">
       </label>
 
       <label class="form-field" for="email">
-        <span>Email</span>
-        <input id="email" type="email" [(ngModel)]="email" name="email" required placeholder="you@example.com">
+        <span>{{ 'register.form.email' | translate }}</span>
+        <input id="email" type="email" [(ngModel)]="email" name="email" required [placeholder]="'register.form.emailPlaceholder' | translate">
       </label>
 
       <label class="form-field" for="password">
-        <span>Password</span>
-        <input id="password" type="password" [(ngModel)]="password" name="password" required placeholder="Create a password">
+        <span>{{ 'register.form.password' | translate }}</span>
+        <input id="password" type="password" [(ngModel)]="password" name="password" required [placeholder]="'register.form.passwordPlaceholder' | translate">
       </label>
 
       <button class="register-btn" type="submit" [disabled]="submitting">
-        {{ submitting ? 'Creating...' : 'Create Account' }}
+        {{ (submitting ? 'register.form.creating' : 'register.form.createAccount') | translate }}
       </button>
 
       <div class="resend-section">
-        <span>Missing the verification email?</span>
-        <a [routerLink]="['resendverification']">Resend it</a>
+        <span>{{ 'register.resend.prompt' | translate }}</span>
+        <a [routerLink]="['resendverification']">{{ 'register.resend.link' | translate }}</a>
       </div>
 
-      @if (successMessage) {
-        <p class="feedback success-message">{{ successMessage }}</p>
+      @if (successMessageKey) {
+        <p class="feedback success-message">{{ successMessageKey | translate }}</p>
       }
       @if (error) {
-        <p class="feedback error-message">{{ error }}</p>
+        <p class="feedback error-message">{{ errorIsTranslationKey ? (error | translate) : error }}</p>
       }
     </form>
   </section>

@@ -399,3 +399,5 @@
 - Add i18n support to the tutorial page.
 
 - Add i18n support to the update page.
+
+- Add i18n support to the register page.

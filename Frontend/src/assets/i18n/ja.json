@@ -293,5 +293,41 @@
       "title": "Worklog タイムライン",
       "defaultSection": "更新"
     }
+  },
+  "register": {
+    "aria": {
+      "createAccount": "アカウント作成",
+      "steps": "登録手順"
+    },
+    "intro": {
+      "kicker": "アカウントゲートウェイ",
+      "title": "スタジオに参加",
+      "description": "CMENStudio と EDEN ネットワーク用のアカウントを作成します。登録後、メールを確認して完全なアカウントフローを有効にしてください。"
+    },
+    "steps": {
+      "credentials": "1. ログイン情報を作成",
+      "verifyEmail": "2. メールを確認",
+      "enterNetwork": "3. ネットワークへ入る"
+    },
+    "form": {
+      "kicker": "新規プレイヤー",
+      "title": "登録",
+      "username": "ユーザー名",
+      "usernamePlaceholder": "アカウント名を選択",
+      "email": "メール",
+      "emailPlaceholder": "you@example.com",
+      "password": "パスワード",
+      "passwordPlaceholder": "パスワードを作成",
+      "creating": "作成中...",
+      "createAccount": "アカウント作成"
+    },
+    "resend": {
+      "prompt": "確認メールが届きませんか？",
+      "link": "再送信"
+    },
+    "feedback": {
+      "success": "登録に成功しました。メールボックスで確認リンクを開いてください。",
+      "failure": "登録に失敗しました"
+    }
   }
 }

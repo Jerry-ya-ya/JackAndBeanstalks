@@ -293,5 +293,41 @@
       "title": "Worklog Timeline",
       "defaultSection": "Updates"
     }
+  },
+  "register": {
+    "aria": {
+      "createAccount": "Create account",
+      "steps": "Registration steps"
+    },
+    "intro": {
+      "kicker": "Account Gateway",
+      "title": "Join the Studio",
+      "description": "Create an account for the CMENStudio and EDEN network. After registration, verify your email to unlock the full account flow."
+    },
+    "steps": {
+      "credentials": "1. Create credentials",
+      "verifyEmail": "2. Verify email",
+      "enterNetwork": "3. Enter the network"
+    },
+    "form": {
+      "kicker": "New Player",
+      "title": "Register",
+      "username": "Username",
+      "usernamePlaceholder": "Choose your account name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "Create a password",
+      "creating": "Creating...",
+      "createAccount": "Create Account"
+    },
+    "resend": {
+      "prompt": "Missing the verification email?",
+      "link": "Resend it"
+    },
+    "feedback": {
+      "success": "Registration successful. Please check your email and open the verification link.",
+      "failure": "Registration failed"
+    }
   }
 }

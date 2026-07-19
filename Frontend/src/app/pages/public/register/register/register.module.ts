@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 // Import FormsModule to enable template-driven forms (place in imports)
 import { FormsModule } from '@angular/forms';
@@ -14,6 +15,7 @@ import { RegisterComponent } from './register.component';
   ],
   imports: [
     CommonModule,
+    TranslatePipe,
     RegisterRoutingModule,
     FormsModule,
   ]

@@ -293,5 +293,41 @@
       "title": "Worklog 타임라인",
       "defaultSection": "업데이트"
     }
+  },
+  "register": {
+    "aria": {
+      "createAccount": "계정 만들기",
+      "steps": "가입 단계"
+    },
+    "intro": {
+      "kicker": "계정 게이트웨이",
+      "title": "스튜디오에 합류하기",
+      "description": "CMENStudio와 EDEN 네트워크 계정을 만드세요. 가입 후 이메일을 인증하면 전체 계정 흐름을 사용할 수 있습니다."
+    },
+    "steps": {
+      "credentials": "1. 로그인 정보 만들기",
+      "verifyEmail": "2. 이메일 인증",
+      "enterNetwork": "3. 네트워크 입장"
+    },
+    "form": {
+      "kicker": "새 플레이어",
+      "title": "가입",
+      "username": "사용자 이름",
+      "usernamePlaceholder": "계정 이름을 선택하세요",
+      "email": "이메일",
+      "emailPlaceholder": "you@example.com",
+      "password": "비밀번호",
+      "passwordPlaceholder": "비밀번호를 만드세요",
+      "creating": "생성 중...",
+      "createAccount": "계정 만들기"
+    },
+    "resend": {
+      "prompt": "인증 이메일을 받지 못했나요?",
+      "link": "다시 보내기"
+    },
+    "feedback": {
+      "success": "가입이 완료되었습니다. 이메일에서 인증 링크를 열어 주세요.",
+      "failure": "가입에 실패했습니다"
+    }
   }
 }

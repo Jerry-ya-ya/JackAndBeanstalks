@@ -17,6 +17,7 @@ export class RegisterComponent {
   nickname = '';
   error = '';
   successMessage = '';
+  successMessageKey = '';
   submitting = false;
   
   constructor(private apiService: ApiService) {}
@@ -29,6 +30,7 @@ export class RegisterComponent {
     this.submitting = true;
     this.error = '';
     this.successMessage = '';
+    this.successMessageKey = '';
 
     this.apiService.post<any>('/register', {
       username: this.username,
@@ -36,7 +38,7 @@ export class RegisterComponent {
       email: this.email,
     }).subscribe({
       next: res => {
-        this.successMessage = '註冊成功！請至信箱點擊驗證連結';
+        this.successMessageKey = 'register.feedback.success';
         this.username = '';
         this.password = '';
         this.email = '';
@@ -44,9 +46,13 @@ export class RegisterComponent {
         this.submitting = false;
       },
       error: err => {
-        this.error = err.error.error || '註冊失敗';
+        this.error = err.error.error || 'register.feedback.failure';
         this.submitting = false;
       }
     });
+  }
+
+  get errorIsTranslationKey() {
+    return this.error.startsWith('register.');
   }
 }
