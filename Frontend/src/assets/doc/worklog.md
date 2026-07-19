@@ -403,3 +403,5 @@
 - Add i18n support to the register page.
 
 - Add i18n support to the login page.
+
+- Add i18n support to the private home page.

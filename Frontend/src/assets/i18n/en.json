@@ -358,5 +358,32 @@
     "feedback": {
       "failure": "Login failed. Please check your username and password."
     }
+  },
+  "privateHome": {
+    "state": {
+      "loading": "Loading..."
+    },
+    "error": {
+      "title": "Loading failed",
+      "default": "Unable to load user data or posts.",
+      "loadUsers": "Failed to load user data: {{ status }} - {{ detail }}",
+      "loadPosts": "Failed to load posts: {{ status }} - {{ detail }}",
+      "unknown": "Unknown error",
+      "apiUrl": "API URL:"
+    },
+    "header": {
+      "title": "Everyone's Posts",
+      "subtitle": "Browse thoughts and daily moments shared by every user."
+    },
+    "posts": {
+      "title": "All Posts",
+      "countLabel": "posts",
+      "authorAvatar": "Author avatar",
+      "unknownUser": "Unknown user"
+    },
+    "empty": {
+      "title": "No posts yet",
+      "description": "Be the first one to share a thought."
+    }
   }
 }

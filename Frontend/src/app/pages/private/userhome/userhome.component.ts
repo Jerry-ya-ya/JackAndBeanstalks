@@ -16,7 +16,8 @@ export class UserhomeComponent {
   
   loading = true;
   error = false;
-  errorMessage = '';
+  errorKey = '';
+  errorParams: { status?: number; detail?: string } = {};
 
   public environment = environment;
   public apiRoot: string = environment.apiUrl.replace('/api', '');
@@ -41,7 +42,11 @@ export class UserhomeComponent {
         error: (err) => {
           console.error('Failed to load users:', err);
           this.error = true;
-          this.errorMessage = `載入用戶資料失敗: ${err.status} - ${err.error?.error || err.message || '未知錯誤'}`;
+          this.errorKey = 'privateHome.error.loadUsers';
+          this.errorParams = {
+            status: err.status,
+            detail: err.error?.error || err.message || ''
+          };
           this.loading = false;
         }
       });
@@ -60,7 +65,11 @@ export class UserhomeComponent {
         error: (err) => {
           console.error('Failed to load posts:', err);
           this.error = true;
-          this.errorMessage = `載入貼文失敗: ${err.status} - ${err.error?.error || err.message || '未知錯誤'}`;
+          this.errorKey = 'privateHome.error.loadPosts';
+          this.errorParams = {
+            status: err.status,
+            detail: err.error?.error || err.message || ''
+          };
           this.loading = false;
         }
       });

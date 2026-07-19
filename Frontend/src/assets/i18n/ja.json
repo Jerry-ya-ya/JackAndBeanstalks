@@ -358,5 +358,32 @@
     "feedback": {
       "failure": "ログインに失敗しました。ユーザー名とパスワードを確認してください。"
     }
+  },
+  "privateHome": {
+    "state": {
+      "loading": "読み込み中..."
+    },
+    "error": {
+      "title": "読み込みに失敗しました",
+      "default": "ユーザーデータまたは投稿を読み込めません。",
+      "loadUsers": "ユーザーデータの読み込みに失敗しました: {{ status }} - {{ detail }}",
+      "loadPosts": "投稿の読み込みに失敗しました: {{ status }} - {{ detail }}",
+      "unknown": "不明なエラー",
+      "apiUrl": "API URL:"
+    },
+    "header": {
+      "title": "みんなの投稿",
+      "subtitle": "すべてのユーザーが共有した考えや日常のひとこまを見てみましょう。"
+    },
+    "posts": {
+      "title": "すべての投稿",
+      "countLabel": "件の投稿",
+      "authorAvatar": "投稿者アバター",
+      "unknownUser": "不明なユーザー"
+    },
+    "empty": {
+      "title": "まだ投稿がありません",
+      "description": "最初に思いを共有する人になりましょう。"
+    }
   }
 }

@@ -358,5 +358,32 @@
     "feedback": {
       "failure": "登入失敗，請檢查帳號密碼"
     }
+  },
+  "privateHome": {
+    "state": {
+      "loading": "載入中..."
+    },
+    "error": {
+      "title": "載入失敗",
+      "default": "無法載入用戶資料或貼文",
+      "loadUsers": "載入用戶資料失敗: {{ status }} - {{ detail }}",
+      "loadPosts": "載入貼文失敗: {{ status }} - {{ detail }}",
+      "unknown": "未知錯誤",
+      "apiUrl": "API URL:"
+    },
+    "header": {
+      "title": "所有人的貼文",
+      "subtitle": "查看所有用戶分享的想法和生活點滴"
+    },
+    "posts": {
+      "title": "所有貼文",
+      "countLabel": "篇貼文",
+      "authorAvatar": "作者頭像",
+      "unknownUser": "未知用戶"
+    },
+    "empty": {
+      "title": "還沒有貼文",
+      "description": "成為第一個分享想法的人吧！"
+    }
   }
 }
