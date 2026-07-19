@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../../../core/services/api.service';
 
 interface ProjectRecruitmentMember {
@@ -64,7 +65,10 @@ export class ProjectRecruitmentComponent implements OnInit {
     max_members: null as number | null,
   };
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit() {
     this.loadProjects();
@@ -79,7 +83,7 @@ export class ProjectRecruitmentComponent implements OnInit {
           this.loading = false;
         },
         error: err => {
-          this.statusMessage = err.error?.error || '無法載入專案招募';
+          this.statusMessage = err.error?.error || this.translate.instant('privateRecruit.feedback.loadFailure');
           this.loading = false;
         }
       });
@@ -105,11 +109,11 @@ export class ProjectRecruitmentComponent implements OnInit {
           contact: '',
           max_members: null,
         };
-        this.statusMessage = '招募已建立';
+        this.statusMessage = this.translate.instant('privateRecruit.feedback.createSuccess');
         this.submitting = false;
       },
       error: err => {
-        this.statusMessage = err.error?.error || '建立招募失敗';
+        this.statusMessage = err.error?.error || this.translate.instant('privateRecruit.feedback.createFailure');
         this.submitting = false;
       }
     });
@@ -132,7 +136,7 @@ export class ProjectRecruitmentComponent implements OnInit {
         this.actionLoading[project.id] = false;
       },
       error: err => {
-        this.statusMessage = err.error?.error || '登記加入失敗';
+        this.statusMessage = err.error?.error || this.translate.instant('privateRecruit.feedback.joinFailure');
         this.actionLoading[project.id] = false;
       }
     });
@@ -153,7 +157,7 @@ export class ProjectRecruitmentComponent implements OnInit {
         this.actionLoading[project.id] = false;
       },
       error: err => {
-        this.statusMessage = err.error?.error || '取消登記失敗';
+        this.statusMessage = err.error?.error || this.translate.instant('privateRecruit.feedback.leaveFailure');
         this.actionLoading[project.id] = false;
       }
     });
@@ -172,10 +176,10 @@ export class ProjectRecruitmentComponent implements OnInit {
       next: result => {
         this.projects = this.projects.filter(item => item.id !== result.id);
         delete this.deletingProject[project.id];
-        this.statusMessage = '招募已刪除';
+        this.statusMessage = this.translate.instant('privateRecruit.feedback.deleteSuccess');
       },
       error: err => {
-        this.statusMessage = err.error?.error || '刪除招募失敗';
+        this.statusMessage = err.error?.error || this.translate.instant('privateRecruit.feedback.deleteFailure');
         delete this.deletingProject[project.id];
       }
     });
@@ -221,10 +225,10 @@ export class ProjectRecruitmentComponent implements OnInit {
         this.todoTargets[project.id] = 'team';
         this.todoPriorities[project.id] = 5;
         delete this.todoLoading[project.id];
-        this.statusMessage = 'Todo 已發布';
+        this.statusMessage = this.translate.instant('privateRecruit.feedback.todoSuccess');
       },
       error: err => {
-        this.statusMessage = err.error?.error || '發布 Todo 失敗';
+        this.statusMessage = err.error?.error || this.translate.instant('privateRecruit.feedback.todoFailure');
         delete this.todoLoading[project.id];
       }
     });

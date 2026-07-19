@@ -411,3 +411,5 @@
 - Add i18n support to the private post wall.
 
 - Add i18n support to the private square page.
+
+- Add i18n support to the private recruitment page.

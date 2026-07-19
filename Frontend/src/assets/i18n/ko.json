@@ -451,5 +451,92 @@
       "removeSuccess": "친구를 삭제했습니다.",
       "removeFailure": "친구 삭제에 실패했습니다."
     }
+  },
+  "privateRecruit": {
+    "hero": {
+      "kicker": "Project Board",
+      "title": "프로젝트 모집",
+      "subtitle": "게임, 도구, 연구 프로젝트 모집을 만들고 다른 사용자가 참가 등록할 수 있게 하세요.",
+      "openProjects": "Open Projects",
+      "slotsOnline": "Recruitment slots online"
+    },
+    "create": {
+      "kicker": "Create",
+      "title": "모집 만들기",
+      "projectName": "프로젝트 이름",
+      "projectNamePlaceholder": "예: EDEN Rogue-lite Prototype",
+      "summary": "모집 내용",
+      "summaryPlaceholder": "프로젝트 목표, 플레이 방식, 필요한 인원을 간단히 설명하세요.",
+      "roleNeeded": "필요 역할",
+      "roleNeededPlaceholder": "프로그래밍 / 아트 / 기획",
+      "maxMembers": "인원 제한",
+      "maxMembersPlaceholder": "제한 없음",
+      "contact": "연락 방법",
+      "contactPlaceholder": "Discord / Email / 사이트 메시지"
+    },
+    "list": {
+      "kicker": "Join",
+      "title": "모집 목록"
+    },
+    "manage": {
+      "kicker": "Manage",
+      "title": "게시한 모집 관리",
+      "active": "Active",
+      "members": "Members",
+      "noMessage": "등록 메시지가 없습니다."
+    },
+    "todo": {
+      "kicker": "Todo Dispatch",
+      "title": "팀 Todo 게시",
+      "team": "팀 전체",
+      "captain": "팀장 본인",
+      "priority": "우선순위",
+      "priorityHint": "0 가장 긴급 / 9 가장 덜 긴급",
+      "placeholder": "예: 캐릭터 컨트롤러 첫 버전 완성"
+    },
+    "join": {
+      "messagePlaceholder": "개설자에게 남길 한마디"
+    },
+    "meta": {
+      "need": "필요",
+      "contact": "연락"
+    },
+    "badges": {
+      "owned": "내가 만든 모집",
+      "joined": "등록 완료",
+      "full": "정원 마감"
+    },
+    "actions": {
+      "creating": "생성 중...",
+      "publishRecruitment": "모집 게시",
+      "joining": "등록 중...",
+      "join": "참가 등록",
+      "processing": "처리 중...",
+      "cancelJoin": "등록 취소",
+      "publishing": "게시 중...",
+      "publishTodo": "Todo 게시",
+      "deleting": "삭제 중...",
+      "deleteRecruitment": "모집 삭제"
+    },
+    "state": {
+      "loading": "불러오는 중...",
+      "syncing": "모집 데이터를 동기화하는 중..."
+    },
+    "empty": {
+      "noProjects": "아직 프로젝트 모집이 없습니다.",
+      "noOwnedProjects": "현재 게시 중인 모집이 없습니다.",
+      "noApplicants": "아직 참가 등록한 사람이 없습니다."
+    },
+    "feedback": {
+      "loadFailure": "프로젝트 모집을 불러올 수 없습니다.",
+      "createSuccess": "모집을 만들었습니다.",
+      "createFailure": "모집 만들기에 실패했습니다.",
+      "joinFailure": "참가 등록에 실패했습니다.",
+      "leaveFailure": "등록 취소에 실패했습니다.",
+      "deleteSuccess": "모집을 삭제했습니다.",
+      "deleteFailure": "모집 삭제에 실패했습니다.",
+      "todoSuccess": "Todo를 게시했습니다.",
+      "todoFailure": "Todo 게시에 실패했습니다."
+    }
   }
 }

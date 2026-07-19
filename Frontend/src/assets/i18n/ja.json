@@ -451,5 +451,92 @@
       "removeSuccess": "フレンドを削除しました。",
       "removeFailure": "フレンドの削除に失敗しました。"
     }
+  },
+  "privateRecruit": {
+    "hero": {
+      "kicker": "Project Board",
+      "title": "プロジェクト募集",
+      "subtitle": "ゲーム、ツール、研究プロジェクトの募集を作成し、他のユーザーが参加登録できるようにします。",
+      "openProjects": "Open Projects",
+      "slotsOnline": "Recruitment slots online"
+    },
+    "create": {
+      "kicker": "Create",
+      "title": "募集を作成",
+      "projectName": "プロジェクト名",
+      "projectNamePlaceholder": "例: EDEN Rogue-lite Prototype",
+      "summary": "募集内容",
+      "summaryPlaceholder": "プロジェクト目標、遊び方、必要な人材を簡単に説明してください。",
+      "roleNeeded": "必要な役割",
+      "roleNeededPlaceholder": "プログラム / アート / 企画",
+      "maxMembers": "人数上限",
+      "maxMembersPlaceholder": "制限なし",
+      "contact": "連絡方法",
+      "contactPlaceholder": "Discord / Email / サイト内メッセージ"
+    },
+    "list": {
+      "kicker": "Join",
+      "title": "募集一覧"
+    },
+    "manage": {
+      "kicker": "Manage",
+      "title": "公開済み募集を管理",
+      "active": "Active",
+      "members": "Members",
+      "noMessage": "登録メッセージはありません。"
+    },
+    "todo": {
+      "kicker": "Todo Dispatch",
+      "title": "チーム Todo を公開",
+      "team": "チーム全体",
+      "captain": "隊長のみ",
+      "priority": "優先度",
+      "priorityHint": "0 最緊急 / 9 最低優先",
+      "placeholder": "例: キャラクターコントローラー初版を完成"
+    },
+    "join": {
+      "messagePlaceholder": "発起人へのひとこと"
+    },
+    "meta": {
+      "need": "必要",
+      "contact": "連絡"
+    },
+    "badges": {
+      "owned": "あなたが作成した募集",
+      "joined": "登録済み",
+      "full": "満員"
+    },
+    "actions": {
+      "creating": "作成中...",
+      "publishRecruitment": "募集を公開",
+      "joining": "登録中...",
+      "join": "参加登録",
+      "processing": "処理中...",
+      "cancelJoin": "登録を取消",
+      "publishing": "公開中...",
+      "publishTodo": "Todo を公開",
+      "deleting": "削除中...",
+      "deleteRecruitment": "募集を削除"
+    },
+    "state": {
+      "loading": "読み込み中...",
+      "syncing": "募集データを同期中..."
+    },
+    "empty": {
+      "noProjects": "現在プロジェクト募集はありません。",
+      "noOwnedProjects": "現在公開中の募集はありません。",
+      "noApplicants": "まだ誰も参加登録していません。"
+    },
+    "feedback": {
+      "loadFailure": "プロジェクト募集を読み込めません。",
+      "createSuccess": "募集を作成しました。",
+      "createFailure": "募集の作成に失敗しました。",
+      "joinFailure": "参加登録に失敗しました。",
+      "leaveFailure": "登録取消に失敗しました。",
+      "deleteSuccess": "募集を削除しました。",
+      "deleteFailure": "募集の削除に失敗しました。",
+      "todoSuccess": "Todo を公開しました。",
+      "todoFailure": "Todo の公開に失敗しました。"
+    }
   }
 }

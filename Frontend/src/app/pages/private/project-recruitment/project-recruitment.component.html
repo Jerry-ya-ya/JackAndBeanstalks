@@ -1,54 +1,54 @@
 <main class="recruit-page">
   <section class="recruit-hero">
     <div>
-      <p class="recruit-kicker">Project Board</p>
-      <h1>專案招募</h1>
-      <p>建立你的遊戲、工具或研究專案招募，讓其他使用者登記加入。</p>
+      <p class="recruit-kicker">{{ 'privateRecruit.hero.kicker' | translate }}</p>
+      <h1>{{ 'privateRecruit.hero.title' | translate }}</h1>
+      <p>{{ 'privateRecruit.hero.subtitle' | translate }}</p>
     </div>
 
     <div class="recruit-status">
-      <span>Open Projects</span>
+      <span>{{ 'privateRecruit.hero.openProjects' | translate }}</span>
       <strong>{{ projects.length }}</strong>
-      <small>Recruitment slots online</small>
+      <small>{{ 'privateRecruit.hero.slotsOnline' | translate }}</small>
     </div>
   </section>
 
   <section class="recruit-grid">
     <form class="recruit-card recruit-form" (ngSubmit)="createProject()">
       <div class="card-header">
-        <p class="recruit-kicker">Create</p>
-        <h2>建立招募</h2>
+        <p class="recruit-kicker">{{ 'privateRecruit.create.kicker' | translate }}</p>
+        <h2>{{ 'privateRecruit.create.title' | translate }}</h2>
       </div>
 
       <label class="form-field">
-        <span>專案名稱</span>
-        <input name="title" [(ngModel)]="form.title" placeholder="例如：EDEN Rogue-lite Prototype" required>
+        <span>{{ 'privateRecruit.create.projectName' | translate }}</span>
+        <input name="title" [(ngModel)]="form.title" [placeholder]="'privateRecruit.create.projectNamePlaceholder' | translate" required>
       </label>
 
       <label class="form-field">
-        <span>招募內容</span>
-        <textarea name="summary" [(ngModel)]="form.summary" rows="5" placeholder="簡短描述專案目標、玩法、需要的人。" required></textarea>
+        <span>{{ 'privateRecruit.create.summary' | translate }}</span>
+        <textarea name="summary" [(ngModel)]="form.summary" rows="5" [placeholder]="'privateRecruit.create.summaryPlaceholder' | translate" required></textarea>
       </label>
 
       <div class="form-row">
         <label class="form-field">
-          <span>需求角色</span>
-          <input name="role_needed" [(ngModel)]="form.role_needed" placeholder="程式 / 美術 / 企劃">
+          <span>{{ 'privateRecruit.create.roleNeeded' | translate }}</span>
+          <input name="role_needed" [(ngModel)]="form.role_needed" [placeholder]="'privateRecruit.create.roleNeededPlaceholder' | translate">
         </label>
 
         <label class="form-field">
-          <span>人數上限</span>
-          <input type="number" name="max_members" min="1" [(ngModel)]="form.max_members" placeholder="不限">
+          <span>{{ 'privateRecruit.create.maxMembers' | translate }}</span>
+          <input type="number" name="max_members" min="1" [(ngModel)]="form.max_members" [placeholder]="'privateRecruit.create.maxMembersPlaceholder' | translate">
         </label>
       </div>
 
       <label class="form-field">
-        <span>聯絡方式</span>
-        <input name="contact" [(ngModel)]="form.contact" placeholder="Discord / Email / 站內訊息">
+        <span>{{ 'privateRecruit.create.contact' | translate }}</span>
+        <input name="contact" [(ngModel)]="form.contact" [placeholder]="'privateRecruit.create.contactPlaceholder' | translate">
       </label>
 
       <button class="recruit-button" type="submit" [disabled]="submitting">
-        {{ submitting ? '建立中...' : '發布招募' }}
+        {{ (submitting ? 'privateRecruit.actions.creating' : 'privateRecruit.actions.publishRecruitment') | translate }}
       </button>
 
       @if (statusMessage) {
@@ -58,12 +58,12 @@
 
     <section class="recruit-list">
       <div class="card-header">
-        <p class="recruit-kicker">Join</p>
-        <h2>招募列表</h2>
+        <p class="recruit-kicker">{{ 'privateRecruit.list.kicker' | translate }}</p>
+        <h2>{{ 'privateRecruit.list.title' | translate }}</h2>
       </div>
 
       @if (loading) {
-        <div class="empty-state">載入中...</div>
+        <div class="empty-state">{{ 'privateRecruit.state.loading' | translate }}</div>
       }
 
       @for (project of projects; track project) {
@@ -78,10 +78,10 @@
           <p class="project-summary">{{ project.summary }}</p>
           <div class="project-meta">
             @if (project.role_needed) {
-              <span>需求：{{ project.role_needed }}</span>
+              <span>{{ 'privateRecruit.meta.need' | translate }}: {{ project.role_needed }}</span>
             }
             @if (project.contact) {
-              <span>聯絡：{{ project.contact }}</span>
+              <span>{{ 'privateRecruit.meta.contact' | translate }}: {{ project.contact }}</span>
             }
             <span>{{ project.created_at }}</span>
           </div>
@@ -97,22 +97,22 @@
               <input
                 [(ngModel)]="joinMessages[project.id]"
                 [name]="'joinMessage' + project.id"
-                placeholder="給發起人的一句話">
+                [placeholder]="'privateRecruit.join.messagePlaceholder' | translate">
                 <button class="recruit-button" type="button" (click)="joinProject(project)" [disabled]="actionLoading[project.id]">
-                  {{ actionLoading[project.id] ? '登記中...' : '登記加入' }}
+                  {{ (actionLoading[project.id] ? 'privateRecruit.actions.joining' : 'privateRecruit.actions.join') | translate }}
                 </button>
               </div>
             }
             @if (project.owned_by_me || project.joined_by_me || isFull(project)) {
               <div class="project-actions">
                 @if (project.owned_by_me) {
-                  <span class="project-badge">你建立的招募</span>
+                  <span class="project-badge">{{ 'privateRecruit.badges.owned' | translate }}</span>
                 }
                 @if (project.joined_by_me) {
-                  <span class="project-badge">已登記加入</span>
+                  <span class="project-badge">{{ 'privateRecruit.badges.joined' | translate }}</span>
                 }
                 @if (isFull(project) && !project.joined_by_me) {
-                  <span class="project-badge">名額已滿</span>
+                  <span class="project-badge">{{ 'privateRecruit.badges.full' | translate }}</span>
                 }
                 @if (project.joined_by_me) {
                   <button
@@ -120,7 +120,7 @@
                     type="button"
                     (click)="leaveProject(project)"
                     [disabled]="actionLoading[project.id]">
-                    {{ actionLoading[project.id] ? '處理中...' : '取消登記' }}
+                    {{ (actionLoading[project.id] ? 'privateRecruit.actions.processing' : 'privateRecruit.actions.cancelJoin') | translate }}
                   </button>
                 }
               </div>
@@ -129,7 +129,7 @@
         }
 
         @if (!loading && projects.length === 0) {
-          <div class="empty-state">目前還沒有專案招募。</div>
+          <div class="empty-state">{{ 'privateRecruit.empty.noProjects' | translate }}</div>
         }
       </section>
     </section>
@@ -137,19 +137,19 @@
     <section class="manage-section">
       <div class="card-header manage-header">
         <div>
-          <p class="recruit-kicker">Manage</p>
-          <h2>管理已發布招募</h2>
+          <p class="recruit-kicker">{{ 'privateRecruit.manage.kicker' | translate }}</p>
+          <h2>{{ 'privateRecruit.manage.title' | translate }}</h2>
         </div>
-        <span class="project-count">{{ ownedProjects.length }} Active</span>
+        <span class="project-count">{{ ownedProjects.length }} {{ 'privateRecruit.manage.active' | translate }}</span>
       </div>
 
       @if (loading) {
-        <div class="empty-state">同步你的招募資料中...</div>
+        <div class="empty-state">{{ 'privateRecruit.state.syncing' | translate }}</div>
       }
 
       @if (!loading && ownedProjects.length === 0) {
         <div class="empty-state">
-          你目前還沒有發布中的招募。
+          {{ 'privateRecruit.empty.noOwnedProjects' | translate }}
         </div>
       }
 
@@ -163,15 +163,15 @@
             </div>
             <div class="manage-metrics">
               <span>{{ project.member_count }}{{ project.max_members ? '/' + project.max_members : '' }}</span>
-              <small>Members</small>
+              <small>{{ 'privateRecruit.manage.members' | translate }}</small>
             </div>
           </div>
           <div class="project-meta">
             @if (project.role_needed) {
-              <span>需求：{{ project.role_needed }}</span>
+              <span>{{ 'privateRecruit.meta.need' | translate }}: {{ project.role_needed }}</span>
             }
             @if (project.contact) {
-              <span>聯絡：{{ project.contact }}</span>
+              <span>{{ 'privateRecruit.meta.contact' | translate }}: {{ project.contact }}</span>
             }
           </div>
           @if (project.members.length > 0) {
@@ -182,27 +182,27 @@
                     <strong>{{ member.user.nickname || member.user.username }}</strong>
                     <span>{{ member.created_at }}</span>
                   </div>
-                  <p>{{ member.message || '沒有留下登記留言。' }}</p>
+                  <p>{{ member.message || ('privateRecruit.manage.noMessage' | translate) }}</p>
                 </div>
               }
             </div>
           }
           @if (project.members.length === 0) {
             <div class="empty-state empty-state--compact">
-              目前還沒有人登記加入。
+              {{ 'privateRecruit.empty.noApplicants' | translate }}
             </div>
           }
           <form class="todo-publisher" (ngSubmit)="publishTodo(project)">
             <div class="todo-publisher__header">
               <div>
-                <p class="recruit-kicker">Todo Dispatch</p>
-                <h4>發布團隊 Todo</h4>
+                <p class="recruit-kicker">{{ 'privateRecruit.todo.kicker' | translate }}</p>
+                <h4>{{ 'privateRecruit.todo.title' | translate }}</h4>
               </div>
               <select
                 [(ngModel)]="todoTargets[project.id]"
                 [name]="'todoTarget' + project.id">
-              <option value="team">整個團隊</option>
-              <option value="captain">隊長自己</option>
+              <option value="team">{{ 'privateRecruit.todo.team' | translate }}</option>
+              <option value="captain">{{ 'privateRecruit.todo.captain' | translate }}</option>
               @for (member of project.members; track member) {
                 <option [value]="member.user.id">
                   {{ member.user.nickname || member.user.username }}
@@ -211,7 +211,7 @@
             </select>
           </div>
           <label class="todo-priority">
-            <span>優先級</span>
+            <span>{{ 'privateRecruit.todo.priority' | translate }}</span>
             <input
               type="number"
               min="0"
@@ -221,18 +221,18 @@
             <strong [style.background]="getPriorityColor(getTodoPriority(project.id))">
               {{ getTodoPriority(project.id) }}
             </strong>
-            <small>0 最緊急 / 9 最不緊急</small>
+            <small>{{ 'privateRecruit.todo.priorityHint' | translate }}</small>
           </label>
           <div class="todo-publisher__controls">
             <input
               [(ngModel)]="todoTexts[project.id]"
               [name]="'todoText' + project.id"
-              placeholder="例如：完成角色控制器第一版">
+              [placeholder]="'privateRecruit.todo.placeholder' | translate">
             <button
               class="recruit-button"
               type="submit"
               [disabled]="todoLoading[project.id]">
-              {{ todoLoading[project.id] ? '發布中...' : '發布 Todo' }}
+              {{ (todoLoading[project.id] ? 'privateRecruit.actions.publishing' : 'privateRecruit.actions.publishTodo') | translate }}
             </button>
           </div>
         </form>
@@ -242,7 +242,7 @@
             type="button"
             (click)="deleteProject(project)"
             [disabled]="deletingProject[project.id]">
-            {{ deletingProject[project.id] ? '刪除中...' : '刪除招募' }}
+            {{ (deletingProject[project.id] ? 'privateRecruit.actions.deleting' : 'privateRecruit.actions.deleteRecruitment') | translate }}
           </button>
         </div>
       </article>

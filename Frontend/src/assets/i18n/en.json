@@ -451,5 +451,92 @@
       "removeSuccess": "Friend removed.",
       "removeFailure": "Failed to remove friend."
     }
+  },
+  "privateRecruit": {
+    "hero": {
+      "kicker": "Project Board",
+      "title": "Project Recruitment",
+      "subtitle": "Create recruitment posts for your games, tools, or research projects so other users can sign up.",
+      "openProjects": "Open Projects",
+      "slotsOnline": "Recruitment slots online"
+    },
+    "create": {
+      "kicker": "Create",
+      "title": "Create Recruitment",
+      "projectName": "Project Name",
+      "projectNamePlaceholder": "Example: EDEN Rogue-lite Prototype",
+      "summary": "Recruitment Details",
+      "summaryPlaceholder": "Briefly describe the project goal, gameplay, and people needed.",
+      "roleNeeded": "Needed Roles",
+      "roleNeededPlaceholder": "Programmer / Artist / Designer",
+      "maxMembers": "Member Limit",
+      "maxMembersPlaceholder": "No limit",
+      "contact": "Contact",
+      "contactPlaceholder": "Discord / Email / Site message"
+    },
+    "list": {
+      "kicker": "Join",
+      "title": "Recruitment List"
+    },
+    "manage": {
+      "kicker": "Manage",
+      "title": "Manage Published Recruitment",
+      "active": "Active",
+      "members": "Members",
+      "noMessage": "No registration message was left."
+    },
+    "todo": {
+      "kicker": "Todo Dispatch",
+      "title": "Publish Team Todo",
+      "team": "Whole team",
+      "captain": "Captain only",
+      "priority": "Priority",
+      "priorityHint": "0 most urgent / 9 least urgent",
+      "placeholder": "Example: Finish the first character controller"
+    },
+    "join": {
+      "messagePlaceholder": "A short message for the creator"
+    },
+    "meta": {
+      "need": "Need",
+      "contact": "Contact"
+    },
+    "badges": {
+      "owned": "Created by you",
+      "joined": "Registered",
+      "full": "Full"
+    },
+    "actions": {
+      "creating": "Creating...",
+      "publishRecruitment": "Publish Recruitment",
+      "joining": "Registering...",
+      "join": "Register",
+      "processing": "Processing...",
+      "cancelJoin": "Cancel Registration",
+      "publishing": "Publishing...",
+      "publishTodo": "Publish Todo",
+      "deleting": "Deleting...",
+      "deleteRecruitment": "Delete Recruitment"
+    },
+    "state": {
+      "loading": "Loading...",
+      "syncing": "Syncing your recruitment data..."
+    },
+    "empty": {
+      "noProjects": "There are no project recruitments yet.",
+      "noOwnedProjects": "You do not have any active recruitment posts.",
+      "noApplicants": "No one has registered yet."
+    },
+    "feedback": {
+      "loadFailure": "Unable to load project recruitments.",
+      "createSuccess": "Recruitment created.",
+      "createFailure": "Failed to create recruitment.",
+      "joinFailure": "Failed to register.",
+      "leaveFailure": "Failed to cancel registration.",
+      "deleteSuccess": "Recruitment deleted.",
+      "deleteFailure": "Failed to delete recruitment.",
+      "todoSuccess": "Todo published.",
+      "todoFailure": "Failed to publish Todo."
+    }
   }
 }

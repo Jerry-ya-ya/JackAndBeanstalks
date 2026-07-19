@@ -451,5 +451,92 @@
       "removeSuccess": "已刪除好友",
       "removeFailure": "刪除失敗"
     }
+  },
+  "privateRecruit": {
+    "hero": {
+      "kicker": "Project Board",
+      "title": "專案招募",
+      "subtitle": "建立你的遊戲、工具或研究專案招募，讓其他使用者登記加入。",
+      "openProjects": "Open Projects",
+      "slotsOnline": "Recruitment slots online"
+    },
+    "create": {
+      "kicker": "Create",
+      "title": "建立招募",
+      "projectName": "專案名稱",
+      "projectNamePlaceholder": "例如：EDEN Rogue-lite Prototype",
+      "summary": "招募內容",
+      "summaryPlaceholder": "簡短描述專案目標、玩法、需要的人。",
+      "roleNeeded": "需求角色",
+      "roleNeededPlaceholder": "程式 / 美術 / 企劃",
+      "maxMembers": "人數上限",
+      "maxMembersPlaceholder": "不限",
+      "contact": "聯絡方式",
+      "contactPlaceholder": "Discord / Email / 站內訊息"
+    },
+    "list": {
+      "kicker": "Join",
+      "title": "招募列表"
+    },
+    "manage": {
+      "kicker": "Manage",
+      "title": "管理已發布招募",
+      "active": "Active",
+      "members": "Members",
+      "noMessage": "沒有留下登記留言。"
+    },
+    "todo": {
+      "kicker": "Todo Dispatch",
+      "title": "發布團隊 Todo",
+      "team": "整個團隊",
+      "captain": "隊長自己",
+      "priority": "優先級",
+      "priorityHint": "0 最緊急 / 9 最不緊急",
+      "placeholder": "例如：完成角色控制器第一版"
+    },
+    "join": {
+      "messagePlaceholder": "給發起人的一句話"
+    },
+    "meta": {
+      "need": "需求",
+      "contact": "聯絡"
+    },
+    "badges": {
+      "owned": "你建立的招募",
+      "joined": "已登記加入",
+      "full": "名額已滿"
+    },
+    "actions": {
+      "creating": "建立中...",
+      "publishRecruitment": "發布招募",
+      "joining": "登記中...",
+      "join": "登記加入",
+      "processing": "處理中...",
+      "cancelJoin": "取消登記",
+      "publishing": "發布中...",
+      "publishTodo": "發布 Todo",
+      "deleting": "刪除中...",
+      "deleteRecruitment": "刪除招募"
+    },
+    "state": {
+      "loading": "載入中...",
+      "syncing": "同步你的招募資料中..."
+    },
+    "empty": {
+      "noProjects": "目前還沒有專案招募。",
+      "noOwnedProjects": "你目前還沒有發布中的招募。",
+      "noApplicants": "目前還沒有人登記加入。"
+    },
+    "feedback": {
+      "loadFailure": "無法載入專案招募",
+      "createSuccess": "招募已建立",
+      "createFailure": "建立招募失敗",
+      "joinFailure": "登記加入失敗",
+      "leaveFailure": "取消登記失敗",
+      "deleteSuccess": "招募已刪除",
+      "deleteFailure": "刪除招募失敗",
+      "todoSuccess": "Todo 已發布",
+      "todoFailure": "發布 Todo 失敗"
+    }
   }
 }
