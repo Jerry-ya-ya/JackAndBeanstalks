@@ -1,12 +1,12 @@
 <div class="todo-container">
   <h2>
-    Todo List
+    {{ 'privateTodo.header.title' | translate }}
   </h2>
 
-  <input [(ngModel)]="newTodoText" placeholder="Add new todo" />
+  <input [(ngModel)]="newTodoText" [placeholder]="'privateTodo.form.placeholder' | translate" />
 
   <button (click)="addTodo()">
-    Add
+    {{ 'privateTodo.actions.add' | translate }}
   </button>
 
   <ul>
@@ -17,7 +17,7 @@
           [checked]="!!todo.claimed_by_id"
           [disabled]="!canToggleClaim(todo)"
           (change)="toggleClaim(todo)"
-          title="佔領任務">
+          [title]="'privateTodo.actions.claimTitle' | translate">
         <strong
           class="priority-badge"
           [style.background]="getPriorityColor(getTodoPriority(todo))">
@@ -26,17 +26,23 @@
         <span>
           {{ todo.text }}
         </span>
-        <small class="claim-badge">{{ getTodoClaimLabel(todo) }}</small>
+        <small class="claim-badge">
+          @if (todo.claimed_by_name) {
+            {{ 'privateTodo.claim.claimedBy' | translate: { name: todo.claimed_by_name } }}
+          } @else {
+            {{ 'privateTodo.claim.unclaimed' | translate }}
+          }
+        </small>
         @if (todo.project_title) {
           <small>
             {{ todo.project_title }} · {{ todo.assignee_name }}
           </small>
         }
         <button class="done-button" (click)="toggleDone(todo)">
-          {{ todo.done ? 'Reopen' : 'Done' }}
+          {{ (todo.done ? 'privateTodo.actions.reopen' : 'privateTodo.actions.done') | translate }}
         </button>
         <button (click)="deleteTodo(todo.id)">
-          Delete
+          {{ 'privateTodo.actions.delete' | translate }}
         </button>
       </li>
     }
@@ -45,23 +51,23 @@
   <section class="project-todo-section">
     <div class="project-todo-section__header">
       <div>
-        <p>Project Categories</p>
-        <h3>專案分類</h3>
+        <p>{{ 'privateTodo.projects.kicker' | translate }}</p>
+        <h3>{{ 'privateTodo.projects.title' | translate }}</h3>
       </div>
       <strong>{{ projectTodoGroups.length }}</strong>
     </div>
 
     @if (projectTodoGroups.length === 0) {
       <div class="project-empty">
-        目前沒有專案指派的 Todo。
+        {{ 'privateTodo.projects.empty' | translate }}
       </div>
     }
 
     @for (group of projectTodoGroups; track group.key) {
       <article class="project-todo-card">
         <div class="project-todo-card__title">
-          <h4>{{ group.projectTitle }}</h4>
-          <span>{{ group.done }}/{{ group.total }} done</span>
+          <h4>{{ group.projectTitle === 'Unsorted Project' ? ('privateTodo.projects.unsorted' | translate) : group.projectTitle }}</h4>
+          <span>{{ 'privateTodo.projects.progress' | translate: { done: group.done, total: group.total } }}</span>
         </div>
         <div class="project-progress">
           <div [style.width.%]="group.total ? (group.done / group.total) * 100 : 0"></div>
@@ -74,17 +80,23 @@
                 [checked]="!!todo.claimed_by_id"
                 [disabled]="!canToggleClaim(todo)"
                 (change)="toggleClaim(todo)"
-                title="佔領任務">
+                [title]="'privateTodo.actions.claimTitle' | translate">
               <strong
                 class="priority-badge"
                 [style.background]="getPriorityColor(getTodoPriority(todo))">
                 P{{ getTodoPriority(todo) }}
               </strong>
               <span>{{ todo.text }}</span>
-              <small class="claim-badge">{{ getTodoClaimLabel(todo) }}</small>
-              <small>{{ todo.assignee_name || '未指定' }}</small>
+              <small class="claim-badge">
+                @if (todo.claimed_by_name) {
+                  {{ 'privateTodo.claim.claimedBy' | translate: { name: todo.claimed_by_name } }}
+                } @else {
+                  {{ 'privateTodo.claim.unclaimed' | translate }}
+                }
+              </small>
+              <small>{{ todo.assignee_name || ('privateTodo.assignee.unassigned' | translate) }}</small>
               <button class="done-button" (click)="toggleDone(todo)">
-                {{ todo.done ? 'Reopen' : 'Done' }}
+                {{ (todo.done ? 'privateTodo.actions.reopen' : 'privateTodo.actions.done') | translate }}
               </button>
             </li>
           }

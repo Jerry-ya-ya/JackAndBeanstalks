@@ -153,10 +153,6 @@ export class TodoComponent implements OnInit {
     return `hsl(${(level / 9) * 120}, 78%, 46%)`;
   }
 
-  getTodoClaimLabel(todo: Todo) {
-    return todo.claimed_by_name ? `佔領：${todo.claimed_by_name}` : '未佔領';
-  }
-
   canToggleClaim(todo: Todo) {
     return !todo.done && (!todo.claimed_by_id || todo.claimed_by_id === this.currentUserId);
   }

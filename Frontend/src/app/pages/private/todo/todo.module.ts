@@ -5,6 +5,7 @@ import { TodoRoutingModule } from './todo-routing.module';
 import { TodoComponent } from './todo.component';
 
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     TodoRoutingModule,
     FormsModule,
+    TranslatePipe,
   ]
 })
 export class TodoModule { }

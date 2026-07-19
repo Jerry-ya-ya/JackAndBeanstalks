@@ -569,5 +569,34 @@
       "rejectFailure": "Failed to reject invitation.",
       "removeFailure": "Failed to remove friend."
     }
+  },
+  "privateTodo": {
+    "header": {
+      "title": "Todo List"
+    },
+    "form": {
+      "placeholder": "Add new todo"
+    },
+    "actions": {
+      "add": "Add",
+      "claimTitle": "Claim task",
+      "done": "Done",
+      "reopen": "Reopen",
+      "delete": "Delete"
+    },
+    "claim": {
+      "claimedBy": "Claimed by {{ name }}",
+      "unclaimed": "Unclaimed"
+    },
+    "assignee": {
+      "unassigned": "Unassigned"
+    },
+    "projects": {
+      "kicker": "Project Categories",
+      "title": "Project Categories",
+      "empty": "There are no project-assigned Todos right now.",
+      "progress": "{{ done }}/{{ total }} done",
+      "unsorted": "Unsorted Project"
+    }
   }
 }

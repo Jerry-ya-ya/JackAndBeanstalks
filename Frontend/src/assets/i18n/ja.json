@@ -569,5 +569,34 @@
       "rejectFailure": "招待の拒否に失敗しました。",
       "removeFailure": "フレンドの削除に失敗しました。"
     }
+  },
+  "privateTodo": {
+    "header": {
+      "title": "Todo リスト"
+    },
+    "form": {
+      "placeholder": "新しい Todo を追加"
+    },
+    "actions": {
+      "add": "追加",
+      "claimTitle": "タスクを確保",
+      "done": "完了",
+      "reopen": "再開",
+      "delete": "削除"
+    },
+    "claim": {
+      "claimedBy": "確保中：{{ name }}",
+      "unclaimed": "未確保"
+    },
+    "assignee": {
+      "unassigned": "未指定"
+    },
+    "projects": {
+      "kicker": "Project Categories",
+      "title": "プロジェクト分類",
+      "empty": "現在プロジェクトに割り当てられた Todo はありません。",
+      "progress": "{{ done }}/{{ total }} 完了",
+      "unsorted": "未分類プロジェクト"
+    }
   }
 }

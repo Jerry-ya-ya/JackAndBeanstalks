@@ -569,5 +569,34 @@
       "rejectFailure": "초대 거절에 실패했습니다.",
       "removeFailure": "친구 삭제에 실패했습니다."
     }
+  },
+  "privateTodo": {
+    "header": {
+      "title": "Todo 목록"
+    },
+    "form": {
+      "placeholder": "새 Todo 추가"
+    },
+    "actions": {
+      "add": "추가",
+      "claimTitle": "작업 점유",
+      "done": "완료",
+      "reopen": "다시 열기",
+      "delete": "삭제"
+    },
+    "claim": {
+      "claimedBy": "점유: {{ name }}",
+      "unclaimed": "미점유"
+    },
+    "assignee": {
+      "unassigned": "미지정"
+    },
+    "projects": {
+      "kicker": "Project Categories",
+      "title": "프로젝트 분류",
+      "empty": "현재 프로젝트에 배정된 Todo가 없습니다.",
+      "progress": "{{ done }}/{{ total }} 완료",
+      "unsorted": "미분류 프로젝트"
+    }
   }
 }

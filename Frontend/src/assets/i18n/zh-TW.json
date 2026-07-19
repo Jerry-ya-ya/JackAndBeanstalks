@@ -569,5 +569,34 @@
       "rejectFailure": "拒絕失敗",
       "removeFailure": "刪除失敗"
     }
+  },
+  "privateTodo": {
+    "header": {
+      "title": "Todo List"
+    },
+    "form": {
+      "placeholder": "新增待辦事項"
+    },
+    "actions": {
+      "add": "新增",
+      "claimTitle": "佔領任務",
+      "done": "完成",
+      "reopen": "重新開啟",
+      "delete": "刪除"
+    },
+    "claim": {
+      "claimedBy": "佔領：{{ name }}",
+      "unclaimed": "未佔領"
+    },
+    "assignee": {
+      "unassigned": "未指定"
+    },
+    "projects": {
+      "kicker": "Project Categories",
+      "title": "專案分類",
+      "empty": "目前沒有專案指派的 Todo。",
+      "progress": "{{ done }}/{{ total }} 完成",
+      "unsorted": "未分類專案"
+    }
   }
 }
