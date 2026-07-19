@@ -4,6 +4,7 @@ import { OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -25,7 +26,11 @@ export class SquareComponent implements OnInit {
   public environment = environment;
   public apiRoot: string = environment.apiUrl.replace('/api', '');
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private translate: TranslateService
+  ) {}
   
   get headers() {
     const token = localStorage.getItem('token');
@@ -42,9 +47,9 @@ export class SquareComponent implements OnInit {
     this.http.get<any[]>(`${environment.apiUrl}/square`, {headers}).subscribe({
       next: data => {
         this.users = data;
-        console.log('載入 user 成功', this.users);
+        console.log('Loaded square users', this.users);
       },
-      error: () => alert('無法取得使用者資料')
+      error: () => alert(this.translate.instant('privateSquare.feedback.loadUsersFailure'))
     });
 
     this.loadFriends();
@@ -57,7 +62,7 @@ export class SquareComponent implements OnInit {
         this.currentUserId = user.id;
       },
       error: () => {
-        console.error('無法取得目前使用者');
+        console.error('Failed to load current user');
       }
     });
   }
@@ -68,7 +73,7 @@ export class SquareComponent implements OnInit {
         this.friendIds = new Set(friends.map(friend => friend.id));
       },
       error: () => {
-        console.error('無法取得好友列表');
+        console.error('Failed to load friend list');
       }
     });
   }
@@ -97,11 +102,11 @@ export class SquareComponent implements OnInit {
       { headers: this.headers }
     ).subscribe({
       next: res => {
-        this.friendMessages[user.id] = res.message || '已發送邀請';
+        this.friendMessages[user.id] = res.message || this.translate.instant('privateSquare.feedback.inviteSent');
         this.friendActionLoading[user.id] = false;
       },
       error: err => {
-        this.friendMessages[user.id] = err.error?.error || '發送失敗';
+        this.friendMessages[user.id] = err.error?.error || this.translate.instant('privateSquare.feedback.inviteFailure');
         this.friendActionLoading[user.id] = false;
       }
     });
@@ -119,11 +124,11 @@ export class SquareComponent implements OnInit {
     ).subscribe({
       next: res => {
         this.friendIds.delete(user.id);
-        this.friendMessages[user.id] = res.message || '已刪除好友';
+        this.friendMessages[user.id] = res.message || this.translate.instant('privateSquare.feedback.removeSuccess');
         this.friendActionLoading[user.id] = false;
       },
       error: err => {
-        this.friendMessages[user.id] = err.error?.error || '刪除失敗';
+        this.friendMessages[user.id] = err.error?.error || this.translate.instant('privateSquare.feedback.removeFailure');
         this.friendActionLoading[user.id] = false;
       }
     });

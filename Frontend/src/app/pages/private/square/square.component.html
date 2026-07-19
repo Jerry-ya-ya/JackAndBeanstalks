@@ -1,5 +1,5 @@
 <div class="square">
-  <h2>用戶廣場</h2>
+  <h2>{{ 'privateSquare.header.title' | translate }}</h2>
 
   @for (user of users; track user) {
     <div class="user-card">
@@ -9,29 +9,29 @@
             [src]="apiRoot + '/' + user.avatar_url"
             width="120"
             height="120"
-            alt="User avatar" />
+            [alt]="'privateSquare.user.avatarAlt' | translate" />
         } @else {
           <span>{{ getAvatarInitial(user) }}</span>
         }
       </div>
       <div>
-        <p><strong>ID:</strong>{{ user.id }}</p>
-        <p><strong>使用者名稱：</strong>{{ user.username }}</p>
-        <p><strong>暱稱：</strong>{{ user.nickname || '(未設定)' }}</p>
-        <p><strong>身份：</strong>{{ user.role }}</p>
-        <p><strong>創立時間：</strong>{{ user.created_at }}</p>
+        <p><strong>{{ 'privateSquare.user.id' | translate }}:</strong>{{ user.id }}</p>
+        <p><strong>{{ 'privateSquare.user.username' | translate }}:</strong>{{ user.username }}</p>
+        <p><strong>{{ 'privateSquare.user.nickname' | translate }}:</strong>{{ user.nickname || ('privateSquare.user.unset' | translate) }}</p>
+        <p><strong>{{ 'privateSquare.user.role' | translate }}:</strong>{{ user.role }}</p>
+        <p><strong>{{ 'privateSquare.user.createdAt' | translate }}:</strong>{{ user.created_at }}</p>
         <div class="friend-actions">
           @if (isCurrentUser(user.id)) {
-            <span class="friend-status friend-status--self">這是你</span>
+            <span class="friend-status friend-status--self">{{ 'privateSquare.friend.self' | translate }}</span>
           } @else {
             @if (isFriend(user.id)) {
-              <span class="friend-status">已是朋友</span>
+              <span class="friend-status">{{ 'privateSquare.friend.alreadyFriend' | translate }}</span>
               <button
                 class="btn btn-danger"
                 type="button"
                 (click)="removeFriend(user)"
                 [disabled]="friendActionLoading[user.id]">
-                {{ friendActionLoading[user.id] ? '處理中...' : '刪除好友' }}
+                {{ (friendActionLoading[user.id] ? 'privateSquare.actions.processing' : 'privateSquare.actions.removeFriend') | translate }}
               </button>
             } @else {
               <button
@@ -39,7 +39,7 @@
                 type="button"
                 (click)="sendFriendRequest(user)"
                 [disabled]="friendActionLoading[user.id]">
-                {{ friendActionLoading[user.id] ? '處理中...' : '發送邀請' }}
+                {{ (friendActionLoading[user.id] ? 'privateSquare.actions.processing' : 'privateSquare.actions.sendInvite') | translate }}
               </button>
             }
           }

@@ -421,5 +421,35 @@
     "confirm": {
       "delete": "この投稿を削除してもよろしいですか？"
     }
+  },
+  "privateSquare": {
+    "header": {
+      "title": "ユーザー広場"
+    },
+    "user": {
+      "avatarAlt": "ユーザーアバター",
+      "id": "ID",
+      "username": "ユーザー名",
+      "nickname": "ニックネーム",
+      "unset": "(未設定)",
+      "role": "役割",
+      "createdAt": "作成日時"
+    },
+    "friend": {
+      "self": "これはあなたです",
+      "alreadyFriend": "すでにフレンド"
+    },
+    "actions": {
+      "processing": "処理中...",
+      "removeFriend": "フレンド解除",
+      "sendInvite": "招待を送信"
+    },
+    "feedback": {
+      "loadUsersFailure": "ユーザーデータを取得できません。",
+      "inviteSent": "招待を送信しました。",
+      "inviteFailure": "招待の送信に失敗しました。",
+      "removeSuccess": "フレンドを削除しました。",
+      "removeFailure": "フレンドの削除に失敗しました。"
+    }
   }
 }

@@ -421,5 +421,35 @@
     "confirm": {
       "delete": "이 게시글을 삭제하시겠습니까?"
     }
+  },
+  "privateSquare": {
+    "header": {
+      "title": "사용자 광장"
+    },
+    "user": {
+      "avatarAlt": "사용자 아바타",
+      "id": "ID",
+      "username": "사용자 이름",
+      "nickname": "닉네임",
+      "unset": "(미설정)",
+      "role": "역할",
+      "createdAt": "생성 시간"
+    },
+    "friend": {
+      "self": "나입니다",
+      "alreadyFriend": "이미 친구입니다"
+    },
+    "actions": {
+      "processing": "처리 중...",
+      "removeFriend": "친구 삭제",
+      "sendInvite": "초대 보내기"
+    },
+    "feedback": {
+      "loadUsersFailure": "사용자 데이터를 가져올 수 없습니다.",
+      "inviteSent": "초대를 보냈습니다.",
+      "inviteFailure": "초대 보내기에 실패했습니다.",
+      "removeSuccess": "친구를 삭제했습니다.",
+      "removeFailure": "친구 삭제에 실패했습니다."
+    }
   }
 }

@@ -421,5 +421,35 @@
     "confirm": {
       "delete": "Are you sure you want to delete this post?"
     }
+  },
+  "privateSquare": {
+    "header": {
+      "title": "User Square"
+    },
+    "user": {
+      "avatarAlt": "User avatar",
+      "id": "ID",
+      "username": "Username",
+      "nickname": "Nickname",
+      "unset": "(Not set)",
+      "role": "Role",
+      "createdAt": "Created at"
+    },
+    "friend": {
+      "self": "This is you",
+      "alreadyFriend": "Already friends"
+    },
+    "actions": {
+      "processing": "Processing...",
+      "removeFriend": "Remove Friend",
+      "sendInvite": "Send Invite"
+    },
+    "feedback": {
+      "loadUsersFailure": "Unable to load user data.",
+      "inviteSent": "Invitation sent.",
+      "inviteFailure": "Failed to send invitation.",
+      "removeSuccess": "Friend removed.",
+      "removeFailure": "Failed to remove friend."
+    }
   }
 }

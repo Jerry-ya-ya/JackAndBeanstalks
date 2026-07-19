@@ -421,5 +421,35 @@
     "confirm": {
       "delete": "確定要刪除這篇貼文？"
     }
+  },
+  "privateSquare": {
+    "header": {
+      "title": "用戶廣場"
+    },
+    "user": {
+      "avatarAlt": "用戶頭像",
+      "id": "ID",
+      "username": "使用者名稱",
+      "nickname": "暱稱",
+      "unset": "(未設定)",
+      "role": "身份",
+      "createdAt": "創立時間"
+    },
+    "friend": {
+      "self": "這是你",
+      "alreadyFriend": "已是朋友"
+    },
+    "actions": {
+      "processing": "處理中...",
+      "removeFriend": "刪除好友",
+      "sendInvite": "發送邀請"
+    },
+    "feedback": {
+      "loadUsersFailure": "無法取得使用者資料",
+      "inviteSent": "已發送邀請",
+      "inviteFailure": "發送失敗",
+      "removeSuccess": "已刪除好友",
+      "removeFailure": "刪除失敗"
+    }
   }
 }
