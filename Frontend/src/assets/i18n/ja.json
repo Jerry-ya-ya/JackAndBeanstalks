@@ -538,5 +538,36 @@
       "todoSuccess": "Todo を公開しました。",
       "todoFailure": "Todo の公開に失敗しました。"
     }
+  },
+  "privateFriend": {
+    "header": {
+      "title": "フレンド招待システム"
+    },
+    "invite": {
+      "usernameLabel": "ユーザー名を入力:",
+      "usernamePlaceholder": "username"
+    },
+    "requests": {
+      "title": "受信した招待"
+    },
+    "friends": {
+      "title": "フレンド一覧"
+    },
+    "actions": {
+      "sendInvite": "招待を送信",
+      "accept": "承認",
+      "reject": "拒否",
+      "remove": "削除"
+    },
+    "empty": {
+      "noRequests": "現在受信した招待はありません。",
+      "noFriends": "まだフレンドはいません。"
+    },
+    "feedback": {
+      "sendFailure": "招待の送信に失敗しました。",
+      "acceptFailure": "招待の承認に失敗しました。",
+      "rejectFailure": "招待の拒否に失敗しました。",
+      "removeFailure": "フレンドの削除に失敗しました。"
+    }
   }
 }

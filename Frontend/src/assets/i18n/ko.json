@@ -538,5 +538,36 @@
       "todoSuccess": "Todo를 게시했습니다.",
       "todoFailure": "Todo 게시에 실패했습니다."
     }
+  },
+  "privateFriend": {
+    "header": {
+      "title": "친구 초대 시스템"
+    },
+    "invite": {
+      "usernameLabel": "사용자 이름 입력:",
+      "usernamePlaceholder": "username"
+    },
+    "requests": {
+      "title": "받은 초대"
+    },
+    "friends": {
+      "title": "친구 목록"
+    },
+    "actions": {
+      "sendInvite": "초대 보내기",
+      "accept": "수락",
+      "reject": "거절",
+      "remove": "삭제"
+    },
+    "empty": {
+      "noRequests": "현재 받은 초대가 없습니다.",
+      "noFriends": "아직 친구가 없습니다."
+    },
+    "feedback": {
+      "sendFailure": "초대 보내기에 실패했습니다.",
+      "acceptFailure": "초대 수락에 실패했습니다.",
+      "rejectFailure": "초대 거절에 실패했습니다.",
+      "removeFailure": "친구 삭제에 실패했습니다."
+    }
   }
 }

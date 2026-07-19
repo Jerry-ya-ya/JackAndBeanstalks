@@ -538,5 +538,36 @@
       "todoSuccess": "Todo published.",
       "todoFailure": "Failed to publish Todo."
     }
+  },
+  "privateFriend": {
+    "header": {
+      "title": "Friend Invitation System"
+    },
+    "invite": {
+      "usernameLabel": "Enter username:",
+      "usernamePlaceholder": "username"
+    },
+    "requests": {
+      "title": "Received Invitations"
+    },
+    "friends": {
+      "title": "Friend List"
+    },
+    "actions": {
+      "sendInvite": "Send Invite",
+      "accept": "Accept",
+      "reject": "Reject",
+      "remove": "Remove"
+    },
+    "empty": {
+      "noRequests": "No invitations received right now.",
+      "noFriends": "You do not have any friends yet."
+    },
+    "feedback": {
+      "sendFailure": "Failed to send invitation.",
+      "acceptFailure": "Failed to accept invitation.",
+      "rejectFailure": "Failed to reject invitation.",
+      "removeFailure": "Failed to remove friend."
+    }
   }
 }

@@ -413,3 +413,5 @@
 - Add i18n support to the private square page.
 
 - Add i18n support to the private recruitment page.
+
+- Add i18n support to the private friend page.

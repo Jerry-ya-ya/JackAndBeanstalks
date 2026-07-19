@@ -1,11 +1,11 @@
 <div class="friend-container">
-  <h2 class="title">好友邀請系統</h2>
+  <h2 class="title">{{ 'privateFriend.header.title' | translate }}</h2>
 
   <!-- 發送邀請 -->
   <div class="invite-section card">
-    <label for="to">輸入用戶名：</label>
-    <input id="to" [(ngModel)]="toUsername" placeholder="username" class="input-user">
-    <button class="btn btn-primary" (click)="sendRequest()">發送邀請</button>
+    <label for="to">{{ 'privateFriend.invite.usernameLabel' | translate }}</label>
+    <input id="to" [(ngModel)]="toUsername" [placeholder]="'privateFriend.invite.usernamePlaceholder' | translate" class="input-user">
+    <button class="btn btn-primary" (click)="sendRequest()">{{ 'privateFriend.actions.sendInvite' | translate }}</button>
     @if (message) {
       <p class="message">{{ message }}</p>
     }
@@ -15,20 +15,20 @@
 
   <!-- 接收邀請清單 -->
   <div class="requests-section card">
-    <h3>收到的邀請</h3>
+    <h3>{{ 'privateFriend.requests.title' | translate }}</h3>
     @if (requests.length > 0) {
       <ul>
         @for (req of requests; track req) {
           <li class="request-item">
             <span class="request-from">{{ req.from_username }}</span>
-            <button class="btn btn-success" (click)="acceptRequest(req.id)">接受</button>
-            <button class="btn btn-danger" (click)="rejectRequest(req.id)">拒絕</button>
+            <button class="btn btn-success" (click)="acceptRequest(req.id)">{{ 'privateFriend.actions.accept' | translate }}</button>
+            <button class="btn btn-danger" (click)="rejectRequest(req.id)">{{ 'privateFriend.actions.reject' | translate }}</button>
           </li>
         }
       </ul>
     }
     @if (requests.length === 0) {
-      <p class="empty-tip">目前沒有收到邀請。</p>
+      <p class="empty-tip">{{ 'privateFriend.empty.noRequests' | translate }}</p>
     }
   </div>
 
@@ -36,7 +36,7 @@
 
   <!-- 好友列表 -->
   <div class="friends-section card">
-    <h3>好友列表</h3>
+    <h3>{{ 'privateFriend.friends.title' | translate }}</h3>
     @if (friends.length > 0) {
       <ul class="friend-list">
         @for (f of friends; track f) {
@@ -44,13 +44,13 @@
             <a [routerLink]="['/square', f.id]" class="friend-link">
               {{ f.username }}（{{ f.email }}）
             </a>
-            <button class="btn btn-danger" (click)="removeFriend(f.id)">刪除</button>
+            <button class="btn btn-danger" (click)="removeFriend(f.id)">{{ 'privateFriend.actions.remove' | translate }}</button>
           </li>
         }
       </ul>
     }
     @if (friends.length === 0) {
-      <p class="empty-tip">你尚未有好友</p>
+      <p class="empty-tip">{{ 'privateFriend.empty.noFriends' | translate }}</p>
     }
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../../../core/services/api.service';
 
 @Component({
@@ -16,7 +17,10 @@ export class FriendComponent implements OnInit {
   toUsername: string = '';
   requests: any[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit(): void {
     this.refreshFriendPage();
@@ -51,7 +55,7 @@ export class FriendComponent implements OnInit {
         this.loadFriends(); // 重新載入清單
       },
       error: err => {
-        this.message = err.error?.error || '刪除失敗';
+        this.message = err.error?.error || this.translate.instant('privateFriend.feedback.removeFailure');
       }
     });
   }
@@ -74,7 +78,7 @@ export class FriendComponent implements OnInit {
         this.toUsername = '';
       },
       error: err => {
-        this.message = err.error?.error || '發送失敗';
+        this.message = err.error?.error || this.translate.instant('privateFriend.feedback.sendFailure');
       }
     });
   }
@@ -102,7 +106,7 @@ export class FriendComponent implements OnInit {
         this.refreshFriendPage();
       },
       error: err => {
-        this.message = err.error?.error || '接受失敗';
+        this.message = err.error?.error || this.translate.instant('privateFriend.feedback.acceptFailure');
       }
     });
   }
@@ -118,7 +122,7 @@ export class FriendComponent implements OnInit {
         this.loadRequests();
       },
       error: err => {
-        this.message = err.error?.error || '拒絕失敗';
+        this.message = err.error?.error || this.translate.instant('privateFriend.feedback.rejectFailure');
       }
     });
   }

@@ -538,5 +538,36 @@
       "todoSuccess": "Todo 已發布",
       "todoFailure": "發布 Todo 失敗"
     }
+  },
+  "privateFriend": {
+    "header": {
+      "title": "好友邀請系統"
+    },
+    "invite": {
+      "usernameLabel": "輸入用戶名：",
+      "usernamePlaceholder": "username"
+    },
+    "requests": {
+      "title": "收到的邀請"
+    },
+    "friends": {
+      "title": "好友列表"
+    },
+    "actions": {
+      "sendInvite": "發送邀請",
+      "accept": "接受",
+      "reject": "拒絕",
+      "remove": "刪除"
+    },
+    "empty": {
+      "noRequests": "目前沒有收到邀請。",
+      "noFriends": "你尚未有好友"
+    },
+    "feedback": {
+      "sendFailure": "發送失敗",
+      "acceptFailure": "接受失敗",
+      "rejectFailure": "拒絕失敗",
+      "removeFailure": "刪除失敗"
+    }
   }
 }
