@@ -636,5 +636,49 @@
       "passwordSuccess": "パスワードを変更しました。",
       "passwordFailure": "更新に失敗しました。"
     }
+  },
+  "privateProfile": {
+    "hero": {
+      "kicker": "Private Profile",
+      "welcome": "おかえりなさい、{{ username }}。ここはあなたのプレイヤーIDパネルです。"
+    },
+    "account": {
+      "kicker": "Account Data",
+      "title": "自分のプロフィール",
+      "username": "アカウント",
+      "createdAt": "登録日時",
+      "email": "メール"
+    },
+    "form": {
+      "email": "Email",
+      "nickname": "ニックネーム"
+    },
+    "avatar": {
+      "kicker": "Avatar Upload",
+      "title": "アバター",
+      "userAvatarAlt": "ユーザーアバター",
+      "previewAlt": "アバタープレビュー",
+      "newPreview": "新しいアバターのプレビュー",
+      "current": "現在のアバター",
+      "chooseNew": "新しいアバターを選択"
+    },
+    "actions": {
+      "edit": "プロフィール編集",
+      "save": "保存",
+      "cancel": "キャンセル",
+      "uploadAvatar": "アバターをアップロード"
+    },
+    "loading": {
+      "kicker": "Loading",
+      "title": "Profile",
+      "message": "プレイヤーデータを読み込んでいます..."
+    },
+    "feedback": {
+      "loadFailure": "プロフィールデータの取得に失敗しました",
+      "updateSuccess": "プロフィールを更新しました。",
+      "updateFailure": "更新に失敗しました",
+      "avatarSuccess": "アバターをアップロードしました。",
+      "avatarFailure": "アップロードに失敗しました"
+    }
   }
 }

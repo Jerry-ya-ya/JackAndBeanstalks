@@ -636,5 +636,49 @@
       "passwordSuccess": "Password changed successfully.",
       "passwordFailure": "Update failed."
     }
+  },
+  "privateProfile": {
+    "hero": {
+      "kicker": "Private Profile",
+      "welcome": "Welcome back, {{ username }}. This is your player identity panel."
+    },
+    "account": {
+      "kicker": "Account Data",
+      "title": "My Profile",
+      "username": "Account",
+      "createdAt": "Registered At",
+      "email": "Email"
+    },
+    "form": {
+      "email": "Email",
+      "nickname": "Nickname"
+    },
+    "avatar": {
+      "kicker": "Avatar Upload",
+      "title": "Avatar",
+      "userAvatarAlt": "User avatar",
+      "previewAlt": "Avatar preview",
+      "newPreview": "New avatar preview",
+      "current": "Current avatar",
+      "chooseNew": "Choose new avatar"
+    },
+    "actions": {
+      "edit": "Edit Profile",
+      "save": "Save",
+      "cancel": "Cancel",
+      "uploadAvatar": "Upload Avatar"
+    },
+    "loading": {
+      "kicker": "Loading",
+      "title": "Profile",
+      "message": "Reading your player data..."
+    },
+    "feedback": {
+      "loadFailure": "Failed to get profile data.",
+      "updateSuccess": "Profile updated.",
+      "updateFailure": "Update failed.",
+      "avatarSuccess": "Avatar uploaded successfully.",
+      "avatarFailure": "Upload failed."
+    }
   }
 }

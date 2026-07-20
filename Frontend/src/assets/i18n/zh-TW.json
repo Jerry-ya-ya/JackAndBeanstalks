@@ -636,5 +636,49 @@
       "passwordSuccess": "密碼修改成功",
       "passwordFailure": "修改失敗"
     }
+  },
+  "privateProfile": {
+    "hero": {
+      "kicker": "Private Profile",
+      "welcome": "歡迎回來，{{ username }}。這裡是你的玩家身份面板。"
+    },
+    "account": {
+      "kicker": "Account Data",
+      "title": "我的個人資料",
+      "username": "帳號",
+      "createdAt": "註冊時間",
+      "email": "電子郵件"
+    },
+    "form": {
+      "email": "Email",
+      "nickname": "暱稱"
+    },
+    "avatar": {
+      "kicker": "Avatar Upload",
+      "title": "頭像",
+      "userAvatarAlt": "用戶頭像",
+      "previewAlt": "頭像預覽",
+      "newPreview": "新頭像預覽",
+      "current": "目前頭像",
+      "chooseNew": "選擇新頭像"
+    },
+    "actions": {
+      "edit": "編輯資料",
+      "save": "儲存",
+      "cancel": "取消",
+      "uploadAvatar": "上傳頭像"
+    },
+    "loading": {
+      "kicker": "Loading",
+      "title": "Profile",
+      "message": "正在讀取你的玩家資料..."
+    },
+    "feedback": {
+      "loadFailure": "取得個人資料失敗",
+      "updateSuccess": "資料已更新！",
+      "updateFailure": "更新失敗",
+      "avatarSuccess": "頭像上傳成功",
+      "avatarFailure": "上傳失敗"
+    }
   }
 }

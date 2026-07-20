@@ -3,6 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +21,10 @@ export class ProfileComponent implements OnInit {
   public environment = environment;
   public apiRoot: string = environment.apiUrl.replace('/api', '');
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private translate: TranslateService
+  ) {}
   isLoggedIn() {
     const token = localStorage.getItem('token');
     return !!localStorage.getItem('token');
@@ -39,7 +43,7 @@ export class ProfileComponent implements OnInit {
       this.http.get<any>(`${environment.apiUrl}/me`, { headers }).subscribe({
         next: (data) => {
           this.user = data;
-          console.log('載入 user 成功', this.user);
+          console.log('Loaded user successfully', this.user);
         },
         error: (err) => {
           if (err.status === 401) {
@@ -47,7 +51,7 @@ export class ProfileComponent implements OnInit {
             this.logout();
           } else {
             // 其他錯誤：只記錄錯誤，不登出
-            console.error('取得使用者資料失敗：', err);
+            console.error('Failed to get user data:', err);
           }
         }
       });
@@ -59,7 +63,7 @@ export class ProfileComponent implements OnInit {
       next: data => {
         this.user = data;
       },
-      error: () => alert('取得個人資料失敗')
+      error: () => alert(this.translate.instant('privateProfile.feedback.loadFailure'))
     });
   }
 
@@ -69,10 +73,10 @@ export class ProfileComponent implements OnInit {
       nickname: this.user.nickname
     }).subscribe({
       next: () => {
-        this.success = '資料已更新！';
+        this.success = this.translate.instant('privateProfile.feedback.updateSuccess');
         this.editing = false;
       },
-      error: () => alert('更新失敗')
+      error: () => alert(this.translate.instant('privateProfile.feedback.updateFailure'))
     });
   }
 
@@ -102,9 +106,9 @@ export class ProfileComponent implements OnInit {
       next: res => {
         this.user.avatar_url = res.avatar_url;
         this.avatarPreview = null;
-        alert('頭像上傳成功');
+        alert(this.translate.instant('privateProfile.feedback.avatarSuccess'));
       },
-      error: () => alert('上傳失敗')
+      error: () => alert(this.translate.instant('privateProfile.feedback.avatarFailure'))
     });
   }
 }

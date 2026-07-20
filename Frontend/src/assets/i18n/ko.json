@@ -636,5 +636,49 @@
       "passwordSuccess": "비밀번호가 변경되었습니다.",
       "passwordFailure": "업데이트에 실패했습니다."
     }
+  },
+  "privateProfile": {
+    "hero": {
+      "kicker": "Private Profile",
+      "welcome": "돌아오신 것을 환영합니다, {{ username }}. 여기는 플레이어 신원 패널입니다."
+    },
+    "account": {
+      "kicker": "Account Data",
+      "title": "내 프로필",
+      "username": "계정",
+      "createdAt": "가입 시간",
+      "email": "이메일"
+    },
+    "form": {
+      "email": "Email",
+      "nickname": "닉네임"
+    },
+    "avatar": {
+      "kicker": "Avatar Upload",
+      "title": "아바타",
+      "userAvatarAlt": "사용자 아바타",
+      "previewAlt": "아바타 미리보기",
+      "newPreview": "새 아바타 미리보기",
+      "current": "현재 아바타",
+      "chooseNew": "새 아바타 선택"
+    },
+    "actions": {
+      "edit": "프로필 편집",
+      "save": "저장",
+      "cancel": "취소",
+      "uploadAvatar": "아바타 업로드"
+    },
+    "loading": {
+      "kicker": "Loading",
+      "title": "Profile",
+      "message": "플레이어 데이터를 읽는 중..."
+    },
+    "feedback": {
+      "loadFailure": "프로필 데이터를 가져오지 못했습니다",
+      "updateSuccess": "프로필이 업데이트되었습니다.",
+      "updateFailure": "업데이트에 실패했습니다",
+      "avatarSuccess": "아바타를 업로드했습니다.",
+      "avatarFailure": "업로드에 실패했습니다"
+    }
   }
 }
