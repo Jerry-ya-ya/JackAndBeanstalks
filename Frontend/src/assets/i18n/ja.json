@@ -598,5 +598,43 @@
       "progress": "{{ done }}/{{ total }} 完了",
       "unsorted": "未分類プロジェクト"
     }
+  },
+  "privateSetting": {
+    "aria": {
+      "accountSettings": "アカウント設定"
+    },
+    "hero": {
+      "kicker": "Private Control Panel",
+      "title": "Settings",
+      "subtitle": "アカウントの安全性を管理し、アクセス入口をしっかり守りましょう。"
+    },
+    "status": {
+      "label": "Account Security",
+      "title": "Password Gate",
+      "note": "手動更新が必要"
+    },
+    "form": {
+      "kicker": "Security",
+      "title": "Change Password",
+      "currentPassword": "現在のパスワード",
+      "currentPasswordPlaceholder": "現在のパスワードを入力",
+      "newPassword": "新しいパスワード",
+      "newPasswordPlaceholder": "新しいパスワードを入力"
+    },
+    "actions": {
+      "updating": "更新中...",
+      "updatePassword": "パスワードを更新"
+    },
+    "notes": {
+      "kicker": "Security Notes",
+      "title": "Keep It Tight",
+      "uniquePassword": "他の場所で使い回していないパスワードを使用してください。",
+      "sharedDevice": "端末を共有した、または紛失した場合はパスワードを変更してください。",
+      "publicComputer": "公共のコンピューターを使用した後はログアウトしてください。"
+    },
+    "feedback": {
+      "passwordSuccess": "パスワードを変更しました。",
+      "passwordFailure": "更新に失敗しました。"
+    }
   }
 }

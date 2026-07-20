@@ -5,6 +5,7 @@ import { SettingRoutingModule } from './setting-routing.module';
 import { SettingComponent } from './setting.component';
 
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     SettingRoutingModule,
-    FormsModule
+    FormsModule,
+    TranslatePipe
   ]
 })
 export class SettingModule { }

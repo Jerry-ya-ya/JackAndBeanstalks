@@ -598,5 +598,43 @@
       "progress": "{{ done }}/{{ total }} done",
       "unsorted": "Unsorted Project"
     }
+  },
+  "privateSetting": {
+    "aria": {
+      "accountSettings": "Account settings"
+    },
+    "hero": {
+      "kicker": "Private Control Panel",
+      "title": "Settings",
+      "subtitle": "Manage account security and keep your access point locked down."
+    },
+    "status": {
+      "label": "Account Security",
+      "title": "Password Gate",
+      "note": "Manual update required"
+    },
+    "form": {
+      "kicker": "Security",
+      "title": "Change Password",
+      "currentPassword": "Current Password",
+      "currentPasswordPlaceholder": "Enter current password",
+      "newPassword": "New Password",
+      "newPasswordPlaceholder": "Enter new password"
+    },
+    "actions": {
+      "updating": "Updating...",
+      "updatePassword": "Update Password"
+    },
+    "notes": {
+      "kicker": "Security Notes",
+      "title": "Keep It Tight",
+      "uniquePassword": "Use a password you do not reuse elsewhere.",
+      "sharedDevice": "Change your password if a device is shared or lost.",
+      "publicComputer": "Log out after using a public computer."
+    },
+    "feedback": {
+      "passwordSuccess": "Password changed successfully.",
+      "passwordFailure": "Update failed."
+    }
   }
 }

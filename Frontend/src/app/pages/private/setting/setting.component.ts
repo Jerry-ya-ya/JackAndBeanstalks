@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -17,7 +18,10 @@ export class SettingComponent {
   isSuccessMessage = false;
   submitting = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private translate: TranslateService
+  ) {}
 
   changePassword() {
     if (this.submitting) {
@@ -33,14 +37,14 @@ export class SettingComponent {
       new_password: this.newPassword
     }).subscribe({
       next: () => {
-        this.passwordMessage = '密碼修改成功';
+        this.passwordMessage = this.translate.instant('privateSetting.feedback.passwordSuccess');
         this.isSuccessMessage = true;
         this.oldPassword = '';
         this.newPassword = '';
         this.submitting = false;
       },
       error: (err) => {
-        this.passwordMessage = err.error.error || '修改失敗';
+        this.passwordMessage = err.error.error || this.translate.instant('privateSetting.feedback.passwordFailure');
         this.isSuccessMessage = false;
         this.submitting = false;
       }

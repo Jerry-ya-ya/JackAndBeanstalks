@@ -598,5 +598,43 @@
       "progress": "{{ done }}/{{ total }} 完成",
       "unsorted": "未分類專案"
     }
+  },
+  "privateSetting": {
+    "aria": {
+      "accountSettings": "帳號設定"
+    },
+    "hero": {
+      "kicker": "Private Control Panel",
+      "title": "Settings",
+      "subtitle": "管理帳號安全，讓你的存取入口保持鎖定。"
+    },
+    "status": {
+      "label": "Account Security",
+      "title": "Password Gate",
+      "note": "需要手動更新"
+    },
+    "form": {
+      "kicker": "Security",
+      "title": "Change Password",
+      "currentPassword": "目前密碼",
+      "currentPasswordPlaceholder": "輸入目前密碼",
+      "newPassword": "新密碼",
+      "newPasswordPlaceholder": "輸入新密碼"
+    },
+    "actions": {
+      "updating": "更新中...",
+      "updatePassword": "更新密碼"
+    },
+    "notes": {
+      "kicker": "Security Notes",
+      "title": "Keep It Tight",
+      "uniquePassword": "使用一組不會在其他地方重複使用的密碼。",
+      "sharedDevice": "如果裝置曾被共用或遺失，請更換密碼。",
+      "publicComputer": "使用公共電腦後請記得登出。"
+    },
+    "feedback": {
+      "passwordSuccess": "密碼修改成功",
+      "passwordFailure": "修改失敗"
+    }
   }
 }
