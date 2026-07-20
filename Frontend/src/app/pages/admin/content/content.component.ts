@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CommunityNewsItem, HomeContentService, HomeNewsContent } from '../../../core/services/home-content.service';
 
 type ContentSection = 'home-news' | 'member' | 'tutorial' | 'about' | 'system';
@@ -17,17 +18,20 @@ export class ContentComponent implements OnInit {
   loading = false;
   saving = false;
 
-  readonly sections: { key: ContentSection; label: string; hint: string; disabled?: boolean }[] = [
-    { key: 'home-news', label: 'Home News', hint: 'Edit the homepage community cards.' },
-    { key: 'member', label: 'Member', hint: 'Reserved for public member content.', disabled: true },
-    { key: 'tutorial', label: 'Tutorial', hint: 'Reserved for tutorial page assets.', disabled: true },
-    { key: 'about', label: 'About', hint: 'Reserved for about page copy.', disabled: true },
-    { key: 'system', label: 'System', hint: 'Reserved for global content switches.', disabled: true }
+  readonly sections: { key: ContentSection; labelKey: string; hintKey: string; disabled?: boolean }[] = [
+    { key: 'home-news', labelKey: 'adminContent.sections.homeNews.label', hintKey: 'adminContent.sections.homeNews.hint' },
+    { key: 'member', labelKey: 'adminContent.sections.member.label', hintKey: 'adminContent.sections.member.hint', disabled: true },
+    { key: 'tutorial', labelKey: 'adminContent.sections.tutorial.label', hintKey: 'adminContent.sections.tutorial.hint', disabled: true },
+    { key: 'about', labelKey: 'adminContent.sections.about.label', hintKey: 'adminContent.sections.about.hint', disabled: true },
+    { key: 'system', labelKey: 'adminContent.sections.system.label', hintKey: 'adminContent.sections.system.hint', disabled: true }
   ];
 
   content: HomeNewsContent;
 
-  constructor(private homeContent: HomeContentService) {
+  constructor(
+    private homeContent: HomeContentService,
+    private translate: TranslateService
+  ) {
     this.content = this.homeContent.getContentSnapshot();
   }
 
@@ -39,7 +43,7 @@ export class ContentComponent implements OnInit {
         this.loading = false;
       },
       error: error => {
-        this.errorMessage = error?.error?.error || 'Failed to load homepage news.';
+        this.errorMessage = error?.error?.error || this.translate.instant('adminContent.feedback.loadFailure');
         this.loading = false;
       }
     });
@@ -65,9 +69,9 @@ export class ContentComponent implements OnInit {
 
   addNewsItem() {
     this.activeNews.push({
-      title: 'New Update',
-      summary: 'Write the news summary here.',
-      tag: 'News'
+      title: this.translate.instant('adminContent.defaults.newTitle'),
+      summary: this.translate.instant('adminContent.defaults.newSummary'),
+      tag: this.translate.instant('adminContent.defaults.newTag')
     });
     this.savedMessage = '';
   }
@@ -100,11 +104,11 @@ export class ContentComponent implements OnInit {
     this.homeContent.saveAdminContent(this.content).subscribe({
       next: content => {
         this.content = content;
-        this.savedMessage = 'Homepage news saved to database.';
+        this.savedMessage = this.translate.instant('adminContent.feedback.saveSuccess');
         this.saving = false;
       },
       error: error => {
-        this.errorMessage = error?.error?.error || 'Failed to save homepage news.';
+        this.errorMessage = error?.error?.error || this.translate.instant('adminContent.feedback.saveFailure');
         this.saving = false;
       }
     });
@@ -112,7 +116,7 @@ export class ContentComponent implements OnInit {
 
   reset() {
     this.content = this.homeContent.getDefaultContent();
-    this.savedMessage = 'Defaults loaded. Save to publish them.';
+    this.savedMessage = this.translate.instant('adminContent.feedback.defaultsLoaded');
     this.errorMessage = '';
   }
 }

@@ -1,18 +1,18 @@
 <main class="content-admin">
   <section class="content-hero">
     <div>
-      <p class="admin-kicker">Admin Content Console</p>
-      <h1>Content Management</h1>
-      <p>Manage public page content from one place. Home news is editable now; the other channels are ready for future tools.</p>
+      <p class="admin-kicker">{{ 'adminContent.hero.kicker' | translate }}</p>
+      <h1>{{ 'adminContent.hero.title' | translate }}</h1>
+      <p>{{ 'adminContent.hero.subtitle' | translate }}</p>
     </div>
     <div class="hero-badge">
-      <span>ROLE</span>
-      <strong>Admin</strong>
+      <span>{{ 'adminContent.hero.roleLabel' | translate }}</span>
+      <strong>{{ 'adminContent.hero.roleValue' | translate }}</strong>
     </div>
   </section>
 
   <section class="content-workspace">
-    <nav class="content-tabs" aria-label="Content sections">
+    <nav class="content-tabs" [attr.aria-label]="'adminContent.aria.contentSections' | translate">
       @for (section of sections; track section.key) {
         <button
           type="button"
@@ -20,8 +20,8 @@
           [class.locked]="section.disabled"
           [disabled]="section.disabled"
           (click)="setSection(section.key)">
-          <span>{{ section.label }}</span>
-          <small>{{ section.hint }}</small>
+          <span>{{ section.labelKey | translate }}</span>
+          <small>{{ section.hintKey | translate }}</small>
         </button>
       }
     </nav>
@@ -30,44 +30,44 @@
       @if (activeSection === 'home-news') {
         <div class="panel-heading">
           <div>
-            <p class="admin-kicker">Homepage</p>
-            <h2>Community News</h2>
+            <p class="admin-kicker">{{ 'adminContent.home.kicker' | translate }}</p>
+            <h2>{{ 'adminContent.home.title' | translate }}</h2>
           </div>
-          <div class="theme-switcher" aria-label="Homepage theme news selector">
-            <button type="button" [class.active]="activeTheme === 'cmen'" (click)="setTheme('cmen')">CMEN Day</button>
-            <button type="button" [class.active]="activeTheme === 'eden'" (click)="setTheme('eden')">EDEN Night</button>
+          <div class="theme-switcher" [attr.aria-label]="'adminContent.aria.themeSelector' | translate">
+            <button type="button" [class.active]="activeTheme === 'cmen'" (click)="setTheme('cmen')">{{ 'adminContent.themes.cmen' | translate }}</button>
+            <button type="button" [class.active]="activeTheme === 'eden'" (click)="setTheme('eden')">{{ 'adminContent.themes.eden' | translate }}</button>
           </div>
         </div>
 
         <div class="news-editor">
           @if (loading) {
-            <p class="state-message">Loading homepage news from database...</p>
+            <p class="state-message">{{ 'adminContent.state.loading' | translate }}</p>
           }
 
           <div class="news-list">
             @for (item of activeNews; track item; let i = $index) {
               <article class="news-form-card">
                 <div class="card-toolbar">
-                  <span>Card {{ i + 1 }}</span>
+                  <span>{{ 'adminContent.card.label' | translate: { index: i + 1 } }}</span>
                   <div>
-                    <button type="button" (click)="moveNewsItem(i, -1)" [disabled]="i === 0">Up</button>
-                    <button type="button" (click)="moveNewsItem(i, 1)" [disabled]="i === activeNews.length - 1">Down</button>
-                    <button type="button" class="danger" (click)="removeNewsItem(i)" [disabled]="activeNews.length <= 1">Remove</button>
+                    <button type="button" (click)="moveNewsItem(i, -1)" [disabled]="i === 0">{{ 'adminContent.actions.up' | translate }}</button>
+                    <button type="button" (click)="moveNewsItem(i, 1)" [disabled]="i === activeNews.length - 1">{{ 'adminContent.actions.down' | translate }}</button>
+                    <button type="button" class="danger" (click)="removeNewsItem(i)" [disabled]="activeNews.length <= 1">{{ 'adminContent.actions.remove' | translate }}</button>
                   </div>
                 </div>
 
                 <label>
-                  <span>Tag</span>
+                  <span>{{ 'adminContent.form.tag' | translate }}</span>
                   <input [(ngModel)]="item.tag" name="tag-{{ activeTheme }}-{{ i }}" maxlength="24">
                 </label>
 
                 <label>
-                  <span>Title</span>
+                  <span>{{ 'adminContent.form.title' | translate }}</span>
                   <input [(ngModel)]="item.title" name="title-{{ activeTheme }}-{{ i }}" maxlength="80">
                 </label>
 
                 <label>
-                  <span>Summary</span>
+                  <span>{{ 'adminContent.form.summary' | translate }}</span>
                   <textarea [(ngModel)]="item.summary" name="summary-{{ activeTheme }}-{{ i }}" rows="4" maxlength="180"></textarea>
                 </label>
               </article>
@@ -76,16 +76,16 @@
 
           <aside class="preview-panel">
             <div class="preview-heading">
-              <span>Live Preview</span>
+              <span>{{ 'adminContent.preview.label' | translate }}</span>
               <strong>{{ activeTheme === 'cmen' ? 'CMENStudio' : 'EDEN' }}</strong>
             </div>
 
             <div class="preview-stack">
               @for (item of activeNews; track item) {
                 <article class="preview-card">
-                  <span>{{ item.tag || 'Tag' }}</span>
-                  <h3>{{ item.title || 'News title' }}</h3>
-                  <p>{{ item.summary || 'News summary will appear here.' }}</p>
+                  <span>{{ item.tag || ('adminContent.preview.tagFallback' | translate) }}</span>
+                  <h3>{{ item.title || ('adminContent.preview.titleFallback' | translate) }}</h3>
+                  <p>{{ item.summary || ('adminContent.preview.summaryFallback' | translate) }}</p>
                 </article>
               }
             </div>
@@ -93,11 +93,11 @@
         </div>
 
         <div class="action-row">
-          <button type="button" class="ghost" (click)="addNewsItem()">Add Card</button>
+          <button type="button" class="ghost" (click)="addNewsItem()">{{ 'adminContent.actions.addCard' | translate }}</button>
           <div>
-            <button type="button" class="ghost" (click)="reset()">Reset Defaults</button>
+            <button type="button" class="ghost" (click)="reset()">{{ 'adminContent.actions.resetDefaults' | translate }}</button>
             <button type="button" class="primary" (click)="save()" [disabled]="saving">
-              {{ saving ? 'Saving...' : 'Save News' }}
+              {{ (saving ? 'adminContent.actions.saving' : 'adminContent.actions.saveNews') | translate }}
             </button>
           </div>
         </div>

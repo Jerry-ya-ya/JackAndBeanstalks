@@ -709,5 +709,85 @@
     "feedback": {
       "fetchFailure": "爬蟲失敗"
     }
+  },
+  "adminContent": {
+    "aria": {
+      "contentSections": "內容區塊",
+      "themeSelector": "主頁主題新聞選擇器"
+    },
+    "hero": {
+      "kicker": "Admin Content Console",
+      "title": "Content Management",
+      "subtitle": "集中管理公開頁面內容。目前可編輯主頁新聞，其他頻道已預留給未來工具。",
+      "roleLabel": "ROLE",
+      "roleValue": "Admin"
+    },
+    "sections": {
+      "homeNews": {
+        "label": "Home News",
+        "hint": "編輯主頁社群新聞卡片。"
+      },
+      "member": {
+        "label": "Member",
+        "hint": "預留給公開成員內容。"
+      },
+      "tutorial": {
+        "label": "Tutorial",
+        "hint": "預留給教學頁素材。"
+      },
+      "about": {
+        "label": "About",
+        "hint": "預留給 about 頁面文案。"
+      },
+      "system": {
+        "label": "System",
+        "hint": "預留給全域內容切換。"
+      }
+    },
+    "home": {
+      "kicker": "Homepage",
+      "title": "Community News"
+    },
+    "themes": {
+      "cmen": "CMEN Day",
+      "eden": "EDEN Night"
+    },
+    "state": {
+      "loading": "正在從資料庫載入主頁新聞..."
+    },
+    "card": {
+      "label": "Card {{ index }}"
+    },
+    "form": {
+      "tag": "Tag",
+      "title": "Title",
+      "summary": "Summary"
+    },
+    "preview": {
+      "label": "Live Preview",
+      "tagFallback": "Tag",
+      "titleFallback": "News title",
+      "summaryFallback": "News summary will appear here."
+    },
+    "actions": {
+      "up": "Up",
+      "down": "Down",
+      "remove": "Remove",
+      "addCard": "Add Card",
+      "resetDefaults": "Reset Defaults",
+      "saving": "Saving...",
+      "saveNews": "Save News"
+    },
+    "defaults": {
+      "newTitle": "New Update",
+      "newSummary": "Write the news summary here.",
+      "newTag": "News"
+    },
+    "feedback": {
+      "loadFailure": "無法載入主頁新聞。",
+      "saveSuccess": "主頁新聞已儲存到資料庫。",
+      "saveFailure": "無法儲存主頁新聞。",
+      "defaultsLoaded": "已載入預設值。請儲存以發布。"
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 import { ContentRoutingModule } from './content-routing.module';
 import { ContentComponent } from './content.component';
@@ -13,7 +14,8 @@ import { ContentComponent } from './content.component';
   imports: [
     CommonModule,
     FormsModule,
-    ContentRoutingModule
+    ContentRoutingModule,
+    TranslatePipe
   ]
 })
 export class ContentModule { }

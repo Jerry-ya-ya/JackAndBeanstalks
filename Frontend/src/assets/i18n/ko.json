@@ -709,5 +709,85 @@
     "feedback": {
       "fetchFailure": "크롤러 실행에 실패했습니다."
     }
+  },
+  "adminContent": {
+    "aria": {
+      "contentSections": "콘텐츠 섹션",
+      "themeSelector": "홈페이지 테마 뉴스 선택기"
+    },
+    "hero": {
+      "kicker": "Admin Content Console",
+      "title": "Content Management",
+      "subtitle": "공개 페이지 콘텐츠를 한곳에서 관리하세요. 지금은 홈 뉴스 편집이 가능하며, 다른 채널은 향후 도구를 위해 준비되어 있습니다.",
+      "roleLabel": "ROLE",
+      "roleValue": "Admin"
+    },
+    "sections": {
+      "homeNews": {
+        "label": "Home News",
+        "hint": "홈페이지 커뮤니티 카드를 편집합니다."
+      },
+      "member": {
+        "label": "Member",
+        "hint": "공개 멤버 콘텐츠용으로 예약되어 있습니다."
+      },
+      "tutorial": {
+        "label": "Tutorial",
+        "hint": "튜토리얼 페이지 자료용으로 예약되어 있습니다."
+      },
+      "about": {
+        "label": "About",
+        "hint": "About 페이지 문구용으로 예약되어 있습니다."
+      },
+      "system": {
+        "label": "System",
+        "hint": "전역 콘텐츠 전환용으로 예약되어 있습니다."
+      }
+    },
+    "home": {
+      "kicker": "Homepage",
+      "title": "Community News"
+    },
+    "themes": {
+      "cmen": "CMEN Day",
+      "eden": "EDEN Night"
+    },
+    "state": {
+      "loading": "데이터베이스에서 홈 뉴스를 불러오는 중..."
+    },
+    "card": {
+      "label": "Card {{ index }}"
+    },
+    "form": {
+      "tag": "Tag",
+      "title": "Title",
+      "summary": "Summary"
+    },
+    "preview": {
+      "label": "Live Preview",
+      "tagFallback": "Tag",
+      "titleFallback": "News title",
+      "summaryFallback": "News summary will appear here."
+    },
+    "actions": {
+      "up": "Up",
+      "down": "Down",
+      "remove": "Remove",
+      "addCard": "Add Card",
+      "resetDefaults": "Reset Defaults",
+      "saving": "Saving...",
+      "saveNews": "Save News"
+    },
+    "defaults": {
+      "newTitle": "New Update",
+      "newSummary": "Write the news summary here.",
+      "newTag": "News"
+    },
+    "feedback": {
+      "loadFailure": "홈 뉴스를 불러오지 못했습니다.",
+      "saveSuccess": "홈 뉴스를 데이터베이스에 저장했습니다.",
+      "saveFailure": "홈 뉴스 저장에 실패했습니다.",
+      "defaultsLoaded": "기본값을 불러왔습니다. 게시하려면 저장하세요."
+    }
   }
 }

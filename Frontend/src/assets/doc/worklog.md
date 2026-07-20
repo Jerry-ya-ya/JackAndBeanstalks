@@ -423,3 +423,5 @@
 - Add i18n support to the private profile page.
 
 - Add i18n support to the private crawler page.
+
+- Add i18n support to the admin content page.

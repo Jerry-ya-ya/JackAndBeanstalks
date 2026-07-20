@@ -709,5 +709,85 @@
     "feedback": {
       "fetchFailure": "クローラーに失敗しました。"
     }
+  },
+  "adminContent": {
+    "aria": {
+      "contentSections": "コンテンツセクション",
+      "themeSelector": "ホームページテーマニュース選択"
+    },
+    "hero": {
+      "kicker": "Admin Content Console",
+      "title": "Content Management",
+      "subtitle": "公開ページのコンテンツを一か所で管理します。現在はホームニュースを編集でき、他のチャンネルは今後のツール用に準備されています。",
+      "roleLabel": "ROLE",
+      "roleValue": "Admin"
+    },
+    "sections": {
+      "homeNews": {
+        "label": "Home News",
+        "hint": "ホームページのコミュニティカードを編集します。"
+      },
+      "member": {
+        "label": "Member",
+        "hint": "公開メンバーコンテンツ用に予約されています。"
+      },
+      "tutorial": {
+        "label": "Tutorial",
+        "hint": "チュートリアルページ素材用に予約されています。"
+      },
+      "about": {
+        "label": "About",
+        "hint": "About ページ文言用に予約されています。"
+      },
+      "system": {
+        "label": "System",
+        "hint": "全域コンテンツ切り替え用に予約されています。"
+      }
+    },
+    "home": {
+      "kicker": "Homepage",
+      "title": "Community News"
+    },
+    "themes": {
+      "cmen": "CMEN Day",
+      "eden": "EDEN Night"
+    },
+    "state": {
+      "loading": "データベースからホームニュースを読み込んでいます..."
+    },
+    "card": {
+      "label": "Card {{ index }}"
+    },
+    "form": {
+      "tag": "Tag",
+      "title": "Title",
+      "summary": "Summary"
+    },
+    "preview": {
+      "label": "Live Preview",
+      "tagFallback": "Tag",
+      "titleFallback": "News title",
+      "summaryFallback": "News summary will appear here."
+    },
+    "actions": {
+      "up": "Up",
+      "down": "Down",
+      "remove": "Remove",
+      "addCard": "Add Card",
+      "resetDefaults": "Reset Defaults",
+      "saving": "Saving...",
+      "saveNews": "Save News"
+    },
+    "defaults": {
+      "newTitle": "New Update",
+      "newSummary": "Write the news summary here.",
+      "newTag": "News"
+    },
+    "feedback": {
+      "loadFailure": "ホームニュースの読み込みに失敗しました。",
+      "saveSuccess": "ホームニュースをデータベースに保存しました。",
+      "saveFailure": "ホームニュースの保存に失敗しました。",
+      "defaultsLoaded": "デフォルトを読み込みました。公開するには保存してください。"
+    }
   }
 }

@@ -709,5 +709,85 @@
     "feedback": {
       "fetchFailure": "Crawler failed."
     }
+  },
+  "adminContent": {
+    "aria": {
+      "contentSections": "Content sections",
+      "themeSelector": "Homepage theme news selector"
+    },
+    "hero": {
+      "kicker": "Admin Content Console",
+      "title": "Content Management",
+      "subtitle": "Manage public page content from one place. Home news is editable now; the other channels are ready for future tools.",
+      "roleLabel": "ROLE",
+      "roleValue": "Admin"
+    },
+    "sections": {
+      "homeNews": {
+        "label": "Home News",
+        "hint": "Edit the homepage community cards."
+      },
+      "member": {
+        "label": "Member",
+        "hint": "Reserved for public member content."
+      },
+      "tutorial": {
+        "label": "Tutorial",
+        "hint": "Reserved for tutorial page assets."
+      },
+      "about": {
+        "label": "About",
+        "hint": "Reserved for about page copy."
+      },
+      "system": {
+        "label": "System",
+        "hint": "Reserved for global content switches."
+      }
+    },
+    "home": {
+      "kicker": "Homepage",
+      "title": "Community News"
+    },
+    "themes": {
+      "cmen": "CMEN Day",
+      "eden": "EDEN Night"
+    },
+    "state": {
+      "loading": "Loading homepage news from database..."
+    },
+    "card": {
+      "label": "Card {{ index }}"
+    },
+    "form": {
+      "tag": "Tag",
+      "title": "Title",
+      "summary": "Summary"
+    },
+    "preview": {
+      "label": "Live Preview",
+      "tagFallback": "Tag",
+      "titleFallback": "News title",
+      "summaryFallback": "News summary will appear here."
+    },
+    "actions": {
+      "up": "Up",
+      "down": "Down",
+      "remove": "Remove",
+      "addCard": "Add Card",
+      "resetDefaults": "Reset Defaults",
+      "saving": "Saving...",
+      "saveNews": "Save News"
+    },
+    "defaults": {
+      "newTitle": "New Update",
+      "newSummary": "Write the news summary here.",
+      "newTag": "News"
+    },
+    "feedback": {
+      "loadFailure": "Failed to load homepage news.",
+      "saveSuccess": "Homepage news saved to database.",
+      "saveFailure": "Failed to save homepage news.",
+      "defaultsLoaded": "Defaults loaded. Save to publish them."
+    }
   }
 }
