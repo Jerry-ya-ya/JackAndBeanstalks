@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CrawlerRoutingModule } from './crawler-routing.module';
 import { CrawlerComponent } from './crawler.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { CrawlerComponent } from './crawler.component';
   ],
   imports: [
     CommonModule,
-    CrawlerRoutingModule
+    CrawlerRoutingModule,
+    TranslatePipe
   ]
 })
 export class CrawlerModule { }

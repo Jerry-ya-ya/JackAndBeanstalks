@@ -2,14 +2,14 @@
   <section class="crawler-shell">
     <header class="crawler-hero">
       <div>
-        <p class="crawler-kicker">Intel Crawler</p>
-        <h1>即時科技新聞</h1>
-        <p>追蹤最新科技情報，把資料節點送回你的工作室控制台。</p>
+        <p class="crawler-kicker">{{ 'privateCrawler.hero.kicker' | translate }}</p>
+        <h1>{{ 'privateCrawler.hero.title' | translate }}</h1>
+        <p>{{ 'privateCrawler.hero.subtitle' | translate }}</p>
       </div>
 
       @if (scheduleInfo) {
         <div class="crawler-status">
-          <span>Next Scan</span>
+          <span>{{ 'privateCrawler.status.nextScan' | translate }}</span>
           <strong>{{ scheduleInfo.next_run | date:'HH:mm' : 'Asia/Taipei' }}</strong>
           <small>{{ scheduleInfo.next_run | date:'yyyy/MM/dd' : 'Asia/Taipei' }}</small>
         </div>
@@ -18,18 +18,18 @@
 
     <section class="crawler-toolbar">
       <div class="toolbar-actions">
-        <button (click)="fetchNews()" class="crawler-button">抓取最新新聞</button>
-        <button (click)="loadNews()" class="crawler-button crawler-button--ghost">重新整理</button>
+        <button (click)="fetchNews()" class="crawler-button">{{ 'privateCrawler.actions.fetchLatest' | translate }}</button>
+        <button (click)="loadNews()" class="crawler-button crawler-button--ghost">{{ 'privateCrawler.actions.refresh' | translate }}</button>
       </div>
 
       @if (scheduleInfo) {
         <div class="schedule-grid">
           <div class="info-item">
-            <span class="label">上次爬蟲時間</span>
+            <span class="label">{{ 'privateCrawler.schedule.lastRun' | translate }}</span>
             <span class="value">{{ scheduleInfo.last_run | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</span>
           </div>
           <div class="info-item">
-            <span class="label">下次預定爬蟲</span>
+            <span class="label">{{ 'privateCrawler.schedule.nextRun' | translate }}</span>
             <span class="value">{{ scheduleInfo.next_run | date:'yyyy/MM/dd HH:mm:ss' : 'Asia/Taipei' }}</span>
           </div>
         </div>
@@ -38,8 +38,8 @@
 
     <section class="news-panel">
       <div class="panel-header">
-        <p class="crawler-kicker">News Feed</p>
-        <h2>資料流</h2>
+        <p class="crawler-kicker">{{ 'privateCrawler.feed.kicker' | translate }}</p>
+        <h2>{{ 'privateCrawler.feed.title' | translate }}</h2>
       </div>
 
       @if (news.length > 0) {
@@ -56,8 +56,8 @@
         </ol>
       } @else {
         <div class="empty-state">
-          <p class="crawler-kicker">No Signal</p>
-          <p>目前還沒有新聞資料。</p>
+          <p class="crawler-kicker">{{ 'privateCrawler.empty.kicker' | translate }}</p>
+          <p>{{ 'privateCrawler.empty.message' | translate }}</p>
         </div>
       }
 

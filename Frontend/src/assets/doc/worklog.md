@@ -421,3 +421,5 @@
 - Add i18n support to the private setting page.
 
 - Add i18n support to the private profile page.
+
+- Add i18n support to the private crawler page.

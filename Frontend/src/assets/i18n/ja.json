@@ -680,5 +680,34 @@
       "avatarSuccess": "アバターをアップロードしました。",
       "avatarFailure": "アップロードに失敗しました"
     }
+  },
+  "privateCrawler": {
+    "hero": {
+      "kicker": "Intel Crawler",
+      "title": "リアルタイム技術ニュース",
+      "subtitle": "最新の技術情報を追跡し、データノードをスタジオのコントロールパネルへ戻します。"
+    },
+    "status": {
+      "nextScan": "Next Scan"
+    },
+    "actions": {
+      "fetchLatest": "最新ニュースを取得",
+      "refresh": "更新"
+    },
+    "schedule": {
+      "lastRun": "前回のクロール時間",
+      "nextRun": "次回予定クロール"
+    },
+    "feed": {
+      "kicker": "News Feed",
+      "title": "データストリーム"
+    },
+    "empty": {
+      "kicker": "No Signal",
+      "message": "現在ニュースデータはありません。"
+    },
+    "feedback": {
+      "fetchFailure": "クローラーに失敗しました。"
+    }
   }
 }

@@ -3,6 +3,7 @@ import { OnDestroy, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { interval, Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../../../core/services/api.service';
 
 @Component({
@@ -17,7 +18,10 @@ export class CrawlerComponent implements OnInit, OnDestroy {
   scheduleInfo: any = null;
   private updateSubscription: Subscription;
   
-  constructor(private apiService: ApiService) {
+  constructor(
+    private apiService: ApiService,
+    private translate: TranslateService
+  ) {
     // 每900秒更新一次時間資訊
     this.updateSubscription = interval(900000).subscribe(() => {
       this.updateScheduleInfo();
@@ -65,7 +69,7 @@ export class CrawlerComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching news:', error);
-        alert('爬蟲失敗');
+        alert(this.translate.instant('privateCrawler.feedback.fetchFailure'));
       }
     });
   }

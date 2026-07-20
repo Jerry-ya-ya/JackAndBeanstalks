@@ -680,5 +680,34 @@
       "avatarSuccess": "頭像上傳成功",
       "avatarFailure": "上傳失敗"
     }
+  },
+  "privateCrawler": {
+    "hero": {
+      "kicker": "Intel Crawler",
+      "title": "即時科技新聞",
+      "subtitle": "追蹤最新科技情報，把資料節點送回你的工作室控制台。"
+    },
+    "status": {
+      "nextScan": "Next Scan"
+    },
+    "actions": {
+      "fetchLatest": "抓取最新新聞",
+      "refresh": "重新整理"
+    },
+    "schedule": {
+      "lastRun": "上次爬蟲時間",
+      "nextRun": "下次預定爬蟲"
+    },
+    "feed": {
+      "kicker": "News Feed",
+      "title": "資料流"
+    },
+    "empty": {
+      "kicker": "No Signal",
+      "message": "目前還沒有新聞資料。"
+    },
+    "feedback": {
+      "fetchFailure": "爬蟲失敗"
+    }
   }
 }

@@ -680,5 +680,34 @@
       "avatarSuccess": "아바타를 업로드했습니다.",
       "avatarFailure": "업로드에 실패했습니다"
     }
+  },
+  "privateCrawler": {
+    "hero": {
+      "kicker": "Intel Crawler",
+      "title": "실시간 기술 뉴스",
+      "subtitle": "최신 기술 정보를 추적하고 데이터 노드를 스튜디오 콘솔로 돌려보내세요."
+    },
+    "status": {
+      "nextScan": "Next Scan"
+    },
+    "actions": {
+      "fetchLatest": "최신 뉴스 가져오기",
+      "refresh": "새로고침"
+    },
+    "schedule": {
+      "lastRun": "마지막 크롤링 시간",
+      "nextRun": "다음 예정 크롤링"
+    },
+    "feed": {
+      "kicker": "News Feed",
+      "title": "데이터 스트림"
+    },
+    "empty": {
+      "kicker": "No Signal",
+      "message": "아직 뉴스 데이터가 없습니다."
+    },
+    "feedback": {
+      "fetchFailure": "크롤러 실행에 실패했습니다."
+    }
   }
 }

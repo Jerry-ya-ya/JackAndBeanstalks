@@ -680,5 +680,34 @@
       "avatarSuccess": "Avatar uploaded successfully.",
       "avatarFailure": "Upload failed."
     }
+  },
+  "privateCrawler": {
+    "hero": {
+      "kicker": "Intel Crawler",
+      "title": "Live Tech News",
+      "subtitle": "Track the latest tech intel and route data nodes back to your studio console."
+    },
+    "status": {
+      "nextScan": "Next Scan"
+    },
+    "actions": {
+      "fetchLatest": "Fetch Latest News",
+      "refresh": "Refresh"
+    },
+    "schedule": {
+      "lastRun": "Last crawler run",
+      "nextRun": "Next scheduled crawl"
+    },
+    "feed": {
+      "kicker": "News Feed",
+      "title": "Data Stream"
+    },
+    "empty": {
+      "kicker": "No Signal",
+      "message": "There is no news data yet."
+    },
+    "feedback": {
+      "fetchFailure": "Crawler failed."
+    }
   }
 }
