@@ -357,6 +357,7 @@
     },
     "feedback": {
       "success": "登入成功",
+      "logoutSuccess": "登出成功",
       "dismiss": "關閉",
       "failure": "登入失敗，請檢查帳號密碼"
     }
@@ -748,7 +749,7 @@
   },
   "auth": {
     "feedback": {
-      "sessionExpired": "登入逾時，請重新登入"
+      "sessionExpired": "登入狀態已過期，請重新登入"
     }
   },
   "home": {

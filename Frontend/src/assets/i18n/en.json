@@ -357,6 +357,7 @@
     },
     "feedback": {
       "success": "Login successful",
+      "logoutSuccess": "Logout successful",
       "dismiss": "Dismiss",
       "failure": "Login failed. Please check your username and password."
     }
@@ -748,7 +749,7 @@
   },
   "auth": {
     "feedback": {
-      "sessionExpired": "Your session has expired. Please sign in again."
+      "sessionExpired": "Your login has expired. Please sign in again."
     }
   },
   "home": {

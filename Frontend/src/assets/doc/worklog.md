@@ -433,3 +433,5 @@
 - Replace session expiration alerts with snackbar notifications.
 
 - Unify frontend styling with the Eden Night theme.
+
+- Add logout success snackbar notifications.
