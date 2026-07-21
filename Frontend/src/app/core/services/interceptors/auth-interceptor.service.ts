@@ -7,12 +7,14 @@ import { catchError } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthInterceptor implements HttpInterceptor {
   private sessionExpiredSnackOpen = false;
+  private readonly apiBaseUrl = environment.apiUrl.replace(/\/+$/, '');
 
   constructor(
     private router: Router,
@@ -22,10 +24,11 @@ export class AuthInterceptor implements HttpInterceptor {
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
+    const isBackendApiRequest = this.isBackendApiRequest(req.url);
 
     let authReq = req;
     
-    if (token) {
+    if (token && isBackendApiRequest) {
       authReq = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
@@ -35,7 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401 && !req.url.includes('/login')) {
+        if (isBackendApiRequest && error.status === 401 && !this.isLoginRequest(req.url)) {
           localStorage.removeItem('token');
           localStorage.removeItem('role');
           this.openSessionExpiredSnack();
@@ -44,6 +47,14 @@ export class AuthInterceptor implements HttpInterceptor {
         return throwError(() => error);
       })
     );
+  }
+
+  private isBackendApiRequest(url: string) {
+    return url === this.apiBaseUrl || url.startsWith(`${this.apiBaseUrl}/`) || url.startsWith('/api/');
+  }
+
+  private isLoginRequest(url: string) {
+    return url.split('?')[0].replace(/\/+$/, '').endsWith('/login');
   }
 
   private async openSessionExpiredSnack() {

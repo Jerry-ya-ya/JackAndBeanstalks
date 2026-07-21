@@ -438,6 +438,6 @@
 
 ## 2026/07/22
 
-- Add a local storage theme controller to the setting page.
+- Add a site theme controller to settings.
 
-- Connect the home page and hamburger menu colors to the active site theme.
+- Fix external API 401 logout by scoping auth interception.
