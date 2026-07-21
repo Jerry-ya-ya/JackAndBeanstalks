@@ -1,5 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 import { ApiService } from '../../../../core/services/api.service';
 import { appPath } from '../../../../path/app-path-const';
@@ -23,7 +25,9 @@ export class LoginComponent {
   
   constructor(
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar,
+    private translate: TranslateService
   ) {}
 
   login() {
@@ -42,12 +46,27 @@ export class LoginComponent {
         localStorage.setItem('token', res.access_token);
         localStorage.setItem('username', res.username);
         localStorage.setItem('role', res.role);
+        this.openLoginSnack('login.feedback.success', 'studio-snackbar-success');
         this.router.navigate([appPath.userhome]);
       },
       error: () => {
         this.error = 'login.feedback.failure';
+        this.openLoginSnack('login.feedback.failure', 'studio-snackbar-error');
         this.submitting = false;
       }
     });
+  }
+
+  private openLoginSnack(messageKey: string, panelClass: string) {
+    this.snackBar.open(
+      this.translate.instant(messageKey),
+      this.translate.instant('login.feedback.dismiss'),
+      {
+        duration: 3000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+        panelClass: ['studio-snackbar', panelClass]
+      }
+    );
   }
 }

@@ -7,6 +7,7 @@ import { LoginComponent } from './login.component';
 
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RouterModule } from '@angular/router';
     LoginRoutingModule,
     FormsModule,
     RouterModule,
+    MatSnackBarModule,
   ]
 })
 export class LoginModule { }

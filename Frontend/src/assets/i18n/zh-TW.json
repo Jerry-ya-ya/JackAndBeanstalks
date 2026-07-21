@@ -356,6 +356,8 @@
       "createOne": "建立帳號"
     },
     "feedback": {
+      "success": "登入成功",
+      "dismiss": "關閉",
       "failure": "登入失敗，請檢查帳號密碼"
     }
   },

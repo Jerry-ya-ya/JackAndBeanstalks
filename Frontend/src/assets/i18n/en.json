@@ -356,6 +356,8 @@
       "createOne": "Create one"
     },
     "feedback": {
+      "success": "Login successful",
+      "dismiss": "Dismiss",
       "failure": "Login failed. Please check your username and password."
     }
   },

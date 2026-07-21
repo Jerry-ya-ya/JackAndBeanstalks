@@ -8,6 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/services/interceptors/auth-interceptor.service';
 import { provideTranslateService, TranslatePipe } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
@@ -43,7 +44,8 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
         suffix: '.json',
         useHttpBackend: true
       })
-    })
+    }),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

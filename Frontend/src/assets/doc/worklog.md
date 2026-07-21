@@ -425,3 +425,7 @@
 - Add i18n support to the private crawler page.
 
 - Add i18n support to the admin content page.
+
+## 2026/07/21
+
+- Add Angular Material snackbar notifications to the login page.
