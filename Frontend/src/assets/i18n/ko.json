@@ -616,6 +616,27 @@
       "title": "Password Gate",
       "note": "수동 업데이트 필요"
     },
+    "theme": {
+      "aria": "사이트 테마 컨트롤러",
+      "kicker": "Theme Controller",
+      "title": "Site Theme",
+      "description": "전체 사이트의 색상과 컨트롤 스타일을 선택합니다. 이 설정은 브라우저에 저장되어 다음 접속에도 유지됩니다.",
+      "storageNote": "localStorage에 저장되며 이 기기에서만 적용됩니다.",
+      "options": {
+        "eden": {
+          "label": "Eden Night",
+          "description": "현재 기본 어두운 게임 스튜디오 스타일입니다."
+        },
+        "arcade": {
+          "label": "Arcade Glitch",
+          "description": "더 밝은 네온 아케이드 팔레트와 둥근 게임형 버튼입니다."
+        },
+        "cyber": {
+          "label": "Cyber Grid",
+          "description": "차가운 기술 느낌의 팔레트와 날렵한 컨트롤입니다."
+        }
+      }
+    },
     "form": {
       "kicker": "Security",
       "title": "Change Password",

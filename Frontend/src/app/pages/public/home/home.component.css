@@ -3,37 +3,15 @@
 }
 
 .cmen-home {
-  --studio-bg: #080a0f;
-  --studio-panel: rgba(3, 14, 10, 0.82);
-  --studio-line: rgba(94, 255, 126, 0.28);
-  --studio-text: #effff2;
-  --studio-muted: #a7cdb2;
-  --studio-accent: #65ff82;
-  --studio-warm: #d8ff62;
-  --studio-danger: #20d889;
   min-height: calc(100vh - 24px);
   padding: 20px;
   color: var(--studio-text);
-  background:
-    radial-gradient(circle at 18% 18%, rgba(94, 255, 126, 0.14), transparent 28%),
-    radial-gradient(circle at 82% 22%, rgba(40, 216, 137, 0.12), transparent 24%),
-    linear-gradient(135deg, #020503 0%, #08150e 54%, #030907 100%);
+  background: var(--studio-page-bg);
   overflow: hidden;
 }
 
 .cmen-home.day-mode {
-  --studio-bg: #080a0f;
-  --studio-panel: rgba(3, 14, 10, 0.82);
-  --studio-line: rgba(94, 255, 126, 0.28);
-  --studio-text: #effff2;
-  --studio-muted: #a7cdb2;
-  --studio-accent: #65ff82;
-  --studio-warm: #d8ff62;
-  --studio-danger: #20d889;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(94, 255, 126, 0.14), transparent 28%),
-    radial-gradient(circle at 82% 22%, rgba(40, 216, 137, 0.12), transparent 24%),
-    linear-gradient(135deg, #020503 0%, #08150e 54%, #030907 100%);
+  background: var(--studio-page-bg);
 }
 
 .hero-shell {

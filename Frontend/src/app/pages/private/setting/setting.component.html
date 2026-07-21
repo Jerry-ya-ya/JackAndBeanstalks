@@ -14,6 +14,38 @@
   </section>
 
   <section class="settings-grid">
+    <section class="setting-card theme-controller" [attr.aria-label]="'privateSetting.theme.aria' | translate">
+      <div class="card-header">
+        <p class="setting-kicker">{{ 'privateSetting.theme.kicker' | translate }}</p>
+        <h2>{{ 'privateSetting.theme.title' | translate }}</h2>
+      </div>
+
+      <p class="theme-copy">{{ 'privateSetting.theme.description' | translate }}</p>
+
+      <div class="theme-options">
+        @for (option of theme.themeOptions; track option.id) {
+          <button
+            class="theme-option"
+            type="button"
+            [class.theme-option--active]="theme.activeTheme === option.id"
+            (click)="setSiteTheme(option.id)"
+            >
+            <span class="theme-option__preview" [class]="'theme-option__preview theme-option__preview--' + option.id">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span class="theme-option__text">
+              <strong>{{ option.labelKey | translate }}</strong>
+              <small>{{ option.descriptionKey | translate }}</small>
+            </span>
+          </button>
+        }
+      </div>
+
+      <p class="theme-storage-note">{{ 'privateSetting.theme.storageNote' | translate }}</p>
+    </section>
+
     <form class="setting-card" (ngSubmit)="changePassword()" autocomplete="off">
       <div class="card-header">
         <p class="setting-kicker">{{ 'privateSetting.form.kicker' | translate }}</p>

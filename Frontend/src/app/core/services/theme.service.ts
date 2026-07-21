@@ -1,18 +1,47 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, OnDestroy } from '@angular/core';
 
+export type StudioThemeId = 'eden' | 'arcade' | 'cyber';
+
+export interface StudioThemeOption {
+  id: StudioThemeId;
+  labelKey: string;
+  descriptionKey: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService implements OnDestroy {
+  readonly themeOptions: StudioThemeOption[] = [
+    {
+      id: 'eden',
+      labelKey: 'privateSetting.theme.options.eden.label',
+      descriptionKey: 'privateSetting.theme.options.eden.description'
+    },
+    {
+      id: 'arcade',
+      labelKey: 'privateSetting.theme.options.arcade.label',
+      descriptionKey: 'privateSetting.theme.options.arcade.description'
+    },
+    {
+      id: 'cyber',
+      labelKey: 'privateSetting.theme.options.cyber.label',
+      descriptionKey: 'privateSetting.theme.options.cyber.description'
+    }
+  ];
+
   isNightMode = true;
   isWorldLocked = false;
   remainingSeconds = 300;
+  activeTheme: StudioThemeId = 'eden';
 
   private readonly cycleSeconds = 300;
+  private readonly storageKey = 'studio-theme';
   private timerId: ReturnType<typeof setInterval> | null = null;
 
   constructor(@Inject(DOCUMENT) private document: Document) {
+    this.activeTheme = this.readStoredTheme();
     this.syncBodyTheme();
     this.startWorldTimer();
   }
@@ -61,6 +90,16 @@ export class ThemeService implements OnDestroy {
     }
   }
 
+  setSiteTheme(themeId: StudioThemeId) {
+    if (this.activeTheme === themeId) {
+      return;
+    }
+
+    this.activeTheme = themeId;
+    localStorage.setItem(this.storageKey, themeId);
+    this.syncBodyTheme();
+  }
+
   ngOnDestroy() {
     if (this.timerId) {
       clearInterval(this.timerId);
@@ -88,5 +127,14 @@ export class ThemeService implements OnDestroy {
   private syncBodyTheme() {
     this.document.body.classList.toggle('eden-night-theme', this.isNightMode);
     this.document.body.classList.toggle('cmen-day-theme', !this.isNightMode);
+
+    for (const theme of this.themeOptions) {
+      this.document.body.classList.toggle(`studio-theme-${theme.id}`, this.activeTheme === theme.id);
+    }
+  }
+
+  private readStoredTheme(): StudioThemeId {
+    const storedTheme = localStorage.getItem(this.storageKey);
+    return this.themeOptions.some(theme => theme.id === storedTheme) ? storedTheme as StudioThemeId : 'eden';
   }
 }

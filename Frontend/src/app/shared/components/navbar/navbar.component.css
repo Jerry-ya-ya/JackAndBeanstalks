@@ -1,82 +1,28 @@
 .sidebar {
-  --nav-shell-bg: rgba(8, 10, 15, 0.94);
-  --nav-shell-line: rgba(141, 255, 122, 0.24);
-  --nav-toggle-bg: rgba(255, 255, 255, 0.06);
-  --nav-toggle-text: #f5f7ef;
-  --nav-toggle-line: rgba(141, 255, 122, 0.3);
-  --nav-panel-public: linear-gradient(90deg, #10140f 0%, #222a22 100%);
-  --nav-panel-private: linear-gradient(90deg, #0f2027 0%, #214347 100%);
-  --nav-panel-admin: linear-gradient(90deg, #342044 0%, #59345d 100%);
-  --nav-panel-super: linear-gradient(90deg, #6a3f10 0%, #d19928 100%);
-  --nav-link-bg: rgba(255, 255, 255, 0.92);
-  --nav-link-text: #10140f;
-  --nav-link-border: #232526;
-  --nav-link-hover-bg: #65ff82;
-  --nav-link-hover-text: #03110a;
-  --nav-link-glow: rgba(101, 255, 130, 0.28);
-  --nav-private-bg: #00e6e6;
-  --nav-private-text: #10140f;
-  --nav-private-hover: #009999;
-  --nav-admin-bg: #b266ff;
-  --nav-admin-text: #ffffff;
-  --nav-admin-hover: #7c2ae8;
-  --nav-super-bg: #ffd200;
-  --nav-super-text: #10140f;
-  --nav-super-hover: #ffb300;
-}
-
-:host-context(.eden-night-theme) .sidebar {
-  --nav-shell-bg: rgba(3, 14, 10, 0.95);
-  --nav-shell-line: rgba(94, 255, 126, 0.34);
-  --nav-toggle-bg: rgba(94, 255, 126, 0.08);
-  --nav-toggle-text: #effff2;
-  --nav-toggle-line: rgba(94, 255, 126, 0.46);
-  --nav-panel-public: linear-gradient(90deg, #041009 0%, #0e2618 100%);
-  --nav-panel-private: linear-gradient(90deg, #06241a 0%, #11513b 100%);
-  --nav-panel-admin: linear-gradient(90deg, #162316 0%, #31582f 100%);
-  --nav-panel-super: linear-gradient(90deg, #27340a 0%, #8cc83b 100%);
-  --nav-link-bg: rgba(239, 255, 242, 0.9);
-  --nav-link-text: #03110a;
-  --nav-link-border: #65ff82;
-  --nav-link-hover-bg: #65ff82;
-  --nav-link-hover-text: #021106;
-  --nav-link-glow: rgba(101, 255, 130, 0.34);
-  --nav-private-bg: #20d889;
-  --nav-private-text: #03110a;
-  --nav-private-hover: #0ea66a;
-  --nav-admin-bg: #83c766;
-  --nav-admin-text: #021106;
-  --nav-admin-hover: #5a9e3d;
-  --nav-super-bg: #d8ff62;
-  --nav-super-text: #16210a;
-  --nav-super-hover: #9fcc2b;
-}
-
-:host-context(.cmen-day-theme) .sidebar {
-  --nav-shell-bg: rgba(3, 14, 10, 0.95);
-  --nav-shell-line: rgba(94, 255, 126, 0.34);
-  --nav-toggle-bg: rgba(94, 255, 126, 0.08);
-  --nav-toggle-text: #effff2;
-  --nav-toggle-line: rgba(94, 255, 126, 0.46);
-  --nav-panel-public: linear-gradient(90deg, #041009 0%, #0e2618 100%);
-  --nav-panel-private: linear-gradient(90deg, #06241a 0%, #11513b 100%);
-  --nav-panel-admin: linear-gradient(90deg, #162316 0%, #31582f 100%);
-  --nav-panel-super: linear-gradient(90deg, #27340a 0%, #8cc83b 100%);
-  --nav-link-bg: rgba(239, 255, 242, 0.9);
-  --nav-link-text: #03110a;
-  --nav-link-border: #65ff82;
-  --nav-link-hover-bg: #65ff82;
-  --nav-link-hover-text: #021106;
-  --nav-link-glow: rgba(101, 255, 130, 0.34);
-  --nav-private-bg: #20d889;
-  --nav-private-text: #03110a;
-  --nav-private-hover: #0ea66a;
-  --nav-admin-bg: #83c766;
-  --nav-admin-text: #021106;
-  --nav-admin-hover: #5a9e3d;
-  --nav-super-bg: #d8ff62;
-  --nav-super-text: #16210a;
-  --nav-super-hover: #9fcc2b;
+  --nav-shell-bg: color-mix(in srgb, var(--studio-panel-strong) 94%, transparent);
+  --nav-shell-line: color-mix(in srgb, var(--studio-accent) 34%, transparent);
+  --nav-toggle-bg: color-mix(in srgb, var(--studio-accent) 8%, transparent);
+  --nav-toggle-text: var(--studio-text);
+  --nav-toggle-line: color-mix(in srgb, var(--studio-accent) 46%, transparent);
+  --nav-panel-public: linear-gradient(90deg, color-mix(in srgb, var(--studio-panel-strong) 96%, #000 4%) 0%, color-mix(in srgb, var(--studio-accent) 18%, var(--studio-panel-strong)) 100%);
+  --nav-panel-private: linear-gradient(90deg, color-mix(in srgb, var(--studio-panel-strong) 92%, #000 8%) 0%, color-mix(in srgb, var(--studio-success) 28%, var(--studio-panel-strong)) 100%);
+  --nav-panel-admin: linear-gradient(90deg, color-mix(in srgb, var(--studio-panel-strong) 94%, #000 6%) 0%, color-mix(in srgb, var(--studio-accent) 24%, var(--studio-panel-strong)) 100%);
+  --nav-panel-super: linear-gradient(90deg, color-mix(in srgb, var(--studio-panel-strong) 88%, #000 12%) 0%, color-mix(in srgb, var(--studio-warm) 48%, var(--studio-panel-strong)) 100%);
+  --nav-link-bg: color-mix(in srgb, var(--studio-text) 90%, transparent);
+  --nav-link-text: var(--studio-bg);
+  --nav-link-border: var(--studio-accent);
+  --nav-link-hover-bg: var(--studio-accent);
+  --nav-link-hover-text: var(--studio-bg);
+  --nav-link-glow: color-mix(in srgb, var(--studio-accent) 34%, transparent);
+  --nav-private-bg: var(--studio-success);
+  --nav-private-text: var(--studio-bg);
+  --nav-private-hover: color-mix(in srgb, var(--studio-success) 76%, #000 24%);
+  --nav-admin-bg: color-mix(in srgb, var(--studio-accent) 72%, var(--studio-warm));
+  --nav-admin-text: var(--studio-bg);
+  --nav-admin-hover: color-mix(in srgb, var(--studio-accent) 70%, #000 30%);
+  --nav-super-bg: var(--studio-warm);
+  --nav-super-text: var(--studio-bg);
+  --nav-super-hover: color-mix(in srgb, var(--studio-warm) 74%, #000 26%);
 }
 
 .navbar {

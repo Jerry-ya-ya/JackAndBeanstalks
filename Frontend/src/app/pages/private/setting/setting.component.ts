@@ -3,6 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
+import { StudioThemeId, ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-setting',
@@ -20,7 +21,8 @@ export class SettingComponent {
 
   constructor(
     private http: HttpClient,
-    private translate: TranslateService
+    private translate: TranslateService,
+    public theme: ThemeService
   ) {}
 
   changePassword() {
@@ -49,5 +51,9 @@ export class SettingComponent {
         this.submitting = false;
       }
     });
+  }
+
+  setSiteTheme(themeId: StudioThemeId) {
+    this.theme.setSiteTheme(themeId);
   }
 }

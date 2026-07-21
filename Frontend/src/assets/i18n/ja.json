@@ -616,6 +616,27 @@
       "title": "Password Gate",
       "note": "手動更新が必要"
     },
+    "theme": {
+      "aria": "サイトテーマコントローラー",
+      "kicker": "Theme Controller",
+      "title": "Site Theme",
+      "description": "サイト全体の配色とコントロールの雰囲気を選べます。この設定はブラウザーに保存され、次回も適用されます。",
+      "storageNote": "localStorage に保存されるため、この端末だけに反映されます。",
+      "options": {
+        "eden": {
+          "label": "Eden Night",
+          "description": "現在の標準ダークゲームスタジオ風テーマ。"
+        },
+        "arcade": {
+          "label": "Arcade Glitch",
+          "description": "明るめのネオンアーケード配色で、ボタンはより丸いゲーム風です。"
+        },
+        "cyber": {
+          "label": "Cyber Grid",
+          "description": "クールなテック配色で、コントロールはよりシャープです。"
+        }
+      }
+    },
     "form": {
       "kicker": "Security",
       "title": "Change Password",

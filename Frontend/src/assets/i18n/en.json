@@ -616,6 +616,27 @@
       "title": "Password Gate",
       "note": "Manual update required"
     },
+    "theme": {
+      "aria": "Website theme controller",
+      "kicker": "Theme Controller",
+      "title": "Site Theme",
+      "description": "Choose the global color palette and control style. This setting is saved in this browser and will stay active next time.",
+      "storageNote": "Stored with localStorage for this device only.",
+      "options": {
+        "eden": {
+          "label": "Eden Night",
+          "description": "The current dark game studio style."
+        },
+        "arcade": {
+          "label": "Arcade Glitch",
+          "description": "A brighter neon arcade palette with rounder game-like buttons."
+        },
+        "cyber": {
+          "label": "Cyber Grid",
+          "description": "A cool tech palette with sharper controls."
+        }
+      }
+    },
     "form": {
       "kicker": "Security",
       "title": "Change Password",

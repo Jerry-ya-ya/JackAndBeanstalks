@@ -616,6 +616,27 @@
       "title": "Password Gate",
       "note": "需要手動更新"
     },
+    "theme": {
+      "aria": "網站主題控制器",
+      "kicker": "Theme Controller",
+      "title": "Site Theme",
+      "description": "選擇全站外觀色系與控制元件風格。設定會保存在此瀏覽器，下次開啟仍會套用。",
+      "storageNote": "目前使用 localStorage 儲存，不會影響其他裝置。",
+      "options": {
+        "eden": {
+          "label": "Eden Night",
+          "description": "目前預設的深色遊戲工作室風格。"
+        },
+        "arcade": {
+          "label": "Arcade Glitch",
+          "description": "偏亮的街機霓虹色，按鈕更圓、更有遊戲感。"
+        },
+        "cyber": {
+          "label": "Cyber Grid",
+          "description": "冷色科技感主題，控制元件更俐落。"
+        }
+      }
+    },
     "form": {
       "kicker": "Security",
       "title": "Change Password",

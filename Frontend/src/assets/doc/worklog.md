@@ -435,3 +435,9 @@
 - Unify frontend styling with the Eden Night theme.
 
 - Add logout success snackbar notifications.
+
+## 2026/07/22
+
+- Add a local storage theme controller to the setting page.
+
+- Connect the home page and hamburger menu colors to the active site theme.
