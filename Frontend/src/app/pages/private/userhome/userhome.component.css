@@ -1,9 +1,10 @@
 .user-home-container {
-  max-width: 1200px;
+  max-width: none;
   margin: 0 auto;
-  padding: 20px;
+  padding: 116px clamp(16px, 4vw, 48px) 72px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--studio-page-bg);
+  color: var(--studio-text);
 }
 
 /* 載入狀態 */
@@ -86,12 +87,12 @@
 
 /* 頁面標題 */
 .page-header {
-  background: rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--studio-panel) 78%, transparent);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
+  border-radius: 8px;
   padding: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--studio-line);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
   text-align: center;
 }
 
@@ -122,12 +123,12 @@
 
 /* 貼文區域 */
 .posts-section {
-  background: rgba(255, 255, 255, 0.1);
+  background: color-mix(in srgb, var(--studio-panel) 78%, transparent);
   backdrop-filter: blur(10px);
-  border-radius: 20px;
+  border-radius: 8px;
   padding: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--studio-line);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
 }
 
 .section-header {
@@ -172,28 +173,28 @@
 :host-context(.cmen-day-theme) .main-title,
 :host-context(.cmen-day-theme) .section-title,
 :host-context(.cmen-day-theme) .empty-title {
-  color: #14343a;
+  color: var(--studio-text);
   text-shadow:
-    2px 2px 0 rgba(209, 145, 41, 0.28),
-    -1px -1px 0 rgba(255, 248, 218, 0.9);
+    2px 2px 0 color-mix(in srgb, var(--studio-danger) 72%, transparent),
+    -1px -1px 0 color-mix(in srgb, var(--studio-accent) 32%, transparent);
 }
 
 :host-context(.cmen-day-theme) .subtitle,
 :host-context(.cmen-day-theme) .empty-description {
-  color: #334c50;
+  color: var(--studio-muted);
   font-weight: 700;
   opacity: 1;
 }
 
 :host-context(.cmen-day-theme) .post-count {
-  color: #14343a;
-  background: rgba(255, 248, 218, 0.76);
-  border: 1px solid rgba(20, 52, 58, 0.2);
+  color: var(--studio-text);
+  background: color-mix(in srgb, var(--studio-panel) 72%, transparent);
+  border: 1px solid var(--studio-line);
 }
 
 :host-context(.cmen-day-theme) .count-number,
 :host-context(.cmen-day-theme) .count-label {
-  color: #14343a;
+  color: var(--studio-text);
 }
 
 /* 貼文網格 */
@@ -342,12 +343,12 @@
 
 :host-context(.cmen-day-theme) .author-name,
 :host-context(.cmen-day-theme) .post-text {
-  color: #14343a;
+  color: var(--studio-text);
 }
 
 :host-context(.cmen-day-theme) .post-time,
 :host-context(.cmen-day-theme) .stat-item {
-  color: #506160;
+  color: var(--studio-muted);
   opacity: 1;
 }
 

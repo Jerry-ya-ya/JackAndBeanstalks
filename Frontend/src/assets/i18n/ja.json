@@ -745,8 +745,13 @@
         "label": "System",
         "hint": "全域コンテンツ切り替え用に予約されています。"
       }
-    },
-    "home": {
+  },
+  "auth": {
+    "feedback": {
+      "sessionExpired": "セッションの有効期限が切れました。もう一度ログインしてください。"
+    }
+  },
+  "home": {
       "kicker": "Homepage",
       "title": "Community News"
     },

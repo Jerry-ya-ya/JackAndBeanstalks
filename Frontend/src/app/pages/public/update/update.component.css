@@ -1,14 +1,9 @@
 .update-page {
   min-height: 100vh;
-  padding: 96px 5vw 64px;
-  color: #f8fbff;
-  background:
-    linear-gradient(rgba(141, 232, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(141, 232, 255, 0.06) 1px, transparent 1px),
-    radial-gradient(circle at 12% 10%, rgba(58, 196, 255, 0.24), transparent 28%),
-    radial-gradient(circle at 88% 12%, rgba(255, 214, 110, 0.20), transparent 26%),
-    linear-gradient(145deg, #080d18 0%, #122832 50%, #16101f 100%);
-  background-size: 42px 42px, 42px 42px, auto, auto, auto;
+  padding: 116px clamp(16px, 4vw, 48px) 48px;
+  color: var(--studio-text);
+  background: var(--studio-grid-bg);
+  background-size: 68px 68px, 68px 68px, auto;
 }
 
 .update-hero,
@@ -17,11 +12,14 @@
 .state-panel,
 .entry-card,
 .latest-card {
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid var(--studio-line);
   border-radius: 8px;
-  background: rgba(7, 14, 25, 0.72);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(16px);
+  color: var(--studio-text);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 36%),
+    color-mix(in srgb, var(--studio-panel) 88%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 18px 48px var(--eden-shadow);
+  backdrop-filter: blur(14px);
 }
 
 .update-hero {
@@ -31,12 +29,12 @@
   gap: 24px;
   max-width: 1120px;
   margin: 0 auto 24px;
-  padding: 30px;
+  padding: clamp(22px, 4vw, 32px);
 }
 
 .update-kicker {
   margin: 0 0 8px;
-  color: #8de8ff;
+  color: var(--studio-accent);
   font-size: 0.78rem;
   font-weight: 900;
   letter-spacing: 0;
@@ -51,14 +49,18 @@
 }
 
 .update-hero h1 {
+  color: var(--studio-text);
   font-size: clamp(2.4rem, 6vw, 5rem);
   line-height: 0.95;
+  text-shadow:
+    2px 2px 0 var(--studio-danger),
+    -2px -2px 0 color-mix(in srgb, var(--studio-accent) 38%, transparent);
 }
 
 .update-hero p:last-child {
   max-width: 620px;
   margin: 14px 0 0;
-  color: rgba(248, 251, 255, 0.72);
+  color: var(--studio-muted);
   line-height: 1.7;
 }
 
@@ -67,19 +69,21 @@
   align-content: center;
   min-width: 180px;
   padding: 22px;
-  background: linear-gradient(145deg, rgba(141, 232, 255, 0.16), rgba(255, 214, 110, 0.12));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--studio-accent) 18%, transparent), color-mix(in srgb, var(--studio-warm) 12%, transparent)),
+    color-mix(in srgb, var(--studio-panel) 88%, transparent);
 }
 
 .latest-card span,
 .latest-card small {
-  color: rgba(248, 251, 255, 0.62);
+  color: var(--studio-muted);
   font-size: 0.78rem;
   font-weight: 800;
 }
 
 .latest-card strong {
   margin: 8px 0;
-  color: #ffd66e;
+  color: var(--studio-warm);
   font-size: 1.45rem;
 }
 
@@ -88,16 +92,16 @@
 .state-panel {
   max-width: 1120px;
   margin: 0 auto 24px;
-  padding: 26px;
+  padding: clamp(18px, 3vw, 26px);
 }
 
 .state-panel {
-  color: #bfefff;
+  color: var(--studio-accent);
   font-weight: 800;
 }
 
 .state-panel--error {
-  color: #ffc3ca;
+  color: var(--studio-danger);
 }
 
 .section-heading {
@@ -109,6 +113,7 @@
 }
 
 .section-heading h2 {
+  color: var(--studio-text);
   font-size: clamp(1.6rem, 3vw, 2.4rem);
 }
 
@@ -129,10 +134,10 @@
 .latest-list li {
   min-height: 84px;
   padding: 18px;
-  border: 1px solid rgba(141, 232, 255, 0.20);
+  border: 1px solid color-mix(in srgb, var(--studio-line) 76%, transparent);
   border-radius: 8px;
-  color: rgba(248, 251, 255, 0.86);
-  background: rgba(255, 255, 255, 0.07);
+  color: color-mix(in srgb, var(--studio-text) 88%, transparent);
+  background: var(--eden-panel-soft);
   line-height: 1.55;
 }
 
@@ -149,10 +154,10 @@
 .version-block h3 {
   width: fit-content;
   padding: 8px 12px;
-  border: 1px solid rgba(255, 214, 110, 0.34);
+  border: 1px solid color-mix(in srgb, var(--studio-warm) 38%, transparent);
   border-radius: 8px;
-  color: #ffd66e;
-  background: rgba(255, 214, 110, 0.10);
+  color: var(--studio-warm);
+  background: color-mix(in srgb, var(--studio-warm) 10%, transparent);
 }
 
 .entry-stack {
@@ -168,19 +173,19 @@
 }
 
 .entry-date {
-  color: #8de8ff;
+  color: var(--studio-accent);
   font-size: 0.92rem;
   font-weight: 900;
 }
 
 .entry-card li {
-  color: rgba(248, 251, 255, 0.72);
+  color: var(--studio-muted);
   line-height: 1.55;
 }
 
 @media (max-width: 760px) {
   .update-page {
-    padding: 84px 16px 40px;
+    padding: 92px 12px 28px;
   }
 
   .update-hero,
@@ -190,12 +195,6 @@
 
   .latest-card {
     min-width: 0;
-  }
-
-  .latest-section,
-  .timeline-section,
-  .state-panel {
-    padding: 18px;
   }
 
   .latest-list,

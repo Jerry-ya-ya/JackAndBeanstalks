@@ -745,8 +745,13 @@
         "label": "System",
         "hint": "預留給全域內容切換。"
       }
-    },
-    "home": {
+  },
+  "auth": {
+    "feedback": {
+      "sessionExpired": "登入逾時，請重新登入"
+    }
+  },
+  "home": {
       "kicker": "Homepage",
       "title": "Community News"
     },

@@ -745,8 +745,13 @@
         "label": "System",
         "hint": "Reserved for global content switches."
       }
-    },
-    "home": {
+  },
+  "auth": {
+    "feedback": {
+      "sessionExpired": "Your session has expired. Please sign in again."
+    }
+  },
+  "home": {
       "kicker": "Homepage",
       "title": "Community News"
     },

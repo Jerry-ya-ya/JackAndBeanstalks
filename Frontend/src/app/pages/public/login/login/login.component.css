@@ -84,25 +84,25 @@
 
 :host-context(.cmen-day-theme) .dragon-box {
   opacity: 0.7;
-  filter: drop-shadow(0 16px 24px rgba(21, 25, 31, 0.18));
+  filter: drop-shadow(0 0 34px color-mix(in srgb, var(--studio-accent) 32%, transparent));
 }
 
 :host-context(.cmen-day-theme) .dragon-box svg path[fill] {
-  fill: color-mix(in srgb, var(--studio-accent) 72%, #15191f);
+  fill: color-mix(in srgb, var(--studio-accent) 72%, #effff2);
 }
 
 :host-context(.cmen-day-theme) .dragon-box svg path[stroke] {
-  stroke: color-mix(in srgb, var(--studio-warm) 66%, #15191f);
+  stroke: color-mix(in srgb, var(--studio-warm) 66%, #effff2);
 }
 
 :host-context(.cmen-day-theme) .login-shell {
-  background: rgba(255, 248, 218, 0.36);
-  box-shadow: 0 24px 70px rgba(21, 25, 31, 0.18);
+  background: color-mix(in srgb, var(--studio-panel) 58%, transparent);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
 }
 
 :host-context(.cmen-day-theme) .login-panel {
-  background: rgba(255, 248, 218, 0.46);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.36), 0 18px 44px rgba(21,25,31,0.14);
+  background: color-mix(in srgb, var(--studio-panel) 66%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 18px 48px rgba(0,0,0,0.22);
 }
 
 .panel-header h2 {

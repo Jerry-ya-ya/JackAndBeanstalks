@@ -745,8 +745,13 @@
         "label": "System",
         "hint": "전역 콘텐츠 전환용으로 예약되어 있습니다."
       }
-    },
-    "home": {
+  },
+  "auth": {
+    "feedback": {
+      "sessionExpired": "로그인 세션이 만료되었습니다. 다시 로그인해 주세요."
+    }
+  },
+  "home": {
       "kicker": "Homepage",
       "title": "Community News"
     },

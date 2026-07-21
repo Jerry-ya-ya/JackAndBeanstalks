@@ -22,18 +22,18 @@
 }
 
 .cmen-home.day-mode {
-  --studio-bg: #f4f1de;
-  --studio-panel: rgba(255, 248, 218, 0.84);
-  --studio-line: rgba(22, 62, 65, 0.24);
-  --studio-text: #15191f;
-  --studio-muted: #506160;
-  --studio-accent: #176b7a;
-  --studio-warm: #d19129;
-  --studio-danger: #c64d48;
+  --studio-bg: #080a0f;
+  --studio-panel: rgba(3, 14, 10, 0.82);
+  --studio-line: rgba(94, 255, 126, 0.28);
+  --studio-text: #effff2;
+  --studio-muted: #a7cdb2;
+  --studio-accent: #65ff82;
+  --studio-warm: #d8ff62;
+  --studio-danger: #20d889;
   background:
-    radial-gradient(circle at 18% 18%, rgba(23, 107, 122, 0.14), transparent 27%),
-    radial-gradient(circle at 82% 22%, rgba(209, 145, 41, 0.18), transparent 24%),
-    linear-gradient(135deg, #f4f1de 0%, #e8ead6 52%, #d9e4e0 100%);
+    radial-gradient(circle at 18% 18%, rgba(94, 255, 126, 0.14), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(40, 216, 137, 0.12), transparent 24%),
+    linear-gradient(135deg, #020503 0%, #08150e 54%, #030907 100%);
 }
 
 .hero-shell {
@@ -146,8 +146,8 @@ h1 {
 .day-mode h1 {
   text-shadow:
     3px 3px 0 var(--studio-danger),
-    -3px -3px 0 rgba(23, 107, 122, 0.28),
-    0 18px 42px rgba(255, 255, 255, 0.24);
+    -3px -3px 0 color-mix(in srgb, var(--studio-accent) 44%, transparent),
+    0 20px 50px rgba(0, 0, 0, 0.38);
 }
 
 .studio-subtitle {

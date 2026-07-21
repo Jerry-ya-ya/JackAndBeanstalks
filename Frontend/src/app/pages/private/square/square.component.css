@@ -21,10 +21,10 @@ h2 {
 }
 
 :host-context(.cmen-day-theme) h2 {
-  color: #14343a;
+  color: var(--studio-text);
   text-shadow:
-    2px 2px 0 rgba(209, 145, 41, 0.3),
-    -1px -1px 0 rgba(255, 248, 218, 0.92);
+    2px 2px 0 var(--studio-danger),
+    -2px -2px 0 color-mix(in srgb, var(--studio-accent) 36%, transparent);
 }
 
 :host-context(.eden-night-theme) .user-card p {
@@ -32,11 +32,11 @@ h2 {
 }
 
 :host-context(.cmen-day-theme) .user-card p {
-  color: #334c50;
+  color: var(--studio-muted);
 }
 
 :host-context(.cmen-day-theme) .user-card strong {
-  color: #176b7a;
+  color: var(--studio-accent);
 }
 
 .user-card {
@@ -175,7 +175,7 @@ h2 {
 
 :host-context(.cmen-day-theme) .friend-message,
 :host-context(.cmen-day-theme) .friend-status {
-  color: #14343a;
+  color: #bfffd0;
 }
 
 :host-context(.eden-night-theme) .friend-message,

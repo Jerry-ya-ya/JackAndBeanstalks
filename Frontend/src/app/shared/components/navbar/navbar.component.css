@@ -53,30 +53,30 @@
 }
 
 :host-context(.cmen-day-theme) .sidebar {
-  --nav-shell-bg: rgba(255, 248, 218, 0.94);
-  --nav-shell-line: rgba(22, 62, 65, 0.28);
-  --nav-toggle-bg: rgba(21, 25, 31, 0.06);
-  --nav-toggle-text: #15191f;
-  --nav-toggle-line: rgba(23, 107, 122, 0.4);
-  --nav-panel-public: linear-gradient(90deg, #f4f1de 0%, #dfe8dc 100%);
-  --nav-panel-private: linear-gradient(90deg, #dcece6 0%, #aad1cf 100%);
-  --nav-panel-admin: linear-gradient(90deg, #e6d8ef 0%, #b894c8 100%);
-  --nav-panel-super: linear-gradient(90deg, #f6ddb1 0%, #d19129 100%);
-  --nav-link-bg: rgba(21, 25, 31, 0.92);
-  --nav-link-text: #f8f3df;
-  --nav-link-border: #176b7a;
-  --nav-link-hover-bg: #176b7a;
-  --nav-link-hover-text: #f8f3df;
-  --nav-link-glow: rgba(23, 107, 122, 0.26);
-  --nav-private-bg: #176b7a;
-  --nav-private-text: #f8f3df;
-  --nav-private-hover: #0d4c58;
-  --nav-admin-bg: #8a5ca4;
-  --nav-admin-text: #fff7e6;
-  --nav-admin-hover: #653d7c;
-  --nav-super-bg: #d19129;
-  --nav-super-text: #15191f;
-  --nav-super-hover: #a96d17;
+  --nav-shell-bg: rgba(3, 14, 10, 0.95);
+  --nav-shell-line: rgba(94, 255, 126, 0.34);
+  --nav-toggle-bg: rgba(94, 255, 126, 0.08);
+  --nav-toggle-text: #effff2;
+  --nav-toggle-line: rgba(94, 255, 126, 0.46);
+  --nav-panel-public: linear-gradient(90deg, #041009 0%, #0e2618 100%);
+  --nav-panel-private: linear-gradient(90deg, #06241a 0%, #11513b 100%);
+  --nav-panel-admin: linear-gradient(90deg, #162316 0%, #31582f 100%);
+  --nav-panel-super: linear-gradient(90deg, #27340a 0%, #8cc83b 100%);
+  --nav-link-bg: rgba(239, 255, 242, 0.9);
+  --nav-link-text: #03110a;
+  --nav-link-border: #65ff82;
+  --nav-link-hover-bg: #65ff82;
+  --nav-link-hover-text: #021106;
+  --nav-link-glow: rgba(101, 255, 130, 0.34);
+  --nav-private-bg: #20d889;
+  --nav-private-text: #03110a;
+  --nav-private-hover: #0ea66a;
+  --nav-admin-bg: #83c766;
+  --nav-admin-text: #021106;
+  --nav-admin-hover: #5a9e3d;
+  --nav-super-bg: #d8ff62;
+  --nav-super-text: #16210a;
+  --nav-super-hover: #9fcc2b;
 }
 
 .navbar {

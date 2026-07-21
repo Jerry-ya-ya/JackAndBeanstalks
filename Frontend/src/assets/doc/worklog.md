@@ -429,3 +429,7 @@
 ## 2026/07/21
 
 - Add Angular Material snackbar notifications to the login page.
+
+- Replace session expiration alerts with snackbar notifications.
+
+- Unify frontend styling with the Eden Night theme.
