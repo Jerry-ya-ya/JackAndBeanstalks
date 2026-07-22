@@ -280,6 +280,33 @@ textarea:focus {
   line-height: 1.6;
 }
 
+.member-preview-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.member-preview-card::before {
+  content: "";
+  position: absolute;
+  width: 74px;
+  height: 74px;
+  right: 14px;
+  top: 14px;
+  border: 1px solid color-mix(in srgb, var(--studio-accent) 38%, transparent);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 24%, color-mix(in srgb, var(--studio-warm) 34%, transparent), transparent 36%),
+    color-mix(in srgb, var(--studio-accent) 18%, transparent);
+  opacity: 0.5;
+}
+
+.member-preview-card h3,
+.member-preview-card p,
+.member-preview-card span {
+  position: relative;
+  z-index: 1;
+}
+
 .action-row {
   margin-top: 20px;
 }

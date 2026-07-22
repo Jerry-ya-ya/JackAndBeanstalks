@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CommunityNewsItem, HomeContentService, HomeNewsContent } from '../../../core/services/home-content.service';
+import { MemberContentItem, MemberContentService } from '../../../core/services/member-content.service';
 
 type ContentSection = 'home-news' | 'member' | 'tutorial' | 'about' | 'system';
 
@@ -20,19 +21,22 @@ export class ContentComponent implements OnInit {
 
   readonly sections: { key: ContentSection; labelKey: string; hintKey: string; disabled?: boolean }[] = [
     { key: 'home-news', labelKey: 'adminContent.sections.homeNews.label', hintKey: 'adminContent.sections.homeNews.hint' },
-    { key: 'member', labelKey: 'adminContent.sections.member.label', hintKey: 'adminContent.sections.member.hint', disabled: true },
+    { key: 'member', labelKey: 'adminContent.sections.member.label', hintKey: 'adminContent.sections.member.hint' },
     { key: 'tutorial', labelKey: 'adminContent.sections.tutorial.label', hintKey: 'adminContent.sections.tutorial.hint', disabled: true },
     { key: 'about', labelKey: 'adminContent.sections.about.label', hintKey: 'adminContent.sections.about.hint', disabled: true },
     { key: 'system', labelKey: 'adminContent.sections.system.label', hintKey: 'adminContent.sections.system.hint', disabled: true }
   ];
 
   content: HomeNewsContent;
+  members: MemberContentItem[];
 
   constructor(
     private homeContent: HomeContentService,
+    private memberContent: MemberContentService,
     private translate: TranslateService
   ) {
     this.content = this.homeContent.getContentSnapshot();
+    this.members = this.memberContent.getSnapshot();
   }
 
   ngOnInit() {
@@ -45,6 +49,15 @@ export class ContentComponent implements OnInit {
       error: error => {
         this.errorMessage = error?.error?.error || this.translate.instant('adminContent.feedback.loadFailure');
         this.loading = false;
+      }
+    });
+
+    this.memberContent.loadAdminContent().subscribe({
+      next: members => {
+        this.members = members;
+      },
+      error: error => {
+        this.errorMessage = error?.error?.error || this.translate.instant('adminContent.feedback.loadMemberFailure');
       }
     });
   }
@@ -60,6 +73,8 @@ export class ContentComponent implements OnInit {
     }
 
     this.activeSection = section;
+    this.savedMessage = '';
+    this.errorMessage = '';
   }
 
   setTheme(theme: keyof HomeNewsContent) {
@@ -96,7 +111,43 @@ export class ContentComponent implements OnInit {
     this.savedMessage = '';
   }
 
+  addMember() {
+    this.members.push({
+      id: null,
+      name: this.translate.instant('adminContent.member.defaults.name'),
+      role: this.translate.instant('adminContent.member.defaults.role'),
+      githubUrl: 'https://github.com/Jerry-ya-ya',
+      sort_order: this.members.length
+    });
+    this.savedMessage = '';
+  }
+
+  removeMember(index: number) {
+    if (this.members.length <= 1) {
+      return;
+    }
+
+    this.members.splice(index, 1);
+    this.savedMessage = '';
+  }
+
+  moveMember(index: number, direction: -1 | 1) {
+    const targetIndex = index + direction;
+    if (targetIndex < 0 || targetIndex >= this.members.length) {
+      return;
+    }
+
+    const [item] = this.members.splice(index, 1);
+    this.members.splice(targetIndex, 0, item);
+    this.savedMessage = '';
+  }
+
   save() {
+    if (this.activeSection === 'member') {
+      this.saveMembers();
+      return;
+    }
+
     this.saving = true;
     this.savedMessage = '';
     this.errorMessage = '';
@@ -114,7 +165,37 @@ export class ContentComponent implements OnInit {
     });
   }
 
+  saveMembers() {
+    this.saving = true;
+    this.savedMessage = '';
+    this.errorMessage = '';
+
+    const payload = this.members.map((member, index) => ({
+      ...member,
+      sort_order: index
+    }));
+
+    this.memberContent.saveAdminContent(payload).subscribe({
+      next: members => {
+        this.members = members;
+        this.savedMessage = this.translate.instant('adminContent.feedback.saveMemberSuccess');
+        this.saving = false;
+      },
+      error: error => {
+        this.errorMessage = error?.error?.error || this.translate.instant('adminContent.feedback.saveMemberFailure');
+        this.saving = false;
+      }
+    });
+  }
+
   reset() {
+    if (this.activeSection === 'member') {
+      this.members = this.memberContent.getDefaultContent();
+      this.savedMessage = this.translate.instant('adminContent.feedback.defaultsLoaded');
+      this.errorMessage = '';
+      return;
+    }
+
     this.content = this.homeContent.getDefaultContent();
     this.savedMessage = this.translate.instant('adminContent.feedback.defaultsLoaded');
     this.errorMessage = '';

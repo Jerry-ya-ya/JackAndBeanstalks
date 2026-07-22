@@ -753,7 +753,7 @@
       },
       "member": {
         "label": "Member",
-        "hint": "預留給公開成員內容。"
+        "hint": "管理公開成員頁卡片。"
       },
       "tutorial": {
         "label": "Tutorial",
@@ -782,7 +782,25 @@
       "eden": "EDEN Night"
     },
     "state": {
-      "loading": "正在從資料庫載入主頁新聞..."
+      "loading": "正在從資料庫載入主頁新聞...",
+      "loadingMembers": "正在從資料庫載入成員內容..."
+    },
+    "member": {
+      "kicker": "Public Member",
+      "title": "Member Directory",
+      "cardLabel": "Member {{ index }}",
+      "previewTitle": "Public Member",
+      "previewNameFallback": "Member name",
+      "previewRoleFallback": "Member role",
+      "form": {
+        "name": "Name",
+        "role": "Role",
+        "githubUrl": "GitHub URL"
+      },
+      "defaults": {
+        "name": "New Member",
+        "role": "Studio Member"
+      }
     },
     "card": {
       "label": "Card {{ index }}"
@@ -803,9 +821,11 @@
       "down": "Down",
       "remove": "Remove",
       "addCard": "Add Card",
+      "addMember": "Add Member",
       "resetDefaults": "Reset Defaults",
       "saving": "Saving...",
-      "saveNews": "Save News"
+      "saveNews": "Save News",
+      "saveMembers": "Save Members"
     },
     "defaults": {
       "newTitle": "New Update",
@@ -816,6 +836,9 @@
       "loadFailure": "無法載入主頁新聞。",
       "saveSuccess": "主頁新聞已儲存到資料庫。",
       "saveFailure": "無法儲存主頁新聞。",
+      "loadMemberFailure": "無法載入成員內容。",
+      "saveMemberSuccess": "成員內容已儲存到資料庫。",
+      "saveMemberFailure": "無法儲存成員內容。",
       "defaultsLoaded": "已載入預設值。請儲存以發布。"
     }
   }

@@ -753,7 +753,7 @@
       },
       "member": {
         "label": "Member",
-        "hint": "공개 멤버 콘텐츠용으로 예약되어 있습니다."
+        "hint": "공개 멤버 페이지 카드를 관리합니다."
       },
       "tutorial": {
         "label": "Tutorial",
@@ -782,7 +782,25 @@
       "eden": "EDEN Night"
     },
     "state": {
-      "loading": "데이터베이스에서 홈 뉴스를 불러오는 중..."
+      "loading": "데이터베이스에서 홈 뉴스를 불러오는 중...",
+      "loadingMembers": "데이터베이스에서 멤버 콘텐츠를 불러오는 중..."
+    },
+    "member": {
+      "kicker": "Public Member",
+      "title": "Member Directory",
+      "cardLabel": "Member {{ index }}",
+      "previewTitle": "Public Member",
+      "previewNameFallback": "Member name",
+      "previewRoleFallback": "Member role",
+      "form": {
+        "name": "Name",
+        "role": "Role",
+        "githubUrl": "GitHub URL"
+      },
+      "defaults": {
+        "name": "New Member",
+        "role": "Studio Member"
+      }
     },
     "card": {
       "label": "Card {{ index }}"
@@ -803,9 +821,11 @@
       "down": "Down",
       "remove": "Remove",
       "addCard": "Add Card",
+      "addMember": "Add Member",
       "resetDefaults": "Reset Defaults",
       "saving": "Saving...",
-      "saveNews": "Save News"
+      "saveNews": "Save News",
+      "saveMembers": "Save Members"
     },
     "defaults": {
       "newTitle": "New Update",
@@ -816,6 +836,9 @@
       "loadFailure": "홈 뉴스를 불러오지 못했습니다.",
       "saveSuccess": "홈 뉴스를 데이터베이스에 저장했습니다.",
       "saveFailure": "홈 뉴스 저장에 실패했습니다.",
+      "loadMemberFailure": "멤버 콘텐츠를 불러오지 못했습니다.",
+      "saveMemberSuccess": "멤버 콘텐츠를 데이터베이스에 저장했습니다.",
+      "saveMemberFailure": "멤버 콘텐츠 저장에 실패했습니다.",
       "defaultsLoaded": "기본값을 불러왔습니다. 게시하려면 저장하세요."
     }
   }

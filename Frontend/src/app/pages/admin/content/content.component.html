@@ -110,6 +110,86 @@
           <p class="save-message">{{ savedMessage }}</p>
         }
       }
+
+      @if (activeSection === 'member') {
+        <div class="panel-heading">
+          <div>
+            <p class="admin-kicker">{{ 'adminContent.member.kicker' | translate }}</p>
+            <h2>{{ 'adminContent.member.title' | translate }}</h2>
+          </div>
+        </div>
+
+        <div class="news-editor member-editor">
+          @if (loading) {
+            <p class="state-message">{{ 'adminContent.state.loadingMembers' | translate }}</p>
+          }
+
+          <div class="news-list">
+            @for (member of members; track member; let i = $index) {
+              <article class="news-form-card member-form-card">
+                <div class="card-toolbar">
+                  <span>{{ 'adminContent.member.cardLabel' | translate: { index: i + 1 } }}</span>
+                  <div>
+                    <button type="button" (click)="moveMember(i, -1)" [disabled]="i === 0">{{ 'adminContent.actions.up' | translate }}</button>
+                    <button type="button" (click)="moveMember(i, 1)" [disabled]="i === members.length - 1">{{ 'adminContent.actions.down' | translate }}</button>
+                    <button type="button" class="danger" (click)="removeMember(i)" [disabled]="members.length <= 1">{{ 'adminContent.actions.remove' | translate }}</button>
+                  </div>
+                </div>
+
+                <label>
+                  <span>{{ 'adminContent.member.form.name' | translate }}</span>
+                  <input [(ngModel)]="member.name" name="member-name-{{ i }}" maxlength="80">
+                </label>
+
+                <label>
+                  <span>{{ 'adminContent.member.form.role' | translate }}</span>
+                  <input [(ngModel)]="member.role" name="member-role-{{ i }}" maxlength="120">
+                </label>
+
+                <label>
+                  <span>{{ 'adminContent.member.form.githubUrl' | translate }}</span>
+                  <input [(ngModel)]="member.githubUrl" name="member-github-{{ i }}" maxlength="255" placeholder="https://github.com/username">
+                </label>
+              </article>
+            }
+          </div>
+
+          <aside class="preview-panel">
+            <div class="preview-heading">
+              <span>{{ 'adminContent.preview.label' | translate }}</span>
+              <strong>{{ 'adminContent.member.previewTitle' | translate }}</strong>
+            </div>
+
+            <div class="preview-stack">
+              @for (member of members; track member) {
+                <article class="preview-card member-preview-card">
+                  <span>{{ member.githubUrl || 'https://github.com/username' }}</span>
+                  <h3>{{ member.name || ('adminContent.member.previewNameFallback' | translate) }}</h3>
+                  <p>{{ member.role || ('adminContent.member.previewRoleFallback' | translate) }}</p>
+                </article>
+              }
+            </div>
+          </aside>
+        </div>
+
+        <div class="action-row">
+          <button type="button" class="ghost" (click)="addMember()">{{ 'adminContent.actions.addMember' | translate }}</button>
+          <div>
+            <button type="button" class="ghost" (click)="reset()">{{ 'adminContent.actions.resetDefaults' | translate }}</button>
+            <button type="button" class="primary" (click)="save()" [disabled]="saving">
+              {{ (saving ? 'adminContent.actions.saving' : 'adminContent.actions.saveMembers') | translate }}
+            </button>
+          </div>
+        </div>
+
+        @if (errorMessage) {
+          <p class="error-message">{{ errorMessage }}</p>
+        }
+
+        @if (savedMessage) {
+          <p class="save-message">{{ savedMessage }}</p>
+        }
+      }
     </div>
   </section>
 </main>

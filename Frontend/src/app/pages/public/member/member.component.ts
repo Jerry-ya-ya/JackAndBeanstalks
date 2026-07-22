@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { defaultMemberContent, MemberContentItem, MemberContentService } from '../../../core/services/member-content.service';
 
 interface GithubProfile {
   avatar_url: string;
@@ -26,13 +27,6 @@ interface GithubRepository {
   updated_at: string;
 }
 
-interface StudioMember {
-  id: number;
-  name: string;
-  roleKey: string;
-  githubUsername: string;
-}
-
 interface MemberCapability {
   labelKey: string;
   valueKey: string;
@@ -46,12 +40,7 @@ interface MemberCapability {
   styleUrl: './member.component.css'
 })
 export class MemberComponent implements OnInit {
-  readonly demoMembers: StudioMember[] = Array.from({ length: 12 }, (_, index) => ({
-    id: index + 1,
-    name: 'Jerry-ya-ya',
-    roleKey: `member.demoSlots.slot${String(index + 1).padStart(2, '0')}`,
-    githubUsername: 'Jerry-ya-ya'
-  }));
+  demoMembers: MemberContentItem[] = JSON.parse(JSON.stringify(defaultMemberContent));
 
   readonly capabilities: MemberCapability[] = [
     { labelKey: 'member.capabilities.direction.label', valueKey: 'member.capabilities.direction.value' },
@@ -60,20 +49,34 @@ export class MemberComponent implements OnInit {
     { labelKey: 'member.capabilities.style.label', valueKey: 'member.capabilities.style.value' }
   ];
 
-  selectedMember = this.demoMembers[0];
+  selectedMember: MemberContentItem = this.demoMembers[0];
   profile: GithubProfile | null = null;
   repositories: GithubRepository[] = [];
   loading = true;
   error = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private memberContent: MemberContentService
+  ) {}
 
   ngOnInit() {
-    this.loadGithubProfile(this.selectedMember);
+    this.memberContent.loadPublicContent().subscribe({
+      next: members => {
+        this.demoMembers = members;
+        this.selectedMember = members[0] || this.memberContent.getDefaultContent()[0];
+        this.loadGithubProfile(this.selectedMember);
+      },
+      error: () => {
+        this.demoMembers = this.memberContent.getDefaultContent();
+        this.selectedMember = this.demoMembers[0];
+        this.loadGithubProfile(this.selectedMember);
+      }
+    });
   }
 
-  selectMember(member: StudioMember) {
-    if (this.selectedMember.id === member.id && this.profile) {
+  selectMember(member: MemberContentItem) {
+    if (this.selectedMember === member && this.profile) {
       return;
     }
 
@@ -84,11 +87,12 @@ export class MemberComponent implements OnInit {
   loadGithubProfile(member = this.selectedMember) {
     this.loading = true;
     this.error = '';
+    const githubUsername = this.getGithubUsername(member);
 
     forkJoin({
-      profile: this.http.get<GithubProfile>(`https://api.github.com/users/${member.githubUsername}`),
+      profile: this.http.get<GithubProfile>(`https://api.github.com/users/${githubUsername}`),
       repositories: this.http.get<GithubRepository[]>(
-        `https://api.github.com/users/${member.githubUsername}/repos?sort=updated&per_page=8`
+        `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=8`
       )
     }).subscribe({
       next: ({ profile, repositories }) => {
@@ -122,14 +126,20 @@ export class MemberComponent implements OnInit {
   }
 
   get profileUrl() {
-    return `https://github.com/${this.selectedMember.githubUsername}`;
+    return this.normalizeGithubUrl(this.selectedMember.githubUrl);
+  }
+
+  get displayGithubUsername() {
+    return this.getGithubUsername(this.selectedMember);
   }
 
   get memberAvatar() {
     return this.profile?.avatar_url || 'icons/cmenstudio.png';
   }
 
-  private getFallbackProfile(member: StudioMember): GithubProfile {
+  private getFallbackProfile(member: MemberContentItem): GithubProfile {
+    const githubUsername = this.getGithubUsername(member);
+
     return {
       avatar_url: 'icons/cmenstudio.png',
       bio: null,
@@ -137,11 +147,29 @@ export class MemberComponent implements OnInit {
       company: 'CMENStudio',
       followers: 0,
       following: 0,
-      html_url: `https://github.com/${member.githubUsername}`,
+      html_url: this.normalizeGithubUrl(member.githubUrl),
       location: null,
-      login: member.githubUsername,
+      login: githubUsername,
       name: member.name,
       public_repos: 0
     };
+  }
+
+  private getGithubUsername(member: MemberContentItem) {
+    const url = this.normalizeGithubUrl(member.githubUrl);
+    return url.replace(/^https:\/\/github\.com\//, '').split('/')[0] || 'Jerry-ya-ya';
+  }
+
+  private normalizeGithubUrl(url: string) {
+    const trimmed = (url || '').trim();
+    if (!trimmed) {
+      return 'https://github.com/Jerry-ya-ya';
+    }
+
+    if (/^https?:\/\//i.test(trimmed)) {
+      return trimmed.replace(/^http:\/\//i, 'https://').replace(/\/+$/, '');
+    }
+
+    return `https://github.com/${trimmed.replace(/^@/, '').replace(/^github\.com\//i, '').replace(/\/+$/, '')}`;
   }
 }

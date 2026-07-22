@@ -441,3 +441,7 @@
 - Add a site theme controller to settings.
 
 - Fix external API 401 logout by scoping auth interception.
+
+## 2026/07/23
+
+- Add admin-managed public member content with GitHub URLs.

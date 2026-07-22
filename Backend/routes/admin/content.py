@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from models import db, HomeNewsItem
+from models import db, HomeNewsItem, MemberContentItem
 from routes.admin.decorators import admin_required
 from time_utils import to_taipei_iso
 
@@ -45,6 +45,15 @@ DEFAULT_HOME_NEWS = {
     ],
 }
 
+DEFAULT_MEMBER_CONTENT = [
+    {
+        'name': 'Jerry-ya-ya',
+        'role': f'Member Slot {index:02d}',
+        'github_url': 'https://github.com/Jerry-ya-ya',
+    }
+    for index in range(1, 13)
+]
+
 
 def serialize_home_news(item):
     return {
@@ -53,6 +62,17 @@ def serialize_home_news(item):
         'title': item.title,
         'summary': item.summary,
         'tag': item.tag,
+        'sort_order': item.sort_order,
+        'created_at': to_taipei_iso(item.created_at),
+        'updated_at': to_taipei_iso(item.updated_at),
+    }
+
+def serialize_member_content(item):
+    return {
+        'id': item.id,
+        'name': item.name,
+        'role': item.role,
+        'githubUrl': item.github_url,
         'sort_order': item.sort_order,
         'created_at': to_taipei_iso(item.created_at),
         'updated_at': to_taipei_iso(item.updated_at),
@@ -75,6 +95,20 @@ def serialize_defaults():
         for theme, items in DEFAULT_HOME_NEWS.items()
     }
 
+def serialize_member_defaults():
+    return [
+        {
+            'id': None,
+            'name': item['name'],
+            'role': item['role'],
+            'githubUrl': item['github_url'],
+            'sort_order': index,
+            'created_at': None,
+            'updated_at': None,
+        }
+        for index, item in enumerate(DEFAULT_MEMBER_CONTENT)
+    ]
+
 
 def grouped_home_news():
     items = HomeNewsItem.query.order_by(HomeNewsItem.theme.asc(), HomeNewsItem.sort_order.asc(), HomeNewsItem.id.asc()).all()
@@ -87,6 +121,14 @@ def grouped_home_news():
             grouped[item.theme].append(serialize_home_news(item))
 
     return grouped
+
+
+def list_member_content():
+    items = MemberContentItem.query.order_by(MemberContentItem.sort_order.asc(), MemberContentItem.id.asc()).all()
+    if not items:
+        return serialize_member_defaults()
+
+    return [serialize_member_content(item) for item in items]
 
 
 def read_item_payload(data, default_theme=None, default_order=0):
@@ -122,15 +164,77 @@ def read_item_payload(data, default_theme=None, default_order=0):
     }, None
 
 
+def read_member_payload(data, default_order=0):
+    if not isinstance(data, dict):
+        return None, ('member item must be an object', 400)
+
+    name = (data.get('name') or '').strip()
+    role = (data.get('role') or '').strip()
+    github_url = (data.get('githubUrl') or data.get('github_url') or '').strip()
+    sort_order = data.get('sort_order', default_order)
+
+    if not name:
+        return None, ('name is required', 400)
+    if not role:
+        return None, ('role is required', 400)
+    if not github_url:
+        return None, ('github url is required', 400)
+
+    try:
+        sort_order = int(sort_order)
+    except (TypeError, ValueError):
+        return None, ('sort_order must be a number', 400)
+
+    return {
+        'name': name[:80],
+        'role': role[:120],
+        'github_url': github_url[:255],
+        'sort_order': sort_order,
+    }, None
+
+
 @content_bp.route('/content/home-news', methods=['GET'])
 def public_home_news():
     return jsonify(grouped_home_news())
+
+
+@content_bp.route('/content/members', methods=['GET'])
+def public_members():
+    return jsonify(list_member_content())
 
 
 @content_bp.route('/admin/content/home-news', methods=['GET'])
 @admin_required
 def admin_home_news():
     return jsonify(grouped_home_news())
+
+
+@content_bp.route('/admin/content/members', methods=['GET'])
+@admin_required
+def admin_members():
+    return jsonify(list_member_content())
+
+
+@content_bp.route('/admin/content/members', methods=['PUT'])
+@admin_required
+def replace_members():
+    data = request.get_json(silent=True) or []
+    if not isinstance(data, list):
+        return jsonify({'error': 'members must be a list'}), 400
+
+    next_items = []
+    for index, raw_item in enumerate(data):
+        payload, error = read_member_payload(raw_item, default_order=index)
+        if error:
+            message, status = error
+            return jsonify({'error': message}), status
+        next_items.append(MemberContentItem(**payload))
+
+    MemberContentItem.query.delete()
+    db.session.add_all(next_items)
+    db.session.commit()
+
+    return jsonify(list_member_content())
 
 
 @content_bp.route('/admin/content/home-news', methods=['PUT'])

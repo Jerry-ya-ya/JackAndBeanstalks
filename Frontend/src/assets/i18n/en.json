@@ -753,7 +753,7 @@
       },
       "member": {
         "label": "Member",
-        "hint": "Reserved for public member content."
+        "hint": "Manage public member page cards."
       },
       "tutorial": {
         "label": "Tutorial",
@@ -782,7 +782,25 @@
       "eden": "EDEN Night"
     },
     "state": {
-      "loading": "Loading homepage news from database..."
+      "loading": "Loading homepage news from database...",
+      "loadingMembers": "Loading member content from database..."
+    },
+    "member": {
+      "kicker": "Public Member",
+      "title": "Member Directory",
+      "cardLabel": "Member {{ index }}",
+      "previewTitle": "Public Member",
+      "previewNameFallback": "Member name",
+      "previewRoleFallback": "Member role",
+      "form": {
+        "name": "Name",
+        "role": "Role",
+        "githubUrl": "GitHub URL"
+      },
+      "defaults": {
+        "name": "New Member",
+        "role": "Studio Member"
+      }
     },
     "card": {
       "label": "Card {{ index }}"
@@ -803,9 +821,11 @@
       "down": "Down",
       "remove": "Remove",
       "addCard": "Add Card",
+      "addMember": "Add Member",
       "resetDefaults": "Reset Defaults",
       "saving": "Saving...",
-      "saveNews": "Save News"
+      "saveNews": "Save News",
+      "saveMembers": "Save Members"
     },
     "defaults": {
       "newTitle": "New Update",
@@ -816,6 +836,9 @@
       "loadFailure": "Failed to load homepage news.",
       "saveSuccess": "Homepage news saved to database.",
       "saveFailure": "Failed to save homepage news.",
+      "loadMemberFailure": "Failed to load member content.",
+      "saveMemberSuccess": "Member content saved to database.",
+      "saveMemberFailure": "Failed to save member content.",
       "defaultsLoaded": "Defaults loaded. Save to publish them."
     }
   }

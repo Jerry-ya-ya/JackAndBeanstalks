@@ -753,7 +753,7 @@
       },
       "member": {
         "label": "Member",
-        "hint": "公開メンバーコンテンツ用に予約されています。"
+        "hint": "公開メンバーページのカードを管理します。"
       },
       "tutorial": {
         "label": "Tutorial",
@@ -782,7 +782,25 @@
       "eden": "EDEN Night"
     },
     "state": {
-      "loading": "データベースからホームニュースを読み込んでいます..."
+      "loading": "データベースからホームニュースを読み込んでいます...",
+      "loadingMembers": "データベースからメンバーコンテンツを読み込んでいます..."
+    },
+    "member": {
+      "kicker": "Public Member",
+      "title": "Member Directory",
+      "cardLabel": "Member {{ index }}",
+      "previewTitle": "Public Member",
+      "previewNameFallback": "Member name",
+      "previewRoleFallback": "Member role",
+      "form": {
+        "name": "Name",
+        "role": "Role",
+        "githubUrl": "GitHub URL"
+      },
+      "defaults": {
+        "name": "New Member",
+        "role": "Studio Member"
+      }
     },
     "card": {
       "label": "Card {{ index }}"
@@ -803,9 +821,11 @@
       "down": "Down",
       "remove": "Remove",
       "addCard": "Add Card",
+      "addMember": "Add Member",
       "resetDefaults": "Reset Defaults",
       "saving": "Saving...",
-      "saveNews": "Save News"
+      "saveNews": "Save News",
+      "saveMembers": "Save Members"
     },
     "defaults": {
       "newTitle": "New Update",
@@ -816,6 +836,9 @@
       "loadFailure": "ホームニュースの読み込みに失敗しました。",
       "saveSuccess": "ホームニュースをデータベースに保存しました。",
       "saveFailure": "ホームニュースの保存に失敗しました。",
+      "loadMemberFailure": "メンバーコンテンツの読み込みに失敗しました。",
+      "saveMemberSuccess": "メンバーコンテンツをデータベースに保存しました。",
+      "saveMemberFailure": "メンバーコンテンツの保存に失敗しました。",
       "defaultsLoaded": "デフォルトを読み込みました。公開するには保存してください。"
     }
   }

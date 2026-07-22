@@ -12,14 +12,14 @@
           class="member-button"
           type="button"
           (click)="selectMember(member)"
-          [class.active]="selectedMember.id === member.id"
+          [class.active]="selectedMember === member"
           >
           <span class="member-button__avatar">
             <img [src]="memberAvatar" [alt]="'member.aria.memberAvatar' | translate:{ name: member.name }">
           </span>
           <span class="member-button__text">
             <strong>{{ member.name }}</strong>
-            <small>{{ member.roleKey | translate }}</small>
+            <small>{{ member.role }}</small>
           </span>
         </button>
       }
@@ -31,7 +31,7 @@
       <div class="member-hero__content">
         <p class="member-kicker">{{ 'member.profile.kicker' | translate }}</p>
         <h2>{{ displayName }}</h2>
-        <p class="member-handle">@{{ profile?.login || selectedMember.githubUsername }}</p>
+        <p class="member-handle">@{{ profile?.login || displayGithubUsername }}</p>
         <p class="member-bio">{{ profileBio || ('member.profile.fallbackBio' | translate) }}</p>
 
         <div class="member-links">
@@ -51,7 +51,7 @@
           <img [src]="memberAvatar" [alt]="'member.aria.githubAvatar' | translate:{ name: displayName }">
         </div>
         <div class="member-card__meta">
-          <span>{{ selectedMember.roleKey | translate }}</span>
+          <span>{{ selectedMember.role }}</span>
           <span>{{ profile?.company || 'CMENStudio' }}</span>
           <span>{{ profile?.location || ('member.profile.networkNode' | translate) }}</span>
         </div>

@@ -98,6 +98,15 @@ class HomeNewsItem(db.Model):
     created_at = db.Column(db.DateTime, default=taipei_now)
     updated_at = db.Column(db.DateTime, default=taipei_now, onupdate=taipei_now)
 
+class MemberContentItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), nullable=False)
+    role = db.Column(db.String(120), nullable=False)
+    github_url = db.Column(db.String(255), nullable=False)
+    sort_order = db.Column(db.Integer, default=0, nullable=False)
+    created_at = db.Column(db.DateTime, default=taipei_now)
+    updated_at = db.Column(db.DateTime, default=taipei_now, onupdate=taipei_now)
+
 class ScheduleState(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     job_name = db.Column(db.String(50), unique=True, nullable=False)
@@ -153,6 +162,7 @@ def load_models():
         Todo,
         News,
         HomeNewsItem,
+        MemberContentItem,
         ScheduleState,
         Post,
         ProjectRecruitment,
