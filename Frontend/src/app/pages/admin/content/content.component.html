@@ -124,7 +124,11 @@
             <p class="state-message">{{ 'adminContent.state.loadingMembers' | translate }}</p>
           }
 
-          <div class="news-list">
+          <div
+            class="news-list"
+            #memberEditorList
+            (scroll)="syncMemberScroll(memberEditorList, memberPreviewList)"
+            >
             @for (member of members; track member; let i = $index) {
               <article class="news-form-card member-form-card">
                 <div class="card-toolbar">
@@ -158,7 +162,11 @@
             }
           </div>
 
-          <aside class="preview-panel">
+          <aside
+            class="preview-panel"
+            #memberPreviewList
+            (scroll)="syncMemberScroll(memberPreviewList, memberEditorList)"
+            >
             <div class="preview-heading">
               <span>{{ 'adminContent.preview.label' | translate }}</span>
               <strong>{{ 'adminContent.member.previewTitle' | translate }}</strong>

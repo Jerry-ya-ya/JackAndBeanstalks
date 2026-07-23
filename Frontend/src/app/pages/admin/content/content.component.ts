@@ -30,6 +30,7 @@ export class ContentComponent implements OnInit {
 
   content: HomeNewsContent;
   members: MemberContentItem[];
+  private syncingMemberScroll = false;
 
   constructor(
     private homeContent: HomeContentService,
@@ -141,6 +142,26 @@ export class ContentComponent implements OnInit {
     const [item] = this.members.splice(index, 1);
     this.members.splice(targetIndex, 0, item);
     this.savedMessage = '';
+  }
+
+  syncMemberScroll(source: HTMLElement, target: HTMLElement) {
+    if (this.syncingMemberScroll) {
+      return;
+    }
+
+    const sourceScrollableHeight = source.scrollHeight - source.clientHeight;
+    const targetScrollableHeight = target.scrollHeight - target.clientHeight;
+    if (sourceScrollableHeight <= 0 || targetScrollableHeight <= 0) {
+      return;
+    }
+
+    this.syncingMemberScroll = true;
+    const scrollRatio = source.scrollTop / sourceScrollableHeight;
+    target.scrollTop = scrollRatio * targetScrollableHeight;
+
+    requestAnimationFrame(() => {
+      this.syncingMemberScroll = false;
+    });
   }
 
   save() {
