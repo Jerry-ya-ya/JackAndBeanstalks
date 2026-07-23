@@ -9,8 +9,10 @@ export const memberRoleOptions: MemberRole[] = ['superadmin', 'admin', 'member',
 export interface MemberContentItem {
   id?: number | null;
   name: string;
+  username?: string;
   role: MemberRole;
   githubUrl: string;
+  avatarUrl?: string | null;
   sort_order?: number;
 }
 
@@ -70,8 +72,10 @@ export class MemberContentService {
       return {
         id: member.id ?? null,
         name: String(member.name ?? '').trim(),
+        username: String(member.username ?? '').trim(),
         role: this.normalizeRole(member.role),
         githubUrl: String(member.githubUrl ?? '').trim(),
+        avatarUrl: member.avatarUrl ? String(member.avatarUrl).trim() : null,
         sort_order: Number(member.sort_order ?? index)
       };
     }).filter(member => member.name || member.role || member.githubUrl);

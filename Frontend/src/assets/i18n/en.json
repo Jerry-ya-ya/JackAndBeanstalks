@@ -675,7 +675,8 @@
     },
     "form": {
       "email": "Email",
-      "nickname": "Nickname"
+      "nickname": "Nickname",
+      "githubUrl": "GitHub URL"
     },
     "avatar": {
       "kicker": "Avatar Upload",
@@ -788,10 +789,12 @@
     "member": {
       "kicker": "Public Member",
       "title": "Member Directory",
+      "sourceNote": "The public Member page now lists registered users automatically. Each user updates their GitHub URL from Profile.",
       "cardLabel": "Member {{ index }}",
       "previewTitle": "Public Member",
       "previewNameFallback": "Member name",
       "previewRoleFallback": "Member role",
+      "noGithubUrl": "No GitHub URL yet",
       "form": {
         "name": "Name",
         "role": "Role",

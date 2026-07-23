@@ -116,6 +116,7 @@
           <div>
             <p class="admin-kicker">{{ 'adminContent.member.kicker' | translate }}</p>
             <h2>{{ 'adminContent.member.title' | translate }}</h2>
+            <p>{{ 'adminContent.member.sourceNote' | translate }}</p>
           </div>
         </div>
 
@@ -133,30 +134,21 @@
               <article class="news-form-card member-form-card">
                 <div class="card-toolbar">
                   <span>{{ 'adminContent.member.cardLabel' | translate: { index: i + 1 } }}</span>
-                  <div>
-                    <button type="button" (click)="moveMember(i, -1)" [disabled]="i === 0">{{ 'adminContent.actions.up' | translate }}</button>
-                    <button type="button" (click)="moveMember(i, 1)" [disabled]="i === members.length - 1">{{ 'adminContent.actions.down' | translate }}</button>
-                    <button type="button" class="danger" (click)="removeMember(i)" [disabled]="members.length <= 1">{{ 'adminContent.actions.remove' | translate }}</button>
-                  </div>
                 </div>
 
                 <label>
                   <span>{{ 'adminContent.member.form.name' | translate }}</span>
-                  <input [(ngModel)]="member.name" name="member-name-{{ i }}" maxlength="80">
+                  <input [value]="member.name" readonly>
                 </label>
 
                 <label>
                   <span>{{ 'adminContent.member.form.role' | translate }}</span>
-                  <select [(ngModel)]="member.role" name="member-role-{{ i }}">
-                    @for (role of memberRoleOptions; track role) {
-                      <option [value]="role">{{ role }}</option>
-                    }
-                  </select>
+                  <input [value]="member.role" readonly>
                 </label>
 
                 <label>
                   <span>{{ 'adminContent.member.form.githubUrl' | translate }}</span>
-                  <input [(ngModel)]="member.githubUrl" name="member-github-{{ i }}" maxlength="255" placeholder="https://github.com/username">
+                  <input [value]="member.githubUrl || ('adminContent.member.noGithubUrl' | translate)" readonly>
                 </label>
               </article>
             }
@@ -182,16 +174,6 @@
               }
             </div>
           </aside>
-        </div>
-
-        <div class="action-row">
-          <button type="button" class="ghost" (click)="addMember()">{{ 'adminContent.actions.addMember' | translate }}</button>
-          <div>
-            <button type="button" class="ghost" (click)="reset()">{{ 'adminContent.actions.resetDefaults' | translate }}</button>
-            <button type="button" class="primary" (click)="save()" [disabled]="saving">
-              {{ (saving ? 'adminContent.actions.saving' : 'adminContent.actions.saveMembers') | translate }}
-            </button>
-          </div>
         </div>
 
         @if (errorMessage) {

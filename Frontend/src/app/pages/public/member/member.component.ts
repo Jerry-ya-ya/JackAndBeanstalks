@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { defaultMemberContent, MemberContentItem, MemberContentService } from '../../../core/services/member-content.service';
+import { environment } from '../../../../environments/environment';
 
 interface GithubProfile {
   avatar_url: string;
@@ -54,6 +55,7 @@ export class MemberComponent implements OnInit {
   repositories: GithubRepository[] = [];
   loading = true;
   error = '';
+  public apiRoot = environment.apiUrl.replace('/api', '');
   private avatarByUsername: Record<string, string> = {};
   private avatarRequests = new Set<string>();
 
@@ -92,6 +94,13 @@ export class MemberComponent implements OnInit {
     this.loading = true;
     this.error = '';
     const githubUsername = this.getGithubUsername(member);
+
+    if (!githubUsername) {
+      this.profile = this.getFallbackProfile(member);
+      this.repositories = [];
+      this.loading = false;
+      return;
+    }
 
     forkJoin({
       profile: this.http.get<GithubProfile>(`https://api.github.com/users/${githubUsername}`),
@@ -134,21 +143,29 @@ export class MemberComponent implements OnInit {
     return this.normalizeGithubUrl(this.selectedMember.githubUrl);
   }
 
+  get hasGithubProfile() {
+    return !!this.profileUrl;
+  }
+
   get displayGithubUsername() {
-    return this.getGithubUsername(this.selectedMember);
+    return this.getGithubUsername(this.selectedMember) || this.selectedMember.username || this.selectedMember.name;
   }
 
   get memberAvatar() {
-    return this.profile?.avatar_url || 'icons/cmenstudio.png';
+    return this.profile?.avatar_url || this.getLocalAvatarUrl(this.selectedMember) || 'icons/cmenstudio.png';
   }
 
   getMemberAvatar(member: MemberContentItem) {
-    return this.avatarByUsername[this.getGithubUsername(member)] || 'icons/cmenstudio.png';
+    const githubUsername = this.getGithubUsername(member);
+    return (githubUsername ? this.avatarByUsername[githubUsername] : '') || this.getLocalAvatarUrl(member) || 'icons/cmenstudio.png';
   }
 
   private loadMemberAvatars(members: MemberContentItem[]) {
     for (const member of members) {
       const githubUsername = this.getGithubUsername(member);
+      if (!githubUsername) {
+        continue;
+      }
       if (this.avatarByUsername[githubUsername] || this.avatarRequests.has(githubUsername)) {
         continue;
       }
@@ -178,7 +195,7 @@ export class MemberComponent implements OnInit {
       following: 0,
       html_url: this.normalizeGithubUrl(member.githubUrl),
       location: null,
-      login: githubUsername,
+      login: githubUsername || member.username || member.name,
       name: member.name,
       public_repos: 0
     };
@@ -186,13 +203,13 @@ export class MemberComponent implements OnInit {
 
   private getGithubUsername(member: MemberContentItem) {
     const url = this.normalizeGithubUrl(member.githubUrl);
-    return url.replace(/^https:\/\/github\.com\//, '').split('/')[0] || 'Jerry-ya-ya';
+    return url.replace(/^https:\/\/github\.com\//, '').split('/')[0];
   }
 
   private normalizeGithubUrl(url: string) {
     const trimmed = (url || '').trim();
     if (!trimmed) {
-      return 'https://github.com/Jerry-ya-ya';
+      return '';
     }
 
     if (/^https?:\/\//i.test(trimmed)) {
@@ -200,5 +217,13 @@ export class MemberComponent implements OnInit {
     }
 
     return `https://github.com/${trimmed.replace(/^@/, '').replace(/^github\.com\//i, '').replace(/\/+$/, '')}`;
+  }
+
+  private getLocalAvatarUrl(member: MemberContentItem) {
+    if (!member.avatarUrl) {
+      return '';
+    }
+
+    return /^https?:\/\//i.test(member.avatarUrl) ? member.avatarUrl : `${this.apiRoot}/${member.avatarUrl}`;
   }
 }

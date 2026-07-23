@@ -449,3 +449,7 @@
 - Add member avatars and fixed member roles.
 
 - Sync admin member editor scrolling.
+
+## 2026/07/24
+
+- Show registered users as public members with profile GitHub URLs.

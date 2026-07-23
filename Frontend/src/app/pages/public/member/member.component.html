@@ -35,9 +35,11 @@
         <p class="member-bio">{{ profileBio || ('member.profile.fallbackBio' | translate) }}</p>
 
         <div class="member-links">
-          <a class="member-link" [href]="profile?.html_url || profileUrl" target="_blank" rel="noopener noreferrer">
-            {{ 'member.links.githubProfile' | translate }}
-          </a>
+          @if (hasGithubProfile) {
+            <a class="member-link" [href]="profile?.html_url || profileUrl" target="_blank" rel="noopener noreferrer">
+              {{ 'member.links.githubProfile' | translate }}
+            </a>
+          }
           @if (profileBlog) {
             <a class="member-link member-link--ghost" [href]="profileBlog" target="_blank" rel="noopener noreferrer">
               {{ 'member.links.website' | translate }}

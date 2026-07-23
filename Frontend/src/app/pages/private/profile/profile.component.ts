@@ -70,7 +70,8 @@ export class ProfileComponent implements OnInit {
   saveProfile() {
     this.http.put(`${environment.apiUrl}/me`, {
       email: this.user.email,
-      nickname: this.user.nickname
+      nickname: this.user.nickname,
+      githubUrl: this.user.githubUrl || this.user.github_url || ''
     }).subscribe({
       next: () => {
         this.success = this.translate.instant('privateProfile.feedback.updateSuccess');

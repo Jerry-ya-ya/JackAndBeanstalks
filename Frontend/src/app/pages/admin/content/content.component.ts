@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CommunityNewsItem, HomeContentService, HomeNewsContent } from '../../../core/services/home-content.service';
-import { MemberContentItem, MemberContentService, memberRoleOptions } from '../../../core/services/member-content.service';
+import { MemberContentItem, MemberContentService } from '../../../core/services/member-content.service';
 
 type ContentSection = 'home-news' | 'member' | 'tutorial' | 'about' | 'system';
 
@@ -18,7 +18,6 @@ export class ContentComponent implements OnInit {
   errorMessage = '';
   loading = false;
   saving = false;
-  readonly memberRoleOptions = memberRoleOptions;
 
   readonly sections: { key: ContentSection; labelKey: string; hintKey: string; disabled?: boolean }[] = [
     { key: 'home-news', labelKey: 'adminContent.sections.homeNews.label', hintKey: 'adminContent.sections.homeNews.hint' },
@@ -113,37 +112,6 @@ export class ContentComponent implements OnInit {
     this.savedMessage = '';
   }
 
-  addMember() {
-    this.members.push({
-      id: null,
-      name: this.translate.instant('adminContent.member.defaults.name'),
-      role: 'member',
-      githubUrl: 'https://github.com/Jerry-ya-ya',
-      sort_order: this.members.length
-    });
-    this.savedMessage = '';
-  }
-
-  removeMember(index: number) {
-    if (this.members.length <= 1) {
-      return;
-    }
-
-    this.members.splice(index, 1);
-    this.savedMessage = '';
-  }
-
-  moveMember(index: number, direction: -1 | 1) {
-    const targetIndex = index + direction;
-    if (targetIndex < 0 || targetIndex >= this.members.length) {
-      return;
-    }
-
-    const [item] = this.members.splice(index, 1);
-    this.members.splice(targetIndex, 0, item);
-    this.savedMessage = '';
-  }
-
   syncMemberScroll(source: HTMLElement, target: HTMLElement) {
     if (this.syncingMemberScroll) {
       return;
@@ -165,11 +133,6 @@ export class ContentComponent implements OnInit {
   }
 
   save() {
-    if (this.activeSection === 'member') {
-      this.saveMembers();
-      return;
-    }
-
     this.saving = true;
     this.savedMessage = '';
     this.errorMessage = '';
@@ -187,37 +150,7 @@ export class ContentComponent implements OnInit {
     });
   }
 
-  saveMembers() {
-    this.saving = true;
-    this.savedMessage = '';
-    this.errorMessage = '';
-
-    const payload = this.members.map((member, index) => ({
-      ...member,
-      sort_order: index
-    }));
-
-    this.memberContent.saveAdminContent(payload).subscribe({
-      next: members => {
-        this.members = members;
-        this.savedMessage = this.translate.instant('adminContent.feedback.saveMemberSuccess');
-        this.saving = false;
-      },
-      error: error => {
-        this.errorMessage = error?.error?.error || this.translate.instant('adminContent.feedback.saveMemberFailure');
-        this.saving = false;
-      }
-    });
-  }
-
   reset() {
-    if (this.activeSection === 'member') {
-      this.members = this.memberContent.getDefaultContent();
-      this.savedMessage = this.translate.instant('adminContent.feedback.defaultsLoaded');
-      this.errorMessage = '';
-      return;
-    }
-
     this.content = this.homeContent.getDefaultContent();
     this.savedMessage = this.translate.instant('adminContent.feedback.defaultsLoaded');
     this.errorMessage = '';

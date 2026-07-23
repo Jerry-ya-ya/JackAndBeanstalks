@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from models import db, HomeNewsItem, MemberContentItem
+from models import db, HomeNewsItem, User
 from routes.admin.decorators import admin_required
 from time_utils import to_taipei_iso
 
@@ -68,17 +68,19 @@ def serialize_home_news(item):
         'updated_at': to_taipei_iso(item.updated_at),
     }
 
-def serialize_member_content(item):
-    role = item.role if item.role in VALID_MEMBER_ROLES else 'member'
+def serialize_registered_member(user):
+    role = user.role if user.role in VALID_MEMBER_ROLES else 'user'
 
     return {
-        'id': item.id,
-        'name': item.name,
+        'id': user.id,
+        'name': user.nickname or user.username,
+        'username': user.username,
         'role': role,
-        'githubUrl': item.github_url,
-        'sort_order': item.sort_order,
-        'created_at': to_taipei_iso(item.created_at),
-        'updated_at': to_taipei_iso(item.updated_at),
+        'githubUrl': user.github_url or '',
+        'avatarUrl': user.avatar_url,
+        'sort_order': user.id,
+        'created_at': to_taipei_iso(user.created_at),
+        'updated_at': None,
     }
 
 
@@ -126,12 +128,9 @@ def grouped_home_news():
     return grouped
 
 
-def list_member_content():
-    items = MemberContentItem.query.order_by(MemberContentItem.sort_order.asc(), MemberContentItem.id.asc()).all()
-    if not items:
-        return serialize_member_defaults()
-
-    return [serialize_member_content(item) for item in items]
+def list_registered_members():
+    users = User.query.order_by(User.created_at.asc(), User.id.asc()).all()
+    return [serialize_registered_member(user) for user in users]
 
 
 def read_item_payload(data, default_theme=None, default_order=0):
@@ -167,37 +166,6 @@ def read_item_payload(data, default_theme=None, default_order=0):
     }, None
 
 
-def read_member_payload(data, default_order=0):
-    if not isinstance(data, dict):
-        return None, ('member item must be an object', 400)
-
-    name = (data.get('name') or '').strip()
-    role = (data.get('role') or '').strip()
-    github_url = (data.get('githubUrl') or data.get('github_url') or '').strip()
-    sort_order = data.get('sort_order', default_order)
-
-    if not name:
-        return None, ('name is required', 400)
-    if not role:
-        return None, ('role is required', 400)
-    if role not in VALID_MEMBER_ROLES:
-        return None, ('role must be superadmin, admin, member, or user', 400)
-    if not github_url:
-        return None, ('github url is required', 400)
-
-    try:
-        sort_order = int(sort_order)
-    except (TypeError, ValueError):
-        return None, ('sort_order must be a number', 400)
-
-    return {
-        'name': name[:80],
-        'role': role,
-        'github_url': github_url[:255],
-        'sort_order': sort_order,
-    }, None
-
-
 @content_bp.route('/content/home-news', methods=['GET'])
 def public_home_news():
     return jsonify(grouped_home_news())
@@ -205,7 +173,11 @@ def public_home_news():
 
 @content_bp.route('/content/members', methods=['GET'])
 def public_members():
-    return jsonify(list_member_content())
+    members = list_registered_members()
+    if not members:
+        return jsonify(serialize_member_defaults())
+
+    return jsonify(members)
 
 
 @content_bp.route('/admin/content/home-news', methods=['GET'])
@@ -217,29 +189,15 @@ def admin_home_news():
 @content_bp.route('/admin/content/members', methods=['GET'])
 @admin_required
 def admin_members():
-    return jsonify(list_member_content())
+    return jsonify(list_registered_members())
 
 
 @content_bp.route('/admin/content/members', methods=['PUT'])
 @admin_required
 def replace_members():
-    data = request.get_json(silent=True) or []
-    if not isinstance(data, list):
-        return jsonify({'error': 'members must be a list'}), 400
-
-    next_items = []
-    for index, raw_item in enumerate(data):
-        payload, error = read_member_payload(raw_item, default_order=index)
-        if error:
-            message, status = error
-            return jsonify({'error': message}), status
-        next_items.append(MemberContentItem(**payload))
-
-    MemberContentItem.query.delete()
-    db.session.add_all(next_items)
-    db.session.commit()
-
-    return jsonify(list_member_content())
+    return jsonify({
+        'error': 'member content is generated from registered users and cannot be edited here'
+    }), 405
 
 
 @content_bp.route('/admin/content/home-news', methods=['PUT'])

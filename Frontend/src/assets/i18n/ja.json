@@ -675,7 +675,8 @@
     },
     "form": {
       "email": "Email",
-      "nickname": "ニックネーム"
+      "nickname": "ニックネーム",
+      "githubUrl": "GitHub URL"
     },
     "avatar": {
       "kicker": "Avatar Upload",
@@ -788,10 +789,12 @@
     "member": {
       "kicker": "Public Member",
       "title": "Member Directory",
+      "sourceNote": "公開 Member ページは登録済みユーザーを自動表示します。GitHub URL は各ユーザーが Profile で更新します。",
       "cardLabel": "Member {{ index }}",
       "previewTitle": "Public Member",
       "previewNameFallback": "Member name",
       "previewRoleFallback": "Member role",
+      "noGithubUrl": "GitHub URL は未設定です",
       "form": {
         "name": "Name",
         "role": "Role",

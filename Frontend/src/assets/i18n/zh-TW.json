@@ -675,7 +675,8 @@
     },
     "form": {
       "email": "Email",
-      "nickname": "暱稱"
+      "nickname": "暱稱",
+      "githubUrl": "GitHub URL"
     },
     "avatar": {
       "kicker": "Avatar Upload",
@@ -788,10 +789,12 @@
     "member": {
       "kicker": "Public Member",
       "title": "Member Directory",
+      "sourceNote": "公開 Member 頁現在會自動顯示註冊用戶；GitHub URL 由使用者在 Profile 頁自行更新。",
       "cardLabel": "Member {{ index }}",
       "previewTitle": "Public Member",
       "previewNameFallback": "Member name",
       "previewRoleFallback": "Member role",
+      "noGithubUrl": "尚未填寫 GitHub URL",
       "form": {
         "name": "Name",
         "role": "Role",

@@ -46,6 +46,16 @@
             <span>{{ 'privateProfile.form.nickname' | translate }}</span>
             <input type="text" [(ngModel)]="user.nickname" [disabled]="!editing">
           </label>
+          <label class="form-field">
+            <span>{{ 'privateProfile.form.githubUrl' | translate }}</span>
+            <input
+              type="url"
+              [(ngModel)]="user.githubUrl"
+              [disabled]="!editing"
+              placeholder="https://github.com/username"
+              autocomplete="url"
+              >
+          </label>
           @if (!editing) {
             <div class="action-row">
               <button class="profile-button" type="button" (click)="editing = true">{{ 'privateProfile.actions.edit' | translate }}</button>

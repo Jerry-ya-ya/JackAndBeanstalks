@@ -24,6 +24,8 @@ def get_current_user():
         'username': user.username,
         'email': user.email,
         'nickname': user.nickname,
+        'github_url': user.github_url,
+        'githubUrl': user.github_url,
         'created_at': to_taipei_iso(user.created_at),
         'avatar_url': user.avatar_url,
         'role': user.role,
@@ -57,6 +59,8 @@ def update_current_user():
             email_changed = True
 
     user.nickname = data.get('nickname', user.nickname)
+    if 'githubUrl' in data or 'github_url' in data:
+        user.github_url = (data.get('githubUrl') or data.get('github_url') or '').strip()[:255] or None
     db.session.commit()
 
     if email_changed:
@@ -89,6 +93,8 @@ def public_user(user_id):
         'id': user.id,
         'username': user.username,
         'nickname': user.nickname,
+        'github_url': user.github_url,
+        'githubUrl': user.github_url,
         'email': user.email,
         'avatar_url': user.avatar_url,
         'role': user.role,

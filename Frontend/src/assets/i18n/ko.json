@@ -675,7 +675,8 @@
     },
     "form": {
       "email": "Email",
-      "nickname": "닉네임"
+      "nickname": "닉네임",
+      "githubUrl": "GitHub URL"
     },
     "avatar": {
       "kicker": "Avatar Upload",
@@ -788,10 +789,12 @@
     "member": {
       "kicker": "Public Member",
       "title": "Member Directory",
+      "sourceNote": "공개 Member 페이지는 가입한 사용자를 자동으로 표시합니다. GitHub URL은 각 사용자가 Profile에서 수정합니다.",
       "cardLabel": "Member {{ index }}",
       "previewTitle": "Public Member",
       "previewNameFallback": "Member name",
       "previewRoleFallback": "Member role",
+      "noGithubUrl": "아직 GitHub URL이 없습니다",
       "form": {
         "name": "Name",
         "role": "Role",
