@@ -192,50 +192,6 @@
               {{ 'privateRecruit.empty.noApplicants' | translate }}
             </div>
           }
-          <form class="todo-publisher" (ngSubmit)="publishTodo(project)">
-            <div class="todo-publisher__header">
-              <div>
-                <p class="recruit-kicker">{{ 'privateRecruit.todo.kicker' | translate }}</p>
-                <h4>{{ 'privateRecruit.todo.title' | translate }}</h4>
-              </div>
-              <select
-                [(ngModel)]="todoTargets[project.id]"
-                [name]="'todoTarget' + project.id">
-              <option value="team">{{ 'privateRecruit.todo.team' | translate }}</option>
-              <option value="captain">{{ 'privateRecruit.todo.captain' | translate }}</option>
-              @for (member of project.members; track member) {
-                <option [value]="member.user.id">
-                  {{ member.user.nickname || member.user.username }}
-                </option>
-              }
-            </select>
-          </div>
-          <label class="todo-priority">
-            <span>{{ 'privateRecruit.todo.priority' | translate }}</span>
-            <input
-              type="number"
-              min="0"
-              max="9"
-              [(ngModel)]="todoPriorities[project.id]"
-              [name]="'todoPriority' + project.id">
-            <strong [style.background]="getPriorityColor(getTodoPriority(project.id))">
-              {{ getTodoPriority(project.id) }}
-            </strong>
-            <small>{{ 'privateRecruit.todo.priorityHint' | translate }}</small>
-          </label>
-          <div class="todo-publisher__controls">
-            <input
-              [(ngModel)]="todoTexts[project.id]"
-              [name]="'todoText' + project.id"
-              [placeholder]="'privateRecruit.todo.placeholder' | translate">
-            <button
-              class="recruit-button"
-              type="submit"
-              [disabled]="todoLoading[project.id]">
-              {{ (todoLoading[project.id] ? 'privateRecruit.actions.publishing' : 'privateRecruit.actions.publishTodo') | translate }}
-            </button>
-          </div>
-        </form>
         <div class="manage-actions">
           <button
             class="recruit-button recruit-button--danger"

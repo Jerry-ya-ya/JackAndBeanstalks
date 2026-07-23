@@ -582,6 +582,8 @@
     },
     "actions": {
       "add": "추가",
+      "publishing": "게시 중...",
+      "publishTodo": "Todo 게시",
       "claimTitle": "작업 점유",
       "done": "완료",
       "reopen": "다시 열기",
@@ -600,6 +602,24 @@
       "empty": "현재 프로젝트에 배정된 Todo가 없습니다.",
       "progress": "{{ done }}/{{ total }} 완료",
       "unsorted": "미분류 프로젝트"
+    },
+    "dispatch": {
+      "kicker": "Project Todo Dispatch",
+      "title": "프로젝트 Todo 게시",
+      "empty": "아직 직접 만든 모집 프로젝트가 없습니다.",
+      "members": "멤버",
+      "publisherKicker": "Todo Dispatch",
+      "publisherTitle": "팀 Todo 게시",
+      "team": "전체 팀",
+      "captain": "팀장 본인",
+      "priority": "우선순위",
+      "priorityHint": "0 가장 긴급 / 9 가장 낮음",
+      "placeholder": "예: 캐릭터 컨트롤러 첫 버전 완성",
+      "noTodos": "이 프로젝트에는 아직 게시된 Todo가 없습니다."
+    },
+    "feedback": {
+      "publishSuccess": "Todo가 게시되었습니다.",
+      "publishFailure": "Todo 게시에 실패했습니다."
     }
   },
   "privateSetting": {

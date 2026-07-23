@@ -3,6 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 //Tools
 import { OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 import { ApiService } from '../../../core/services/api.service';
 
 // Models
@@ -17,6 +18,42 @@ interface ProjectTodoGroup {
   done: number;
 }
 
+interface ProjectRecruitmentMember {
+  id: number;
+  user: {
+    id: number;
+    username: string;
+    nickname?: string;
+  };
+}
+
+interface ProjectRecruitment {
+  id: number;
+  title: string;
+  summary: string;
+  creator: {
+    id: number;
+    username: string;
+    nickname?: string;
+  };
+  members: ProjectRecruitmentMember[];
+  member_count: number;
+  owned_by_me: boolean;
+}
+
+interface ProjectTodoCard {
+  key: string;
+  projectId: number | null;
+  projectTitle: string;
+  summary?: string;
+  memberCount?: number;
+  project?: ProjectRecruitment;
+  todos: Todo[];
+  total: number;
+  done: number;
+  canPublish: boolean;
+}
+
 @Component({
   selector: 'app-todo',
   standalone: false,
@@ -27,10 +64,19 @@ interface ProjectTodoGroup {
 export class TodoComponent implements OnInit {
   todos: Todo[] = [];
   projectTodoGroups: ProjectTodoGroup[] = [];
+  projects: ProjectRecruitment[] = [];
   newTodoText: string = '';
   currentUserId: number | null = null;
+  todoLoading: Record<number, boolean> = {};
+  todoTexts: Record<number, string> = {};
+  todoTargets: Record<number, string> = {};
+  todoPriorities: Record<number, number> = {};
+  statusMessage = '';
   
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private translate: TranslateService
+  ) {}
 
   ngOnInit() {
     this.fetchTodos();
@@ -55,11 +101,64 @@ export class TodoComponent implements OnInit {
     forkJoin({
       assignedTodos: this.apiService.get<Todo[]>('/todos', headers),
       createdTodos: this.apiService.get<Todo[]>('/todos?created_by_me=true', headers),
+      projects: this.apiService.get<ProjectRecruitment[]>('/project-recruitments', headers),
       currentUser: this.apiService.get<{ id: number }>('/me', headers),
-    }).subscribe(({ assignedTodos, createdTodos, currentUser }) => {
+    }).subscribe(({ assignedTodos, createdTodos, projects, currentUser }) => {
         this.currentUserId = currentUser.id;
+        this.projects = projects;
         this.setTodos(this.mergeTodos(assignedTodos, createdTodos));
       });
+  }
+
+  publishProjectTodo(project: ProjectRecruitment) {
+    const text = (this.todoTexts[project.id] || '').trim();
+    const target = this.todoTargets[project.id] || 'team';
+    const priority = this.getProjectTodoPriority(project.id);
+
+    if (!project.owned_by_me || !text || this.todoLoading[project.id]) {
+      return;
+    }
+
+    const payload: {
+      text: string;
+      project_id: number;
+      priority: number;
+      assign_to_team?: boolean;
+      assignee_user_id?: number;
+    } = {
+      text,
+      project_id: project.id,
+      priority,
+    };
+
+    if (target === 'team') {
+      payload.assign_to_team = true;
+    } else if (target === 'captain') {
+      payload.assignee_user_id = project.creator.id;
+    } else {
+      payload.assignee_user_id = Number(target);
+    }
+
+    this.todoLoading[project.id] = true;
+    this.apiService.post<Todo | Todo[]>(
+      '/todos',
+      payload,
+      this.apiService.createAuthHeaders()
+    ).subscribe({
+      next: result => {
+        const createdTodos = Array.isArray(result) ? result : [result];
+        this.setTodos(this.mergeTodos(this.todos, createdTodos));
+        this.todoTexts[project.id] = '';
+        this.todoTargets[project.id] = 'team';
+        this.todoPriorities[project.id] = 5;
+        delete this.todoLoading[project.id];
+        this.statusMessage = this.translate.instant('privateTodo.feedback.publishSuccess');
+      },
+      error: err => {
+        this.statusMessage = err.error?.error || this.translate.instant('privateTodo.feedback.publishFailure');
+        delete this.todoLoading[project.id];
+      }
+    });
   }
   
   // U
@@ -153,7 +252,60 @@ export class TodoComponent implements OnInit {
     return `hsl(${(level / 9) * 120}, 78%, 46%)`;
   }
 
+  getProjectTodoPriority(projectId: number) {
+    const priority = Number(this.todoPriorities[projectId] ?? 5);
+    return Math.min(9, Math.max(0, priority));
+  }
+
   canToggleClaim(todo: Todo) {
     return !todo.done && (!todo.claimed_by_id || todo.claimed_by_id === this.currentUserId);
+  }
+
+  get ownedProjects() {
+    return this.projects.filter(project => project.owned_by_me);
+  }
+
+  get projectTodoCards(): ProjectTodoCard[] {
+    const cards = new Map<string, ProjectTodoCard>();
+
+    for (const project of this.ownedProjects) {
+      const key = String(project.id);
+      cards.set(key, {
+        key,
+        projectId: project.id,
+        projectTitle: project.title,
+        summary: project.summary,
+        memberCount: project.member_count,
+        project,
+        todos: [],
+        total: 0,
+        done: 0,
+        canPublish: true
+      });
+    }
+
+    for (const group of this.projectTodoGroups) {
+      const key = String(group.projectId ?? group.key);
+      const project = group.projectId ? this.projects.find(item => item.id === group.projectId) : undefined;
+      const existing = cards.get(key);
+
+      cards.set(key, {
+        key,
+        projectId: group.projectId,
+        projectTitle: project?.title || group.projectTitle,
+        summary: project?.summary || existing?.summary,
+        memberCount: project?.member_count ?? existing?.memberCount,
+        project: project || existing?.project,
+        todos: group.todos,
+        total: group.total,
+        done: group.done,
+        canPublish: !!(project || existing?.project)?.owned_by_me
+      });
+    }
+
+    return [...cards.values()].sort((a, b) =>
+      Number(!a.canPublish) - Number(!b.canPublish) ||
+      a.projectTitle.localeCompare(b.projectTitle)
+    );
   }
 }

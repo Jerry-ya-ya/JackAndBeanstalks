@@ -9,6 +9,10 @@
     {{ 'privateTodo.actions.add' | translate }}
   </button>
 
+  @if (statusMessage) {
+    <p class="status-message">{{ statusMessage }}</p>
+  }
+
   <ul>
     @for (todo of todos; track todo.id) {
       <li [class.is-claimed]="todo.claimed_by_id" [class.is-done]="todo.done">
@@ -48,32 +52,94 @@
     }
   </ul>
 
-  <section class="project-todo-section">
+  <section class="project-workspace-section">
     <div class="project-todo-section__header">
       <div>
         <p>{{ 'privateTodo.projects.kicker' | translate }}</p>
         <h3>{{ 'privateTodo.projects.title' | translate }}</h3>
       </div>
-      <strong>{{ projectTodoGroups.length }}</strong>
+      <strong>{{ projectTodoCards.length }}</strong>
     </div>
 
-    @if (projectTodoGroups.length === 0) {
+    @if (projectTodoCards.length === 0) {
       <div class="project-empty">
         {{ 'privateTodo.projects.empty' | translate }}
       </div>
     }
 
-    @for (group of projectTodoGroups; track group.key) {
-      <article class="project-todo-card">
-        <div class="project-todo-card__title">
-          <h4>{{ group.projectTitle === 'Unsorted Project' ? ('privateTodo.projects.unsorted' | translate) : group.projectTitle }}</h4>
-          <span>{{ 'privateTodo.projects.progress' | translate: { done: group.done, total: group.total } }}</span>
+    @for (card of projectTodoCards; track card.key) {
+      <article class="project-dispatch-card">
+        <div class="project-dispatch-card__summary">
+          <div>
+            <h4>{{ card.projectTitle === 'Unsorted Project' ? ('privateTodo.projects.unsorted' | translate) : card.projectTitle }}</h4>
+            @if (card.summary) {
+              <p>{{ card.summary }}</p>
+            }
+          </div>
+          <span>{{ 'privateTodo.projects.progress' | translate: { done: card.done, total: card.total } }}</span>
         </div>
+
+        @if (card.project && card.canPublish) {
+          <form class="todo-publisher" (ngSubmit)="publishProjectTodo(card.project)">
+            <div class="todo-publisher__header">
+              <div>
+                <p>{{ 'privateTodo.dispatch.publisherKicker' | translate }}</p>
+                <h5>{{ 'privateTodo.dispatch.publisherTitle' | translate }}</h5>
+              </div>
+              <select
+                [(ngModel)]="todoTargets[card.project.id]"
+                [name]="'todoTarget' + card.project.id">
+                <option value="team">{{ 'privateTodo.dispatch.team' | translate }}</option>
+                <option value="captain">{{ 'privateTodo.dispatch.captain' | translate }}</option>
+                @for (member of card.project.members; track member.id) {
+                  <option [value]="member.user.id">
+                    {{ member.user.nickname || member.user.username }}
+                  </option>
+                }
+              </select>
+            </div>
+
+            <label class="todo-priority">
+              <span>{{ 'privateTodo.dispatch.priority' | translate }}</span>
+              <input
+                type="number"
+                min="0"
+                max="9"
+                [(ngModel)]="todoPriorities[card.project.id]"
+                [name]="'todoPriority' + card.project.id">
+              <strong [style.background]="getPriorityColor(getProjectTodoPriority(card.project.id))">
+                {{ getProjectTodoPriority(card.project.id) }}
+              </strong>
+              <small>{{ 'privateTodo.dispatch.priorityHint' | translate }}</small>
+            </label>
+
+            <div class="todo-publisher__controls">
+              <input
+                [(ngModel)]="todoTexts[card.project.id]"
+                [name]="'todoText' + card.project.id"
+                [placeholder]="'privateTodo.dispatch.placeholder' | translate">
+              <button
+                type="submit"
+                [disabled]="todoLoading[card.project.id]">
+                {{ (todoLoading[card.project.id] ? 'privateTodo.actions.publishing' : 'privateTodo.actions.publishTodo') | translate }}
+              </button>
+            </div>
+          </form>
+        }
+
         <div class="project-progress">
-          <div [style.width.%]="group.total ? (group.done / group.total) * 100 : 0"></div>
+          <div [style.width.%]="card.total ? (card.done / card.total) * 100 : 0"></div>
         </div>
-        <ul class="project-task-list">
-          @for (todo of group.todos; track todo.id) {
+
+        @if (card.todos.length === 0) {
+          <div class="project-empty project-empty--compact">
+            {{ 'privateTodo.dispatch.noTodos' | translate }}
+          </div>
+        }
+
+        @if (card.todos.length > 0) {
+          <ul class="project-task-list">
+            @for (todo of card.todos; track todo.id) {
             <li [class.is-claimed]="todo.claimed_by_id" [class.is-done]="todo.done">
               <input
                 type="checkbox"
@@ -99,8 +165,9 @@
                 {{ (todo.done ? 'privateTodo.actions.reopen' : 'privateTodo.actions.done') | translate }}
               </button>
             </li>
-          }
-        </ul>
+            }
+          </ul>
+        }
       </article>
     }
   </section>

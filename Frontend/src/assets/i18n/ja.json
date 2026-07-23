@@ -582,6 +582,8 @@
     },
     "actions": {
       "add": "追加",
+      "publishing": "公開中...",
+      "publishTodo": "Todo を公開",
       "claimTitle": "タスクを確保",
       "done": "完了",
       "reopen": "再開",
@@ -600,6 +602,24 @@
       "empty": "現在プロジェクトに割り当てられた Todo はありません。",
       "progress": "{{ done }}/{{ total }} 完了",
       "unsorted": "未分類プロジェクト"
+    },
+    "dispatch": {
+      "kicker": "Project Todo Dispatch",
+      "title": "プロジェクト Todo 公開",
+      "empty": "自分が作成した募集プロジェクトはまだありません。",
+      "members": "メンバー",
+      "publisherKicker": "Todo Dispatch",
+      "publisherTitle": "チーム Todo を公開",
+      "team": "チーム全体",
+      "captain": "リーダーのみ",
+      "priority": "優先度",
+      "priorityHint": "0 が最緊急 / 9 が最も低い",
+      "placeholder": "例：キャラクターコントローラー初版を完成",
+      "noTodos": "このプロジェクトにはまだ公開済み Todo がありません。"
+    },
+    "feedback": {
+      "publishSuccess": "Todo を公開しました。",
+      "publishFailure": "Todo の公開に失敗しました。"
     }
   },
   "privateSetting": {

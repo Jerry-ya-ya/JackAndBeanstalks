@@ -582,6 +582,8 @@
     },
     "actions": {
       "add": "Add",
+      "publishing": "Publishing...",
+      "publishTodo": "Publish Todo",
       "claimTitle": "Claim task",
       "done": "Done",
       "reopen": "Reopen",
@@ -600,6 +602,24 @@
       "empty": "There are no project-assigned Todos right now.",
       "progress": "{{ done }}/{{ total }} done",
       "unsorted": "Unsorted Project"
+    },
+    "dispatch": {
+      "kicker": "Project Todo Dispatch",
+      "title": "Project Todo Publishing",
+      "empty": "You do not own any recruitment projects yet.",
+      "members": "members",
+      "publisherKicker": "Todo Dispatch",
+      "publisherTitle": "Publish Team Todo",
+      "team": "Whole team",
+      "captain": "Captain only",
+      "priority": "Priority",
+      "priorityHint": "0 is most urgent / 9 is least urgent",
+      "placeholder": "Example: finish the first character controller build",
+      "noTodos": "This project has no published todos yet."
+    },
+    "feedback": {
+      "publishSuccess": "Todo published.",
+      "publishFailure": "Failed to publish todo."
     }
   },
   "privateSetting": {

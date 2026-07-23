@@ -582,6 +582,8 @@
     },
     "actions": {
       "add": "新增",
+      "publishing": "發布中...",
+      "publishTodo": "發布 Todo",
       "claimTitle": "佔領任務",
       "done": "完成",
       "reopen": "重新開啟",
@@ -600,6 +602,24 @@
       "empty": "目前沒有專案指派的 Todo。",
       "progress": "{{ done }}/{{ total }} 完成",
       "unsorted": "未分類專案"
+    },
+    "dispatch": {
+      "kicker": "Project Todo Dispatch",
+      "title": "專案 Todo 發布",
+      "empty": "你目前沒有自己建立的招募專案。",
+      "members": "成員",
+      "publisherKicker": "Todo Dispatch",
+      "publisherTitle": "發布團隊 Todo",
+      "team": "整個團隊",
+      "captain": "隊長自己",
+      "priority": "優先級",
+      "priorityHint": "0 最緊急 / 9 最不緊急",
+      "placeholder": "例如：完成角色控制器第一版",
+      "noTodos": "這個專案目前還沒有發布 Todo。"
+    },
+    "feedback": {
+      "publishSuccess": "Todo 已發布",
+      "publishFailure": "發布 Todo 失敗"
     }
   },
   "privateSetting": {

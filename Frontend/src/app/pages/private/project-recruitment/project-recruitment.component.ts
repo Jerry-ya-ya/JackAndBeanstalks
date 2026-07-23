@@ -49,10 +49,6 @@ export class ProjectRecruitmentComponent implements OnInit {
   submitting = false;
   deletingProject: Record<number, boolean> = {};
   actionLoading: Record<number, boolean> = {};
-  todoLoading: Record<number, boolean> = {};
-  todoTexts: Record<number, string> = {};
-  todoTargets: Record<number, string> = {};
-  todoPriorities: Record<number, number> = {};
   joinMessages: Record<number, string> = {};
   statusMessage = '';
   joinMessage = '';
@@ -183,65 +179,6 @@ export class ProjectRecruitmentComponent implements OnInit {
         delete this.deletingProject[project.id];
       }
     });
-  }
-
-  publishTodo(project: ProjectRecruitment) {
-    const text = (this.todoTexts[project.id] || '').trim();
-    const target = this.todoTargets[project.id] || 'team';
-    const priority = this.getTodoPriority(project.id);
-
-    if (!project.owned_by_me || !text || this.todoLoading[project.id]) {
-      return;
-    }
-
-    const payload: {
-      text: string;
-      project_id: number;
-      priority: number;
-      assign_to_team?: boolean;
-      assignee_user_id?: number;
-    } = {
-      text,
-      project_id: project.id,
-      priority,
-    };
-
-    if (target === 'team') {
-      payload.assign_to_team = true;
-    } else if (target === 'captain') {
-      payload.assignee_user_id = project.creator.id;
-    } else {
-      payload.assignee_user_id = Number(target);
-    }
-
-    this.todoLoading[project.id] = true;
-    this.apiService.post(
-      '/todos',
-      payload,
-      this.apiService.createAuthHeaders()
-    ).subscribe({
-      next: () => {
-        this.todoTexts[project.id] = '';
-        this.todoTargets[project.id] = 'team';
-        this.todoPriorities[project.id] = 5;
-        delete this.todoLoading[project.id];
-        this.statusMessage = this.translate.instant('privateRecruit.feedback.todoSuccess');
-      },
-      error: err => {
-        this.statusMessage = err.error?.error || this.translate.instant('privateRecruit.feedback.todoFailure');
-        delete this.todoLoading[project.id];
-      }
-    });
-  }
-
-  getTodoPriority(projectId: number) {
-    const priority = Number(this.todoPriorities[projectId] ?? 5);
-    return Math.min(9, Math.max(0, priority));
-  }
-
-  getPriorityColor(priority: number) {
-    const level = Math.min(9, Math.max(0, Number(priority)));
-    return `hsl(${(level / 9) * 120}, 78%, 46%)`;
   }
 
   isFull(project: ProjectRecruitment) {

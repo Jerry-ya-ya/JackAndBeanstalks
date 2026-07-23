@@ -453,3 +453,5 @@
 ## 2026/07/24
 
 - Show registered users as public members with profile GitHub URLs.
+
+- Combine project todo publishing and management cards.

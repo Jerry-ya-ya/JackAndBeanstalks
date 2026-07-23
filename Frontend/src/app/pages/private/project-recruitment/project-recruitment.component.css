@@ -132,10 +132,7 @@
 
 .form-field input,
 .form-field textarea,
-.join-panel input,
-.todo-publisher input,
-.todo-publisher select,
-.todo-priority input {
+.join-panel input {
   min-height: 46px;
   width: 100%;
   padding: 0 14px;
@@ -312,74 +309,6 @@
   line-height: 1.5;
 }
 
-.todo-publisher {
-  display: grid;
-  gap: 12px;
-  margin-top: 16px;
-  padding: 16px;
-  border: 1px solid color-mix(in srgb, var(--studio-accent) 42%, var(--studio-line));
-  border-radius: 8px;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--studio-accent) 12%, transparent), transparent 58%),
-    color-mix(in srgb, var(--studio-panel-strong) 78%, transparent);
-}
-
-.todo-publisher__header,
-.todo-publisher__controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.todo-publisher__header {
-  justify-content: space-between;
-}
-
-.todo-publisher h4 {
-  margin: 0;
-  color: var(--studio-text);
-  font-size: 22px;
-  line-height: 1;
-}
-
-.todo-publisher select {
-  max-width: 210px;
-  color: var(--studio-text);
-}
-
-.todo-publisher input {
-  flex: 1;
-}
-
-.todo-priority {
-  display: grid;
-  grid-template-columns: auto 92px 44px minmax(150px, 1fr);
-  align-items: center;
-  gap: 10px;
-}
-
-.todo-priority span,
-.todo-priority small {
-  color: var(--studio-muted);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.todo-priority strong {
-  display: inline-grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 50%;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 900;
-  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
-}
-
 .manage-actions {
   justify-content: flex-end;
   margin-top: 16px;
@@ -433,19 +362,8 @@
   .join-panel,
   .manage-header,
   .manage-card__summary,
-  .manage-actions,
-  .todo-publisher__header,
-  .todo-publisher__controls,
-  .todo-priority {
+  .manage-actions {
     align-items: stretch;
     flex-direction: column;
-  }
-
-  .todo-publisher select {
-    max-width: none;
-  }
-
-  .todo-priority {
-    grid-template-columns: 1fr;
   }
 }
