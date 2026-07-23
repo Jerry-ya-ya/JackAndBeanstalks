@@ -99,9 +99,13 @@ class HomeNewsItem(db.Model):
     updated_at = db.Column(db.DateTime, default=taipei_now, onupdate=taipei_now)
 
 class MemberContentItem(db.Model):
+    __table_args__ = (
+        db.CheckConstraint("role IN ('superadmin', 'admin', 'member', 'user')", name='ck_member_content_role'),
+    )
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    role = db.Column(db.String(120), nullable=False)
+    role = db.Column(db.String(20), nullable=False)
     github_url = db.Column(db.String(255), nullable=False)
     sort_order = db.Column(db.Integer, default=0, nullable=False)
     created_at = db.Column(db.DateTime, default=taipei_now)

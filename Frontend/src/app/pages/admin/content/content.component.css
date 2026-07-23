@@ -230,7 +230,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   border: 1px solid var(--studio-line);
   border-radius: 8px;
@@ -238,11 +239,15 @@ textarea {
   color: var(--studio-text);
   background: color-mix(in srgb, var(--studio-panel-strong) 82%, transparent);
   outline: none;
+}
+
+textarea {
   resize: vertical;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   border-color: var(--studio-accent);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--studio-accent) 18%, transparent);
 }

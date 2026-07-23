@@ -799,7 +799,7 @@
       },
       "defaults": {
         "name": "New Member",
-        "role": "Studio Member"
+        "role": "member"
       }
     },
     "card": {

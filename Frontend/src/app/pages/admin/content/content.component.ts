@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { CommunityNewsItem, HomeContentService, HomeNewsContent } from '../../../core/services/home-content.service';
-import { MemberContentItem, MemberContentService } from '../../../core/services/member-content.service';
+import { MemberContentItem, MemberContentService, memberRoleOptions } from '../../../core/services/member-content.service';
 
 type ContentSection = 'home-news' | 'member' | 'tutorial' | 'about' | 'system';
 
@@ -18,6 +18,7 @@ export class ContentComponent implements OnInit {
   errorMessage = '';
   loading = false;
   saving = false;
+  readonly memberRoleOptions = memberRoleOptions;
 
   readonly sections: { key: ContentSection; labelKey: string; hintKey: string; disabled?: boolean }[] = [
     { key: 'home-news', labelKey: 'adminContent.sections.homeNews.label', hintKey: 'adminContent.sections.homeNews.hint' },
@@ -115,7 +116,7 @@ export class ContentComponent implements OnInit {
     this.members.push({
       id: null,
       name: this.translate.instant('adminContent.member.defaults.name'),
-      role: this.translate.instant('adminContent.member.defaults.role'),
+      role: 'member',
       githubUrl: 'https://github.com/Jerry-ya-ya',
       sort_order: this.members.length
     });

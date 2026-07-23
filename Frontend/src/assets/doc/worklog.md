@@ -445,3 +445,5 @@
 ## 2026/07/23
 
 - Add admin-managed public member content with GitHub URLs.
+
+- Add member avatars and fixed member roles.

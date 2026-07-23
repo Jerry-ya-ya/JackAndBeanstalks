@@ -15,7 +15,7 @@
           [class.active]="selectedMember === member"
           >
           <span class="member-button__avatar">
-            <img [src]="memberAvatar" [alt]="'member.aria.memberAvatar' | translate:{ name: member.name }">
+            <img [src]="getMemberAvatar(member)" [alt]="'member.aria.memberAvatar' | translate:{ name: member.name }">
           </span>
           <span class="member-button__text">
             <strong>{{ member.name }}</strong>

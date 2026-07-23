@@ -54,6 +54,8 @@ export class MemberComponent implements OnInit {
   repositories: GithubRepository[] = [];
   loading = true;
   error = '';
+  private avatarByUsername: Record<string, string> = {};
+  private avatarRequests = new Set<string>();
 
   constructor(
     private http: HttpClient,
@@ -65,11 +67,13 @@ export class MemberComponent implements OnInit {
       next: members => {
         this.demoMembers = members;
         this.selectedMember = members[0] || this.memberContent.getDefaultContent()[0];
+        this.loadMemberAvatars(this.demoMembers);
         this.loadGithubProfile(this.selectedMember);
       },
       error: () => {
         this.demoMembers = this.memberContent.getDefaultContent();
         this.selectedMember = this.demoMembers[0];
+        this.loadMemberAvatars(this.demoMembers);
         this.loadGithubProfile(this.selectedMember);
       }
     });
@@ -97,6 +101,7 @@ export class MemberComponent implements OnInit {
     }).subscribe({
       next: ({ profile, repositories }) => {
         this.profile = profile;
+        this.avatarByUsername[profile.login] = profile.avatar_url;
         this.repositories = repositories.filter(repo => !repo.fork).slice(0, 6);
         this.loading = false;
       },
@@ -135,6 +140,30 @@ export class MemberComponent implements OnInit {
 
   get memberAvatar() {
     return this.profile?.avatar_url || 'icons/cmenstudio.png';
+  }
+
+  getMemberAvatar(member: MemberContentItem) {
+    return this.avatarByUsername[this.getGithubUsername(member)] || 'icons/cmenstudio.png';
+  }
+
+  private loadMemberAvatars(members: MemberContentItem[]) {
+    for (const member of members) {
+      const githubUsername = this.getGithubUsername(member);
+      if (this.avatarByUsername[githubUsername] || this.avatarRequests.has(githubUsername)) {
+        continue;
+      }
+
+      this.avatarRequests.add(githubUsername);
+      this.http.get<GithubProfile>(`https://api.github.com/users/${githubUsername}`).subscribe({
+        next: profile => {
+          this.avatarByUsername[githubUsername] = profile.avatar_url;
+          this.avatarRequests.delete(githubUsername);
+        },
+        error: () => {
+          this.avatarRequests.delete(githubUsername);
+        }
+      });
+    }
   }
 
   private getFallbackProfile(member: MemberContentItem): GithubProfile {

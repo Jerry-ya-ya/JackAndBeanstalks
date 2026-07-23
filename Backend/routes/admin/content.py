@@ -7,6 +7,7 @@ from time_utils import to_taipei_iso
 content_bp = Blueprint('content', __name__)
 
 VALID_THEMES = {'cmen', 'eden'}
+VALID_MEMBER_ROLES = {'superadmin', 'admin', 'member', 'user'}
 
 DEFAULT_HOME_NEWS = {
     'cmen': [
@@ -48,7 +49,7 @@ DEFAULT_HOME_NEWS = {
 DEFAULT_MEMBER_CONTENT = [
     {
         'name': 'Jerry-ya-ya',
-        'role': f'Member Slot {index:02d}',
+        'role': 'member',
         'github_url': 'https://github.com/Jerry-ya-ya',
     }
     for index in range(1, 13)
@@ -68,10 +69,12 @@ def serialize_home_news(item):
     }
 
 def serialize_member_content(item):
+    role = item.role if item.role in VALID_MEMBER_ROLES else 'member'
+
     return {
         'id': item.id,
         'name': item.name,
-        'role': item.role,
+        'role': role,
         'githubUrl': item.github_url,
         'sort_order': item.sort_order,
         'created_at': to_taipei_iso(item.created_at),
@@ -177,6 +180,8 @@ def read_member_payload(data, default_order=0):
         return None, ('name is required', 400)
     if not role:
         return None, ('role is required', 400)
+    if role not in VALID_MEMBER_ROLES:
+        return None, ('role must be superadmin, admin, member, or user', 400)
     if not github_url:
         return None, ('github url is required', 400)
 
@@ -187,7 +192,7 @@ def read_member_payload(data, default_order=0):
 
     return {
         'name': name[:80],
-        'role': role[:120],
+        'role': role,
         'github_url': github_url[:255],
         'sort_order': sort_order,
     }, None

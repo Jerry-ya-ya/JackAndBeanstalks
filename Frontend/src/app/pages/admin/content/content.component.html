@@ -143,7 +143,11 @@
 
                 <label>
                   <span>{{ 'adminContent.member.form.role' | translate }}</span>
-                  <input [(ngModel)]="member.role" name="member-role-{{ i }}" maxlength="120">
+                  <select [(ngModel)]="member.role" name="member-role-{{ i }}">
+                    @for (role of memberRoleOptions; track role) {
+                      <option [value]="role">{{ role }}</option>
+                    }
+                  </select>
                 </label>
 
                 <label>

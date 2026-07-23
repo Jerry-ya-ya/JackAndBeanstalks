@@ -2,10 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { ApiService } from './api.service';
 
+export type MemberRole = 'superadmin' | 'admin' | 'member' | 'user';
+
+export const memberRoleOptions: MemberRole[] = ['superadmin', 'admin', 'member', 'user'];
+
 export interface MemberContentItem {
   id?: number | null;
   name: string;
-  role: string;
+  role: MemberRole;
   githubUrl: string;
   sort_order?: number;
 }
@@ -13,7 +17,7 @@ export interface MemberContentItem {
 export const defaultMemberContent: MemberContentItem[] = Array.from({ length: 12 }, (_, index) => ({
   id: null,
   name: 'Jerry-ya-ya',
-  role: `Member Slot ${String(index + 1).padStart(2, '0')}`,
+  role: 'member',
   githubUrl: 'https://github.com/Jerry-ya-ya',
   sort_order: index
 }));
@@ -66,7 +70,7 @@ export class MemberContentService {
       return {
         id: member.id ?? null,
         name: String(member.name ?? '').trim(),
-        role: String(member.role ?? '').trim(),
+        role: this.normalizeRole(member.role),
         githubUrl: String(member.githubUrl ?? '').trim(),
         sort_order: Number(member.sort_order ?? index)
       };
@@ -77,5 +81,9 @@ export class MemberContentService {
 
   private clone<T>(value: T): T {
     return JSON.parse(JSON.stringify(value)) as T;
+  }
+
+  private normalizeRole(role: unknown): MemberRole {
+    return memberRoleOptions.includes(role as MemberRole) ? role as MemberRole : 'member';
   }
 }
